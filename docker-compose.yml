@@ -1,0 +1,43 @@
+version: "3"
+services:
+  # vue
+  # vue:
+  #   image: node:lts
+  #   container_name: "vue"
+  #   tty: true
+  #   ports:
+  #     - "9000:8080"
+  #   volumes:
+  #     - ./vue:/usr/src/app:cached
+  #   working_dir: /src
+
+  # spring
+  app:
+    image: openjdk:11
+    container_name: "app"
+    restart: always
+    tty: true
+    ports:
+      - "9090:8080"
+    depends_on:
+      - sql
+    volumes:
+      - ./app:/srv:cached
+    working_dir: /srv
+
+  # SQL
+  sql:
+    image: mariadb:10.7
+    container_name: "mariadb"
+    volumes:
+      - ./mariadb/dbconf/:/docker-entrypoint-initdb.d
+      - ./mariadb/dbconf/mysql.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mariadb/settings:/var/lib/mysql
+    ports:
+      - "33060:3306"
+    environment:
+      MYSQL_DATABASE: "qiish"
+      MYSQL_USER: "mariadb"
+      MYSQL_PASSWORD: "mariadb"
+      MYSQL_ROOT_PASSWORD: "root"
+      TZ: "Asia/Tokyo"
