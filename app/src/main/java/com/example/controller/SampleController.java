@@ -1,28 +1,43 @@
 package com.example.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.Arrays;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.Article;
+import com.example.domain.UserInfo;
 import com.example.form.LoginForm;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8081")
-//@CrossOrigin(origins = "http://localhost:8000")
 @RequestMapping("/user")
 public class SampleController {
 
 	@PostMapping("/login")
-	public Map<String, String> login(@RequestBody LoginForm form) {
+	public UserInfo login(@RequestBody LoginForm form) {
 		System.out.println(form);
-		Map<String, String> sample = new HashMap<>();
-		sample.put("sample", "sample");
-		return sample;
+
+		UserInfo userInfo = new UserInfo();
+		LocalDate date = LocalDate.now();
+		Article article = new Article();
+		article.setArticleId(1);
+		article.setArticleTags(Arrays.asList("Docker","springboot"));
+		article.setPostedDate(date);
+		article.setTitle("Docker+springbootで開発環境を整える");
+		article.setUserName("Dockerマン");
+		userInfo.setUserId(1);
+		userInfo.setUserName("Yusuke");
+		userInfo.setEmail("sample@sample.com");
+		userInfo.setEngineerType("Java");
+		userInfo.setFollow(4);
+		userInfo.setFollower(2);
+		userInfo.setTags(Arrays.asList("java", "python"));
+		userInfo.setArticles(Arrays.asList(article));
+		System.out.println(userInfo);
+		return userInfo;
 	}
 
 }

@@ -58,8 +58,6 @@
         password: this.password,
       });
 
-      console.log(this.mailAddress);
-      console.log(this.password);
       console.log(response);
 
       if (response.data.status == "error") {

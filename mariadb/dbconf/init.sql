@@ -3,7 +3,7 @@ CREATE TABLE user_info(
     user_name varchar(18),
     email text NOT NULL,
     engineer_type text,
-    COMMENT text,
+    comment text,
     PRIMARY KEY (id)
 );
 
