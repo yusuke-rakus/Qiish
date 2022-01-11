@@ -16,11 +16,11 @@ public class CorsConfig {
 	@Bean
 	public CorsFilter corsFilter() {
 		List<String> url = new ArrayList<>();
-		url.add("http://localhost:8081");
-		url.add("http://localhost:8000");
-		url.add("http://localhost:8080");
-		url.add("http://vue:8000");
-		url.add("http://vue:8080");
+		url.add("http://localhost:8081/**");
+		url.add("http://localhost:8000/**");
+		url.add("http://localhost:8080/**");
+		url.add("http://vue:8000/**");
+		url.add("http://vue:8080/**");
 
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowedOrigins(url);
