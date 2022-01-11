@@ -1,17 +1,17 @@
 <mxfile host="65bd71144e">
     <diagram id="TOjAec38Bqr92ZQ6rcLn" name="注意事項">
-        <mxGraphModel dx="1238" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1344" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="Z340vtowlNFs9T8fUVKw-0"/>
                 <mxCell id="Z340vtowlNFs9T8fUVKw-1" parent="Z340vtowlNFs9T8fUVKw-0"/>
-                <mxCell id="ZrhUMoB5-oB5zieBaNrR-0" value="" style="group" parent="Z340vtowlNFs9T8fUVKw-1" vertex="1" connectable="0">
-                    <mxGeometry x="209" y="70" width="410" height="120" as="geometry"/>
+                <mxCell id="0" value="" style="group" vertex="1" connectable="0" parent="Z340vtowlNFs9T8fUVKw-1">
+                    <mxGeometry x="208" y="110" width="411" height="475" as="geometry"/>
                 </mxCell>
-                <mxCell id="ZrhUMoB5-oB5zieBaNrR-1" value="この図形がそれぞれの&lt;br&gt;ページの出力する内容です" style="rhombus;whiteSpace=wrap;html=1;" parent="ZrhUMoB5-oB5zieBaNrR-0" vertex="1">
-                    <mxGeometry width="190" height="110" as="geometry"/>
+                <mxCell id="ZrhUMoB5-oB5zieBaNrR-1" value="この図形がそれぞれの&lt;br&gt;ページの出力する内容です" style="rhombus;whiteSpace=wrap;html=1;" parent="0" vertex="1">
+                    <mxGeometry x="1" width="410" height="230" as="geometry"/>
                 </mxCell>
-                <mxCell id="ZrhUMoB5-oB5zieBaNrR-2" value="&lt;ul&gt;&lt;li&gt;この図形がそれぞれのページでPostする内容です&lt;/li&gt;&lt;/ul&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;" parent="ZrhUMoB5-oB5zieBaNrR-0" vertex="1">
-                    <mxGeometry x="240" y="10" width="170" height="110" as="geometry"/>
+                <mxCell id="ZrhUMoB5-oB5zieBaNrR-2" value="&lt;ul&gt;&lt;li&gt;この図形がそれぞれのページでPostする内容です&lt;/li&gt;&lt;/ul&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;" parent="0" vertex="1">
+                    <mxGeometry y="315" width="411" height="160" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
