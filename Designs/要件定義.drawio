@@ -1,0 +1,117 @@
+<mxfile host="65bd71144e">
+    <diagram id="TOjAec38Bqr92ZQ6rcLn" name="注意事項">
+        <mxGraphModel dx="1238" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="Z340vtowlNFs9T8fUVKw-0"/>
+                <mxCell id="Z340vtowlNFs9T8fUVKw-1" parent="Z340vtowlNFs9T8fUVKw-0"/>
+                <mxCell id="ZrhUMoB5-oB5zieBaNrR-0" value="" style="group" parent="Z340vtowlNFs9T8fUVKw-1" vertex="1" connectable="0">
+                    <mxGeometry x="209" y="70" width="410" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="ZrhUMoB5-oB5zieBaNrR-1" value="この図形がそれぞれの&lt;br&gt;ページの出力する内容です" style="rhombus;whiteSpace=wrap;html=1;" parent="ZrhUMoB5-oB5zieBaNrR-0" vertex="1">
+                    <mxGeometry width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="ZrhUMoB5-oB5zieBaNrR-2" value="&lt;ul&gt;&lt;li&gt;この図形がそれぞれのページでPostする内容です&lt;/li&gt;&lt;/ul&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;" parent="ZrhUMoB5-oB5zieBaNrR-0" vertex="1">
+                    <mxGeometry x="240" y="10" width="170" height="110" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="IO1MSbE2mdEYFcM0x6xF" name="ホーム画面">
+        <mxGraphModel dx="1104" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="IXMUylkqyQwvcKXOMblG-1" value="最新記事一覧" style="swimlane;" parent="1" vertex="1">
+                    <mxGeometry x="119" y="80" width="590" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="p5NHpRmwwphwd0liqsfX-1" value="&lt;div style=&quot;text-align: justify&quot;&gt;[articleList]&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;userName&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;title&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;tags&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;likesCount&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;postedDate&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="IXMUylkqyQwvcKXOMblG-1" vertex="1">
+                    <mxGeometry x="60" y="50" width="470" height="300" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="wjPuVwsGQqiZOK8hDawq" name="記事画面">
+        <mxGraphModel dx="1104" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="vGxZBRVO76o9lHpCY_97-0"/>
+                <mxCell id="vGxZBRVO76o9lHpCY_97-1" parent="vGxZBRVO76o9lHpCY_97-0"/>
+                <mxCell id="aJAqhOcmWjOFBaTY7RBI-0" value="記事詳細" style="swimlane;" parent="vGxZBRVO76o9lHpCY_97-1" vertex="1">
+                    <mxGeometry x="130" y="50" width="590" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="aJAqhOcmWjOFBaTY7RBI-1" value="&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;userName&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;title&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;content&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;tags&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;postedDate&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;[likesUser]&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;userName&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;image&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;comment&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;engineerType&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;tags&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="aJAqhOcmWjOFBaTY7RBI-0" vertex="1">
+                    <mxGeometry x="60" y="50" width="470" height="300" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="4KqTqpcfU4mMgDoWI4Ux" name="ユーザーページ">
+        <mxGraphModel dx="920" dy="716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="Q5HR6Xw7V5B-4KHVWK0--0"/>
+                <mxCell id="Q5HR6Xw7V5B-4KHVWK0--1" parent="Q5HR6Xw7V5B-4KHVWK0--0"/>
+                <mxCell id="Hv5RDWwC1RzuadH-VDTB-0" value="ユーザーページに出力する情報" style="swimlane;" vertex="1" parent="Q5HR6Xw7V5B-4KHVWK0--1">
+                    <mxGeometry x="130" y="50" width="590" height="500" as="geometry"/>
+                </mxCell>
+                <mxCell id="6m9MH7iaxlGN5KFNrG2f-1" value="&lt;div style=&quot;text-align: justify&quot;&gt;[userInfo]&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;userName&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;engineerType&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;comment&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;follow&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;follower&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;tagsList&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;articleCount&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;[articleList]&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;title&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;tags&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;likesCount&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;postedDate&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="Hv5RDWwC1RzuadH-VDTB-0">
+                    <mxGeometry x="100" y="70" width="410" height="330" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="1JO676AMW4_QmNl2q5GR" name="フォロー, フォロワー画面">
+        <mxGraphModel dx="930" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="oD6eJyackzFd_JmDZigf-0"/>
+                <mxCell id="oD6eJyackzFd_JmDZigf-1" parent="oD6eJyackzFd_JmDZigf-0"/>
+                <mxCell id="8KNMMjLAGa-Jn2QONhuN-0" value="フォロー・フォロワー" style="swimlane;" parent="oD6eJyackzFd_JmDZigf-1" vertex="1">
+                    <mxGeometry x="130" y="50" width="590" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="8KNMMjLAGa-Jn2QONhuN-1" value="&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;[UserList]&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;userName&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;image&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;comment&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;tags&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="8KNMMjLAGa-Jn2QONhuN-0" vertex="1">
+                    <mxGeometry x="60" y="50" width="470" height="300" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="pI2Atk3QBT7HL0PJher7" name="投稿画面">
+        <mxGraphModel dx="930" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="KGnYv_AIOO3_AxNBBZcK-0"/>
+                <mxCell id="KGnYv_AIOO3_AxNBBZcK-1" parent="KGnYv_AIOO3_AxNBBZcK-0"/>
+                <mxCell id="pSF9XFQ3wwtPJ5sig_vy-0" value="記事投稿" style="swimlane;" parent="KGnYv_AIOO3_AxNBBZcK-1" vertex="1">
+                    <mxGeometry x="119" y="80" width="590" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="pSF9XFQ3wwtPJ5sig_vy-1" value="&lt;ul&gt;&lt;li&gt;userId&lt;/li&gt;&lt;li&gt;title&lt;/li&gt;&lt;li&gt;content&lt;/li&gt;&lt;li&gt;tags&lt;/li&gt;&lt;/ul&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="pSF9XFQ3wwtPJ5sig_vy-0" vertex="1">
+                    <mxGeometry x="157" y="110" width="275" height="160" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="_qi8YO8qRfochqu0tMmV" name="ログイン">
+        <mxGraphModel dx="930" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="ey9X1KTGInJevS6miDnt-0"/>
+                <mxCell id="ey9X1KTGInJevS6miDnt-1" parent="ey9X1KTGInJevS6miDnt-0"/>
+                <mxCell id="i4bbj482nddJX64HNEZd-0" value="ログイン処理" style="swimlane;" parent="ey9X1KTGInJevS6miDnt-1" vertex="1">
+                    <mxGeometry x="50" y="80" width="740" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="i4bbj482nddJX64HNEZd-2" value="&lt;ul&gt;&lt;li&gt;userId&lt;/li&gt;&lt;li&gt;password&lt;/li&gt;&lt;/ul&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;" parent="i4bbj482nddJX64HNEZd-0" vertex="1">
+                    <mxGeometry x="251" y="140" width="226" height="100" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="BHNKe7FaLvuEek9LJ8FT" name="ユーザー登録">
+        <mxGraphModel dx="930" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="vV3oujGr-8vT-vV_kl9R-0"/>
+                <mxCell id="vV3oujGr-8vT-vV_kl9R-1" parent="vV3oujGr-8vT-vV_kl9R-0"/>
+                <mxCell id="mZyVOxAp-tI_onH36zQX-0" value="ユーザー登録処理" style="swimlane;" parent="vV3oujGr-8vT-vV_kl9R-1" vertex="1">
+                    <mxGeometry x="119" y="90" width="590" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="mZyVOxAp-tI_onH36zQX-1" value="&lt;ul&gt;&lt;li&gt;userName&lt;/li&gt;&lt;li&gt;email&lt;/li&gt;&lt;li&gt;password&lt;/li&gt;&lt;li&gt;engineerType&lt;/li&gt;&lt;/ul&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="mZyVOxAp-tI_onH36zQX-0" vertex="1">
+                    <mxGeometry x="157" y="110" width="275" height="160" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
