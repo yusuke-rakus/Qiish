@@ -1,15 +1,14 @@
 version: "3"
 services:
-  # vue
-  vue:
-    image: node:lts
-    container_name: "vue"
-    tty: true
+  # next
+  next:
+    build: ./react
+    container_name: "next"
     ports:
-      - "8000:8080"
+      - "3000:3000"
     volumes:
-      - ./vue:/usr/src/app:cached
-    working_dir: /usr/src/app
+      - ./react:/usr/src/app/next
+    command: "npm run dev"
 
   # spring
   app:
@@ -41,3 +40,14 @@ services:
       MYSQL_PASSWORD: "mariadb"
       MYSQL_ROOT_PASSWORD: "root"
       TZ: "Asia/Tokyo"
+
+  # vue:
+  #   image: node:lts
+  #   command: ["npm", "run", "serve"]
+  #   container_name: "vue"
+  #   tty: true
+  #   ports:
+  #     - "8000:8080"
+  #   volumes:
+  #     - ./vue:/usr/src/app:cached
+  #   working_dir: /usr/src/app
