@@ -53,7 +53,7 @@
     private imageUrl = "img/engineer.png";
 
     async loginUser(): Promise<void> {
-      const response = await axios.post(`http://app:8080/user/login`, {
+      const response = await axios.post("http://localhost:8080/user/login", {
         email: this.mailAddress,
         password: this.password,
       });

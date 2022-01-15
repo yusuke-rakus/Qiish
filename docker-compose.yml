@@ -2,12 +2,12 @@ version: "3"
 services:
   # next
   next:
-    build: ./react
+    build: ./next
     container_name: "next"
     ports:
       - "3000:3000"
     volumes:
-      - ./react:/usr/src/app/next
+      - ./next:/usr/src/app/next
     command: "npm run dev"
 
   # spring
@@ -43,7 +43,6 @@ services:
 
   # vue:
   #   image: node:lts
-  #   command: ["npm", "run", "serve"]
   #   container_name: "vue"
   #   tty: true
   #   ports:
