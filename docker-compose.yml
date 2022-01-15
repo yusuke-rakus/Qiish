@@ -3,6 +3,7 @@ services:
   # next
   next:
     build: ./next
+    platform: linux/x86_64
     container_name: "next"
     ports:
       - "3000:3000"
@@ -13,6 +14,7 @@ services:
   # spring
   app:
     image: openjdk:11
+    platform: linux/x86_64
     container_name: "app"
     restart: always
     tty: true
@@ -27,6 +29,7 @@ services:
   # SQL
   sql:
     image: mariadb:10.7
+    platform: linux/x86_64
     container_name: "mariadb"
     volumes:
       - ./mariadb/dbconf/:/docker-entrypoint-initdb.d
@@ -40,13 +43,3 @@ services:
       MYSQL_PASSWORD: "mariadb"
       MYSQL_ROOT_PASSWORD: "root"
       TZ: "Asia/Tokyo"
-
-  # vue:
-  #   image: node:lts
-  #   container_name: "vue"
-  #   tty: true
-  #   ports:
-  #     - "8000:8080"
-  #   volumes:
-  #     - ./vue:/usr/src/app:cached
-  #   working_dir: /usr/src/app
