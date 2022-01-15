@@ -38,8 +38,8 @@ services:
     ports:
       - "33060:3306"
     environment:
-      MYSQL_DATABASE: "qiish"
-      MYSQL_USER: "mariadb"
-      MYSQL_PASSWORD: "mariadb"
       MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "qiish"
+      MYSQL_USER: "maria"
+      MYSQL_PASSWORD: "maria"
       TZ: "Asia/Tokyo"
