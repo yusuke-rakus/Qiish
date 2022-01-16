@@ -36,10 +36,10 @@ services:
       - ./mariadb/dbconf/mysql.cnf:/etc/mysql/conf.d/my.cnf
       - ./mariadb/setting:/var/lib/mysql
     ports:
-      - "33060:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE: "qiish"
-      MYSQL_USER: "maria"
-      MYSQL_PASSWORD: "maria"
+      MYSQL_USER: "mariadb"
+      MYSQL_PASSWORD: "mariadb"
       TZ: "Asia/Tokyo"

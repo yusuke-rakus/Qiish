@@ -19,6 +19,7 @@ public class CorsConfig {
 		url.add("http://localhost:8081");
 		url.add("http://localhost:8000");
 		url.add("http://localhost:8080");
+		url.add("http://localhost:3000");
 		url.add("http://vue:8000");
 		url.add("http://vue:8080");
 
@@ -26,8 +27,7 @@ public class CorsConfig {
 		config.setAllowedOrigins(url);
 		config.setAllowCredentials(true);
 		config.setAllowedMethods(Arrays.asList("GET", "POST"));
-		config.setAllowedHeaders(
-				Arrays.asList("authorization", "content-type", "x-auth-token"));
+		config.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
 		config.addExposedHeader("*");
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
