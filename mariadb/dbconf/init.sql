@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS qiish;
 
 CREATE TABLE user_info(
     id int NOT NULL AUTO_INCREMENT,
-    user_name varchar(18),
+    user_name varchar(18) NOT NULL,
     email text NOT NULL UNIQUE,
     engineer_type text NOT NULL,
     description text,
@@ -75,11 +75,13 @@ CREATE TABLE tags(
 CREATE TABLE user_info_tags(
     user_info_id int NOT NULL,
     tag_id int NOT NULL,
-    FOREIGN KEY fk_tags_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
+    FOREIGN KEY fk_tags_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
+    FOREIGN KEY fk_user_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
 
 CREATE TABLE article_tags(
     article_id int NOT NULL,
     tag_id int NOT NULL,
-    FOREIGN KEY fk_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE
+    FOREIGN KEY fk_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE,
+    FOREIGN KEY fk_article_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
