@@ -1,42 +1,33 @@
 package com.example.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.User;
 import com.example.form.LoginForm;
-import com.example.service.LoginService;
+import com.example.form.UserRegisterForm;
+import com.example.response.LoginResponse;
+import com.example.response.Response;
+import com.example.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
 	@Autowired
-	private LoginService loginService;
+	private UserService userService;
 
 	// ログインしてIDのみ返却
 	@PostMapping("/login")
-	public Integer login(@RequestBody LoginForm form) {
-		User user = loginService.userLogin(form);
-		return user.getUserInfoId();
+	public LoginResponse loginUser(LoginForm form) { // @ResponseBody
+		return userService.userLogin(form);
 	}
-
-	@PostMapping("/login2")
-	public Map<Object, Object> login2(LoginForm form) {
-		LoginForm l = new LoginForm();
-		l.setEmail("sample@sample.com");
-		l.setPassword("samep");
-		Map<Object, Object> sample = new HashMap<>();
-		sample.put("status", "success");
-		sample.put("userId", 1);
-		sample.put("l", l);
-		return sample;
+	
+	@PostMapping("/register")
+	public Response registerUser(UserRegisterForm form) { // @ResponseBody
+		return userService.userRegister(form);
 	}
 
 }
