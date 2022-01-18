@@ -1,11 +1,20 @@
 package com.example.form;
 
-public class RegisterUserForm {
+public class UserRegisterForm {
 
+	private Integer userInfoId;
 	private String userName;
 	private String email;
 	private String password;
 	private String engineerType;
+
+	public Integer getUserInfoId() {
+		return userInfoId;
+	}
+
+	public void setUserInfoId(Integer userInfoId) {
+		this.userInfoId = userInfoId;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -41,8 +50,8 @@ public class RegisterUserForm {
 
 	@Override
 	public String toString() {
-		return "RegisterUserForm [userName=" + userName + ", email=" + email + ", password=" + password
-				+ ", engineerType=" + engineerType + "]";
+		return "UserRegisterForm [userInfoId=" + userInfoId + ", userName=" + userName + ", email=" + email
+				+ ", password=" + password + ", engineerType=" + engineerType + "]";
 	}
 
 }

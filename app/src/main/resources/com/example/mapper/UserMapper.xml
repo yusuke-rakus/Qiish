@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+
+	<select id="userLogin" resultType="com.example.domain.User">
+		SELECT user_info_id FROM user
+		WHERE email
+		= #{email} AND password = #{password}
+	</select>
+
+	<insert id="userInfoRegister" useGeneratedKeys="true"
+		keyProperty="userInfoId" parameterType="com.example.form.UserRegisterForm">
+		INSERT INTO user_info(user_name, email,
+		engineer_type)
+		VALUES(#{userName}, #{email}, #{engineerType});
+	</insert>
+
+	<insert id="userRegister"
+		parameterType="com.example.form.UserRegisterForm">
+		INSERT INTO user(user_info_id, email, password)
+		VALUES(#{userInfoId}, #{email}, #{password});
+	</insert>
+
+
+
+</mapper>
