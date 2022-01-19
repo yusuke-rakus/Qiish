@@ -1,5 +1,5 @@
 import React from "react";
-import { UserFormInput } from "../atoms";
+import { UserFormInput } from "../old_atoms";
 
 type Props = {
   INPUT_ITEMS_DATA: { name: string; onChange: Function; errorMsg?: string }[];

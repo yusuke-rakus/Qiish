@@ -1,32 +1,24 @@
-import Link from "next/link";
 import React from "react";
+import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import { ProfileLarge } from "../components/organisms";
+import Link from "next/link";
 
-const Profile: React.FC = () => {
+const ProfileEdit: React.FC = () => {
   return (
     <div className="flex justify-center">
       <div className="m-10 w-2/5 h-auto">
-        <Link href={"/"}>
+        <Link href={"/profile"}>
           <a className="text-gray-400 hover:text-slate-600">
             <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
           </a>
         </Link>
-        <ProfileLarge user_info_data={user_info_data} />
-        <div className="flex justify-between">
-          <div></div>
-          <Link href={"/profileEdit"}>
-            <a className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
-              編集
-            </a>
-          </Link>
-        </div>
+        <ProfileEditFrom user_info_data={user_info_data} />
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default ProfileEdit;
 
 const user_data = {
   user_name: "rakus111111",
@@ -46,7 +38,7 @@ export const user_info_data = {
   last_name: "山田",
   user_name: user_data.user_name,
   email: "yama@taro.com",
-  engineer_type: "",
+  engineer_type: "FR",
   comment: "趣味はサウナです。",
   skill_tags: skill_tags,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "antd";
-import UserFormInputs from "../molecules/UserFormInputs";
+import UserFormInputs from "../old_molecules/UserFormInputs";
 
 type Props = {
   loginTitleText: string;

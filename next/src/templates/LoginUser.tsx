@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { InputStrType } from "../const/Types";
-import LoginUserComp from "../components/organisms/LoginUserComp";
+import LoginUserComp from "../components/old_organisms/LoginUserComp";
 
 const LoginUser: React.FC = () => {
   // ログインデータ

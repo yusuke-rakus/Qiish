@@ -1,6 +1,6 @@
 import React from "react";
 import { NAVITEM_DATA } from "../../const/NAVITEM_DATA";
-import { NavItem } from "../atoms";
+import { NavItem } from "../old_atoms";
 
 type Props = {
   isLogin: boolean;

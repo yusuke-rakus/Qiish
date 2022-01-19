@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import React from "react";
-import { UserFormInputs } from "../molecules";
+import { UserFormInputs } from "../old_molecules";
 
 type Props = {
   textLabel: {

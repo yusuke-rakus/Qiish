@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.markdown ol {
+  @apply list-decimal pl-10;
+}
+.markdown ul {
+  @apply list-disc pl-10;
+}
+.markdown h4 {
+  @apply text-lg border-b border-black my-5;
+}
+
+.markdown h1 {
+  @apply text-5xl;
+}
+.markdown h2 {
+  @apply text-4xl;
+}
+.markdown h3 {
+  @apply text-2xl;
+}
+
+/* .markdown hgroup h2,
+h4,
+h5,
+h6 {
+  @apply text-base;
+} */

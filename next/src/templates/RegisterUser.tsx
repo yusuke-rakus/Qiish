@@ -2,8 +2,8 @@ import axios from "axios";
 import Image from "next/image";
 import Router from "next/router";
 import { useState } from "react";
-import { UserFormInput } from "../components/atoms";
-import RegisterUserComp from "../components/organisms/RegisterUserComp";
+import { UserFormInput } from "../components/old_atoms";
+import RegisterUserComp from "../components/old_organisms/RegisterUserComp";
 import { InputStrType } from "../const/Types";
 
 const RegisterUser: React.FC = () => {

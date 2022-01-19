@@ -1,12 +1,14 @@
 import React from "react";
-import ArticleComp from "../components/organisms/ArticleComp";
+import ArticleComp from "../components/old_organisms/ArticleComp";
 
 const ArticleList: React.FC = () => {
   return (
     <div>
-      {articles_demoData.map((articleData) => {
-        return <ArticleComp key={articleData.id} articleData={articleData} />;
-      })}
+      <div className="mx-80 grid grid-cols-2 gap-2 bg-orange-100">
+        {articles_demoData.map((articleData) => {
+          return <ArticleComp key={articleData.id} articleData={articleData} />;
+        })}
+      </div>
     </div>
   );
 };
