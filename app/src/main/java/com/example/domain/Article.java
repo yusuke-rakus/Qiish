@@ -1,60 +1,59 @@
 package com.example.domain;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Article {
 
 	private Integer articleId;
-	private String userName;
+	private Integer userInfoId;
 	private String title;
+	private String content;
+	private Timestamp postedDate;
 	private List<String> articleTags;
-	private LocalDate postedDate;
-
+	
 	public Integer getArticleId() {
 		return articleId;
 	}
-
 	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
 	}
-
-	public String getUserName() {
-		return userName;
+	public Integer getUserInfoId() {
+		return userInfoId;
 	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserInfoId(Integer userInfoId) {
+		this.userInfoId = userInfoId;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Timestamp getPostedDate() {
+		return postedDate;
+	}
+	public void setPostedDate(Timestamp postedDate) {
+		this.postedDate = postedDate;
+	}
 	public List<String> getArticleTags() {
 		return articleTags;
 	}
-
 	public void setArticleTags(List<String> articleTags) {
 		this.articleTags = articleTags;
 	}
-
-	public LocalDate getPostedDate() {
-		return postedDate;
-	}
-
-	public void setPostedDate(LocalDate postedDate) {
-		this.postedDate = postedDate;
-	}
-
 	@Override
 	public String toString() {
-		return "Article [articleId=" + articleId + ", userName=" + userName + ", title=" + title + ", articleTags="
-				+ articleTags + ", postedDate=" + postedDate + "]";
+		return "Article [articleId=" + articleId + ", userInfoId=" + userInfoId + ", title=" + title + ", content="
+				+ content + ", postedDate=" + postedDate + ", articleTags=" + articleTags + "]";
 	}
+
+
 
 }
