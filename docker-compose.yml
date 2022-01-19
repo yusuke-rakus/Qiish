@@ -30,7 +30,7 @@ services:
   sql:
     image: mariadb:10.7
     platform: linux/x86_64
-    container_name: "mariadb"
+    container_name: "sql"
     volumes:
       - ./mariadb/dbconf/:/docker-entrypoint-initdb.d
       - ./mariadb/dbconf/mysql.cnf:/etc/mysql/conf.d/my.cnf
