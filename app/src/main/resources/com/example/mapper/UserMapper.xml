@@ -2,25 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.UserMapper">
 
+	<!-- ログイン処理 -->
 	<select id="userLogin" resultType="com.example.domain.User">
 		SELECT user_info_id FROM user
 		WHERE email
 		= #{email} AND password = #{password}
 	</select>
 
-	<insert id="userInfoRegister" useGeneratedKeys="true"
-		keyProperty="userInfoId" parameterType="com.example.form.UserRegisterForm">
+	<!-- ユーザー登録処理 -->
+	<!-- なんかわからんけど戻り値に1しか入らん -->
+	<insert id="userInfoRegister">
 		INSERT INTO user_info(user_name, email,
 		engineer_type)
 		VALUES(#{userName}, #{email}, #{engineerType});
+		<selectKey resultType="java.lang.Integer" keyProperty="userInfoId"
+			order="AFTER">
+			SELECT LAST_INSERT_ID() AS VALUE
+		</selectKey>
 	</insert>
 
+	<!-- ユーザー登録処理 -->
 	<insert id="userRegister"
 		parameterType="com.example.form.UserRegisterForm">
 		INSERT INTO user(user_info_id, email, password)
 		VALUES(#{userInfoId}, #{email}, #{password});
 	</insert>
 
+	<update id="userInfoEdit">
+		UPDATE user_info SET user_name=#{userName},
+		email=#{email},
+		engineer_type=#{engineerType},
+		description=#{description}, image=#{image}
+		WHERE id=#{userId};
+	</update>
+
+	<update id="userEdit">
+		UPDATE SET email=#{email}, password=#{password} WHERE
+		user_info_id=#{userId};
+	</update>
+
+	<update id="userInfoTagsEdit">
+		UPDATE SET() WHERE;
+	</update>
 
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
