@@ -1,7 +1,8 @@
 import React from "react";
+import { Article } from "../../templates";
 
-const Article: React.FC = () => {
+const ArticlePage: React.FC = () => {
   return <Article />;
 };
 
-export default Article;
+export default ArticlePage;

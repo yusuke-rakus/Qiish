@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
@@ -25,13 +24,14 @@ type Props = {
   previewContent: string;
   prevFlag: boolean;
   onChange: Function;
+  changeFlag: Function;
 };
 
 const ArticleAddFrom: React.FC<Props> = ({
-  user_info_data,
   previewContent,
   prevFlag,
   onChange,
+  changeFlag,
 }) => {
   const tagStyle =
     "mx-1 mb-1 p-1 bg-[rgb(255,195,98)] text-white text-center font-sans text-xs shadow-md rounded-lg";
@@ -47,13 +47,12 @@ const ArticleAddFrom: React.FC<Props> = ({
   ];
   const backendTags = ["Java", "Ruby", "PHP", "Phyton"];
   const otherTags = ["Nodejs", "docker", "flutter"];
-  const engineer_types = ["FR", "WEB", "ML", "CL", "QA"];
 
   return (
     <Form>
       <Form.Item
         name="title"
-        rules={[{ required: true, message: "タイトルが空欄です" }]}
+        rules={[{ required: true, message: `タイトルが空欄です` }]}
       >
         <span className="p-2">
           <Input
@@ -127,7 +126,18 @@ const ArticleAddFrom: React.FC<Props> = ({
           </div>
         )}
       </div>
-      <Form.Item wrapperCol={{ offset: 19, span: 16 }}>
+      <div className="flex justify-end">
+        <Button
+          className="drop-shadow-2xl mr-3"
+          shape="round"
+          size="large"
+          htmlType="button"
+          onClick={() => changeFlag(!prevFlag)}
+        >
+          <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
+            プレビューモード
+          </span>
+        </Button>
         <Button
           className="drop-shadow-2xl"
           size="large"
@@ -135,11 +145,10 @@ const ArticleAddFrom: React.FC<Props> = ({
           htmlType="submit"
         >
           <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
-            {" "}
             保存
           </span>
         </Button>
-      </Form.Item>
+      </div>
     </Form>
   );
 };
