@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.LoginForm;
+import com.example.form.UserEditForm;
 import com.example.form.UserRegisterForm;
 import com.example.response.LoginResponse;
 import com.example.response.Response;
@@ -19,15 +20,22 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	// ログインしてIDのみ返却
+	// ログイン
 	@PostMapping("/login")
-	public LoginResponse loginUser(LoginForm form) { // @ResponseBody
+	public LoginResponse loginUser(@RequestBody LoginForm form) { //
 		return userService.userLogin(form);
 	}
-	
+
+	// ユーザー登録
 	@PostMapping("/register")
-	public Response registerUser(UserRegisterForm form) { // @ResponseBody
+	public Response userRegister(UserRegisterForm form) { // @RequestBody
 		return userService.userRegister(form);
+	}
+
+	// ユーザー情報編集
+	@PostMapping("/edit")
+	public Response userEdit(UserEditForm form) { // @RequestBody
+		return userService.userEdit(form);
 	}
 
 }
