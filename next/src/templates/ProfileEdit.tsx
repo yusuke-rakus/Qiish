@@ -30,8 +30,8 @@ const ProfileEdit: React.FC<Props> = ({ changeEditFlag }) => {
   const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  const changeEngineerType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log("エンジニアタイプ");
+  const changeEngineerType = (value: React.SetStateAction<string>) => {
+    setEngineerType(value);
   };
   const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -39,9 +39,8 @@ const ProfileEdit: React.FC<Props> = ({ changeEditFlag }) => {
   const changeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
-  const changeTags = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // setTags(e.target.value);
-    console.log("スキルタグリスト");
+  const changeTags = (value: React.SetStateAction<string[]>) => {
+    setTags(value);
   };
   const Fnc = {
     changeUserName,

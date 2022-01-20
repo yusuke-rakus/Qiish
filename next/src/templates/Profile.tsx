@@ -9,13 +9,15 @@ const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useState(true);
   // ユーザーのプロフィールデータ
   const { data, error } = useSWR("/profile");
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+
   useEffect(() => {
     console.log(data);
   }, [data]);
 
   const changeEditFlag = () => setEditFlag(!editFlag);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
   return (
     <div>

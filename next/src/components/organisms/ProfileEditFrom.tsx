@@ -30,7 +30,7 @@ type Props = {
   };
 };
 
-const ProfileEditFrom: React.FC<Props> = ({ TAG, userData, Fnc }) => {
+const ProfileEditFrom: React.FC<Props> = ({ TAGS, userData, Fnc }) => {
   return (
     <Form>
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
@@ -68,9 +68,8 @@ const ProfileEditFrom: React.FC<Props> = ({ TAG, userData, Fnc }) => {
                   className="w-20"
                   bordered={false}
                   onChange={Fnc.changeEngineerType}
-                  value={userData.engineerType}
                 >
-                  {TAG.ENGINEER.map((engineerType) => {
+                  {TAGS.ENGINEER.map((engineerType) => {
                     return (
                       <Select.Option key={engineerType} value={engineerType}>
                         {engineerType}
@@ -118,10 +117,9 @@ const ProfileEditFrom: React.FC<Props> = ({ TAG, userData, Fnc }) => {
                 placeholder="使用技術"
                 bordered={false}
                 onChange={Fnc.changeTags}
-                value={userData.tags}
               >
                 {/* フロント、バックエンド、その他のそれぞれの表示 */}
-                {TAG.SKILL.map((SkillType) => {
+                {TAGS.SKILL.map((SkillType) => {
                   return (
                     <Select.OptGroup
                       key={SkillType.label}
