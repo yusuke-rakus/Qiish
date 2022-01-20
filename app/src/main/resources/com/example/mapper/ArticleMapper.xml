@@ -2,9 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.ArticleMapper">
 
+	<!-- コメント -->
 	<insert id="ArticleComment"
 		parameterType="com.example.form.ArticleCommentForm">
 		INSERT INTO comments(article_id, user_info_id, comment)
 		VALUES(#{articleId}, #{userInfoId}, #{comment});
 	</insert>
+
+	<!-- LIKE -->
+	<insert id="ArticleLike"
+		parameterType="com.example.form.ArticleLikeForm">
+		INSERT INTO likes(user_info_id, article_id)
+		VALUES(#{userId},#{articleId});
+	</insert>
+
+	<!-- LIKE解除 -->
+	<delete id="ArticleRemoveLike"
+		parameterType="com.example.form.ArticleLikeForm">
+		DELETE FROM likes WHERE user_info_id=#{userId} AND
+		article_id=#{articleId};
+	</delete>
 </mapper>

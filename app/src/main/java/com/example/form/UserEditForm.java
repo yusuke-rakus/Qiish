@@ -2,13 +2,8 @@ package com.example.form;
 
 import java.util.List;
 
-import com.example.domain.Tag;
-
 /**
  * ユーザー情報を編集するフォーム
- * 
- * @author YusukeMatsumoto
- *
  */
 public class UserEditForm {
 
@@ -19,7 +14,7 @@ public class UserEditForm {
 	private String engineerType;
 	private String password;
 	private String description;
-	private List<Tag> tag;
+	private List<Integer> tag;
 
 	public Integer getUserId() {
 		return userId;
@@ -77,12 +72,12 @@ public class UserEditForm {
 		this.description = description;
 	}
 
-	public List<Tag> getTags() {
+	public List<Integer> getTag() {
 		return tag;
 	}
 
-	public void setTags(List<Tag> tags) {
-		this.tag = tags;
+	public void setTag(List<Integer> tag) {
+		this.tag = tag;
 	}
 
 	@Override
