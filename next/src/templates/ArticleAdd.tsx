@@ -4,8 +4,29 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 const ArticleAdd: React.FC = () => {
-  const [contnent, setContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [tags, setTags] = useState([]);
   const [previewFlag, setPreviewFlag] = useState(true);
+
+  const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+  const changeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+  const changeTags = (value: React.SetStateAction<never[]>) => {
+    setTags(value);
+  };
+  const changeFlag = () => setPreviewFlag(!previewFlag);
+
+  const Fnc = {
+    changeTitle,
+    changeContent,
+    changeTags,
+    changeFlag,
+  };
+
   return (
     <div>
       <div className="flex justify-center">
@@ -15,14 +36,13 @@ const ArticleAdd: React.FC = () => {
               <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
             </a>
           </Link>
-
-          <ArticleAddFrom
-            user_info_data={user_info_data}
-            previewContent={contnent}
-            prevFlag={previewFlag}
-            onChange={setContent}
-            changeFlag={setPreviewFlag}
-          />
+          <div>
+            <ArticleAddFrom
+              previewContent={content}
+              prevFlag={previewFlag}
+              Fnc={Fnc}
+            />
+          </div>
         </div>
       </div>
     </div>
