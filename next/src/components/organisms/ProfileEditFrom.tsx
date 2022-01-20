@@ -55,7 +55,6 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, userData, Fnc }) => {
                   bordered={false}
                   size={"large"}
                   onChange={Fnc.changeUserName}
-                  value={userData.userName}
                 />
               </Form.Item>
               <Form.Item
@@ -91,7 +90,6 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, userData, Fnc }) => {
                 bordered={false}
                 size={"large"}
                 onChange={Fnc.changeEmail}
-                value={userData.email}
               />
             </Form.Item>
             <Form.Item
@@ -104,10 +102,10 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, userData, Fnc }) => {
                 bordered={false}
                 size={"large"}
                 onChange={Fnc.changePassword}
-                value={userData.password}
               />
             </Form.Item>
             <Form.Item
+              className="hover:bg-gray-100"
               name="tags"
               rules={[{ required: true, message: "使用技術が空欄です" }]}
             >
@@ -151,7 +149,6 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, userData, Fnc }) => {
                 autoSize={{ minRows: 5 }}
                 bordered={false}
                 onChange={Fnc.changeDescription}
-                value={userData.description}
               />
             </Form.Item>
           </span>
