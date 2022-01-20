@@ -23,7 +23,7 @@ type Props = {
 const ProfileEdit: React.FC<Props> = ({ changeEditFlag, user_info_data }) => {
   return (
     <div className="flex justify-center">
-      <div className="m-10 w-2/5 h-auto">
+      <div className="m-10 lg:w-3/5 md:w-2/5 h-auto">
         <button type="button" onClick={() => changeEditFlag()}>
           <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
         </button>
