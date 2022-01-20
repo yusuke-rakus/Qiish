@@ -12,27 +12,20 @@ type Props = {
       data: string[];
     }[];
   };
-  userData: {
-    userName: string;
-    email: string;
-    engineerType: string;
-    password: string;
-    description: string;
-    tags: string[];
-  };
   Fnc: {
     changeUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
     changeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
     changeEngineerType: (value: React.SetStateAction<string>) => void;
     changePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
     changeDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    changeTags: (value: React.SetStateAction<string[]>) => void;
+    changeTags: (value: React.SetStateAction<never[]>) => void;
+    onSubmitEditUser: (e: React.FormEvent<HTMLFormElement>) => void;
   };
 };
 
-const ProfileEditFrom: React.FC<Props> = ({ TAGS, userData, Fnc }) => {
+const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
   return (
-    <Form>
+    <Form onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}>
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
         <div className="m-4">
           <div className="flex justify-center items-center">
