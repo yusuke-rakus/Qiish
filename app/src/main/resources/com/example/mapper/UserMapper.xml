@@ -15,8 +15,8 @@
 		INSERT INTO user_info(user_name, email,
 		engineer_type)
 		VALUES(#{userName}, #{email}, #{engineerType});
-		<selectKey resultType="java.lang.Integer" keyProperty="userInfoId"
-			order="AFTER">
+		<selectKey resultType="java.lang.Integer"
+			keyProperty="userInfoId" order="AFTER">
 			SELECT LAST_INSERT_ID() AS VALUE
 		</selectKey>
 	</insert>
@@ -28,6 +28,7 @@
 		VALUES(#{userInfoId}, #{email}, #{password});
 	</insert>
 
+	<!-- ユーザー情報の編集 -->
 	<update id="userInfoEdit">
 		UPDATE user_info SET user_name=#{userName},
 		email=#{email},
@@ -36,15 +37,20 @@
 		WHERE id=#{userId};
 	</update>
 
+	<!-- ログイン情報の編集 -->
 	<update id="userEdit">
 		UPDATE SET email=#{email}, password=#{password} WHERE
 		user_info_id=#{userId};
 	</update>
 
-	<update id="userInfoTagsEdit">
-		UPDATE SET() WHERE;
-	</update>
-
+	<!-- ユーザータグの編集 -->
+	<insert id="userInfoTagsEdit" parameterType="java.util.List">
+		INSERT INTO user_info_tags(user_info_id, tag_id)
+		VALUES
+		<foreach collection="tagsList" item="tag" separator=",">
+			(#{tag.userInfoId}, #{tag.tagId});
+		</foreach>
+	</insert>
 
 </mapper>
 
