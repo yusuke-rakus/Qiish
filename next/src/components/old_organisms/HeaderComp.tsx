@@ -21,13 +21,13 @@ const HeaderComp: React.FC = () => {
   return (
     <React.Fragment>
       <div className="flex gap-1 justify-end">
-        <button className="m-4 text-3xl">
+        <button className="m-4 text-3xl hover:text-gray-400">
           <SearchOutlined />
         </button>
 
         <Dropdown overlay={menu}>
           <a
-            className="m-4 text-3xl text-gray-600 rounded-full ant-dropdown-link"
+            className="m-4 text-3xl text-gray-600 hover:text-gray-400 rounded-full ant-dropdown-link"
             onClick={(e) => e.preventDefault()}
           >
             <UserOutlined /> <DownOutlined />

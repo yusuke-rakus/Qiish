@@ -4,7 +4,7 @@ import ArticleComp from "../components/old_organisms/ArticleComp";
 const ArticleList: React.FC = () => {
   return (
     <div>
-      <div className="mx-80 grid grid-cols-2 gap-2 bg-orange-100">
+      <div className="mx-44 max-w-screen-2xl grid grid-cols-2 gap-2 bg-orange-100">
         {articles_demoData.map((articleData) => {
           return <ArticleComp key={articleData.id} articleData={articleData} />;
         })}

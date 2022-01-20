@@ -1,5 +1,6 @@
 import Router from "next/router";
 import { Header, ArticleList } from "../templates";
+import { globalAgent } from "http";
 
 const goToRegisterUser = () => {
   Router.push("/registerUser");
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
       <div>
         <Header />
       </div>
-      <div className="mx-80 text-4xl font-semibold text-orange-500">
+      <div className="mx-48 text-4xl font-semibold text-orange-500">
         Articles
       </div>
       <div>

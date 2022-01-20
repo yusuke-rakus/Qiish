@@ -30,7 +30,7 @@ type Props = {
 const ArticleComp: React.FC<Props> = ({ articleData }) => {
   return (
     <div>
-      <div className="p-5 m-2 h-28 flex flex-col gap-1 bg-white rounded-lg shadow-xl">
+      <div className="p-5 m-2 flex flex-col gap-1 bg-white rounded-lg shadow-xl">
         <div className="text-xs text-gray">
           @{articleData.user_info_data.user_name}が{articleData.posted_date}
           に投稿しました
