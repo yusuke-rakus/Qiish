@@ -5,18 +5,20 @@ import java.util.List;
 
 public class Article {
 
-	private Integer articleId;
+	private Integer id;
 	private Integer userInfoId;
 	private String title;
 	private String content;
 	private Timestamp postedDate;
-	private List<String> articleTags;
+	private List<Tag> articleTags;
+	private List<UserInfo> lieksUserList;
+	private List<Comment> comments;
 	
-	public Integer getArticleId() {
-		return articleId;
+	public Integer getId() {
+		return id;
 	}
-	public void setArticleId(Integer articleId) {
-		this.articleId = articleId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Integer getUserInfoId() {
 		return userInfoId;
@@ -42,18 +44,30 @@ public class Article {
 	public void setPostedDate(Timestamp postedDate) {
 		this.postedDate = postedDate;
 	}
-	public List<String> getArticleTags() {
+	public List<Tag> getArticleTags() {
 		return articleTags;
 	}
-	public void setArticleTags(List<String> articleTags) {
+	public void setArticleTags(List<Tag> articleTags) {
 		this.articleTags = articleTags;
+	}
+	public List<UserInfo> getLieksUserList() {
+		return lieksUserList;
+	}
+	public void setLieksUserList(List<UserInfo> lieksUserList) {
+		this.lieksUserList = lieksUserList;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	@Override
 	public String toString() {
-		return "Article [articleId=" + articleId + ", userInfoId=" + userInfoId + ", title=" + title + ", content="
-				+ content + ", postedDate=" + postedDate + ", articleTags=" + articleTags + "]";
+		return "Article [id=" + id + ", userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
+				+ ", postedDate=" + postedDate + ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList
+				+ ", comments=" + comments + "]";
 	}
-
 
 
 }

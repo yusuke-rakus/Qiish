@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
+import { TagsType } from "../molecules";
 
 const { Option, OptGroup } = Select;
 
@@ -21,62 +22,18 @@ type Props = {
       skill_name: string;
     }[];
   };
+  TAG_TYPES: {
+    label: string;
+    data: string[];
+  }[];
+  ENGINEER_TYPES: string[];
 };
 
-const ProfileEditFrom: React.FC<Props> = ({ user_info_data }) => {
-  // タグはまとめることも可能
-  const frontTags = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "jQuery",
-    "React",
-    "Angular",
-    "Vue",
-    "TypeScript",
-    "CoffeeScript",
-    "Node.js",
-  ];
-  const backendTags = [
-    "C",
-    "C+",
-    "C#",
-    "Java",
-    "Ruby",
-    "PHP",
-    "Phyton",
-    "Objective-C",
-    "Perl",
-  ];
-  const otherTags = [
-    "Swift",
-    "kotolin",
-    "Bootstrap",
-    "JUnit",
-    "MySQL",
-    "PostgreSQL",
-    "Oracle",
-    "SQLite",
-    "MongoDB",
-    "SQL",
-    "Git",
-    "GitHub",
-    "GitLab",
-    "Docker",
-    "AWS",
-    "Heroku",
-    "Linux",
-    "Bash",
-    "CentOS",
-    "Redmine",
-    "shell",
-    "Redmine",
-    "Postman",
-    "Atom",
-    "ssh",
-  ];
-  const engineer_types = ["FR", "WEB", "ML", "CL", "QA"];
-
+const ProfileEditFrom: React.FC<Props> = ({
+  user_info_data,
+  TAG_TYPES,
+  ENGINEER_TYPES,
+}) => {
   return (
     <Form>
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
@@ -114,7 +71,7 @@ const ProfileEditFrom: React.FC<Props> = ({ user_info_data }) => {
                   className="w-20"
                   bordered={false}
                 >
-                  {engineer_types.map((engineer) => {
+                  {ENGINEER_TYPES.map((engineer) => {
                     return (
                       <Option key={engineer} value={engineer}>
                         {engineer}
@@ -126,45 +83,20 @@ const ProfileEditFrom: React.FC<Props> = ({ user_info_data }) => {
             </div>
           </div>
           <div>
-            {/* tags(User) */}
             <Form.Item
               name="tags"
               rules={[{ required: true, message: "使用技術が空欄です" }]}
             >
               <Select
-                mode="multiple"
+                mode="tags"
                 allowClear
                 placeholder="使用技術"
-                optionLabelProp="label"
                 bordered={false}
               >
-                <OptGroup label="フロント">
-                  {frontTags.map((tag) => {
-                    return (
-                      <Option key={tag} value={tag}>
-                        {tag}
-                      </Option>
-                    );
-                  })}
-                </OptGroup>
-                <OptGroup label="バックエンド">
-                  {backendTags.map((tag) => {
-                    return (
-                      <Option key={tag} value={tag}>
-                        {tag}
-                      </Option>
-                    );
-                  })}
-                </OptGroup>
-                <OptGroup label="その他">
-                  {otherTags.map((tag) => {
-                    return (
-                      <Option key={tag} value={tag}>
-                        {tag}
-                      </Option>
-                    );
-                  })}
-                </OptGroup>
+                {/* フロント、バックエンド、その他のそれぞれの表示 */}
+                {TAG_TYPES.map((TagType) => {
+                  return <TagsType TagType={TagType} key={TagType.label} />;
+                })}
               </Select>
             </Form.Item>
           </div>

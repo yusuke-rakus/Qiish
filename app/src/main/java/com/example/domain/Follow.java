@@ -1,10 +1,20 @@
 package com.example.domain;
 
-public class User {
+public class Follow {
 
 	private Integer userInfoId;
+	
 	private String email;
+	
 	private String password;
+
+	public Integer getUserInfoId() {
+		return userInfoId;
+	}
+
+	public void setUserInfoId(Integer userInfoId) {
+		this.userInfoId = userInfoId;
+	}
 
 	public String getEmail() {
 		return email;
@@ -22,17 +32,10 @@ public class User {
 		this.password = password;
 	}
 
-	public Integer getUserInfoId() {
-		return userInfoId;
-	}
-
-	public void setUserInfoId(Integer userInfoId) {
-		this.userInfoId = userInfoId;
-	}
-
 	@Override
 	public String toString() {
-		return "User [userInfoId=" + userInfoId + ", email=" + email + ", password=" + password + "]";
+		return "Follow [userInfoId=" + userInfoId + ", email=" + email + ", password=" + password + "]";
 	}
-
+	
+	
 }

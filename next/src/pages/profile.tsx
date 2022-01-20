@@ -1,11 +1,11 @@
-import axios from "axios";
-import { GetStaticProps } from "next";
 import React from "react";
+import { GetStaticProps } from "next";
 import { SWRConfig } from "swr";
 import { Profile } from "../templates";
+import { fetchProfile } from "./api/fetchData";
 
 type Props = {
-  [key: string]: any;
+  [key: string]: object;
 };
 
 const ProfilePage: React.FC<Props> = ({ fallback }) => {
@@ -22,12 +22,12 @@ export default ProfilePage;
 
 export const getStaticProps: GetStaticProps = async () => {
   // プロフィール情報取得のAPI
-  const res = await axios.get("http://localhost:3001");
+  const profile = await fetchProfile();
 
   return {
     props: {
       fallback: {
-        "/profile": res.data,
+        "/profile": profile,
       },
     },
   };
