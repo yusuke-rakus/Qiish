@@ -1,4 +1,4 @@
-export const TAG = [
+export const SKILL = [
   {
     label: "フロント",
     data: [

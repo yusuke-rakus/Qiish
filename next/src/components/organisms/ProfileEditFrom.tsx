@@ -5,9 +5,9 @@ import TextArea from "antd/lib/input/TextArea";
 
 // FCの型定義
 type Props = {
-  TYPES: {
+  TAGS: {
     ENGINEER: string[];
-    TAG: {
+    SKILL: {
       label: string;
       data: string[];
     }[];
@@ -18,7 +18,7 @@ type Props = {
     engineerType: string;
     password: string;
     description: string;
-    tags: never[];
+    tags: string[];
   };
   Fnc: {
     changeUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -30,7 +30,7 @@ type Props = {
   };
 };
 
-const ProfileEditFrom: React.FC<Props> = ({ TYPES, userData, Fnc }) => {
+const ProfileEditFrom: React.FC<Props> = ({ TAG, userData, Fnc }) => {
   return (
     <Form>
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
@@ -70,7 +70,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TYPES, userData, Fnc }) => {
                   onChange={Fnc.changeEngineerType}
                   value={userData.engineerType}
                 >
-                  {TYPES.ENGINEER.map((engineerType) => {
+                  {TAG.ENGINEER.map((engineerType) => {
                     return (
                       <Select.Option key={engineerType} value={engineerType}>
                         {engineerType}
@@ -121,13 +121,16 @@ const ProfileEditFrom: React.FC<Props> = ({ TYPES, userData, Fnc }) => {
                 value={userData.tags}
               >
                 {/* フロント、バックエンド、その他のそれぞれの表示 */}
-                {TYPES.TAG.map((TagType) => {
+                {TAG.SKILL.map((SkillType) => {
                   return (
-                    <Select.OptGroup key={TagType.label} label={TagType.label}>
-                      {TagType.data.map((tag) => {
+                    <Select.OptGroup
+                      key={SkillType.label}
+                      label={SkillType.label}
+                    >
+                      {SkillType.data.map((SkillTag) => {
                         return (
-                          <Select.Option key={tag} value={tag}>
-                            {tag}
+                          <Select.Option key={SkillTag} value={SkillTag}>
+                            {SkillTag}
                           </Select.Option>
                         );
                       })}

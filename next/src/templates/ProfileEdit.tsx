@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import { ENGINEER, TAG } from "../const/Tags";
-import { DefaultOptionType } from "antd/lib/select";
+import { ENGINEER, SKILL } from "../const/Tags";
 
 type Props = {
   changeEditFlag: () => void;
 };
-const TYPES = { ENGINEER, TAG };
+const TAGS = { ENGINEER, SKILL };
 
 const ProfileEdit: React.FC<Props> = ({ changeEditFlag }) => {
   const [userName, setUserName] = useState("");
@@ -59,7 +58,7 @@ const ProfileEdit: React.FC<Props> = ({ changeEditFlag }) => {
         <button type="button" onClick={changeEditFlag}>
           <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
         </button>
-        <ProfileEditFrom TYPES={TYPES} userData={userData} Fnc={Fnc} />
+        <ProfileEditFrom TAGS={TAGS} userData={userData} Fnc={Fnc} />
       </div>
     </div>
   );
