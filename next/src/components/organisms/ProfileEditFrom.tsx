@@ -2,38 +2,35 @@ import React from "react";
 import Image from "next/image";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { TagsType } from "../molecules";
-
-const { Option, OptGroup } = Select;
 
 // FCの型定義
 type Props = {
-  user_info_data: {
-    user_info_id: number;
-    first_name: string;
-    last_name: string;
-    user_name: string;
-    email: string;
-    engineer_type: string;
-    comment: string;
-    skill_tags: {
-      user_info_id: number;
-      skill_id: number;
-      skill_name: string;
+  TYPES: {
+    ENGINEER: string[];
+    TAG: {
+      label: string;
+      data: string[];
     }[];
   };
-  TAG_TYPES: {
-    label: string;
-    data: string[];
-  }[];
-  ENGINEER_TYPES: string[];
+  userData: {
+    userName: string;
+    email: string;
+    engineerType: string;
+    password: string;
+    description: string;
+    tags: never[];
+  };
+  Fnc: {
+    changeUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    changeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    changeEngineerType: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    changePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    changeDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    changeTags: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  };
 };
 
-const ProfileEditFrom: React.FC<Props> = ({
-  user_info_data,
-  TAG_TYPES,
-  ENGINEER_TYPES,
-}) => {
+const ProfileEditFrom: React.FC<Props> = ({ TYPES, userData, Fnc }) => {
   return (
     <Form>
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
@@ -48,7 +45,6 @@ const ProfileEditFrom: React.FC<Props> = ({
               height={120}
             />
             <div className="pt-7">
-              {/* userName(User) */}
               <Form.Item
                 name="userName"
                 rules={[{ required: true, message: "名前が空欄です" }]}
@@ -58,9 +54,10 @@ const ProfileEditFrom: React.FC<Props> = ({
                   placeholder="名前を入力"
                   bordered={false}
                   size={"large"}
+                  onChange={Fnc.changeUserName}
+                  value={userData.userName}
                 />
               </Form.Item>
-              {/* engineerType(User) */}
               <Form.Item
                 name="engineerType"
                 rules={[{ required: true, message: "職種が空欄です" }]}
@@ -70,12 +67,14 @@ const ProfileEditFrom: React.FC<Props> = ({
                   placeholder="職種"
                   className="w-20"
                   bordered={false}
+                  onChange={Fnc.changeEngineerType}
+                  value={userData.engineerType}
                 >
-                  {ENGINEER_TYPES.map((engineer) => {
+                  {TYPES.ENGINEER.map((engineerType) => {
                     return (
-                      <Option key={engineer} value={engineer}>
-                        {engineer}
-                      </Option>
+                      <Select.Option key={engineerType} value={engineerType}>
+                        {engineerType}
+                      </Select.Option>
                     );
                   })}
                 </Select>
@@ -83,6 +82,32 @@ const ProfileEditFrom: React.FC<Props> = ({
             </div>
           </div>
           <div>
+            <Form.Item
+              name="email"
+              rules={[{ required: true, message: "メールアドレスが空欄です" }]}
+            >
+              <Input
+                className="focus:placeholder-gray-400"
+                placeholder="メールアドレスを入力"
+                bordered={false}
+                size={"large"}
+                onChange={Fnc.changeEmail}
+                value={userData.email}
+              />
+            </Form.Item>
+            <Form.Item
+              name="passwors"
+              rules={[{ required: true, message: "パスワードが空欄です" }]}
+            >
+              <Input.Password
+                className="focus:placeholder-gray-400"
+                placeholder="パスワードを入力"
+                bordered={false}
+                size={"large"}
+                onChange={Fnc.changePassword}
+                value={userData.password}
+              />
+            </Form.Item>
             <Form.Item
               name="tags"
               rules={[{ required: true, message: "使用技術が空欄です" }]}
@@ -92,10 +117,22 @@ const ProfileEditFrom: React.FC<Props> = ({
                 allowClear
                 placeholder="使用技術"
                 bordered={false}
+                onChange={Fnc.changeTags}
+                value={userData.tags}
               >
                 {/* フロント、バックエンド、その他のそれぞれの表示 */}
-                {TAG_TYPES.map((TagType) => {
-                  return <TagsType TagType={TagType} key={TagType.label} />;
+                {TYPES.TAG.map((TagType) => {
+                  return (
+                    <Select.OptGroup key={TagType.label} label={TagType.label}>
+                      {TagType.data.map((tag) => {
+                        return (
+                          <Select.Option key={tag} value={tag}>
+                            {tag}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select.OptGroup>
+                  );
                 })}
               </Select>
             </Form.Item>
@@ -112,7 +149,8 @@ const ProfileEditFrom: React.FC<Props> = ({
                 placeholder="この読書の目的は「知ること」ではなく、「行動すること」"
                 autoSize={{ minRows: 5 }}
                 bordered={false}
-                value={user_info_data.comment}
+                onChange={Fnc.changeDescription}
+                value={userData.description}
               />
             </Form.Item>
           </span>

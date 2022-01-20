@@ -1,4 +1,4 @@
-export const TAG_TYPES = [
+export const TAG = [
   {
     label: "フロント",
     data: [
@@ -58,4 +58,4 @@ export const TAG_TYPES = [
     ],
   },
 ];
-export const ENGINEER_TYPES = ["FR", "WEB", "ML", "CL", "QA"];
+export const ENGINEER = ["FR", "WEB", "ML", "CL", "QA"];

@@ -36,10 +36,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
       ) : (
-        <ProfileEdit
-          changeEditFlag={changeEditFlag}
-          user_info_data={user_info_data}
-        />
+        <ProfileEdit changeEditFlag={changeEditFlag} />
       )}
     </div>
   );
