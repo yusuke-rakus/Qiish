@@ -2,7 +2,7 @@ package com.example.form;
 
 import java.util.List;
 
-import com.example.domain.Tags;
+import com.example.domain.Tag;
 
 /**
  * ユーザー情報を編集するフォーム
@@ -19,7 +19,7 @@ public class UserEditForm {
 	private String engineerType;
 	private String password;
 	private String description;
-	private List<Tags> tags;
+	private List<Tag> tag;
 
 	public Integer getUserId() {
 		return userId;
@@ -77,19 +77,19 @@ public class UserEditForm {
 		this.description = description;
 	}
 
-	public List<Tags> getTags() {
-		return tags;
+	public List<Tag> getTags() {
+		return tag;
 	}
 
-	public void setTags(List<Tags> tags) {
-		this.tags = tags;
+	public void setTags(List<Tag> tags) {
+		this.tag = tags;
 	}
 
 	@Override
 	public String toString() {
 		return "UserEditForm [userId=" + userId + ", userName=" + userName + ", image=" + image + ", email=" + email
 				+ ", engineerType=" + engineerType + ", password=" + password + ", description=" + description
-				+ ", tags=" + tags + "]";
+				+ ", tag=" + tag + "]";
 	}
 
 }
