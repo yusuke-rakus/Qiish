@@ -2,8 +2,13 @@ import Link from "next/link";
 import React from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ProfileLarge } from "../components/organisms";
+import useSWR from "swr";
 
 const Profile: React.FC = () => {
+  // ユーザーのプロフィールデータ
+  const { data } = useSWR("/profile");
+  console.log(data);
+
   return (
     <div className="flex justify-center">
       <div className="m-10 w-2/5 h-auto">
@@ -13,8 +18,7 @@ const Profile: React.FC = () => {
           </a>
         </Link>
         <ProfileLarge user_info_data={user_info_data} />
-        <div className="flex justify-between">
-          <div></div>
+        <div className="flex justify-end">
           <Link href={"/profileEdit"}>
             <a className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
               編集

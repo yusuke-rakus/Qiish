@@ -22,18 +22,8 @@ type Props = {
 const ProfileLarge: React.FC<Props> = ({ user_info_data }) => {
   const tagStyle =
     "mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg";
-  const tagsName = [
-    "フロントエンド",
-    "CSS",
-    "tailwindCSS",
-    "tailwindCSS",
-    "初心者",
-    "フロントエンド",
-    "初心者",
-    "tailwindCSS",
-    "初心者",
-    "フロントエンド",
-  ];
+  const tagsName = ["フロントエンド", "CSS", "tailwindCSS", "初心者"];
+
   return (
     <div className="w-full p-10 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">
