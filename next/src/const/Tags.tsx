@@ -1,6 +1,5 @@
-export const TAGS_DATA = [
+export const TAG_TYPES = [
   {
-    key: "1",
     label: "フロント",
     data: [
       "HTML",
@@ -15,7 +14,6 @@ export const TAGS_DATA = [
     ],
   },
   {
-    key: "2",
     label: "バックエンド",
     data: [
       "C",
@@ -30,7 +28,6 @@ export const TAGS_DATA = [
     ],
   },
   {
-    key: "3",
     label: "その他",
     data: [
       "Node.js",

@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { Select, Form, Input, Button, Tag } from "antd";
+import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { ENGINEER_TYPES, TAGS_DATA } from "../../const/Tags";
+import { TagsType } from "../molecules";
 
 const { Option, OptGroup } = Select;
 
@@ -22,9 +22,18 @@ type Props = {
       skill_name: string;
     }[];
   };
+  TAG_TYPES: {
+    label: string;
+    data: string[];
+  }[];
+  ENGINEER_TYPES: string[];
 };
 
-const ProfileEditFrom: React.FC<Props> = ({ user_info_data }) => {
+const ProfileEditFrom: React.FC<Props> = ({
+  user_info_data,
+  TAG_TYPES,
+  ENGINEER_TYPES,
+}) => {
   return (
     <Form>
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
@@ -74,7 +83,6 @@ const ProfileEditFrom: React.FC<Props> = ({ user_info_data }) => {
             </div>
           </div>
           <div>
-            {/* tags(User) */}
             <Form.Item
               name="tags"
               rules={[{ required: true, message: "使用技術が空欄です" }]}
@@ -83,50 +91,12 @@ const ProfileEditFrom: React.FC<Props> = ({ user_info_data }) => {
                 mode="tags"
                 allowClear
                 placeholder="使用技術"
-                optionLabelProp="label"
                 bordered={false}
               >
-                {TAGS_DATA.map((Tags) => {
-                  return (
-                    <OptGroup key={Tags.label} label={Tags.label}>
-                      {Tags.data.map((tag) => {
-                        console.log(Tags.label + " " + tag);
-                        return (
-                          <Option key={tag} value={tag}>
-                            {tag}
-                          </Option>
-                        );
-                      })}
-                    </OptGroup>
-                  );
+                {/* フロント、バックエンド、その他のそれぞれの表示 */}
+                {TAG_TYPES.map((TagType) => {
+                  return <TagsType TagType={TagType} key={TagType.label} />;
                 })}
-                {/* <OptGroup label="フロント">
-                  {FRONT_TAGS.map((tag) => {
-                    return (
-                      <Option key={tag} value={tag}>
-                        {tag}
-                      </Option>
-                    );
-                  })}
-                </OptGroup>
-                <OptGroup label="バックエンド">
-                  {BACKEND_TAGS.map((tag) => {
-                    return (
-                      <Option key={tag} value={tag}>
-                        {tag}
-                      </Option>
-                    );
-                  })}
-                </OptGroup>
-                <OptGroup label="その他">
-                  {OTHER_TAGS.map((tag) => {
-                    return (
-                      <Option key={tag} value={tag}>
-                        {tag}
-                      </Option>
-                    );
-                  })}
-                </OptGroup> */}
               </Select>
             </Form.Item>
           </div>

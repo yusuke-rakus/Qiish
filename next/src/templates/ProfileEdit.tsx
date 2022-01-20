@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
+import { ENGINEER_TYPES, TAG_TYPES } from "../const/Tags";
 
 type Props = {
   user_info_data: {
@@ -27,7 +28,11 @@ const ProfileEdit: React.FC<Props> = ({ changeEditFlag, user_info_data }) => {
         <button type="button" onClick={() => changeEditFlag()}>
           <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
         </button>
-        <ProfileEditFrom user_info_data={user_info_data} />
+        <ProfileEditFrom
+          user_info_data={user_info_data}
+          TAG_TYPES={TAG_TYPES}
+          ENGINEER_TYPES={ENGINEER_TYPES}
+        />
       </div>
     </div>
   );
