@@ -3,7 +3,7 @@ services:
   # next
   next:
     build: ./next
-    platform: linux/x86_64
+    platform: linux/amd64
     container_name: "next"
     ports:
       - "3000:3000"
@@ -14,7 +14,7 @@ services:
   # spring
   app:
     image: openjdk:11
-    platform: linux/x86_64
+    platform: linux/amd64
     container_name: "app"
     restart: always
     tty: true
@@ -29,7 +29,7 @@ services:
   # SQL
   sql:
     image: mariadb:10.7
-    platform: linux/x86_64
+    platform: linux/amd64
     container_name: "sql"
     volumes:
       - ./mariadb/dbconf/:/docker-entrypoint-initdb.d

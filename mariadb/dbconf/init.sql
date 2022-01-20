@@ -117,17 +117,17 @@ VALUES
     ('qiita', 'sample@qiita.com', 'React', 'hei');
 
 INSERT INTO
-    user(user_info_id, email, PASSWORD)
+    user(user_info_id, email, password)
 VALUES
     (1, 'sample@qiish.com', 'qiish');
 
 INSERT INTO
-    user(user_info_id, email, PASSWORD)
+    user(user_info_id, email, password)
 VALUES
     (2, 'sample@zenn.com', 'zenn');
 
 INSERT INTO
-    user(user_info_id, email, PASSWORD)
+    user(user_info_id, email, password)
 VALUES
     (3, 'sample@qiita.com', 'qiita');
 
@@ -211,7 +211,7 @@ VALUES
     (2, 1);
 
 INSERT INTO
-    comments(article_id, user_info_id, COMMENT)
+    comments(article_id, user_info_id, comment)
 VALUES
     (1, 3, 'I agree.');
 
