@@ -23,10 +23,10 @@ type Props = {
   Fnc: {
     changeUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
     changeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    changeEngineerType: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    changeEngineerType: (value: React.SetStateAction<string>) => void;
     changePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
     changeDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    changeTags: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    changeTags: (value: React.SetStateAction<string[]>) => void;
   };
 };
 
