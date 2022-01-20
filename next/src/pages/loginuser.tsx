@@ -7,7 +7,7 @@ const goToReissue = () => {
   Router.push("/reissuePassword");
 };
 
-const loginUser: React.FC = () => {
+const LoginUser: React.FC = () => {
   // メールアドレス
   const [mailAddress, setMailAddress] = useState<string>("");
   // パスワード
@@ -78,4 +78,4 @@ const loginUser: React.FC = () => {
   );
 };
 
-export default loginUser;
+export default LoginUser;
