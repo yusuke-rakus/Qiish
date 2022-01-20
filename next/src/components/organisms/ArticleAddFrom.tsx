@@ -15,24 +15,18 @@ type Props = {
     changeTags: (value: React.SetStateAction<never[]>) => void;
     changeFlag: () => void;
   };
+  SKILLTAGS: {
+    label: string;
+    data: string[];
+  }[];
 };
 
-const ArticleAddFrom: React.FC<Props> = ({ previewContent, prevFlag, Fnc }) => {
-  const tagStyle =
-    "mx-1 mb-1 p-1 bg-[rgb(255,195,98)] text-white text-center font-sans text-xs shadow-md rounded-lg";
-  // タグはまとめることも可能
-  const frontTags = [
-    "HTML5",
-    "CSS3",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Angular",
-    "Vue",
-  ];
-  const backendTags = ["Java", "Ruby", "PHP", "Phyton"];
-  const otherTags = ["Nodejs", "docker", "flutter"];
-
+const ArticleAddFrom: React.FC<Props> = ({
+  previewContent,
+  prevFlag,
+  Fnc,
+  SKILLTAGS,
+}) => {
   return (
     <div>
       <Form>
@@ -61,33 +55,19 @@ const ArticleAddFrom: React.FC<Props> = ({ previewContent, prevFlag, Fnc }) => {
             bordered={false}
             onChange={Fnc.changeTags}
           >
-            <OptGroup label="フロント">
-              {frontTags.map((tag) => {
-                return (
-                  <Option key={tag} value={tag}>
-                    {tag}
-                  </Option>
-                );
-              })}
-            </OptGroup>
-            <OptGroup label="バックエンド">
-              {backendTags.map((tag) => {
-                return (
-                  <Option key={tag} value={tag}>
-                    {tag}
-                  </Option>
-                );
-              })}
-            </OptGroup>
-            <OptGroup label="その他">
-              {otherTags.map((tag) => {
-                return (
-                  <Option key={tag} value={tag}>
-                    {tag}
-                  </Option>
-                );
-              })}
-            </OptGroup>
+            {SKILLTAGS.map((SkillType) => {
+              return (
+                <Select.OptGroup key={SkillType.label} label={SkillType.label}>
+                  {SkillType.data.map((SkillTag) => {
+                    return (
+                      <Select.Option key={SkillTag} value={SkillTag}>
+                        {SkillTag}
+                      </Select.Option>
+                    );
+                  })}
+                </Select.OptGroup>
+              );
+            })}
           </Select>
         </Form.Item>
         <div className="w-full p-4 m-2 bg-white rounded-lg border shadow-md">

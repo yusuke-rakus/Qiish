@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { ArticleAddFrom } from "../components/old_organisms";
+import { ArticleAddFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { SKILL as SKILLTAGS } from "../const/Tags";
 
 const ArticleAdd: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -41,6 +42,7 @@ const ArticleAdd: React.FC = () => {
               previewContent={content}
               prevFlag={previewFlag}
               Fnc={Fnc}
+              SKILLTAGS={SKILLTAGS}
             />
           </div>
         </div>
