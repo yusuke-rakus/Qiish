@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.ArticleCommentForm;
+import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
@@ -51,9 +52,21 @@ public class ArticleController {
 		return articleService.ArticlePost(form);
 	}
 
+
 	@GetMapping("/articleId")
 	public ArticleDetailResponse ArticleDetail(Integer articleId) {
 		return articleService.ArticleDetail(articleId);
+	}
+
+
+	@PostMapping("/delete")
+	public Response ArticleDelete(Integer articleId) {
+		return articleService.articleDelete(articleId);
+	}
+	
+	@PostMapping("/edit")
+	public Response ArticleEdit(ArticleEditForm form) {
+		return articleService.articleEdit(form);
 	}
 
 }

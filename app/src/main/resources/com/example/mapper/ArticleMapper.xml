@@ -38,14 +38,14 @@
 	</delete>
 	
 	<!-- 記事投稿 -->
-	<insert id="ArticlePost"
+	<insert id="articlePost"
 		parameterType="com.example.domain.Article" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO articles(user_info_id, title, content)
 		VALUES(#{userInfoId}, #{title}, #{content});
 	</insert>
 	
 	<!-- 記事投稿（タグ情報を保存） -->
-	<insert id="ArticleTagsPost">
+	<insert id="articleTagsPost">
 	    INSERT INTO article_tags(article_id, tag_id)
 	    values
 	    <foreach collection="tagId" item="tagId" separator=","> 
@@ -55,6 +55,24 @@
 	    )
 	    </foreach>
 	</insert>
+	
+	<!-- 記事削除 -->
+	<delete id="articleDelete" parameterType="Integer">
+		DELETE FROM articles WHERE id=#{articleId};
+	</delete>
+	
+	<!-- タグ情報削除 -->
+	<delete id="articleTagsDelete" parameterType="Integer">
+		DELETE FROM article_tags WHERE article_id=#{articleId};
+	</delete>
+	
+	<!-- 記事更新 -->
+	<update id="articleEdit">
+		UPDATE articles SET 
+		title=#{title},
+		content=#{content}
+		WHERE id=#{articleId};
+	</update>
 	
 	
 </mapper>
