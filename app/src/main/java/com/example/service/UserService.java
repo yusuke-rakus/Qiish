@@ -1,15 +1,21 @@
 package com.example.service;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.example.common.Status;
+import com.example.domain.UserInfo;
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
 import com.example.form.UserFollowForm;
 import com.example.form.UserRegisterForm;
 import com.example.mapper.UserMapper;
+import com.example.response.FollowResponse;
 import com.example.response.LoginResponse;
 import com.example.response.Response;
 
@@ -90,5 +96,28 @@ public class UserService {
 		}
 		return res;
 	}
-
+	
+	/** フォロー一覧表示 */
+	public FollowResponse followList(Integer userInfoId) {
+		FollowResponse res = new FollowResponse();
+		try {
+			List<UserInfo> followList = userMapper.followList(userInfoId);
+			res.setUserList(followList);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+	
+	/** フォロワー一覧表示 */
+	public FollowResponse followerList(Integer userInfoId) {
+		FollowResponse res = new FollowResponse();
+		try {
+			List<UserInfo> followerList = userMapper.followerList(userInfoId);
+			res.setUserList(followerList);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
 }
