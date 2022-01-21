@@ -19,12 +19,14 @@ type Props = {
     }[];
   };
   articleLike: number;
+  articleLikeFlag: boolean;
   changeArticleLike: () => void;
 };
 
 const ArticleComp: React.FC<Props> = ({
   user_info_data,
   articleLike,
+  articleLikeFlag,
   changeArticleLike,
 }) => {
   return (
@@ -38,7 +40,13 @@ const ArticleComp: React.FC<Props> = ({
           {/* likeCount(Article) */}
           <div className="flex justify-center items-center">
             <button onClick={changeArticleLike}>
-              <HeartOutlined className="text-2xl hover:text-orange-500" />
+              {articleLikeFlag ? (
+                <span className="text-orange-500">
+                  <HeartOutlined className="text-2xl" />
+                </span>
+              ) : (
+                <HeartOutlined className="text-2xl" />
+              )}
             </button>
             <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
               {articleLike}

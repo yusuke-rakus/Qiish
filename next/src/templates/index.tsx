@@ -3,6 +3,7 @@
 export { default as Article } from "./Article";
 export { default as ArticleAdd } from "./ArticleAdd";
 export { default as ArticleList } from "./ArticleList";
+export { default as Comments } from "./Comments";
 export { default as Follow } from "./Follow";
 export { default as Follower } from "./Follower";
 export { default as LoginUser } from "./LoginUser";
