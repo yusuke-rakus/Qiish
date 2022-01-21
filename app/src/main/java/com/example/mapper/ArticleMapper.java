@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.domain.Article;
+import com.example.domain.UserInfo;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
@@ -43,4 +44,5 @@ public interface ArticleMapper {
 	
 	/** 記事更新（タグ情報削除） */
 	public void articleTagsDelete(Integer articleId);
+
 }
