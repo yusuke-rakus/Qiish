@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useSWR from "swr";
 import { ArticleComp, CommentComp } from "../components/organisms";
 
 const Article: React.FC = () => {
   const [articleLike, setArticleLike] = useState(10);
   const [articleLikeFlag, setArticleLikeFlag] = useState(false);
+  // 記事データ
+  const { data, error } = useSWR("/profile");
+
+  useEffect(() => {
+    console.log("Article" + data);
+  }, [data]);
 
   const changeArticleLike = () => {
     if (articleLikeFlag) {
@@ -14,8 +21,9 @@ const Article: React.FC = () => {
       setArticleLike((prevLike) => prevLike + 1);
     }
   };
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
-  console.log(articleLike);
   return (
     <div className="h-full">
       <ArticleComp

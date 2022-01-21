@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
   const { data, error } = useSWR("/profile");
 
   useEffect(() => {
-    console.log(data);
+    console.log("Profile" + data);
   }, [data]);
 
   const changeEditFlag = () => setEditFlag(!editFlag);
