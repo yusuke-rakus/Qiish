@@ -22,4 +22,25 @@
 		DELETE FROM likes WHERE user_info_id=#{userId} AND
 		article_id=#{articleId};
 	</delete>
+	
+	<!-- 記事投稿 -->
+	<insert id="ArticlePost"
+		parameterType="com.example.domain.Article" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO articles(user_info_id, title, content)
+		VALUES(#{userInfoId}, #{title}, #{content});
+	</insert>
+	
+	<!-- 記事投稿（タグ情報を保存） -->
+	<insert id="ArticleTagsPost">
+	    INSERT INTO article_tags(article_id, tag_id)
+	    values
+	    <foreach collection="tagId" item="tagId" separator=","> 
+	    (
+	      #{articleId},
+	      #{tagId}
+	    )
+	    </foreach>
+	</insert>
+	
+	
 </mapper>
