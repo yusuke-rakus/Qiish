@@ -3,21 +3,35 @@
 <mapper namespace="com.example.mapper.ArticleMapper">
 
 	<!-- コメント -->
-	<insert id="ArticleComment"
+	<insert id="articleComment"
 		parameterType="com.example.form.ArticleCommentForm">
 		INSERT INTO comments(article_id, user_info_id, comment)
 		VALUES(#{articleId}, #{userInfoId}, #{comment});
 	</insert>
 
+	<!-- コメントLIKE -->
+	<insert id="commentLike"
+		parameterType="com.example.form.CommentLikeForm">
+		INSERT INTO comment_likes(user_info_id, comments_id)
+		VALUES(#{userId}, #{commentId});
+	</insert>
+
+	<!-- コメントLIKE解除 -->
+	<delete id="removeCommentLike"
+		parameterType="com.example.form.CommentLikeForm">
+		DELETE FROM comment_likes WHERE user_info_id=#{userId}
+		AND comments_id=#{commentId};
+	</delete>
+
 	<!-- LIKE -->
-	<insert id="ArticleLike"
+	<insert id="articleLike"
 		parameterType="com.example.form.ArticleLikeForm">
 		INSERT INTO likes(user_info_id, article_id)
 		VALUES(#{userId},#{articleId});
 	</insert>
 
 	<!-- LIKE解除 -->
-	<delete id="ArticleRemoveLike"
+	<delete id="articleRemoveLike"
 		parameterType="com.example.form.ArticleLikeForm">
 		DELETE FROM likes WHERE user_info_id=#{userId} AND
 		article_id=#{articleId};

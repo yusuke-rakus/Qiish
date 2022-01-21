@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.common.Status;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleLikeForm;
+import com.example.form.CommentLikeForm;
 import com.example.mapper.ArticleMapper;
 import com.example.response.Response;
 
@@ -16,10 +17,32 @@ public class ArticleService {
 	private ArticleMapper articleMapper;
 
 	/** コメント */
-	public Response ArticleComment(ArticleCommentForm form) {
+	public Response articleComment(ArticleCommentForm form) {
 		Response res = new Response();
 		try {
-			articleMapper.ArticleComment(form);
+			articleMapper.articleComment(form);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** コメントLIKE */
+	public Response commentLike(CommentLikeForm form) {
+		Response res = new Response();
+		try {
+			articleMapper.commentLike(form);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** コメントLIKE解除 */
+	public Response removeCommentLike(CommentLikeForm form) {
+		Response res = new Response();
+		try {
+			articleMapper.removeCommentLike(form);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -27,10 +50,10 @@ public class ArticleService {
 	}
 
 	/** LIKE */
-	public Response ArticleLike(ArticleLikeForm form) {
+	public Response articleLike(ArticleLikeForm form) {
 		Response res = new Response();
 		try {
-			articleMapper.ArticleLike(form);
+			articleMapper.articleLike(form);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -38,15 +61,14 @@ public class ArticleService {
 	}
 
 	/** LIKE解除 */
-	public Response ArticleRemoveLike(ArticleLikeForm form) {
+	public Response articleRemoveLike(ArticleLikeForm form) {
 		Response res = new Response();
 		try {
-			articleMapper.ArticleRemoveLike(form);
+			articleMapper.articleRemoveLike(form);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
 		return res;
-
 	}
 
 }
