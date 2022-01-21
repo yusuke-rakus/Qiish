@@ -11,21 +11,20 @@
 
 	<!-- ユーザー登録処理 -->
 	<!-- なんかわからんけど戻り値に1しか入らん -->
-	<insert id="userInfoRegister">
-		INSERT INTO user_info(user_name, email,
+	<insert id="userInfoRegister"
+		parameterType="com.example.form.UserRegisterForm"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO user_info(user_name,
+		email,
 		engineer_type)
 		VALUES(#{userName}, #{email}, #{engineerType});
-		<selectKey resultType="java.lang.Integer"
-			keyProperty="userInfoId" order="AFTER">
-			SELECT LAST_INSERT_ID() AS VALUE
-		</selectKey>
 	</insert>
 
 	<!-- ユーザー登録処理 -->
 	<insert id="userRegister"
 		parameterType="com.example.form.UserRegisterForm">
 		INSERT INTO user(user_info_id, email, password)
-		VALUES(#{userInfoId}, #{email}, #{password});
+		VALUES(#{id}, #{email}, #{password});
 	</insert>
 
 	<!-- ユーザー情報の編集 -->
@@ -39,18 +38,24 @@
 
 	<!-- ログイン情報の編集 -->
 	<update id="userEdit">
-		UPDATE SET email=#{email}, password=#{password} WHERE
+		UPDATE user SET email=#{email}, password=#{password}
+		WHERE
 		user_info_id=#{userId};
 	</update>
 
 	<!-- ユーザータグの編集 -->
-	<insert id="userInfoTagsEdit" parameterType="java.util.List">
+	<insert id="userInfoTagsEdit">
 		INSERT INTO user_info_tags(user_info_id, tag_id)
 		VALUES
-		<foreach collection="tagsList" item="tag" separator=",">
-			(#{tag.userInfoId}, #{tag.tagId});
+		<foreach collection="tagsList" item="tagId" separator=",">
+			(#{userId}, #{tagId})
 		</foreach>
 	</insert>
+
+	<delete id="deleteTags" parameterType="java.lang.Integer">
+		DELETE FROM user_info_tags
+		WHERE user_info_id = #{userId};
+	</delete>
 
 </mapper>
 
