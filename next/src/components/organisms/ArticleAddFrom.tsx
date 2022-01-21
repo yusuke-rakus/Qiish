@@ -30,6 +30,7 @@ const ArticleAddFrom: React.FC<Props> = ({
   return (
     <div>
       <Form>
+        {/* 送信ようのメソッド用意 */}
         <Form.Item
           name="title"
           rules={[{ required: true, message: `タイトルが空欄です` }]}

@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleLikeForm;
+
 import com.example.form.ArticlePostForm;
+
+import com.example.form.CommentLikeForm;
+
 import com.example.response.Response;
 import com.example.service.ArticleService;
 
@@ -19,18 +23,28 @@ public class ArticleController {
 	private ArticleService articleService;
 
 	@PostMapping("/comment")
-	public Response ArticleComment(ArticleCommentForm form) { // @RequestBody
-		return articleService.ArticleComment(form);
+	public Response articleComment(ArticleCommentForm form) { // @RequestBody
+		return articleService.articleComment(form);
+	}
+
+	@PostMapping("/commentLike")
+	public Response commentLike(CommentLikeForm form) { // @RequestBody
+		return articleService.commentLike(form);
+	}
+
+	@PostMapping("/removeCommentLike")
+	public Response removeCommentLike(CommentLikeForm form) { // @RequestBody
+		return articleService.removeCommentLike(form);
 	}
 
 	@PostMapping("/like")
-	public Response ArticleLike(ArticleLikeForm form) {
-		return articleService.ArticleLike(form);
+	public Response articleLike(ArticleLikeForm form) { // @RequestBody
+		return articleService.articleLike(form);
 	}
 
 	@PostMapping("/removeLike")
-	public Response ArticleRemoveLike(ArticleLikeForm form) {
-		return articleService.ArticleRemoveLike(form);
+	public Response articleRemoveLike(ArticleLikeForm form) { // @RequestBody
+		return articleService.articleRemoveLike(form);
 	}
 	
 	@PostMapping("/add")
