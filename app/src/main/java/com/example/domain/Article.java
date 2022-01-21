@@ -12,6 +12,7 @@ public class Article {
 	private Timestamp postedDate;
 	private List<Tag> articleTags;
 	private List<UserInfo> lieksUserList;
+	private int likesCount;
 	private List<Comment> comments;
 	
 	public Integer getId() {
@@ -62,12 +63,20 @@ public class Article {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+	public int getLikesCount() {
+		return likesCount;
+	}
+	public void setLikesCount(int likesCount) {
+		this.likesCount = likesCount;
+	}
+	
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
 				+ ", postedDate=" + postedDate + ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList
-				+ ", comments=" + comments + "]";
+				+ ", likesCount=" + likesCount + ", comments=" + comments + "]";
 	}
+
 
 
 }
