@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { CommentComp } from "../components/organisms";
 
 const Comments: React.FC = () => {
-  return <CommentComp user_info_data={user_info_data} />;
+  const [commentLike, setCommetnLike] = useState(1);
+  const [commentLikeFlag, setCommentLikeFlag] = useState(false);
+  // 記事データ(API実装できたら再度行う)
+  // const { data, error } = useSWR("/profile");
+  // useEffect(() => {
+  //   console.log("Article" + data);
+  // }, [data]);
+
+  const changeCommentLike = () => {
+    if (commentLikeFlag) {
+      setCommentLikeFlag(!commentLikeFlag);
+      setCommetnLike((prevLike) => prevLike - 1);
+    } else {
+      setCommentLikeFlag(!commentLikeFlag);
+      setCommetnLike((prevLike) => prevLike + 1);
+    }
+  };
+  return (
+    <CommentComp
+      user_info_data={user_info_data}
+      commentLike={commentLike}
+      commentLikeFlag={commentLikeFlag}
+      changeCommentLike={changeCommentLike}
+    />
+  );
 };
 
 export default Comments;
