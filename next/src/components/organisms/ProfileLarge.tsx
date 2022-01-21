@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 // FCの型定義
 type Props = {
@@ -61,14 +62,18 @@ const ProfileLarge: React.FC<Props> = ({
             <div>11</div>
           </div>
           <div className="flex-grow text-center">
-            {/*  */}
-            フォロー
-            <div>122</div>
+            <Link href={"/follow"}>
+              <a className="text-black hover:text-gray-400">
+                フォロー<div>122</div>
+              </a>
+            </Link>
           </div>
           <div className="flex-grow text-center ">
-            {/*  */}
-            フォロワー
-            <div>140</div>
+            <Link href={"/follower"}>
+              <a className="text-black hover:text-gray-400">
+                フォロワー<div>140</div>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="text-2xl mt-2 flex justify-center items-center">
