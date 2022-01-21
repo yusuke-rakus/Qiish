@@ -18,9 +18,17 @@ type Props = {
       skill_name: string;
     }[];
   };
+  commentLike: number;
+  commentLikeFlag: boolean;
+  changeCommentLike: () => void;
 };
 
-const CommentComp: React.FC<Props> = ({ user_info_data }) => {
+const CommentComp: React.FC<Props> = ({
+  user_info_data,
+  commentLike,
+  commentLikeFlag,
+  changeCommentLike,
+}) => {
   return (
     <div className="flex justify-center">
       <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">
@@ -47,11 +55,17 @@ const CommentComp: React.FC<Props> = ({ user_info_data }) => {
           </div>
           <div className="flex items-center">
             {/* likeList(Comment) */}
-            <button>
-              <HeartOutlined className="text-xl text-gray-300 hover:text-orange-500" />
+            <button onClick={changeCommentLike}>
+              {commentLikeFlag ? (
+                <span className="text-orange-500">
+                  <HeartOutlined className="text-2xl" />
+                </span>
+              ) : (
+                <HeartOutlined className="text-2xl" />
+              )}
             </button>
             <a href="#" className="ml-1 text-md text-black hover:text-gray-400">
-              10
+              {commentLike}
             </a>
             {/* posted_date(Comment) */}
             <span className="ml-6">2021-11-1 11:40</span>

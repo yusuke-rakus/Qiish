@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 // FCの型定義
 type Props = {
@@ -17,9 +18,15 @@ type Props = {
       skill_name: string;
     }[];
   };
+  usrFollowFlag: boolean;
+  changeUsrFollow: () => void;
 };
 
-const ProfileSmall: React.FC<Props> = ({ user_info_data }) => {
+const ProfileSmall: React.FC<Props> = ({
+  user_info_data,
+  usrFollowFlag,
+  changeUsrFollow,
+}) => {
   const tagStyle =
     "mx-1 mb-1 p-1 bg-orange-500  text-white text-center font-sans text-xs shadow-md rounded-lg";
   const tagsName = ["フロントエンド", "CSS", "tailwindCSS", "初心者"];
@@ -28,19 +35,33 @@ const ProfileSmall: React.FC<Props> = ({ user_info_data }) => {
       <div className="m-4">
         <div className="flex justify-center items-center">
           {/* image(User) */}
-          <Image
-            className="rounded-full"
-            src={"/img/avatar.jpg"}
-            alt="アバター"
-            width={90}
-            height={90}
-          />
+          <Link href={"/profile"}>
+            <a>
+              <Image
+                className="rounded-full"
+                src={"/img/avatar.jpg"}
+                alt="アバター"
+                width={90}
+                height={90}
+              />
+            </a>
+          </Link>
           {/* userName(User) */}
           <div className="pl-3 text-center">
             <div>@{user_info_data.user_name}</div>
-            <div className="mt-2 p-1 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-              <button>フォロー</button>
-            </div>
+            {usrFollowFlag ? (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー解除
+                </div>
+              </button>
+            ) : (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー
+                </div>
+              </button>
+            )}
           </div>
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black ">
@@ -50,14 +71,18 @@ const ProfileSmall: React.FC<Props> = ({ user_info_data }) => {
             <div>11</div>
           </div>
           <div className="flex-grow text-center">
-            {/*  */}
-            フォロー
-            <div>122</div>
+            <Link href={"/follow"}>
+              <a className="text-black hover:text-gray-400">
+                フォロー<div>122</div>
+              </a>
+            </Link>
           </div>
           <div className="flex-grow text-center ">
-            {/*  */}
-            フォロワー
-            <div>140</div>
+            <Link href={"/follower"}>
+              <a className="text-black hover:text-gray-400">
+                フォロワー<div>140</div>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="text-xl mt-2 flex justify-center items-center">
