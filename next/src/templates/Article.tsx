@@ -1,83 +1,13 @@
 import React from "react";
-import { HeartOutlined, MessageTwoTone } from "@ant-design/icons";
-import { ProfileSmall } from "../components/organisms";
+import { HeartOutlined } from "@ant-design/icons";
 import TextArea from "antd/lib/input/TextArea";
 import Image from "next/image";
+import { ArticleComp } from "../components/organisms";
 
 const Article: React.FC = () => {
-  const tagStyle =
-    "m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg";
-
-  const tagsName = [
-    "フロントエンド",
-    "CSS",
-    "tailwindCSS",
-    "初心者",
-    "フロントエンド",
-    "tailwindCSS",
-    "初心者",
-    "フロントエンド",
-    "CSS",
-    "tailwindCSS",
-    "初心者",
-    "フロントエンド",
-    "CSS",
-    "tailwindCSS",
-    "初心者",
-  ];
   return (
     <div className="h-full">
-      <div className="flex justify-center">
-        <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
-          <div className="pb-10 pt-20 text-2xl font-bold">
-            {/* title(Article) */}
-            TailwindCSSのチートシートを公開します。
-          </div>
-          <div className="pb-2">
-            {/* likeCount(Article) */}
-            <div className="flex justify-center items-center">
-              <button>
-                <HeartOutlined className="text-2xl hover:text-orange-500" />
-              </button>
-              <a
-                href="#"
-                className="ml-1 text-xl text-black hover:text-gray-400"
-              >
-                10
-              </a>{" "}
-              &nbsp;
-              {/* commentCount(Article) */}
-              <MessageTwoTone twoToneColor="#f97316" className="text-2xl" />
-              <span className="ml-1 text-xl">1</span>
-            </div>
-          </div>
-          <div className="px-10">
-            {/* tags(Article) */}
-            <div className="flex flex-wrap">
-              {tagsName.map((tagName) => {
-                return (
-                  <span className={tagStyle} key={tagName}>
-                    {tagName}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-          <div className="pt-1 text-slate-500 text-center">
-            {/* posted_date(Article) */}
-            <span>投稿日: 2021年12月7日</span>
-          </div>
-          <p className="px-14 pt-6 text-lg">
-            {/* content(Article) */}
-            プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。
-          </p>
-        </div>
-
-        <div className="w-1/5 mt-8">
-          {/* profile(User) */}
-          <ProfileSmall user_info_data={user_info_data} />
-        </div>
-      </div>
+      <ArticleComp user_info_data={user_info_data} />
       <div className="flex justify-center">
         <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">
           <div className="my-2 text-3xl font-bold text-center">コメント</div>
@@ -140,10 +70,7 @@ const Article: React.FC = () => {
             />
           </div>
           <hr />
-          <div className="flex justify-between px-4 py-2">
-            <div>
-              {/* <PictureFilled className="text-3xl" style={{ color: "#BCBCBC" }} /> */}
-            </div>
+          <div className="flex justify-end px-4 py-2">
             <button className="p-1 text-white rounded-lg bg-orange-500 hover:bg-orange-500 drop-shadow-2xl">
               コメント
             </button>
@@ -166,7 +93,7 @@ const user_data = {
 };
 
 const skill_tags = [
-  { user_info_id: 1, skill_id: 1, skill_name: "フロントエンド" },
+  { user_info_id: 1, skill_id: 1, skill_name: "JavaScript" },
   { user_info_id: 1, skill_id: 5, skill_name: "TypeScript" },
   { user_info_id: 1, skill_id: 6, skill_name: "Vue" },
   { user_info_id: 1, skill_id: 3, skill_name: "TailwindCSS" },

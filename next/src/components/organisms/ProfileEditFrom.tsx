@@ -26,6 +26,7 @@ type Props = {
 const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
   return (
     <Form onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}>
+      {/* 送信ようのメソッド用意 */}
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
         <div className="m-4">
           <div className="flex justify-center items-center">
