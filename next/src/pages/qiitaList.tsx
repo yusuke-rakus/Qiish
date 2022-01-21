@@ -20,11 +20,7 @@ const QiitaListPage: React.FC<{ qiitaDatas: any }> = ({ qiitaDatas }) => {
 export default QiitaListPage;
 
 export const getStaticProps = async () => {
-  const res = await axios.get("https://qiita.com/api/v2/items", {
-    headers: {
-      Authorization: `Bearer 280cd37b8bdf97a67de2359bb597f5c26db82ff4`,
-    },
-  });
+  const res = await axios.get("https://qiita.com/api/v2/items");
 
   return {
     props: {
