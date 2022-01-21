@@ -6,3 +6,10 @@ export const fetchProfile = async () => {
 
   return res.data;
 };
+
+// 記事情報取得のAPI
+export const fetchArticle = async () => {
+  const res = await axios.get("http://localhost:3001");
+
+  return res.data;
+};

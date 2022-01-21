@@ -2,7 +2,7 @@ import Router from "next/router";
 import { Header, ArticleList } from "../templates";
 
 const goToRegisterUser = () => {
-  Router.push("/registerUser");
+  Router.push("/registeruser");
 };
 const goToLogin = () => {
   Router.push("/loginuser");

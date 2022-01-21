@@ -1,9 +1,17 @@
-import React, { useState } from "react";
-import { ArticleComp, CommentComp } from "../components/organisms";
+import React, { useEffect, useState } from "react";
+import useSWR from "swr";
+import { Comments } from ".";
+import { ArticleComp } from "../components/organisms";
 
 const Article: React.FC = () => {
   const [articleLike, setArticleLike] = useState(10);
   const [articleLikeFlag, setArticleLikeFlag] = useState(false);
+  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+  // 記事データ(API実装できたら再度行う)
+  // const { data, error } = useSWR("/profile");
+  // useEffect(() => {
+  //   console.log("Article" + data);
+  // }, [data]);
 
   const changeArticleLike = () => {
     if (articleLikeFlag) {
@@ -14,16 +22,23 @@ const Article: React.FC = () => {
       setArticleLike((prevLike) => prevLike + 1);
     }
   };
+  const changeUsrFollow = () => {
+    setUsrFollowFlag(!usrFollowFlag);
+  };
+  // if (error) return <div>failed to load</div>;
+  // if (!data) return <div>loading...</div>;
 
-  console.log(articleLike);
   return (
     <div className="h-full">
       <ArticleComp
         user_info_data={user_info_data}
         articleLike={articleLike}
+        articleLikeFlag={articleLikeFlag}
         changeArticleLike={changeArticleLike}
+        usrFollowFlag={usrFollowFlag}
+        changeUsrFollow={changeUsrFollow}
       />
-      <CommentComp user_info_data={user_info_data} />
+      <Comments />
     </div>
   );
 };
