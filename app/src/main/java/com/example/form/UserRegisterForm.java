@@ -2,18 +2,18 @@ package com.example.form;
 
 public class UserRegisterForm {
 
-	private Integer userInfoId;
+	private Integer id;
 	private String userName;
 	private String email;
 	private String password;
 	private String engineerType;
 
-	public Integer getUserInfoId() {
-		return userInfoId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUserInfoId(Integer userInfoId) {
-		this.userInfoId = userInfoId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getUserName() {
@@ -50,8 +50,8 @@ public class UserRegisterForm {
 
 	@Override
 	public String toString() {
-		return "UserRegisterForm [userInfoId=" + userInfoId + ", userName=" + userName + ", email=" + email
-				+ ", password=" + password + ", engineerType=" + engineerType + "]";
+		return "UserRegisterForm [id=" + id + ", userName=" + userName + ", email=" + email + ", password=" + password
+				+ ", engineerType=" + engineerType + "]";
 	}
 
 }
