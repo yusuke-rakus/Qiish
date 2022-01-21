@@ -1,8 +1,5 @@
 package com.example.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -10,7 +7,6 @@ import org.springframework.util.CollectionUtils;
 import com.example.common.Status;
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
-import com.example.form.UserEditTagForm;
 import com.example.form.UserRegisterForm;
 import com.example.mapper.UserMapper;
 import com.example.response.LoginResponse;
@@ -43,9 +39,7 @@ public class UserService {
 		Response res = new Response();
 		try {
 			// user_info へ insert
-			Integer userInfoId = userMapper.userInfoRegister(form);
-			form.setUserInfoId(userInfoId);
-			System.out.println(userInfoId);
+			userMapper.userInfoRegister(form);
 			// user へ insert
 			userMapper.userRegister(form);
 		} catch (Exception e) {
@@ -59,18 +53,14 @@ public class UserService {
 	public Response userEdit(UserEditForm form) {
 		Response res = new Response();
 		try {
-			if (!CollectionUtils.isEmpty(form.getTag())) {
-				List<UserEditTagForm> tags = new ArrayList<>();
-				UserEditTagForm tag = new UserEditTagForm();
-				for (Integer tagId : form.getTag()) {
-					tag.setUserInfoId(form.getUserId());
-					tag.setTagId(tagId);
-					tags.add(tag);
-				}
-				userMapper.userInfoTagsEdit(tags);
-			}
 			userMapper.userInfoEdit(form);
 			userMapper.userEdit(form);
+			if (!CollectionUtils.isEmpty(form.getTag())) {
+				userMapper.deleteTags(form.getUserId());
+				userMapper.userInfoTagsEdit(form.getUserId(), form.getTag());
+			} else {
+				userMapper.deleteTags(form.getUserId());
+			}
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 			e.printStackTrace();
