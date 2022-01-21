@@ -8,6 +8,10 @@ import org.apache.ibatis.annotations.Param;
 import com.example.domain.User;
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
+
+import com.example.form.UserEditTagForm;
+import com.example.form.UserFollowForm;
+
 import com.example.form.UserRegisterForm;
 
 @Mapper
@@ -33,4 +37,9 @@ public interface UserMapper {
 	/** ユーザータグの編集 */
 	public void deleteTags(Integer userId);
 
+	/** フォロー */
+	public void userFollow(UserFollowForm form);
+	
+	/** フォロー解除 */
+	public void userRemove(UserFollowForm form);
 }

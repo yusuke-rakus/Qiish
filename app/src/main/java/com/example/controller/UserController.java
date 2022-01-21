@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
+import com.example.form.UserFollowForm;
 import com.example.form.UserRegisterForm;
 import com.example.response.LoginResponse;
 import com.example.response.Response;
@@ -22,7 +23,7 @@ public class UserController {
 
 	// ログイン
 	@PostMapping("/login")
-	public LoginResponse loginUser(@RequestBody LoginForm form) { //
+	public LoginResponse loginUser(LoginForm form) { //@RequestBody 
 		return userService.userLogin(form);
 	}
 
@@ -36,6 +37,18 @@ public class UserController {
 	@PostMapping("/edit")
 	public Response userEdit(UserEditForm form) { // @RequestBody
 		return userService.userEdit(form);
+	}
+	
+	// フォロー
+	@PostMapping("/follow")
+	public Response userFollow(UserFollowForm form) { //@RequestBody 
+		return userService.userFollow(form);
+	}
+	
+	// フォロー解除
+	@PostMapping("/remove")
+	public Response userRemove(UserFollowForm form) { //@RequestBody 
+		return userService.userRemove(form);
 	}
 
 }

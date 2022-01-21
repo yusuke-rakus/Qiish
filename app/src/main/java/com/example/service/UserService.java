@@ -7,6 +7,10 @@ import org.springframework.util.CollectionUtils;
 import com.example.common.Status;
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
+
+import com.example.form.UserEditTagForm;
+import com.example.form.UserFollowForm;
+
 import com.example.form.UserRegisterForm;
 import com.example.mapper.UserMapper;
 import com.example.response.LoginResponse;
@@ -64,6 +68,28 @@ public class UserService {
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	/** フォロー */
+	public Response userFollow(UserFollowForm form) {
+		Response res = new Response();
+		try {
+			userMapper.userFollow(form);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+	
+	/** フォロー解除 */
+	public Response userRemove(UserFollowForm form) {
+		Response res = new Response();
+		try {
+			userMapper.userRemove(form);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
 		}
 		return res;
 	}
