@@ -2,11 +2,7 @@ import React from "react";
 import { ProfileSmall } from "../components/organisms";
 
 const Profile: React.FC = () => {
-  return (
-    <div>
-      <ProfileSmall user_info_data={user_info_data} />
-    </div>
-  );
+  return <ProfileSmall user_info_data={user_info_data} />;
 };
 
 export default Profile;

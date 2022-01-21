@@ -18,9 +18,15 @@ type Props = {
       skill_name: string;
     }[];
   };
+  articleLike: number;
+  changeArticleLike: () => void;
 };
 
-const ArticleComp: React.FC<Props> = ({ user_info_data }) => {
+const ArticleComp: React.FC<Props> = ({
+  user_info_data,
+  articleLike,
+  changeArticleLike,
+}) => {
   return (
     <div className="flex justify-center">
       <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
@@ -31,12 +37,12 @@ const ArticleComp: React.FC<Props> = ({ user_info_data }) => {
         <div className="pb-2">
           {/* likeCount(Article) */}
           <div className="flex justify-center items-center">
-            <button>
+            <button onClick={changeArticleLike}>
               <HeartOutlined className="text-2xl hover:text-orange-500" />
             </button>
             <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
-              10
-            </a>{" "}
+              {articleLike}
+            </a>
             &nbsp;
             {/* commentCount(Article) */}
             <MessageTwoTone twoToneColor="#f97316" className="text-2xl" />
@@ -63,7 +69,7 @@ const ArticleComp: React.FC<Props> = ({ user_info_data }) => {
           {/* posted_date(Article) */}
           <span>投稿日: 2021年12月7日</span>
         </div>
-        <p className="px-14 pt-6 text-lg">
+        <div className="px-14 pt-6 text-lg">
           {/* content(Article) */}
           <div className="markdown">
             <ReactMarkdown>
@@ -71,7 +77,7 @@ const ArticleComp: React.FC<Props> = ({ user_info_data }) => {
               プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。
             </ReactMarkdown>
           </div>
-        </p>
+        </div>
       </div>
 
       <div className="w-1/5 mt-8">
