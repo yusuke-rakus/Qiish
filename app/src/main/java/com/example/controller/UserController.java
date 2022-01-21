@@ -10,6 +10,7 @@ import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
 import com.example.form.UserFollowForm;
 import com.example.form.UserRegisterForm;
+import com.example.response.FollowResponse;
 import com.example.response.LoginResponse;
 import com.example.response.Response;
 import com.example.service.UserService;
@@ -50,6 +51,18 @@ public class UserController {
 	@PostMapping("/remove")
 	public Response userRemove(UserFollowForm form) { // @RequestBody
 		return userService.userRemove(form);
+	}
+	
+	// フォロー一覧表示
+	@PostMapping("/followList")
+	public FollowResponse followList(Integer userInfoId) { //@RequestBody 
+		return userService.followList(userInfoId);
+	}
+	
+	// フォロワー一覧表示
+	@PostMapping("/followerList")
+	public FollowResponse followerList(Integer userInfoId) { //@RequestBody 
+		return userService.followerList(userInfoId);
 	}
 
 }

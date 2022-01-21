@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.common.Status;
 import com.example.domain.Article;
 import com.example.form.ArticleCommentForm;
+import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
 
 import com.example.form.ArticlePostForm;
@@ -14,6 +15,7 @@ import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
 
 import com.example.mapper.ArticleMapper;
+import com.example.response.ArticleDetailResponse;
 import com.example.response.Response;
 
 @Service
@@ -83,11 +85,40 @@ public class ArticleService {
 		Article article = new Article();
 		BeanUtils.copyProperties(form, article);
 		try {
-			articleMapper.ArticlePost(article);
-			articleMapper.ArticleTagsPost(article.getId(), form.getTags());
+			articleMapper.articlePost(article);
+			articleMapper.articleTagsPost(article.getId(), form.getTags());
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
+		return res;
+	}
+	
+	/** 記事削除 */
+	public Response articleDelete(Integer articleId) {
+		Response res = new Response();
+		try {
+			articleMapper.articleDelete(articleId);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+	
+	/** 記事更新 */
+	public Response articleEdit(ArticleEditForm form) {
+		Response res = new Response();
+		try {
+			articleMapper.articleEdit(form);
+			articleMapper.articleTagsDelete(form.getArticleId());
+			articleMapper.articleTagsPost(form.getArticleId(), form.getTags());
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+	
+	public ArticleDetailResponse ArticleDetail(Integer articleId) {
+		ArticleDetailResponse res = new ArticleDetailResponse();
 		return res;
 	}
 
