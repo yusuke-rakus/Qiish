@@ -58,5 +58,11 @@ public class UserController {
 	public FollowResponse followList(Integer userInfoId) { //@RequestBody 
 		return userService.followList(userInfoId);
 	}
+	
+	// フォロワー一覧表示
+	@PostMapping("/followerList")
+	public FollowResponse followerList(Integer userInfoId) { //@RequestBody 
+		return userService.followerList(userInfoId);
+	}
 
 }

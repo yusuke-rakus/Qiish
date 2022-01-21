@@ -1,7 +1,7 @@
 package com.example.service;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +103,18 @@ public class UserService {
 		try {
 			List<UserInfo> followList = userMapper.followList(userInfoId);
 			res.setUserList(followList);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+	
+	/** フォロワー一覧表示 */
+	public FollowResponse followerList(Integer userInfoId) {
+		FollowResponse res = new FollowResponse();
+		try {
+			List<UserInfo> followerList = userMapper.followerList(userInfoId);
+			res.setUserList(followerList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
