@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { ProfileRectangle } from "../components/organisms";
 
 const Follow: React.FC = () => {
+  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+
+  // ユーザーフォロー関数
+  const changeUsrFollow = () => {
+    setUsrFollowFlag(!usrFollowFlag);
+  };
   return (
     <div className="p-3 text-center">
       <div className="text-3xl font-bold">フォローリスト一覧</div>
       <div className="flex justify-center items-center ">
         <div className="w-1/3">
-          <ProfileRectangle user_info_data={user_info_data} />
-          <ProfileRectangle user_info_data={user_info_data} />
-          <ProfileRectangle user_info_data={user_info_data} />
-          <ProfileRectangle user_info_data={user_info_data} />
+          <ProfileRectangle
+            user_info_data={user_info_data}
+            usrFollowFlag={usrFollowFlag}
+            changeUsrFollow={changeUsrFollow}
+          />
+          <ProfileRectangle
+            user_info_data={user_info_data}
+            usrFollowFlag={usrFollowFlag}
+            changeUsrFollow={changeUsrFollow}
+          />
+          <ProfileRectangle
+            user_info_data={user_info_data}
+            usrFollowFlag={usrFollowFlag}
+            changeUsrFollow={changeUsrFollow}
+          />
+          <ProfileRectangle
+            user_info_data={user_info_data}
+            usrFollowFlag={usrFollowFlag}
+            changeUsrFollow={changeUsrFollow}
+          />
         </div>
       </div>
     </div>

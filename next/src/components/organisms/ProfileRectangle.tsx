@@ -17,9 +17,15 @@ type Props = {
       skill_name: string;
     }[];
   };
+  usrFollowFlag: boolean;
+  changeUsrFollow: () => void;
 };
 
-const ProfileRectangle: React.FC<Props> = ({ user_info_data }) => {
+const ProfileRectangle: React.FC<Props> = ({
+  user_info_data,
+  changeUsrFollow,
+  usrFollowFlag,
+}) => {
   return (
     <div className="flex justify-rounded items-center w-full m-2 pl-10 p-2 bg-white rounded-lg border shadow-md">
       <Image
@@ -39,9 +45,19 @@ const ProfileRectangle: React.FC<Props> = ({ user_info_data }) => {
         </div>
       </div>
       <div className="mt-2 ml-4">
-        <span className="p-1 rounded-full text-xl text-white bg-orange-500 hover:bg-orange-300">
-          <button>フォロー</button>
-        </span>
+        {usrFollowFlag ? (
+          <button onClick={changeUsrFollow}>
+            <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+              フォロー解除
+            </div>
+          </button>
+        ) : (
+          <button onClick={changeUsrFollow}>
+            <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+              フォロー
+            </div>
+          </button>
+        )}
       </div>
     </div>
   );

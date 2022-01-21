@@ -9,6 +9,8 @@ const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useState(true);
   const changeEditFlag = () => setEditFlag(!editFlag);
   const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+
+  // ユーザーフォロー関数
   const changeUsrFollow = () => {
     setUsrFollowFlag(!usrFollowFlag);
   };

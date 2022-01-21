@@ -46,13 +46,19 @@ const ProfileLarge: React.FC<Props> = ({
           {/* userName(User) */}
           <div className="pl-10 text-center">
             <div className="text-xl">@{user_info_data.user_name}</div>
-            <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-              {usrFollowFlag ? (
-                <button onClick={changeUsrFollow}>フォロー解除</button>
-              ) : (
-                <button onClick={changeUsrFollow}>フォロー</button>
-              )}
-            </div>
+            {usrFollowFlag ? (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー解除
+                </div>
+              </button>
+            ) : (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー
+                </div>
+              </button>
+            )}
           </div>
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black text-lg">
