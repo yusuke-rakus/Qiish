@@ -71,6 +71,13 @@
 		WHERE user_info_id=#{userInfoId} AND
 		follow_user_info_id=#{followUserInfoId};
 	</insert>
+	
+	<select id="followList" resultType="com.example.domain.UserInfo">
+		SELECT u.id, u.user_name, u.engineer_type, u.image
+		FROM follow as f
+		left join user_info as u on f.follow_user_info_id = u.id
+		WHERE user_info_id = #{userInfoId};
+	</select>
 
 
 </mapper>
