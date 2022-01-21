@@ -56,5 +56,10 @@
 	    </foreach>
 	</insert>
 	
+	<!-- 記事削除 -->
+	<delete id="ArticleDelete" parameterType="Integer">
+		DELETE FROM articles WHERE id=#{articleId};
+	</delete>
+	
 	
 </mapper>

@@ -35,4 +35,6 @@ public interface ArticleMapper {
 	/** 記事投稿(タグ情報) */
 	public void ArticleTagsPost(@Param("articleId") Integer articleId, @Param("tagId") List<Integer> tagId);
 	
+	/** 記事削除 */
+	public void ArticleDelete(Integer articleId);
 }

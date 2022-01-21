@@ -90,5 +90,16 @@ public class ArticleService {
 		}
 		return res;
 	}
+	
+	/** 記事削除 */
+	public Response articleDelete(Integer articleId) {
+		Response res = new Response();
+		try {
+			articleMapper.ArticleDelete(articleId);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
 
 }

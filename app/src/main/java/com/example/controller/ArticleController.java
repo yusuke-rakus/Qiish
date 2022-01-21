@@ -52,4 +52,8 @@ public class ArticleController {
 		return articleService.ArticlePost(form);
 	}
 
+	@PostMapping("/delete")
+	public Response ArticleDelete(Integer articleId) {
+		return articleService.articleDelete(articleId);
+	}
 }
