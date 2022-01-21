@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,11 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
-
 import com.example.form.ArticlePostForm;
-
 import com.example.form.CommentLikeForm;
-
+import com.example.response.ArticleDetailResponse;
 import com.example.response.Response;
 import com.example.service.ArticleService;
 
@@ -47,11 +46,18 @@ public class ArticleController {
 	public Response articleRemoveLike(ArticleLikeForm form) { // @RequestBody
 		return articleService.articleRemoveLike(form);
 	}
-	
+
 	@PostMapping("/add")
 	public Response ArticlePost(ArticlePostForm form) {
 		return articleService.ArticlePost(form);
 	}
+
+
+	@GetMapping("/articleId")
+	public ArticleDetailResponse ArticleDetail(Integer articleId) {
+		return articleService.ArticleDetail(articleId);
+	}
+
 
 	@PostMapping("/delete")
 	public Response ArticleDelete(Integer articleId) {
@@ -62,4 +68,5 @@ public class ArticleController {
 	public Response ArticleEdit(ArticleEditForm form) {
 		return articleService.articleEdit(form);
 	}
+
 }
