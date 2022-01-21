@@ -10,7 +10,6 @@
 	</select>
 
 	<!-- ユーザー登録処理 -->
-	<!-- なんかわからんけど戻り値に1しか入らん -->
 	<insert id="userInfoRegister"
 		parameterType="com.example.form.UserRegisterForm"
 		useGeneratedKeys="true" keyProperty="id">

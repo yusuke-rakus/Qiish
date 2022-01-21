@@ -22,7 +22,7 @@ public class UserController {
 
 	// ログイン
 	@PostMapping("/login")
-	public LoginResponse loginUser(@RequestBody LoginForm form) { //
+	public LoginResponse loginUser(LoginForm form) { // @RequestBody
 		return userService.userLogin(form);
 	}
 
