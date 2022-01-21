@@ -1,13 +1,13 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleLikeForm;
+import com.example.form.ArticlePostForm;
 import com.example.response.Response;
 import com.example.service.ArticleService;
 
@@ -31,6 +31,11 @@ public class ArticleController {
 	@PostMapping("/removeLike")
 	public Response ArticleRemoveLike(ArticleLikeForm form) {
 		return articleService.ArticleRemoveLike(form);
+	}
+	
+	@PostMapping("/add")
+	public Response ArticlePost(ArticlePostForm form) {
+		return articleService.ArticlePost(form);
 	}
 
 }
