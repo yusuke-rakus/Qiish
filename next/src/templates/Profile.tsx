@@ -7,14 +7,17 @@ import { ProfileEdit } from "./";
 
 const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useState(true);
+  const changeEditFlag = () => setEditFlag(!editFlag);
+  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+  const changeUsrFollow = () => {
+    setUsrFollowFlag(!usrFollowFlag);
+  };
   // ユーザーのプロフィールデータ
   const { data, error } = useSWR("/profile");
 
   useEffect(() => {
     console.log("Profile" + data);
   }, [data]);
-
-  const changeEditFlag = () => setEditFlag(!editFlag);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -29,7 +32,11 @@ const Profile: React.FC = () => {
                 <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
               </a>
             </Link>
-            <ProfileLarge user_info_data={user_info_data} />
+            <ProfileLarge
+              user_info_data={user_info_data}
+              usrFollowFlag={usrFollowFlag}
+              changeUsrFollow={changeUsrFollow}
+            />
             <div className="flex justify-end">
               <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
                 <button type="button" onClick={changeEditFlag}>

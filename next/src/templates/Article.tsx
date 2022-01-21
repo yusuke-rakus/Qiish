@@ -6,6 +6,7 @@ import { ArticleComp } from "../components/organisms";
 const Article: React.FC = () => {
   const [articleLike, setArticleLike] = useState(10);
   const [articleLikeFlag, setArticleLikeFlag] = useState(false);
+  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
   // 記事データ(API実装できたら再度行う)
   // const { data, error } = useSWR("/profile");
   // useEffect(() => {
@@ -21,6 +22,9 @@ const Article: React.FC = () => {
       setArticleLike((prevLike) => prevLike + 1);
     }
   };
+  const changeUsrFollow = () => {
+    setUsrFollowFlag(!usrFollowFlag);
+  };
   // if (error) return <div>failed to load</div>;
   // if (!data) return <div>loading...</div>;
 
@@ -31,6 +35,8 @@ const Article: React.FC = () => {
         articleLike={articleLike}
         articleLikeFlag={articleLikeFlag}
         changeArticleLike={changeArticleLike}
+        usrFollowFlag={usrFollowFlag}
+        changeUsrFollow={changeUsrFollow}
       />
       <Comments />
     </div>

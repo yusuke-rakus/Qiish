@@ -17,9 +17,15 @@ type Props = {
       skill_name: string;
     }[];
   };
+  usrFollowFlag: boolean;
+  changeUsrFollow: () => void;
 };
 
-const ProfileLarge: React.FC<Props> = ({ user_info_data }) => {
+const ProfileLarge: React.FC<Props> = ({
+  user_info_data,
+  usrFollowFlag,
+  changeUsrFollow,
+}) => {
   const tagStyle =
     "mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg";
   const tagsName = ["フロントエンド", "CSS", "tailwindCSS", "初心者"];
@@ -40,7 +46,11 @@ const ProfileLarge: React.FC<Props> = ({ user_info_data }) => {
           <div className="pl-10 text-center">
             <div className="text-xl">@{user_info_data.user_name}</div>
             <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-              <button>フォロー</button>
+              {usrFollowFlag ? (
+                <button onClick={changeUsrFollow}>フォロー解除</button>
+              ) : (
+                <button onClick={changeUsrFollow}>フォロー</button>
+              )}
             </div>
           </div>
         </div>

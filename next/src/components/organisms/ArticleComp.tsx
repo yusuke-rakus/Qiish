@@ -21,6 +21,8 @@ type Props = {
   articleLike: number;
   articleLikeFlag: boolean;
   changeArticleLike: () => void;
+  usrFollowFlag: boolean;
+  changeUsrFollow: () => void;
 };
 
 const ArticleComp: React.FC<Props> = ({
@@ -28,6 +30,8 @@ const ArticleComp: React.FC<Props> = ({
   articleLike,
   articleLikeFlag,
   changeArticleLike,
+  usrFollowFlag,
+  changeUsrFollow,
 }) => {
   return (
     <div className="flex justify-center">
@@ -90,7 +94,11 @@ const ArticleComp: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
-        <ProfileSmall user_info_data={user_info_data} />
+        <ProfileSmall
+          user_info_data={user_info_data}
+          usrFollowFlag={usrFollowFlag}
+          changeUsrFollow={changeUsrFollow}
+        />
       </div>
     </div>
   );
