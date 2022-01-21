@@ -7,9 +7,7 @@ import org.springframework.util.CollectionUtils;
 import com.example.common.Status;
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
-
 import com.example.form.UserFollowForm;
-
 import com.example.form.UserRegisterForm;
 import com.example.mapper.UserMapper;
 import com.example.response.LoginResponse;

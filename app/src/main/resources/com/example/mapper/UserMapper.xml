@@ -50,25 +50,28 @@
 			(#{userId}, #{tagId})
 		</foreach>
 	</insert>
-	
+
+	<!-- ユーザータグの編集 -->
+	<delete id="deleteTags" parameterType="java.lang.Integer">
+		DELETE FROM user_info_tags
+		WHERE user_info_id = #{userId};
+	</delete>
+
 	<!-- フォロー -->
 	<insert id="userFollow"
 		parameterType="com.example.form.UserFollowForm">
 		INSERT INTO follow(user_info_id, follow_user_info_id)
 		VALUES(#{userInfoId}, #{followUserInfoId});
 	</insert>
-	
+
 	<!-- フォロー解除 -->
 	<insert id="userRemove"
 		parameterType="com.example.form.UserFollowForm">
-		DELETE FROM follow 
-		WHERE user_info_id=#{userInfoId} AND follow_user_info_id=#{followUserInfoId};
+		DELETE FROM follow
+		WHERE user_info_id=#{userInfoId} AND
+		follow_user_info_id=#{followUserInfoId};
 	</insert>
 
-	<delete id="deleteTags" parameterType="java.lang.Integer">
-		DELETE FROM user_info_tags
-		WHERE user_info_id = #{userId};
-	</delete>
 
 </mapper>
 
