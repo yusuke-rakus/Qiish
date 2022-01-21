@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TopPageMapper">
+
+	<resultMap type="com.example.domain.Tag" id="tag">
+		<id column="tag_id" property="id"/>
+		<result column="skill" property="skill"/>
+		<result column="tag_image" property="image"/>
+	</resultMap>
+	
+	<resultMap type="com.example.domain.Article" id="articleList">
+		<id column="article_id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="posted_date" property="postedDate"/>
+		<result column="likes_count" property="likesCount"/>
+		<collection property="articleTags" resultMap="tag"/>
+	</resultMap>
+	
+	<!-- 記事一覧取得 -->
+	<select id="getArticleList" resultMap="articleList">
+		SELECT a.id as article_id, a.title, a.content, a.posted_date,
+		t.id as tag_id, t.skill, t.image as tag_image,
+		count(li.user_info_id) as likes_count
+		FROM articles as a 
+		left join article_tags as at on at.article_id = a.id 
+		left join tags as t on at.tag_id = t.id
+		left join likes as li on li.article_id = a.id 
+		GROUP BY a.id 
+		ORDER BY a.id;
+	</select>
+	
+	<!-- タグ一覧取得 -->
+	<select id="getTags" resultType="com.example.domain.Tag">
+		SELECT skill, image
+		FROM tags
+		ORDER BY id;
+	</select>
+	
+	<!-- ユーザー情報（画像）取得 -->
+	<select id="getUserInfoImage" resultType="com.example.domain.UserInfo">
+		SELECT image
+		FROM user_info
+		where id = #{userInfoId};
+	</select>
+
+</mapper>
