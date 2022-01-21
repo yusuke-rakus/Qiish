@@ -14,6 +14,7 @@ import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
 
 import com.example.mapper.ArticleMapper;
+import com.example.response.ArticleDetailResponse;
 import com.example.response.Response;
 
 @Service
@@ -88,6 +89,11 @@ public class ArticleService {
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
+		return res;
+	}
+	
+	public ArticleDetailResponse ArticleDetail(Integer articleId) {
+		ArticleDetailResponse res = new ArticleDetailResponse();
 		return res;
 	}
 
