@@ -4,18 +4,17 @@ import SkillTag from "../old_atoms/SkillTag";
 // FCの型定義
 type Props = {
   tags: {
-    article_id: number;
-    skill_id: number;
-    skill_name: string;
+    name: string;
+    version?: any;
   }[];
 };
 
 // CSSの変更が加わるので明示的にonArticleとして分離
 const SkillTagsOnArticle: React.FC<Props> = ({ tags }) => {
   return (
-    <div className="m-1">
+    <div className="m-1 flex flex-wrap">
       {tags.map((tag) => {
-        return <SkillTag key={tag.skill_id} {...tag} />;
+        return <SkillTag key={tag.name} {...tag} />;
       })}
     </div>
   );

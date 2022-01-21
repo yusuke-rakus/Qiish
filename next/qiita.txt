@@ -1,0 +1,37 @@
+body: "UIViewでTap検出を行う\n\n\n・Viewの作成時にGestureRecognizerをタップを検出したいUIViewに追加する\n\n~~~\nUIView＊ LabelA;\n~~~\n\n~~~objc\n//　TapGestureRecognizer作成 タップ検出時LabelAをコールするよう登録\nUITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(LabelATap)</span>];\n\n// UIView LabelA にタップ検出をアタッチ\n[self.LabelA addGestureRecognizer:tapGesture];\n~~~\n\n\n\n~~~\n// LabelAタップ検知時処理\n-(void)LabelATap{\n\n}\n~~~\n\n[Apple Developler](https://developer.apple.com/documentation/uikit/uitapgesturerecognizer)\n"
+coediting: false
+comments_count: 0
+created_at: "2022-01-21T15:04:19+09:00"
+group: null
+id: "d6feaa0af05d2ce5ea61"
+likes_count: 0
+page_views_count: null
+private: false
+reactions_count: 0
+rendered_body: "<p>UIViewでTap検出を行う</p>\n\n<p>・Viewの作成時にGestureRecognizerをタップを検出したいUIViewに追加する</p>\n\n<div class=\"code-frame\" data-lang=\"text\"><div class=\"highlight\"><pre><code>UIView＊ LabelA;\n</code></pre></div></div>\n\n<div class=\"code-frame\" data-lang=\"objc\"><div class=\"highlight\"><pre><code><span class=\"c1\">//　TapGestureRecognizer作成 タップ検出時LabelAをコールするよう登録</span>\n<span class=\"n\">UITapGestureRecognizer</span> <span class=\"o\">*</span><span class=\"n\">tapGesture</span> <span class=\"o\">=</span> <span class=\"p\">[[</span><span class=\"n\">UITapGestureRecognizer</span> <span class=\"nf\">alloc</span><span class=\"p\">]</span><span class=\"nf\">initWithTarget</span><span class=\"p\">:</span><span class=\"n\">self</span> <span class=\"nf\">action</span><span class=\"p\">:</span><span class=\"k\">@selector</span><span class=\"p\">(</span><span class=\"n\">LabelATap</span><span class=\"p\">)</span><span class=\"o\">&lt;/</span><span class=\"n\">span</span><span class=\"o\">&gt;</span><span class=\"p\">];</span>\n\n<span class=\"c1\">// UIView LabelA にタップ検出をアタッチ</span>\n<span class=\"p\">[</span><span class=\"n\">self</span><span class=\"p\">.</span><span class=\"n\">LabelA</span> <span class=\"nf\">addGestureRecognizer</span><span class=\"p\">:</span><span class=\"n\">tapGesture</span><span class=\"p\">];</span>\n</code></pre></div></div>\n\n<div class=\"code-frame\" data-lang=\"text\"><div class=\"highlight\"><pre><code>// LabelAタップ検知時処理\n-(void)LabelATap{\n\n}\n</code></pre></div></div>\n\n<p><a href=\"https://developer.apple.com/documentation/uikit/uitapgesturerecognizer\" rel=\"nofollow noopener\" target=\"_blank\">Apple Developler</a></p>\n"
+tags: Array(2)
+  0: {name: 'Objective-C', versions: Array(0)}
+  1: {name: 'iOS', versions: Array(0)}
+  length: 2
+  [[Prototype]]: Array(0)
+team_membership: null
+title: "UIViewでTap検出"
+updated_at: "2022-01-21T15:04:19+09:00"
+url: "https://qiita.com/sheemzun/items/d6feaa0af05d2ce5ea61"
+user:
+  description: "ソフトエンジニア歴は長いが、きっと何かの役には立つはず"
+  facebook_id: ""
+  followees_count: 0
+  followers_count: 0
+  github_login_name: null
+  id: "sheemzun"
+  items_count: 6
+  linkedin_id: ""
+  location: "愛知県"
+  name: "sheemzun"
+  organization: ""
+  permanent_id: 849175
+  profile_image_url: "https://secure.gravatar.com/avatar/2e8e9fae0b337884e8f9a67195109208"
+  team_only: false
+  twitter_screen_name: null
+  website_url: ""

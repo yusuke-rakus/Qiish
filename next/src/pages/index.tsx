@@ -7,12 +7,16 @@ const goToRegisterUser = () => {
 const goToLogin = () => {
   Router.push("/loginuser");
 };
+const goToQiita = () => {
+  Router.push("/qiitaList");
+};
 
 const Home: React.FC = () => {
   return (
     <div>
       <button onClick={goToRegisterUser}>会員登録</button>
       <button onClick={goToLogin}>ログイン</button>
+      <button onClick={goToQiita}>Qiita</button>
       <div>
         <Header />
       </div>

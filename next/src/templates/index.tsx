@@ -11,4 +11,5 @@ export { default as Profile } from "./Profile";
 export { default as ProfileSmall } from "./ProfileSmall";
 export { default as ProfileEdit } from "./ProfileEdit";
 export { default as Header } from "./Header";
+export { default as QiitaList } from "./QiitaList";
 export { default as RegisterUser } from "./RegisterUser";
