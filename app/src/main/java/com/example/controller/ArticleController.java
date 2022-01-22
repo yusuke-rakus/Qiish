@@ -48,24 +48,22 @@ public class ArticleController {
 	}
 
 	@PostMapping("/add")
-	public Response ArticlePost(ArticlePostForm form) {
+	public Response ArticlePost(ArticlePostForm form) { // @RequestBody
 		return articleService.ArticlePost(form);
 	}
 
-
-	@GetMapping("/articleId")
-	public ArticleDetailResponse ArticleDetail(Integer articleId) {
-		return articleService.ArticleDetail(articleId);
+	@GetMapping("")
+	public ArticleDetailResponse ArticleDetail(Integer articleId) { // @RequestBody
+		return articleService.articleDetail(articleId);
 	}
-
 
 	@PostMapping("/delete")
-	public Response ArticleDelete(Integer articleId) {
+	public Response ArticleDelete(Integer articleId) { // @RequestBody
 		return articleService.articleDelete(articleId);
 	}
-	
+
 	@PostMapping("/edit")
-	public Response ArticleEdit(ArticleEditForm form) {
+	public Response ArticleEdit(ArticleEditForm form) { // @RequestBody
 		return articleService.articleEdit(form);
 	}
 

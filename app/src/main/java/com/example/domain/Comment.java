@@ -3,18 +3,20 @@ package com.example.domain;
 import java.sql.Timestamp;
 
 public class Comment {
-	
+
 	private Integer id;
-	
+
 	private Integer articleId;
-	
+
 	private Integer userInfoId;
-	
+
 	private String comment;
-	
+
 	private Timestamp commentDate;
-	
+
 	private UserInfo userInfo;
+
+	private Integer likesCount;
 
 	public Integer getId() {
 		return id;
@@ -64,7 +66,18 @@ public class Comment {
 		this.userInfo = userInfo;
 	}
 
+	public Integer getLikesCount() {
+		return likesCount;
+	}
 
-	
-	
+	public void setLikesCount(Integer likesCount) {
+		this.likesCount = likesCount;
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", articleId=" + articleId + ", userInfoId=" + userInfoId + ", comment=" + comment
+				+ ", commentDate=" + commentDate + ", userInfo=" + userInfo + ", likesCount=" + likesCount + "]";
+	}
+
 }
