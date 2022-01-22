@@ -13,7 +13,7 @@ import com.example.service.TopPageService;
 public class TopPageController {
 	@Autowired
 	private TopPageService topPageService;
-	
+
 	@GetMapping("")
 	public TopPageResponse topPage(Integer userInfoId) {
 		return topPageService.topPage(userInfoId);

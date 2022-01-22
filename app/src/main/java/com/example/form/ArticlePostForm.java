@@ -1,4 +1,5 @@
 package com.example.form;
+
 /**
  * 記事投稿用フォーム
  */
@@ -7,11 +8,11 @@ import java.util.List;
 public class ArticlePostForm {
 
 	private Integer userInfoId;
-	
+
 	private String title;
-	
+
 	private String content;
-	
+
 	private List<Integer> tags;
 
 	public Integer getUserInfoId() {

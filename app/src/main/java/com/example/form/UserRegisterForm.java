@@ -1,5 +1,9 @@
 package com.example.form;
 
+/**
+ * ユーザー登録フォーム
+ */
+
 public class UserRegisterForm {
 
 	private Integer id;

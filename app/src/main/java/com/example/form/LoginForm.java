@@ -1,5 +1,9 @@
 package com.example.form;
 
+/**
+ * ログイン
+ */
+
 public class LoginForm {
 
 	private String email;
