@@ -77,6 +77,7 @@
 		WHERE id=#{articleId};
 	</update>
 
+	<!-- 記事情報取得 -->
 	<resultMap type="com.example.domain.Article" id="articleMap">
 		<id property="id" column="a_id"></id>
 		<result property="userInfoId" column="a_user_info_id"></result>
@@ -86,6 +87,7 @@
 		<collection property="comments" ofType="com.example.domain.Comment">
 			<result property="comment" column="c_comment"></result>
 			<result property="commentDate" column="c_comment_date"></result>
+			<result property="likesCount" column="c_likes_count"></result>
 			<association property="userInfo" javaType="com.example.domain.UserInfo">
 				<id property="id" column="c_user_info_id"></id>
 				<result property="userName" column="c_user_name"></result>
@@ -113,6 +115,7 @@
 		c.user_info_id AS c_user_info_id,
 		c.comment AS c_comment,
 		c.comment_date AS c_comment_date,
+		(SELECT COUNT(*) FROM comment_likes WHERE comment_likes.comments_id = c.id) AS c_likes_count,
 		(SELECT tags.skill FROM tags WHERE at.tag_id = tags.id) AS tag_name,
 		(SELECT id FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
 		(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_name,
@@ -130,11 +133,5 @@
 	ON a.id = l.article_id
 	WHERE a.id = #{articleId};
 	</select>
-
-
-
-
-
-
 
 </mapper>
