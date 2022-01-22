@@ -1,24 +1,23 @@
-import Link from "next/link";
 import React from "react";
-import { SkillTagsOnArticle } from "../components/old_molecules";
-import moment from "moment";
+import { QiitaListComp } from "../components/organisms";
+import useSWR from "swr";
 
-const QiitaList: React.FC<any> = ({ qiitaData }) => {
-  const formatDate = moment(qiitaData.created_at).format("YYYY年MM月DD日");
+const QiitaList: React.FC<any> = () => {
+  const { data, error } = useSWR("/qiita");
+
+  if (error) return <div>failed to load</div>;
+  // loadingまだ出てない。
+  if (!data) return <div>loading...</div>;
   return (
-    <div className="p-5 m-2 h-auto flex flex-col gap-1 bg-white rounded-lg shadow-xl">
-      <div className="text-xs text-gray">
-        @{qiitaData.user.name}が{formatDate}
-        に投稿しました
+    <div>
+      <div className="pt-10 text-4xl font-bold text-center">
+        Qiitaの最新記事
       </div>
-
-      <Link href={qiitaData.url}>
-        <a className="text-black hover:text-gray-400 text-base font-bold no-underline hover:underline">
-          {qiitaData.title}
-        </a>
-      </Link>
-
-      <SkillTagsOnArticle tags={qiitaData.tags} />
+      <div className="mx-80 grid grid-cols-2 gap-2 bg-orange-100">
+        {data.map((qiitaData: any) => {
+          return <QiitaListComp key={qiitaData.id} qiitaData={qiitaData} />;
+        })}
+      </div>
     </div>
   );
 };

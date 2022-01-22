@@ -2,7 +2,8 @@
 export { default as ArticleAddFrom } from "./ArticleAddFrom";
 export { default as ArticleComp } from "./ArticleComp";
 export { default as CommentComp } from "./CommentComp";
+export { default as FollowComp } from "./FollowComp";
 export { default as ProfileEditFrom } from "./ProfileEditFrom";
 export { default as ProfileLarge } from "./ProfileLarge";
-export { default as ProfileRectangle } from "./ProfileRectangle";
 export { default as ProfileSmall } from "./ProfileSmall";
+export { default as QiitaListComp } from "./QiitaListComp";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProfileRectangle } from "../components/organisms";
+import { FollowComp } from "../components/organisms";
 
 const Follow: React.FC = () => {
   const [usrFollowFlag, setUsrFollowFlag] = useState(false);
@@ -10,31 +10,12 @@ const Follow: React.FC = () => {
   };
   return (
     <div className="p-3 text-center">
-      <div className="text-3xl font-bold">フォローリスト一覧</div>
-      <div className="flex justify-center items-center ">
-        <div className="w-1/3">
-          <ProfileRectangle
-            user_info_data={user_info_data}
-            usrFollowFlag={usrFollowFlag}
-            changeUsrFollow={changeUsrFollow}
-          />
-          <ProfileRectangle
-            user_info_data={user_info_data}
-            usrFollowFlag={usrFollowFlag}
-            changeUsrFollow={changeUsrFollow}
-          />
-          <ProfileRectangle
-            user_info_data={user_info_data}
-            usrFollowFlag={usrFollowFlag}
-            changeUsrFollow={changeUsrFollow}
-          />
-          <ProfileRectangle
-            user_info_data={user_info_data}
-            usrFollowFlag={usrFollowFlag}
-            changeUsrFollow={changeUsrFollow}
-          />
-        </div>
-      </div>
+      <FollowComp
+        followText="フォロー"
+        user_info_datas={user_info_datas}
+        usrFollowFlag={usrFollowFlag}
+        changeUsrFollow={changeUsrFollow}
+      />
     </div>
   );
 };
@@ -53,13 +34,46 @@ const skill_tags = [
   { user_info_id: 1, skill_id: 3, skill_name: "TailwindCSS" },
 ];
 
-export const user_info_data = {
-  user_info_id: 1,
-  first_name: "太郎",
-  last_name: "山田",
-  user_name: user_data.user_name,
-  email: "yama@taro.com",
-  engineer_type: "",
-  comment: "趣味はサウナです。",
-  skill_tags: skill_tags,
-};
+export const user_info_datas = [
+  {
+    user_info_id: 1,
+    // user_name: user_data.user_name,
+    user_name: "22222rakus",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 2,
+    user_name: user_data.user_name,
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 3,
+    user_name: "tato",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 4,
+    user_name: "shitosa",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 5,
+    user_name: user_data.user_name,
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+];

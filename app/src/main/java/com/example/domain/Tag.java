@@ -35,4 +35,6 @@ public class Tag {
 		return "Tag [id=" + id + ", skill=" + skill + ", image=" + image + "]";
 	}
 
+
+
 }

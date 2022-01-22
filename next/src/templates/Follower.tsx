@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProfileRectangle } from "../components/organisms";
+import { FollowComp } from "../components/organisms";
 
 const Follower: React.FC = () => {
   const [usrFollowFlag, setUsrFollowFlag] = useState(false);
@@ -10,21 +10,12 @@ const Follower: React.FC = () => {
   };
   return (
     <div className="p-3 text-center">
-      <div className="text-3xl font-bold">フォロワーリスト一覧</div>
-      <div className="flex justify-center items-center ">
-        <div className="w-1/3">
-          {user_info_datas.map((user_info_data) => {
-            return (
-              <ProfileRectangle
-                key={user_info_data.user_info_id}
-                user_info_data={user_info_data}
-                usrFollowFlag={usrFollowFlag}
-                changeUsrFollow={changeUsrFollow}
-              />
-            );
-          })}
-        </div>
-      </div>
+      <FollowComp
+        followText="フォロワー"
+        user_info_datas={user_info_datas}
+        usrFollowFlag={usrFollowFlag}
+        changeUsrFollow={changeUsrFollow}
+      />
     </div>
   );
 };
@@ -46,9 +37,8 @@ const skill_tags = [
 export const user_info_datas = [
   {
     user_info_id: 1,
-    first_name: "太郎",
-    last_name: "山田",
-    user_name: user_data.user_name,
+    // user_name: user_data.user_name,
+    user_name: "rakus22222",
     email: "yama@taro.com",
     engineer_type: "",
     comment: "趣味はサウナです。",
@@ -56,8 +46,30 @@ export const user_info_datas = [
   },
   {
     user_info_id: 2,
-    first_name: "田中",
-    last_name: "山田",
+    user_name: user_data.user_name,
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 3,
+    user_name: "yamatato",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 4,
+    user_name: "satoshi",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 5,
     user_name: user_data.user_name,
     email: "yama@taro.com",
     engineer_type: "",
