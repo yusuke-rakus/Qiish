@@ -1,9 +1,12 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.common.Status;
+import com.example.domain.Article;
 import com.example.mapper.TopPageMapper;
 import com.example.response.TopPageResponse;
 
@@ -20,7 +23,14 @@ public class TopPageService {
 			if(userInfoId != null) {
 				res.setUserInfo(topPageMapper.getUserInfoImage(userInfoId));
 			}
-			res.setArticleList(topPageMapper.getArticleList());
+			//記事情報取得（いいね数以外）
+			List<Article> articleList = topPageMapper.getArticleList();
+			//記事情報取得（いいね数）
+			List<Integer> likesCount = topPageMapper.getArticleLikes();
+			for(int i = 0; i < articleList.size(); i++) {
+				articleList.get(i).setLikesCount(likesCount.get(i));
+			}
+			res.setArticleList(articleList);
 			res.setTags(topPageMapper.getTags());
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
