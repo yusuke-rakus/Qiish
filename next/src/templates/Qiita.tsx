@@ -1,17 +1,16 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Comments } from ".";
-import { ArticleComp } from "../components/organisms";
+import { ArticleComp, QiitaComp } from "../components/organisms";
+// import { fetchQiitaDetail } from "../pages/api/fetchData";
 
 const Qiita: React.FC = () => {
-  const [articleLike, setArticleLike] = useState(10);
+  const [articleLike, setArticleLike] = useState(5);
   const [articleLikeFlag, setArticleLikeFlag] = useState(false);
   const [usrFollowFlag, setUsrFollowFlag] = useState(false);
-  // 記事データ(API実装できたら再度行う)
-  // const { data, error } = useSWR("/profile");
-  // useEffect(() => {
-  //   console.log("Article" + data);
-  // }, [data]);
+  // qiita詳細データ
+  const { data, error } = useSWR(`/qiita`);
 
   const changeArticleLike = () => {
     if (articleLikeFlag) {
@@ -25,13 +24,14 @@ const Qiita: React.FC = () => {
   const changeUsrFollow = () => {
     setUsrFollowFlag(!usrFollowFlag);
   };
-  // if (error) return <div>failed to load</div>;
-  // if (!data) return <div>loading...</div>;
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
   return (
     <div className="h-full">
-      <div className="text-3xl">Qiita用の記事</div>
-      <ArticleComp
+      <div className="text-3xl">Qiita用の詳細記事</div>
+      <QiitaComp
+        qiita={data}
         user_info_data={user_info_data}
         articleLike={articleLike}
         articleLikeFlag={articleLikeFlag}

@@ -1,9 +1,8 @@
 import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { SWRConfig } from "swr";
+import axios from "axios";
 import { Qiita } from "../../templates";
-import { fetchArticle } from "../api/fetchData";
-import { useRouter } from "next/router";
 
 type Props = {
   [key: string]: object;
@@ -21,23 +20,40 @@ const QiitaPage: React.FC<Props> = ({ fallback }) => {
 
 export default QiitaPage;
 
-// // [id]でgetStaticPropsを使用する場合、getStaticPathsが必要になる(API接続できたら)
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//     paths: [{ params: { id: "1" } }], //indicates that no page needs be created at build time
-//     fallback: false, //indicates the type of fallback
-//   };
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await axios.get("https://qiita.com/api/v2/items", {
+    headers: {
+      Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
+    },
+  });
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   // 記事情報取得のAPI
-//   const article = await fetchArticle();
+  // 記事のidを取得する
+  const paths = res.data.map((item: any) => ({
+    params: { id: item.id },
+  }));
 
-//   return {
-//     props: {
-//       fallback: {
-//         "/article": article,
-//       },
-//     },
-//   };
-// };
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const qiitaId = params.id;
+
+  // qiita記事情報取得のAPI
+  // 定数.dataとしないとエラーが発生する
+  const qiita = await axios.get(`https://qiita.com/api/v2/items/${qiitaId}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
+    },
+  });
+
+  return {
+    props: {
+      fallback: {
+        "/qiita": qiita.data,
+      },
+    },
+  };
+};

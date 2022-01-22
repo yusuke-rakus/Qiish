@@ -15,7 +15,21 @@ export const fetchArticle = async () => {
 };
 
 export const fetchQiita = async () => {
-  const res = await axios.get("https://qiita.com/api/v2/items?per_page=10");
+  const res = await axios.get("https://qiita.com/api/v2/items?per_page=10", {
+    headers: {
+      Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
+    },
+  });
 
   return res.data;
 };
+
+// export const fetchQiitaDetail = async (qiitaId: string) => {
+//   const res = await axios.get(`https://qiita.com/api/v2/items/${qiitaId}`, {
+//     headers: {
+//       Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
+//     },
+//   });
+
+//   return res.data;
+// };
