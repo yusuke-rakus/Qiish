@@ -6,8 +6,6 @@ import Link from "next/link";
 type Props = {
   user_info_data: {
     user_info_id: number;
-    first_name: string;
-    last_name: string;
     user_name: string;
     email: string;
     engineer_type: string;

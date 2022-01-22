@@ -1,5 +1,5 @@
 import React from "react";
-import { QiitaComp } from "../components/organisms";
+import { QiitaListComp } from "../components/organisms";
 import useSWR from "swr";
 
 const QiitaList: React.FC<any> = () => {
@@ -15,7 +15,7 @@ const QiitaList: React.FC<any> = () => {
       </div>
       <div className="mx-80 grid grid-cols-2 gap-2 bg-orange-100">
         {data.map((qiitaData: any) => {
-          return <QiitaComp key={qiitaData.id} qiitaData={qiitaData} />;
+          return <QiitaListComp key={qiitaData.id} qiitaData={qiitaData} />;
         })}
       </div>
     </div>
