@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.MyPageMapper">
+
+	<resultMap type="com.example.domain.Tag" id="tag">
+		<id column="tag_id" property="id"/>
+		<result column="skill" property="skill"/>
+		<result column="tag_image" property="image"/>
+	</resultMap>
+	
+	<resultMap type="com.example.domain.UserInfo" id="userInfo">
+		<id column="user_info_id" property="id"/>
+		<result column="user_name" property="userName"/>
+ 		<result column="engineer_type" property="engineerType"/>
+ 		<result column="image" property="image"/>
+		<result column="description" property="description"/>
+		<result column="follow_count" property="followCount"/>
+		<result column="follower_count" property="followerCount"/>
+		<result column="article_count" property="articleCount"/>
+		<collection property="tags" resultMap="tag"/>
+	</resultMap>
+	
+	<!-- マイページ表示 タグ情報以外-->
+	<select id="myPage" resultMap="userInfo">
+		SELECT u.id as user_info_id, u.user_name, u.engineer_type, u.image, u.description,
+		count(DISTINCT f.follow_user_info_id) as follow_count, 
+		count(DISTINCT fw.user_info_id) as follower_count, 
+		count(DISTINCT a.id) as article_count
+		FROM user_info as u 
+		left join follow as f on f.user_info_id = u.id 
+		left join follow as fw on fw.follow_user_info_id = u.id 
+		left join articles as a on a.user_info_id = u.id 
+		WHERE u.id = #{userInfoId};
+	</select>
+	
+	<!-- マイページ表示 タグ情報-->
+	<select id="getTagInfo" resultMap="tag">
+		SELECT t.skill
+		FROM user_info as u 
+		left join user_info_tags as ut on ut.user_info_id = u.id
+		left join tags as t on t.id = ut.tag_id 
+		WHERE u.id = #{userInfoId};
+	</select>
+	
+</mapper>
