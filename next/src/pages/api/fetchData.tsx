@@ -13,3 +13,9 @@ export const fetchArticle = async () => {
 
   return res.data;
 };
+
+export const fetchQiita = async () => {
+  const res = await axios.get("https://qiita.com/api/v2/items?per_page=10");
+
+  return res.data;
+};
