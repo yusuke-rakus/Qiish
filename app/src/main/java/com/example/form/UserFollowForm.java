@@ -1,5 +1,9 @@
 package com.example.form;
 
+/**
+ * フォロー
+ */
+
 public class UserFollowForm {
 
 	private Integer userInfoId;

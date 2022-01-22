@@ -1,5 +1,9 @@
 package com.example.form;
 
+/**
+ * 記事にLIKE
+ */
+
 public class ArticleLikeForm {
 
 	private Integer userId;

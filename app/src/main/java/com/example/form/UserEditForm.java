@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * ユーザー情報を編集するフォーム
  */
+
 public class UserEditForm {
 
 	private Integer userId;

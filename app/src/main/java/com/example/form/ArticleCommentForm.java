@@ -1,5 +1,9 @@
 package com.example.form;
 
+/**
+ * コメント投稿フォーム
+ */
+
 public class ArticleCommentForm {
 
 	private Integer articleId;

@@ -2,6 +2,10 @@ package com.example.form;
 
 import java.util.List;
 
+/**
+ * 記事編集フォーム
+ */
+
 public class ArticleEditForm {
 
 	private Integer articleId;
