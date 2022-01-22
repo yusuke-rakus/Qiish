@@ -1,6 +1,4 @@
-import Link from "next/link";
 import React from "react";
-import moment from "moment";
 import { QiitaComp } from "../components/organisms";
 import useSWR from "swr";
 
@@ -8,6 +6,7 @@ const QiitaList: React.FC<any> = () => {
   const { data, error } = useSWR("/qiita");
 
   if (error) return <div>failed to load</div>;
+  // loadingまだ出てない。
   if (!data) return <div>loading...</div>;
   return (
     <div>
