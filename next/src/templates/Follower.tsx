@@ -78,7 +78,7 @@ export const user_info_datas = [
     skill_tags: skill_tags,
   },
   {
-    user_info_id: 2,
+    user_info_id: 5,
     user_name: user_data.user_name,
     email: "yama@taro.com",
     engineer_type: "",
