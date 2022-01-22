@@ -42,10 +42,13 @@ public interface UserMapper {
 
 	/** フォロー解除 */
 	public void userRemove(UserFollowForm form);
-	
+
 	/** フォロー表示 */
 	public List<UserInfo> followList(Integer userInfoId);
-	
+
 	/** フォロワー表示 */
 	public List<UserInfo> followerList(Integer userInfoId);
+
+	/** 投稿ユーザー */
+	public UserInfo getPostedUser(Integer articleId);
 }

@@ -9,12 +9,10 @@ import com.example.domain.Article;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
-
 import com.example.form.ArticlePostForm;
-
 import com.example.form.CommentLikeForm;
-
 import com.example.mapper.ArticleMapper;
+import com.example.mapper.UserMapper;
 import com.example.response.ArticleDetailResponse;
 import com.example.response.Response;
 
@@ -23,6 +21,9 @@ public class ArticleService {
 
 	@Autowired
 	private ArticleMapper articleMapper;
+
+	@Autowired
+	private UserMapper userMapper;
 
 	/** コメント */
 	public Response articleComment(ArticleCommentForm form) {
@@ -120,7 +121,12 @@ public class ArticleService {
 	/** 記事詳細 */
 	public ArticleDetailResponse articleDetail(Integer articleId) {
 		ArticleDetailResponse res = new ArticleDetailResponse();
-		res.setArticle(articleMapper.articleDetail(articleId));
+		try {
+			res.setArticle(articleMapper.articleDetail(articleId));
+			res.setPostedUser(userMapper.getPostedUser(articleId));
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
 		return res;
 	}
 
