@@ -5,16 +5,22 @@ import Link from "next/link";
 // FCの型定義
 type Props = {
   user_info_data: {
-    user_info_id: number;
-    user_name: string;
-    email: string;
-    engineer_type: string;
-    comment: string;
-    skill_tags: {
-      user_info_id: number;
-      skill_id: number;
-      skill_name: string;
-    }[];
+    description: string;
+    facebook_id: string;
+    followees_count: number;
+    followers_count: number;
+    github_login_name: string;
+    id: string;
+    items_count: number;
+    linkedin_id: string;
+    location: string;
+    name: string;
+    organization: string;
+    permanent_id: number;
+    profile_image_url: string;
+    team_only: boolean;
+    twitter_screen_name: string;
+    website_url: string;
   };
   usrFollowFlag: boolean;
   changeUsrFollow: () => void;
@@ -46,7 +52,7 @@ const ProfileSmall: React.FC<Props> = ({
           </Link>
           {/* userName(User) */}
           <div className="pl-3 text-center">
-            <div>@{user_info_data.user_name}</div>
+            <div>@{user_info_data.name}</div>
             {usrFollowFlag ? (
               <button onClick={changeUsrFollow}>
                 <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
@@ -66,19 +72,19 @@ const ProfileSmall: React.FC<Props> = ({
           <div className="flex-grow text-center">
             {/*  */}
             投稿数
-            <div>11</div>
+            <div>{user_info_data.items_count}</div>
           </div>
           <div className="flex-grow text-center">
             <Link href={"/follow"}>
               <a className="text-black hover:text-gray-400">
-                フォロー<div>122</div>
+                フォロー<div>{user_info_data.followees_count}</div>
               </a>
             </Link>
           </div>
           <div className="flex-grow text-center ">
             <Link href={"/follower"}>
               <a className="text-black hover:text-gray-400">
-                フォロワー<div>140</div>
+                フォロワー<div>{user_info_data.followers_count}</div>
               </a>
             </Link>
           </div>
@@ -104,7 +110,7 @@ const ProfileSmall: React.FC<Props> = ({
         </div>
       </div>
       {/* comment(User) */}
-      <div className="block m-2">{user_info_data.comment}</div>
+      <div className="block m-2">{user_info_data.description}</div>
     </div>
   );
 };

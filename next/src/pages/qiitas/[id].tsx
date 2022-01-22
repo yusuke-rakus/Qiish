@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const qiitaId = params.id;
+  const qiitaId = params?.id;
 
   // qiita記事情報取得のAPI
   // 定数.dataとしないとエラーが発生する

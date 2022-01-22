@@ -2,6 +2,7 @@ import React from "react";
 import { HeartOutlined, MessageTwoTone } from "@ant-design/icons";
 import { ProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
+import moment from "moment";
 
 type Props = {
   qiita: {
@@ -73,7 +74,9 @@ const QiitaComp: React.FC<Props> = ({
   return (
     <div className="flex justify-center">
       <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
-        <div className="pb-10 pt-20 text-2xl font-bold">{qiita.title}</div>
+        <div className="pb-10 pt-20 px-10 text-2xl font-bold">
+          {qiita.title}
+        </div>
         <div className="pb-2">
           {/* likeCount(Article) */}
           <div className="flex justify-center items-center">
@@ -99,13 +102,13 @@ const QiitaComp: React.FC<Props> = ({
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
             {/* 本来は記事のタグを回す */}
-            {user_info_data.skill_tags.map((tagName) => {
+            {qiita.tags.map((tag) => {
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
-                  key={tagName.skill_name}
+                  key={tag.name}
                 >
-                  {tagName.skill_name}
+                  {tag.name}
                 </span>
               );
             })}
@@ -113,15 +116,14 @@ const QiitaComp: React.FC<Props> = ({
         </div>
         <div className="pt-1 text-slate-500 text-center">
           {/* posted_date(Article) */}
-          <span>投稿日: 2021年12月7日</span>
+          <span>
+            投稿日: {moment(qiita.created_at).format("YYYY年MM月DD日")}
+          </span>
         </div>
         <div className="px-14 pt-6 text-lg">
           {/* content(Article) */}
           <div className="markdown">
-            <ReactMarkdown>
-              ###
-              プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。
-            </ReactMarkdown>
+            <ReactMarkdown>{qiita.body}</ReactMarkdown>
           </div>
         </div>
       </div>
@@ -129,7 +131,7 @@ const QiitaComp: React.FC<Props> = ({
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
         <ProfileSmall
-          user_info_data={user_info_data}
+          user_info_data={qiita.user}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}
         />

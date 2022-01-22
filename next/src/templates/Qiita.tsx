@@ -1,9 +1,7 @@
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
 import { Comments } from ".";
-import { ArticleComp, QiitaComp } from "../components/organisms";
-// import { fetchQiitaDetail } from "../pages/api/fetchData";
+import { QiitaComp } from "../components/organisms";
 
 const Qiita: React.FC = () => {
   const [articleLike, setArticleLike] = useState(5);
