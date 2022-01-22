@@ -32,9 +32,7 @@ public class Tag {
 
 	@Override
 	public String toString() {
-		return "Tag [id=" + id + ", skill=" + skill + ", image=" + image + ", getId()=" + getId() + ", getSkill()="
-				+ getSkill() + ", getImage()=" + getImage() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+		return "Tag [id=" + id + ", skill=" + skill + ", image=" + image + "]";
 	}
 
 }

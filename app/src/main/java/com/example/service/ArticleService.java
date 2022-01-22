@@ -78,7 +78,7 @@ public class ArticleService {
 		}
 		return res;
 	}
-	
+
 	/** 記事投稿 */
 	public Response ArticlePost(ArticlePostForm form) {
 		Response res = new Response();
@@ -92,7 +92,7 @@ public class ArticleService {
 		}
 		return res;
 	}
-	
+
 	/** 記事削除 */
 	public Response articleDelete(Integer articleId) {
 		Response res = new Response();
@@ -103,7 +103,7 @@ public class ArticleService {
 		}
 		return res;
 	}
-	
+
 	/** 記事更新 */
 	public Response articleEdit(ArticleEditForm form) {
 		Response res = new Response();
@@ -116,9 +116,11 @@ public class ArticleService {
 		}
 		return res;
 	}
-	
-	public ArticleDetailResponse ArticleDetail(Integer articleId) {
+
+	/** 記事詳細 */
+	public ArticleDetailResponse articleDetail(Integer articleId) {
 		ArticleDetailResponse res = new ArticleDetailResponse();
+		res.setArticle(articleMapper.articleDetail(articleId));
 		return res;
 	}
 
