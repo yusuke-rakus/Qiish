@@ -3,6 +3,7 @@ package com.example.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.domain.Article;
 import com.example.domain.Tag;
@@ -13,15 +14,17 @@ public interface TopPageMapper {
 
 	/** 記事一覧 */
 	public List<Article> getArticleList();
-	
+
 	/** 記事のいいね情報 */
 	public List<Integer> getArticleLikes();
-	
+
 	/** タグ一覧 */
 	public List<Tag> getTags();
-	
+
 	/** ユーザー情報取得（画像のみ） */
 	public UserInfo getUserInfoImage(Integer userInfoId);
-	
-	
+
+	/** キーワード検索 */
+	public List<Article> searchKeyword(@Param("wordList") List<String> wordList);
+
 }
