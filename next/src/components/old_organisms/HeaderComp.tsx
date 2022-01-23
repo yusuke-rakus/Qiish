@@ -36,8 +36,13 @@ const HeaderComp: React.FC = () => {
 
         {/* 画面遷移のためLink */}
         <Link href={"/articleAdd"}>
-          <a className="px-4 py-2 mr-10 m-4 text-white hover:text-white font-semibold bg-orange-400 hover:bg-orange-500 active:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 rounded-md shadow-xl">
+          <a className="px-4 py-2 m-4 text-white hover:text-white font-semibold bg-orange-400 hover:bg-orange-500 active:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 rounded-md shadow-xl">
             Add News
+          </a>
+        </Link>
+        <Link href={"/qiitaList"}>
+          <a className="px-4 py-2 mr-5 my-4 text-white hover:text-white font-semibold bg-orange-400 hover:bg-orange-500 active:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 rounded-md shadow-xl">
+            Qiita
           </a>
         </Link>
       </div>

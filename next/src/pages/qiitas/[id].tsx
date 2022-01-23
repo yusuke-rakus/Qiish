@@ -10,11 +10,9 @@ type Props = {
 
 const QiitaPage: React.FC<Props> = ({ fallback }) => {
   return (
-    <div>
-      <SWRConfig value={{ fallback }}>
-        <Qiita />
-      </SWRConfig>
-    </div>
+    <SWRConfig value={{ fallback }}>
+      <Qiita />
+    </SWRConfig>
   );
 };
 

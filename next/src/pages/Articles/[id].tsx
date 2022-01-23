@@ -11,11 +11,9 @@ type Props = {
 
 const ArticlePage: React.FC<Props> = ({ fallback }) => {
   return (
-    <div>
-      <SWRConfig value={{ fallback }}>
-        <Article />
-      </SWRConfig>
-    </div>
+    <SWRConfig value={{ fallback }}>
+      <Article />
+    </SWRConfig>
   );
 };
 

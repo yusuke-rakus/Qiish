@@ -4,21 +4,24 @@ import { Comments } from ".";
 import { QiitaComp } from "../components/organisms";
 
 const Qiita: React.FC = () => {
-  const [articleLike, setArticleLike] = useState(5);
-  const [articleLikeFlag, setArticleLikeFlag] = useState(false);
-  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
   // qiita詳細データ
   const { data, error } = useSWR(`/qiita`);
 
+  const [articleLike, setArticleLike] = useState(data.likes_count);
+  const [articleLikeFlag, setArticleLikeFlag] = useState(false);
+  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+
+  // いいね機能 true:いいねしない false:いいねする
   const changeArticleLike = () => {
     if (articleLikeFlag) {
       setArticleLikeFlag(!articleLikeFlag);
-      setArticleLike((prevLike) => prevLike - 1);
+      setArticleLike((prevLike: number) => prevLike - 1);
     } else {
       setArticleLikeFlag(!articleLikeFlag);
-      setArticleLike((prevLike) => prevLike + 1);
+      setArticleLike((prevLike: number) => prevLike + 1);
     }
   };
+  // フォローフラグ切り替え
   const changeUsrFollow = () => {
     setUsrFollowFlag(!usrFollowFlag);
   };
