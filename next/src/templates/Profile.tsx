@@ -7,13 +7,6 @@ import { ProfileEdit } from "./";
 import { useToggle } from "../hooks";
 
 const Profile: React.FC = () => {
-  // const [editFlag, setEditFlag] = useState(true);
-  // const changeEditFlag = () => setEditFlag(!editFlag);
-  // const [usrFollowFlag, setUsrFollowFlag] = useState(false);
-  // const changeUsrFollow = () => {
-  //   setUsrFollowFlag(!usrFollowFlag);
-  // };
-  //下のカスタムフックで上の記述省略し汎用化
   const [editFlag, setEditFlag] = useToggle(true);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
 

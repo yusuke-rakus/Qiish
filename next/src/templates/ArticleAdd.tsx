@@ -1,30 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { ArticleAddFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { SKILL as SKILLTAGS } from "../const/Tags";
-import { useToggle } from "../hooks";
+import { useSelectState, useTextState, useToggle } from "../hooks";
 
 const ArticleAdd: React.FC = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [tags, setTags] = useState([]);
+  const [title, setTitle] = useTextState("");
+  const [content, setContent] = useTextState("");
+  const [tags, setTags] = useSelectState([]);
   const [previewFlag, setPreviewFlag] = useToggle(true);
 
-  const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-  const changeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-  const changeTags = (value: React.SetStateAction<never[]>) => {
-    setTags(value);
-  };
-
   const Fnc = {
-    changeTitle,
-    changeContent,
-    changeTags,
+    setTitle,
+    setContent,
+    setTags,
     setPreviewFlag,
   };
 
@@ -37,14 +27,12 @@ const ArticleAdd: React.FC = () => {
               <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
             </a>
           </Link>
-          <div>
-            <ArticleAddFrom
-              previewContent={content}
-              prevFlag={previewFlag}
-              Fnc={Fnc}
-              SKILLTAGS={SKILLTAGS}
-            />
-          </div>
+          <ArticleAddFrom
+            previewContent={content}
+            prevFlag={previewFlag}
+            Fnc={Fnc}
+            SKILLTAGS={SKILLTAGS}
+          />
         </div>
       </div>
     </div>
