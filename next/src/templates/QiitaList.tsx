@@ -3,7 +3,7 @@ import { QiitaListComp } from "../components/organisms";
 import useSWR from "swr";
 
 const QiitaList: React.FC<any> = () => {
-  const { data, error } = useSWR("/qiita");
+  const { data, error } = useSWR("/qiitaList");
 
   if (error) return <div>failed to load</div>;
   // loadingまだ出てない。

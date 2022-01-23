@@ -1,7 +1,7 @@
 import React from "react";
 import { QiitaList } from "../templates";
 import { SWRConfig } from "swr";
-import { fetchQiita } from "./api/fetchData";
+import { fetchQiitaList } from "./api/fetchData";
 
 type Props = {
   [key: string]: object;
@@ -18,11 +18,11 @@ const QiitaListPage: React.FC<Props> = ({ fallback }) => {
 export default QiitaListPage;
 
 export const getStaticProps = async () => {
-  const qiita = await fetchQiita();
+  const qiitaList = await fetchQiitaList();
   return {
     props: {
       fallback: {
-        "/qiita": qiita,
+        "/qiitaList": qiitaList,
       },
     },
   };
