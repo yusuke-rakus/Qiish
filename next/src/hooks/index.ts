@@ -1,2 +1,2 @@
-export { useInputState } from "./useInputState";
+export { useTextState } from "./useInputState";
 export { useToggle } from "./useToggle";

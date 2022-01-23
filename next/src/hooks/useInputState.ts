@@ -1,16 +1,18 @@
 import { useCallback, useState } from "react";
 
-export const useInputState = (
+// ステートのカスタムフック(インプット、テキストエリア)
+type EventType =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>;
+
+export const useTextState = (
   initialState: string
-): [string, (e: React.ChangeEvent<HTMLInputElement>) => void] => {
+): [string, (e: EventType) => void] => {
   const [inputState, setInputState] = useState(initialState);
 
   // useCallbackを用いて余分なレンダリングをなくす
-  // const changeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setUserName(e.target.value);
-  // };
   // why?・・・より高い再利用性のためにはuseCallbackが必要
-  const changeState = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeState = useCallback((e: EventType) => {
     setInputState(e.target.value);
   }, []);
   return [inputState, changeState];
