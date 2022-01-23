@@ -13,12 +13,12 @@ type Props = {
     }[];
   };
   Fnc: {
-    changeUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    changeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    changeEngineerType: (value: React.SetStateAction<string>) => void;
-    changePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    changeDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    changeTags: (value: React.SetStateAction<never[]>) => void;
+    setUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setEngineerType: (value: string) => void;
+    setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    setTags: (value: string[]) => void;
     onSubmitEditUser: (e: React.FormEvent<HTMLFormElement>) => void;
   };
 };
@@ -48,7 +48,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                   placeholder="名前を入力"
                   bordered={false}
                   size={"large"}
-                  onChange={Fnc.changeUserName}
+                  onChange={Fnc.setUserName}
                 />
               </Form.Item>
               <Form.Item
@@ -60,7 +60,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                   placeholder="職種"
                   className="w-20"
                   bordered={false}
-                  onChange={Fnc.changeEngineerType}
+                  onChange={Fnc.setEngineerType}
                 >
                   {TAGS.ENGINEER.map((engineerType) => {
                     return (
@@ -83,7 +83,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                 placeholder="メールアドレスを入力"
                 bordered={false}
                 size={"large"}
-                onChange={Fnc.changeEmail}
+                onChange={Fnc.setEmail}
               />
             </Form.Item>
             <Form.Item
@@ -95,7 +95,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                 placeholder="パスワードを入力"
                 bordered={false}
                 size={"large"}
-                onChange={Fnc.changePassword}
+                onChange={Fnc.setPassword}
               />
             </Form.Item>
             <Form.Item
@@ -108,7 +108,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                 allowClear
                 placeholder="使用技術"
                 bordered={false}
-                onChange={Fnc.changeTags}
+                onChange={Fnc.setTags}
               >
                 {/* フロント、バックエンド、その他のそれぞれの表示 */}
                 {TAGS.SKILL.map((SkillType) => {
@@ -142,7 +142,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                 placeholder="この読書の目的は「知ること」ではなく、「行動すること」"
                 autoSize={{ minRows: 5 }}
                 bordered={false}
-                onChange={Fnc.changeDescription}
+                onChange={Fnc.setDescription}
               />
             </Form.Item>
           </span>
