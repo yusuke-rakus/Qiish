@@ -1,7 +1,5 @@
 package com.example.service;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +94,7 @@ public class UserService {
 		}
 		return res;
 	}
-	
+
 	/** フォロー一覧表示 */
 	public FollowResponse followList(Integer userInfoId) {
 		FollowResponse res = new FollowResponse();
@@ -108,7 +106,7 @@ public class UserService {
 		}
 		return res;
 	}
-	
+
 	/** フォロワー一覧表示 */
 	public FollowResponse followerList(Integer userInfoId) {
 		FollowResponse res = new FollowResponse();

@@ -3,51 +3,92 @@
 <mapper namespace="com.example.mapper.TopPageMapper">
 
 	<resultMap type="com.example.domain.Tag" id="tag">
-		<id column="tag_id" property="id"/>
-		<result column="skill" property="skill"/>
-		<result column="tag_image" property="image"/>
+		<id column="tag_id" property="id" />
+		<result column="skill" property="skill" />
+		<result column="tag_image" property="image" />
 	</resultMap>
-	
+
 	<resultMap type="com.example.domain.Article" id="articleList">
-		<id column="article_id" property="id"/>
-		<result column="title" property="title"/>
-		<result column="content" property="content"/>
-		<result column="posted_date" property="postedDate"/>
-		<result column="likes_count" property="likesCount"/>
-		<collection property="articleTags" resultMap="tag"/>
+		<id column="article_id" property="id" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="posted_date" property="postedDate" />
+		<result column="likes_count" property="likesCount" />
+		<collection property="articleTags" resultMap="tag" />
 	</resultMap>
-	
+
 	<!-- 記事一覧取得 -->
 	<select id="getArticleList" resultMap="articleList">
-		SELECT a.id as article_id, a.title, a.content, a.posted_date,
-		t.id as tag_id, t.skill, t.image as tag_image 
-		FROM articles as a 
-		left join article_tags as at on at.article_id = a.id 
-		left join tags as t on at.tag_id = t.id
+		SELECT
+		a.id as article_id,
+		a.title,
+		a.content,
+		a.posted_date,
+		t.id as tag_id,
+		t.skill,
+		t.image as tag_image
+		FROM articles as a
+		left join article_tags as at
+		on at.article_id = a.id
+		left join tags as t
+		on at.tag_id = t.id
 		ORDER BY a.id;
 	</select>
-	
+
 	<!-- 記事一覧(いいね情報)取得 -->
 	<select id="getArticleLikes" resultType="Integer">
-		SELECT count(li.user_info_id) as likes_count
-		FROM articles as a 
-		left join likes as li on li.article_id = a.id 
-		GROUP BY a.id 
+		SELECT
+		count(li.user_info_id) as likes_count
+		FROM articles as a
+		left join likes as li on li.article_id = a.id
+		GROUP BY a.id
 		ORDER BY a.id;
 	</select>
-	
+
 	<!-- タグ一覧取得 -->
 	<select id="getTags" resultType="com.example.domain.Tag">
 		SELECT skill, image
 		FROM tags
 		ORDER BY id;
 	</select>
-	
+
 	<!-- ユーザー情報（画像）取得 -->
-	<select id="getUserInfoImage" resultType="com.example.domain.UserInfo">
+	<select id="getUserInfoImage"
+		resultType="com.example.domain.UserInfo">
 		SELECT image
 		FROM user_info
 		where id = #{userInfoId};
+	</select>
+
+	<!-- キーワード検索 -->
+	<resultMap type="com.example.domain.Article"
+		id="searchedArticleList">
+		<id property="id" column="a_id" />
+		<result property="title" column="a_title" />
+		<result property="content" column="a_content" />
+		<result property="postedDate" column="a_posted_date" />
+		<result property="likesCount" column="likes_count" />
+		<collection property="articleTags" ofType="com.example.domain.Tag">
+			<result property="skill" column="article_tag" />
+		</collection>
+	</resultMap>
+
+	<select id="searchKeyword" resultMap="searchedArticleList">
+		SELECT DISTINCT
+			a.id AS a_id,
+			a.title AS a_title,
+			a.content AS a_content,
+			a.posted_date AS a_posted_date,
+			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
+			(SELECT skill FROM tags WHERE id = at.tag_id) AS article_tag
+		FROM articles AS a
+		LEFT OUTER JOIN article_tags AS at
+		ON a.id = at.article_id
+		WHERE 1=1
+		<foreach collection="wordList" item="word">
+			AND title LIKE CONCAT('%' ,#{word}, '%')
+		</foreach>
+		ORDER BY (SELECT count(*) FROM likes WHERE a.id = article_id) DESC;
 	</select>
 
 </mapper>
