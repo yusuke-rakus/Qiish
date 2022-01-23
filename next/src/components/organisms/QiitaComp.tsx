@@ -41,20 +41,6 @@ type Props = {
       website_url: string;
     };
   };
-  user_info_data: {
-    user_info_id: number;
-    first_name: string;
-    last_name: string;
-    user_name: string;
-    email: string;
-    engineer_type: string;
-    comment: string;
-    skill_tags: {
-      user_info_id: number;
-      skill_id: number;
-      skill_name: string;
-    }[];
-  };
   articleLike: number;
   articleLikeFlag: boolean;
   changeArticleLike: () => void;
@@ -64,7 +50,6 @@ type Props = {
 
 const QiitaComp: React.FC<Props> = ({
   qiita,
-  user_info_data,
   articleLike,
   articleLikeFlag,
   changeArticleLike,

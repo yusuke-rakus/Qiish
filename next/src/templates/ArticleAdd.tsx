@@ -6,9 +6,12 @@ import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 
 const ArticleAdd: React.FC = () => {
+  // カスタムフック使用(Text)
   const [title, setTitle] = useTextState("");
   const [content, setContent] = useTextState("");
+  // カスタムフック使用(Select)
   const [tags, setTags] = useSelectState([]);
+  // カスタムフック使用(Toggle)
   const [previewFlag, setPreviewFlag] = useToggle(true);
 
   const Fnc = {

@@ -11,11 +11,13 @@ type Props = {
 const TAGS = { ENGINEER, SKILL };
 
 const ProfileEdit: React.FC<Props> = ({ changeEditFlag }) => {
+  // カスタムフック使用(Text)
   const [userName, setUserName] = useTextState("");
   const [email, setEmail] = useTextState("");
-  const [engineerType, setEngineerType] = useSelectState("");
   const [password, setPassword] = useTextState("");
   const [description, setDescription] = useTextState("");
+  // カスタムフック使用(Select)
+  const [engineerType, setEngineerType] = useSelectState("");
   const [tags, setTags] = useSelectState([]);
 
   const onSubmitEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
