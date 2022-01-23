@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import useSWR from "swr";
+import React, { useState } from "react";
 import { Comments } from ".";
 import { ArticleComp } from "../components/organisms";
 

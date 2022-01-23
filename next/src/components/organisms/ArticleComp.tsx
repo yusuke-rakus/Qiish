@@ -65,13 +65,13 @@ const ArticleComp: React.FC<Props> = ({
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
             {/* 本来は記事のタグを回す */}
-            {user_info_data.skill_tags.map((tagName) => {
+            {user_info_data.skill_tags.map((tag) => {
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
-                  key={tagName.skill_name}
+                  key={tag.skill_name}
                 >
-                  {tagName.skill_name}
+                  {tag.skill_name}
                 </span>
               );
             })}

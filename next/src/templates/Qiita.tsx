@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from "async_hooks";
 import React, { useState } from "react";
 import useSWR from "swr";
 import { Comments } from ".";
@@ -24,7 +25,7 @@ const Qiita: React.FC = () => {
   };
   // フォローフラグ切り替え
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data) return <div>loading...{console.log("loading!!")}</div>;
 
   return (
     <div className="h-full">
