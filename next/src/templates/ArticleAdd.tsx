@@ -3,12 +3,13 @@ import { ArticleAddFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { SKILL as SKILLTAGS } from "../const/Tags";
+import { useToggle } from "../hooks";
 
 const ArticleAdd: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState([]);
-  const [previewFlag, setPreviewFlag] = useState(true);
+  const [previewFlag, setPreviewFlag] = useToggle(true);
 
   const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -19,13 +20,12 @@ const ArticleAdd: React.FC = () => {
   const changeTags = (value: React.SetStateAction<never[]>) => {
     setTags(value);
   };
-  const changeFlag = () => setPreviewFlag(!previewFlag);
 
   const Fnc = {
     changeTitle,
     changeContent,
     changeTags,
-    changeFlag,
+    setPreviewFlag,
   };
 
   return (

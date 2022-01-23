@@ -1,19 +1,23 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
 import { ProfileEdit } from "./";
+import { useToggle } from "../hooks";
 
 const Profile: React.FC = () => {
-  const [editFlag, setEditFlag] = useState(true);
-  const changeEditFlag = () => setEditFlag(!editFlag);
-  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+  // const [editFlag, setEditFlag] = useState(true);
+  // const changeEditFlag = () => setEditFlag(!editFlag);
+  // const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+  // const changeUsrFollow = () => {
+  //   setUsrFollowFlag(!usrFollowFlag);
+  // };
+  //下のカスタムフックで上の記述省略し汎用化
+  const [editFlag, setEditFlag] = useToggle(true);
+  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
 
   // ユーザーフォロー関数
-  const changeUsrFollow = () => {
-    setUsrFollowFlag(!usrFollowFlag);
-  };
   // ユーザーのプロフィールデータ
   const { data, error } = useSWR("/profile");
 
@@ -37,11 +41,11 @@ const Profile: React.FC = () => {
             <ProfileLarge
               user_info_data={user_info_data}
               usrFollowFlag={usrFollowFlag}
-              changeUsrFollow={changeUsrFollow}
+              changeUsrFollow={setUsrFollowFlag}
             />
             <div className="flex justify-end">
               <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
-                <button type="button" onClick={changeEditFlag}>
+                <button type="button" onClick={setEditFlag}>
                   編集
                 </button>
               </span>
@@ -49,7 +53,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
       ) : (
-        <ProfileEdit changeEditFlag={changeEditFlag} />
+        <ProfileEdit changeEditFlag={setEditFlag} />
       )}
     </div>
   );

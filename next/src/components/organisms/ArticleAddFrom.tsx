@@ -13,7 +13,7 @@ type Props = {
     changeTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
     changeContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     changeTags: (value: React.SetStateAction<never[]>) => void;
-    changeFlag: () => void;
+    setPreviewFlag: () => void;
   };
   SKILLTAGS: {
     label: string;
@@ -100,7 +100,7 @@ const ArticleAddFrom: React.FC<Props> = ({
             shape="round"
             size="large"
             htmlType="button"
-            onClick={Fnc.changeFlag}
+            onClick={Fnc.setPreviewFlag}
           >
             <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
               プレビューモード

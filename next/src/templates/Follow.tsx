@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { FollowComp } from "../components/organisms";
+import { useToggle } from "../hooks";
 
 const Follow: React.FC = () => {
-  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
 
-  // ユーザーフォロー関数
-  const changeUsrFollow = () => {
-    setUsrFollowFlag(!usrFollowFlag);
-  };
   return (
     <div className="p-3 text-center">
       <FollowComp
         followText="フォロー"
         user_info_datas={user_info_datas}
         usrFollowFlag={usrFollowFlag}
-        changeUsrFollow={changeUsrFollow}
+        changeUsrFollow={setUsrFollowFlag}
       />
     </div>
   );

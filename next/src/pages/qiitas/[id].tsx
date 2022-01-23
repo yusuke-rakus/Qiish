@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const qiitaId = params?.id;
 
   // qiita記事情報取得のAPI
-  const qiitaData = fetchQiita(qiitaId);
+  const qiitaData = await fetchQiita(qiitaId);
 
   return {
     props: {

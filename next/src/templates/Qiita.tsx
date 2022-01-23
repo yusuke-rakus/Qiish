@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useSWR from "swr";
 import { Comments } from ".";
 import { QiitaComp } from "../components/organisms";
+import { useToggle } from "../hooks";
 
 const Qiita: React.FC = () => {
   // qiita詳細データ
@@ -9,7 +10,7 @@ const Qiita: React.FC = () => {
 
   const [articleLike, setArticleLike] = useState(data.likes_count);
   const [articleLikeFlag, setArticleLikeFlag] = useState(false);
-  const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
 
   // いいね機能 true:いいねしない false:いいねする
   const changeArticleLike = () => {
@@ -22,9 +23,6 @@ const Qiita: React.FC = () => {
     }
   };
   // フォローフラグ切り替え
-  const changeUsrFollow = () => {
-    setUsrFollowFlag(!usrFollowFlag);
-  };
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
@@ -38,7 +36,7 @@ const Qiita: React.FC = () => {
         articleLikeFlag={articleLikeFlag}
         changeArticleLike={changeArticleLike}
         usrFollowFlag={usrFollowFlag}
-        changeUsrFollow={changeUsrFollow}
+        changeUsrFollow={setUsrFollowFlag}
       />
       <Comments />
     </div>
