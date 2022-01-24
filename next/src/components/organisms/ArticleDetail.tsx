@@ -1,12 +1,11 @@
 import React from "react";
 import { HeartOutlined, MessageTwoTone } from "@ant-design/icons";
-import { ProfileSmall } from "./";
+import { ProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
-import { LargeNumberLike } from "crypto";
 
 type Props = {
   articleData: {
-    id: LargeNumberLike;
+    id: number;
     // user_info_id: 1,
     user_info_data: {
       user_info_id: number;
@@ -34,7 +33,7 @@ type Props = {
   changeUsrFollow: () => void;
 };
 
-const ArticleComp: React.FC<Props> = ({
+const ArticleDetail: React.FC<Props> = ({
   articleData,
   articleLike,
   articleLikeFlag,
@@ -113,4 +112,4 @@ const ArticleComp: React.FC<Props> = ({
   );
 };
 
-export default ArticleComp;
+export default ArticleDetail;

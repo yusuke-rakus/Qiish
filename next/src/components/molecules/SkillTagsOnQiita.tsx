@@ -1,12 +1,11 @@
 import React from "react";
-import SkillTag from "../atoms/SkillTag";
+import SkillTagQiita from "../atoms/SkillTagQiita";
 
 // FCの型定義
 type Props = {
   tags: {
-    article_id: number;
-    skill_id: number;
-    skill_name: string;
+    name: string;
+    version?: any;
   }[];
 };
 
@@ -15,7 +14,7 @@ const SkillTagsOnArticle: React.FC<Props> = ({ tags }) => {
   return (
     <div className="m-1 flex flex-wrap">
       {tags.map((tag) => {
-        return <SkillTag key={tag.skill_name} {...tag} />;
+        return <SkillTagQiita key={tag.name} {...tag} />;
       })}
     </div>
   );

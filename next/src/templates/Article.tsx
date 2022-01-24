@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Comments } from ".";
-import { ArticleComp } from "../components/organisms";
+import { ArticleComp, ArticleDetail } from "../components/organisms";
 
 const Article: React.FC = () => {
   const [articleLike, setArticleLike] = useState(10);
@@ -29,8 +29,8 @@ const Article: React.FC = () => {
 
   return (
     <div className="h-full">
-      <ArticleComp
-        user_info_data={user_info_data}
+      <ArticleDetail
+        articleData={articleData}
         articleLike={articleLike}
         articleLikeFlag={articleLikeFlag}
         changeArticleLike={changeArticleLike}
@@ -69,4 +69,20 @@ export const user_info_data = {
   comment: "趣味はサウナです。",
   skill_tags: skill_tags,
   enginner_type: "FR",
+};
+
+export const articleData = {
+  id: 1,
+  // user_info_id: 1,
+  user_info_data: user_info_data,
+  title: "TailwindCSSのチートシートを公開します。",
+  content:
+    "プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。",
+  posted_date: "12月7日",
+  skill_tags: [
+    { article_id: 1, skill_id: 1, skill_name: "フロントエンド" },
+    { article_id: 1, skill_id: 2, skill_name: "CSS" },
+    { article_id: 1, skill_id: 3, skill_name: "tailwindCSS" },
+    { article_id: 1, skill_id: 4, skill_name: "初心者" },
+  ],
 };

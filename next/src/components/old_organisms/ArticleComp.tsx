@@ -6,7 +6,6 @@ import SkillTagsOnArticle from "../molecules/SkillTagsOnArticle";
 type Props = {
   articleData: {
     id: number;
-    // user_info_id: number;
     user_info_data: {
       user_info_id: number;
       first_name: string;
@@ -19,10 +18,10 @@ type Props = {
     title: string;
     content: string;
     posted_date: string;
-    tags: {
+    skill_tags: {
       article_id: number;
       skill_id: number;
-      name: string;
+      skill_name: string;
     }[];
   };
 };
@@ -42,7 +41,7 @@ const ArticleComp: React.FC<Props> = ({ articleData }) => {
           </a>
         </Link>
 
-        <SkillTagsOnArticle tags={articleData.tags} />
+        <SkillTagsOnArticle tags={articleData.skill_tags} />
       </div>
     </div>
   );
