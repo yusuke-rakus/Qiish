@@ -51,18 +51,18 @@ const RegisterUser: React.FC = () => {
     }
 
     const res = await axios.post("http://localhost:9090/user/register", {
-      user_name: userName,
-      enginner_type: engineerType,
+      userName: userName,
+      engineerType: engineerType,
       email: mailAddress,
       password: password,
     });
 
     //コンソールに入力値を出力（確認出来たら削除する）
-    console.log(userName);
-    console.log(engineerType);
-    console.log(mailAddress);
-    console.log(password);
-    console.log(confirmPassword);
+    console.log("ユーザーネーム" + userName);
+    console.log("エンジニアタイプ" + engineerType);
+    console.log("メールアドレス" + mailAddress);
+    console.log("パスワード" + password);
+    console.log("確認用パスワード" + confirmPassword);
 
     //レスポンスデータを出力（確認出来たら削除する）
     console.log(res);
@@ -146,11 +146,11 @@ const RegisterUser: React.FC = () => {
             className="ml-4 px-4 py-4 w-36 bg-white rounded-sm"
           >
             <option>Please select</option>
-            <option value="FR">FR</option>
-            <option value="Web">Web</option>
-            <option value="CL">CL</option>
-            <option value="QA">QA</option>
-            <option value="ML">ML</option>
+            <option value="1">FR</option>
+            <option value="2">Web</option>
+            <option value="3">CL</option>
+            <option value="4">QA</option>
+            <option value="5">ML</option>
           </select>
         </div>
       </div>
