@@ -1,5 +1,6 @@
 // ディレクトリ順
 export { default as ArticleAddFrom } from "./ArticleAddFrom";
+export { default as ArticleDetail } from "./ArticleDetail";
 export { default as ArticleComp } from "./ArticleComp";
 export { default as CommentComp } from "./CommentComp";
 export { default as FollowComp } from "./FollowComp";
