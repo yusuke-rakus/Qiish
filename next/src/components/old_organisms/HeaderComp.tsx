@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { SearchOutlined, UserOutlined, DownOutlined } from "@ant-design/icons";
 import Link from "next/link";
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, Drawer, Button, Radio, Space } from "antd";
+import { DrawerProps } from "antd/es/drawer";
+import { RadioChangeEvent } from "antd/es/radio";
+import { fetchSearchedArticle } from "../../pages/api/fetchData";
 
 const HeaderComp: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -18,12 +21,62 @@ const HeaderComp: React.FC = () => {
       </Menu.Item>
     </Menu>
   );
+
+  const [visible, setVisible] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) =>
+    setKeyword(e.target.value);
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
+  const search = async () => {
+    fetchSearchedArticle(keyword);
+    setVisible(false);
+  };
+
   return (
     <React.Fragment>
       <div className="flex gap-1 justify-end">
         <button className="m-4 text-3xl">
-          <SearchOutlined />
+          <SearchOutlined type="primary" onClick={showDrawer} />
         </button>
+
+        <Drawer
+          title={
+            <input
+              type="text"
+              onChange={onChangeKeyword}
+              placeholder="キーワードを入力"
+              className="p-3 text-xl w-11/12 "
+            />
+          }
+          placement="top"
+          onClose={onClose}
+          visible={visible}
+          extra={
+            <Space>
+              <button
+                onClick={search}
+                className="px-5 py-2 text-white bg-orange-400 hover:bg-orange-500 rounded"
+              >
+                検索
+              </button>
+
+              <button
+                onClick={onClose}
+                className="px-5 py-2 text-white bg-orange-400 hover:bg-orange-500 rounded"
+              >
+                Cancel
+              </button>
+            </Space>
+          }
+        ></Drawer>
 
         <Dropdown overlay={menu}>
           <a

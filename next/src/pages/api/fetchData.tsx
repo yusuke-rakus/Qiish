@@ -13,3 +13,9 @@ export const fetchArticle = async () => {
 
   return res.data;
 };
+
+export const fetchSearchedArticle = async (keyword: string) => {
+  const res = await axios.post(`http://localhost:3001/${keyword}`);
+  console.log(keyword);
+  console.log(res);
+};
