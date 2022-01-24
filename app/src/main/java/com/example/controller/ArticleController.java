@@ -3,6 +3,7 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,55 +25,56 @@ public class ArticleController {
 
 	/** コメント投稿 */
 	@PostMapping("/comment")
-	public Response articleComment(ArticleCommentForm form) { // @RequestBody
+	public Response articleComment(@RequestBody ArticleCommentForm form) {
 		return articleService.articleComment(form);
 	}
 
 	/** コメントにいいね */
 	@PostMapping("/commentLike")
-	public Response commentLike(CommentLikeForm form) { // @RequestBody
+	public Response commentLike(@RequestBody CommentLikeForm form) {
 		return articleService.commentLike(form);
 	}
 
 	/** コメントいいね解除 */
 	@PostMapping("/removeCommentLike")
-	public Response removeCommentLike(CommentLikeForm form) { // @RequestBody
+	public Response removeCommentLike(@RequestBody CommentLikeForm form) {
 		return articleService.removeCommentLike(form);
 	}
 
 	/** 記事お気に入り */
 	@PostMapping("/like")
-	public Response articleLike(ArticleLikeForm form) { // @RequestBody
+	public Response articleLike(@RequestBody ArticleLikeForm form) {
 		return articleService.articleLike(form);
 	}
 
 	/** 記事お気に入り解除 */
 	@PostMapping("/removeLike")
-	public Response articleRemoveLike(ArticleLikeForm form) { // @RequestBody
+	public Response articleRemoveLike(@RequestBody ArticleLikeForm form) {
 		return articleService.articleRemoveLike(form);
 	}
 
 	/** 記事投稿 */
 	@PostMapping("/add")
-	public Response ArticlePost(ArticlePostForm form) { // @RequestBody
+	public Response ArticlePost(@RequestBody ArticlePostForm form) {
 		return articleService.ArticlePost(form);
 	}
 
 	/** 記事情報取得 */
+	// Getは@RequestBody必要？
 	@GetMapping("")
-	public ArticleDetailResponse ArticleDetail(Integer articleId) { // @RequestBody
+	public ArticleDetailResponse ArticleDetail(Integer articleId) {
 		return articleService.articleDetail(articleId);
 	}
 
 	/** 記事削除 */
 	@PostMapping("/delete")
-	public Response ArticleDelete(Integer articleId) { // @RequestBody
+	public Response ArticleDelete(@RequestBody Integer articleId) {
 		return articleService.articleDelete(articleId);
 	}
 
 	/** 記事編集 */
 	@PostMapping("/edit")
-	public Response ArticleEdit(ArticleEditForm form) { // @RequestBody
+	public Response ArticleEdit(@RequestBody ArticleEditForm form) {
 		return articleService.articleEdit(form);
 	}
 
