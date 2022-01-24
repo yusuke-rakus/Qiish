@@ -1,5 +1,5 @@
 import React from "react";
-import SkillTag from "../atoms/SkillTag";
+import { SkillTag } from "../atoms";
 
 // FCの型定義
 type Props = {

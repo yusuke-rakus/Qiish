@@ -2,7 +2,7 @@ type Props = {
   name: string;
 };
 
-const SkillTag: React.FC<Props> = ({ name }) => {
+const SkillTagQiita: React.FC<Props> = ({ name }) => {
   return (
     <span
       key={name}
@@ -15,4 +15,4 @@ const SkillTag: React.FC<Props> = ({ name }) => {
   );
 };
 
-export default SkillTag;
+export default SkillTagQiita;

@@ -39,3 +39,25 @@ export const reissuePassword = async (mailAddress: string) => {
   console.log(errorMessage);
   return errorMessage;
 };
+
+export const fetchQiitaList = async () => {
+  const res = await axios.get("https://qiita.com/api/v2/items?per_page=10", {
+    headers: {
+      Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
+    },
+  });
+
+  return res.data;
+};
+
+// 特定のQiitaの記事取得
+// 定数.dataとしないとエラーが発生する
+export const fetchQiita = async (qiitaId: string | string[] | undefined) => {
+  const res = await axios.get(`https://qiita.com/api/v2/items/${qiitaId}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
+    },
+  });
+
+  return res.data;
+};

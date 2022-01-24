@@ -1,5 +1,5 @@
 import React from "react";
-import SkillTagQiita from "../atoms/SkillTagQiita";
+import { SkillTagQiita } from "../atoms";
 
 // FCの型定義
 type Props = {

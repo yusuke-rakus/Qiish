@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import moment from "moment";
-import { SkillTagsOnArticle } from "../molecules";
+import { SkillTagsOnQiita } from "../molecules";
 
 const QiitaListComp: React.FC<any> = ({ qiitaData }) => {
   const formatDate = moment(qiitaData.created_at).format("YYYY年MM月DD日");
@@ -18,7 +18,7 @@ const QiitaListComp: React.FC<any> = ({ qiitaData }) => {
         </a>
       </Link>
 
-      <SkillTagsOnArticle tags={qiitaData.tags} />
+      <SkillTagsOnQiita tags={qiitaData.tags} />
     </div>
   );
 };
