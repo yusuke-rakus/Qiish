@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.example.domain.User;
 import com.example.domain.UserInfo;
 import com.example.form.LoginForm;
+import com.example.form.ResetPasswordForm;
 import com.example.form.UserEditForm;
 
 import com.example.form.UserFollowForm;
@@ -51,4 +52,11 @@ public interface UserMapper {
 
 	/** 投稿ユーザー */
 	public UserInfo getPostedUser(Integer articleId);
+	
+	/** パスワード再設定(ユーザー検索) */
+	public User resetRequest(String email);
+	
+	/** パスワード再設定 */
+	public void resetPassword(ResetPasswordForm form);
+	
 }
