@@ -118,5 +118,17 @@
 	ON u.id = t.user_info_id
 	WHERE u.id = (SELECT user_info_id FROM articles WHERE id = #{articleId});
 	</select>
+	
+	<!-- パスワード再設定(ユーザー検索) -->
+	<select id="resetRequest" resultType="com.example.domain.User">
+		SELECT user_info_id, email FROM user
+		WHERE email = #{email};
+	</select>
+	
+	<!-- パスワード再設定 -->
+	<update id="resetPassword">
+		UPDATE user SET password=#{password}
+		WHERE email=#{email};
+	</update>
 
 </mapper>
