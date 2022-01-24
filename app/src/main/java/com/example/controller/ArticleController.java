@@ -60,7 +60,6 @@ public class ArticleController {
 	}
 
 	/** 記事情報取得 */
-	// Getは@RequestBody必要？
 	@GetMapping("")
 	public ArticleDetailResponse ArticleDetail(Integer articleId) {
 		return articleService.articleDetail(articleId);
