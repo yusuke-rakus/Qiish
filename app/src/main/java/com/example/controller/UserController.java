@@ -1,4 +1,5 @@
 package com.example.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,52 +22,45 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-
 	/** ログイン */
 	@PostMapping("/login")
-	public LoginResponse loginUser(LoginForm form) { // @RequestBody
+	public LoginResponse loginUser(@RequestBody LoginForm form) {
 		return userService.userLogin(form);
 	}
 
-
 	/** ユーザー登録 */
 	@PostMapping("/register")
-	public Response userRegister(UserRegisterForm form) { // @RequestBody
+	public Response userRegister(@RequestBody UserRegisterForm form) {
 		return userService.userRegister(form);
 	}
 
-
 	/** ユーザー情報編集 */
 	@PostMapping("/edit")
-	public Response userEdit(UserEditForm form) { // @RequestBody
+	public Response userEdit(@RequestBody UserEditForm form) {
 		return userService.userEdit(form);
 	}
 
-
 	/** フォロー */
 	@PostMapping("/follow")
-	public Response userFollow(UserFollowForm form) { // @RequestBody
+	public Response userFollow(@RequestBody UserFollowForm form) {
 		return userService.userFollow(form);
 	}
 
-
 	/** フォロー解除 */
 	@PostMapping("/remove")
-	public Response userRemove(UserFollowForm form) { // @RequestBody
+	public Response userRemove(@RequestBody UserFollowForm form) {
 		return userService.userRemove(form);
 	}
-	
 
 	/** フォロー一覧表示 */
 	@PostMapping("/followList")
-	public FollowResponse followList(Integer userInfoId) { //@RequestBody 
+	public FollowResponse followList(@RequestBody Integer userInfoId) {
 		return userService.followList(userInfoId);
 	}
-	
 
 	/** フォロワー一覧表示 */
 	@PostMapping("/followerList")
-	public FollowResponse followerList(Integer userInfoId) { //@RequestBody 
+	public FollowResponse followerList(@RequestBody Integer userInfoId) {
 		return userService.followerList(userInfoId);
 	}
 
