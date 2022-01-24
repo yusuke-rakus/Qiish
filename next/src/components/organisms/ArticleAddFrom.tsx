@@ -3,8 +3,6 @@ import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
 
-const { Option, OptGroup } = Select;
-
 // FCの型定義
 type Props = {
   previewContent: string;

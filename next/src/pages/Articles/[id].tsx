@@ -3,7 +3,6 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { SWRConfig } from "swr";
 import { Article } from "../../templates";
 import { fetchArticle } from "../api/fetchData";
-import { useRouter } from "next/router";
 
 type Props = {
   [key: string]: object;

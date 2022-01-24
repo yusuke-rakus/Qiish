@@ -5,6 +5,7 @@ export const useToggle = (initialState: boolean): [boolean, () => void] => {
 
   // useCallbackを用いて余分なレンダリングをなくす
   // why?・・・より高い再利用性のためにはuseCallbackが必要
+  // ステートに受け取った値をセット(true or false)
   const toggle = useCallback(() => {
     setState((b) => !b);
   }, []);
