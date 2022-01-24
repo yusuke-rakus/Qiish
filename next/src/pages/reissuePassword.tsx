@@ -1,22 +1,41 @@
-const registerUser: React.FC = () => {
+import Router from "next/router";
+import axios from "axios";
+import { message } from "antd";
+import { ChangeEvent, useState } from "react";
+import { reissuePassword } from "./api/fetchData";
+
+const ReissuePassword: React.FC = () => {
+  // メールアドレス
+  const [mailAddress, setMailAddress] = useState<string>("");
+  // テキストボックス入力時に入力内容をStateに設定
+  const onChangeMailAddress = (e: ChangeEvent<HTMLInputElement>) =>
+    setMailAddress(e.target.value);
+
+  const reissue = async () => {
+    reissuePassword(mailAddress);
+  };
+
   return (
     <div className="h-screen w-screen flex flex-col gap-2 justify-center items-center">
       <input
         type="text"
-        placeholder="E-mail（rakusのメールアドレス)
-        "
+        onChange={onChangeMailAddress}
+        placeholder="E-mail（rakusのメールアドレス)"
         className="m-4 px-6 py-4 w-80 bg-white rounded-sm"
       />
-      <div className=" w-2/6">
-        ※パスワードを忘れた方は、パスワードの再発行をして下さい。
-        会員登録時にご登録して頂いたメールアドレスにパスワード再発行手続きのメールをお送りします。
-      </div>
+      <div>※パスワードを忘れた方は、パスワードの再発行をして下さい。</div>
 
-      <button className="px-6 py-4 w-80 bg-orange-400 text-white text-xl text-center rounded-md hover:bg-amber-600">
+      <button
+        onClick={() => {
+          reissue();
+        }}
+        className="px-6 py-4 w-80 bg-orange-400 text-white text-xl text-center rounded-md hover:bg-amber-600"
+      >
         送信
       </button>
+      <div>{reissue}</div>
     </div>
   );
 };
 
-export default registerUser;
+export default ReissuePassword;

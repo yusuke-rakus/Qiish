@@ -10,16 +10,17 @@ const goToReissue = () => {
 const LoginUser: React.FC = () => {
   // メールアドレス
   const [mailAddress, setMailAddress] = useState<string>("");
-  // パスワード
-  const [password, setPassword] = useState<string>("");
-  // エラーメッセージ
-  const [errorMessage, setErrorMessage] = useState<string>("");
   // テキストボックス入力時に入力内容をStateに設定
   const onChangeMailAddress = (e: ChangeEvent<HTMLInputElement>) =>
     setMailAddress(e.target.value);
+  // パスワード
+  const [password, setPassword] = useState<string>("");
   // テキストボックス入力時に入力内容をStateに設定
   const onChangePassword = (e: ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
+  // エラーメッセージ
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
   // ログイン処理
   const login = async () => {
     const res = await axios.post("http://localhost:9090/user/login", {
@@ -49,13 +50,13 @@ const LoginUser: React.FC = () => {
       <div className="mr-56 text-4xl font-semibold text-orange-500">Login</div>
       <input
         type="text"
-        onChange={onChangePassword}
+        onChange={onChangeMailAddress}
         placeholder="E-mail（rakusのメールアドレス）"
         className="m-4 px-6 py-4 w-80 bg-white rounded-sm"
       />
       <input
         type="text"
-        onChange={onChangeMailAddress}
+        onChange={onChangePassword}
         placeholder="Password（英数字8文字以上）"
         className="px-6 py-4 w-80 bg-white rounded-sm"
       />
