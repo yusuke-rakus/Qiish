@@ -10,10 +10,10 @@ type Props = {
   previewContent: string;
   prevFlag: boolean;
   Fnc: {
-    changeTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    changeContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    changeTags: (value: React.SetStateAction<never[]>) => void;
-    changeFlag: () => void;
+    setTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    setTags: (value: string[]) => void;
+    setPreviewFlag: () => void;
   };
   SKILLTAGS: {
     label: string;
@@ -41,7 +41,7 @@ const ArticleAddFrom: React.FC<Props> = ({
               placeholder="タイトル"
               bordered={false}
               size={"large"}
-              onChange={Fnc.changeTitle}
+              onChange={Fnc.setTitle}
             />
           </span>
         </Form.Item>
@@ -54,7 +54,7 @@ const ArticleAddFrom: React.FC<Props> = ({
             allowClear
             placeholder="使用技術"
             bordered={false}
-            onChange={Fnc.changeTags}
+            onChange={Fnc.setTags}
           >
             {SKILLTAGS.map((SkillType) => {
               return (
@@ -82,7 +82,7 @@ const ArticleAddFrom: React.FC<Props> = ({
                   placeholder="この読書の目的は「知ること」ではなく、「行動すること」"
                   autoSize={{ minRows: 5 }}
                   bordered={false}
-                  onChange={Fnc.changeContent}
+                  onChange={Fnc.setContent}
                 />
               </Form.Item>
             </div>
@@ -100,7 +100,7 @@ const ArticleAddFrom: React.FC<Props> = ({
             shape="round"
             size="large"
             htmlType="button"
-            onClick={Fnc.changeFlag}
+            onClick={Fnc.setPreviewFlag}
           >
             <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
               プレビューモード

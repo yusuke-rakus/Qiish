@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import SkillTagsOnArticle from "../old_molecules/SkillTagsOnArticle";
+import SkillTagsOnArticle from "../molecules/SkillTagsOnArticle";
 
 // FCの型定義
 type Props = {
@@ -22,7 +22,7 @@ type Props = {
     tags: {
       article_id: number;
       skill_id: number;
-      skill_name: string;
+      name: string;
     }[];
   };
 };

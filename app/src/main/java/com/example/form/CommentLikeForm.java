@@ -1,5 +1,9 @@
 package com.example.form;
 
+/**
+ * コメントにLIKE
+ */
+
 public class CommentLikeForm {
 
 	private Integer userId;

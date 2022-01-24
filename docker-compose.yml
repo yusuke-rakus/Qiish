@@ -14,7 +14,6 @@ services:
   # spring
   app:
     image: openjdk:11
-    platform: linux/amd64
     container_name: "app"
     restart: always
     tty: true

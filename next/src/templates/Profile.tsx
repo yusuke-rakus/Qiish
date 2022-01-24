@@ -1,20 +1,22 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
 import { ProfileEdit } from "./";
+import { useToggle } from "../hooks";
 
 const Profile: React.FC = () => {
-  const [editFlag, setEditFlag] = useState(true);
+  const [editFlag, setEditFlag] = useToggle(true);
+  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+
+  // ユーザーフォロー関数
   // ユーザーのプロフィールデータ
   const { data, error } = useSWR("/profile");
 
   useEffect(() => {
     console.log("Profile" + data);
   }, [data]);
-
-  const changeEditFlag = () => setEditFlag(!editFlag);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -29,10 +31,14 @@ const Profile: React.FC = () => {
                 <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
               </a>
             </Link>
-            <ProfileLarge user_info_data={user_info_data} />
+            <ProfileLarge
+              user_info_data={user_info_data}
+              usrFollowFlag={usrFollowFlag}
+              changeUsrFollow={setUsrFollowFlag}
+            />
             <div className="flex justify-end">
               <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
-                <button type="button" onClick={changeEditFlag}>
+                <button type="button" onClick={setEditFlag}>
                   編集
                 </button>
               </span>
@@ -40,7 +46,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
       ) : (
-        <ProfileEdit changeEditFlag={changeEditFlag} />
+        <ProfileEdit changeEditFlag={setEditFlag} />
       )}
     </div>
   );

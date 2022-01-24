@@ -1,8 +1,9 @@
 import React from "react";
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { SWRConfig } from "swr";
 import { Article } from "../../templates";
 import { fetchArticle } from "../api/fetchData";
+import { useRouter } from "next/router";
 
 type Props = {
   [key: string]: object;
@@ -10,25 +11,31 @@ type Props = {
 
 const ArticlePage: React.FC<Props> = ({ fallback }) => {
   return (
-    <div>
-      <SWRConfig value={{ fallback }}>
-        <Article />
-      </SWRConfig>
-    </div>
+    <SWRConfig value={{ fallback }}>
+      <Article />
+    </SWRConfig>
   );
 };
 
 export default ArticlePage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  // 記事情報取得のAPI
-  const article = await fetchArticle();
+// // [id]でgetStaticPropsを使用する場合、getStaticPathsが必要になる(API接続できたら)
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [{ params: { id: "1" } }], //indicates that no page needs be created at build time
+//     fallback: false, //indicates the type of fallback
+//   };
+// };
 
-  return {
-    props: {
-      fallback: {
-        "/article": article,
-      },
-    },
-  };
-};
+// export const getStaticProps: GetStaticProps = async () => {
+//   // 記事情報取得のAPI
+//   const article = await fetchArticle();
+
+//   return {
+//     props: {
+//       fallback: {
+//         "/article": article,
+//       },
+//     },
+//   };
+// };

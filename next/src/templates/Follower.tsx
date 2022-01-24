@@ -1,18 +1,18 @@
 import React from "react";
-import { ProfileRectangle } from "../components/organisms";
+import { FollowComp } from "../components/organisms";
+import { useToggle } from "../hooks";
 
 const Follower: React.FC = () => {
+  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+
   return (
     <div className="p-3 text-center">
-      <div className="text-3xl font-bold">フォロワーリスト一覧</div>
-      <div className=" flex justify-center items-center ">
-        <div className="w-1/3">
-          <ProfileRectangle user_info_data={user_info_data} />
-          <ProfileRectangle user_info_data={user_info_data} />
-          <ProfileRectangle user_info_data={user_info_data} />
-          <ProfileRectangle user_info_data={user_info_data} />
-        </div>
-      </div>
+      <FollowComp
+        followText="フォロワー"
+        user_info_datas={user_info_datas}
+        usrFollowFlag={usrFollowFlag}
+        changeUsrFollow={setUsrFollowFlag}
+      />
     </div>
   );
 };
@@ -31,13 +31,46 @@ const skill_tags = [
   { user_info_id: 1, skill_id: 3, skill_name: "TailwindCSS" },
 ];
 
-export const user_info_data = {
-  user_info_id: 1,
-  first_name: "太郎",
-  last_name: "山田",
-  user_name: user_data.user_name,
-  email: "yama@taro.com",
-  engineer_type: "",
-  comment: "趣味はサウナです。",
-  skill_tags: skill_tags,
-};
+export const user_info_datas = [
+  {
+    user_info_id: 1,
+    // user_name: user_data.user_name,
+    user_name: "rakus22222",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 2,
+    user_name: user_data.user_name,
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 3,
+    user_name: "yamatato",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 4,
+    user_name: "satoshi",
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+  {
+    user_info_id: 5,
+    user_name: user_data.user_name,
+    email: "yama@taro.com",
+    engineer_type: "",
+    comment: "趣味はサウナです。",
+    skill_tags: skill_tags,
+  },
+];

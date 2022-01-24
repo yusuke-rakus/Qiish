@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../const/Tags";
 import axios from "axios";
+import { useTextState, useSelectState } from "../hooks";
 
 type Props = {
   changeEditFlag: () => void;
@@ -10,31 +11,15 @@ type Props = {
 const TAGS = { ENGINEER, SKILL };
 
 const ProfileEdit: React.FC<Props> = ({ changeEditFlag }) => {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [engineerType, setEngineerType] = useState("");
-  const [password, setPassword] = useState("");
-  const [description, setDescription] = useState("");
-  const [tags, setTags] = useState([]);
+  // カスタムフック使用(Text)
+  const [userName, setUserName] = useTextState("");
+  const [email, setEmail] = useTextState("");
+  const [password, setPassword] = useTextState("");
+  const [description, setDescription] = useTextState("");
+  // カスタムフック使用(Select)
+  const [engineerType, setEngineerType] = useSelectState("");
+  const [tags, setTags] = useSelectState([]);
 
-  const changeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
-  };
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const changeEngineerType = (value: React.SetStateAction<string>) => {
-    setEngineerType(value);
-  };
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-  const changeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(e.target.value);
-  };
-  const changeTags = (value: React.SetStateAction<never[]>) => {
-    setTags(value);
-  };
   const onSubmitEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await axios.post("http://localhost:3001/user/login", {
@@ -46,12 +31,12 @@ const ProfileEdit: React.FC<Props> = ({ changeEditFlag }) => {
   };
 
   const Fnc = {
-    changeUserName,
-    changeEmail,
-    changeEngineerType,
-    changePassword,
-    changeDescription,
-    changeTags,
+    setUserName,
+    setEngineerType,
+    setEmail,
+    setPassword,
+    setDescription,
+    setTags,
     onSubmitEditUser,
   };
 

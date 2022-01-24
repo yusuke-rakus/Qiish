@@ -19,17 +19,15 @@ const Home: React.FC = () => {
       <div className="mx-80 text-4xl font-semibold text-orange-500">
         Articles
       </div>
-      <div>
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-      </div>
+      <ArticleList />
+      <ArticleList />
+      <ArticleList />
+      <ArticleList />
+      <ArticleList />
+      <ArticleList />
+      <ArticleList />
+      <ArticleList />
+      <ArticleList />
     </div>
   );
 };

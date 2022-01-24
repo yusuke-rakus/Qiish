@@ -10,22 +10,20 @@
 	</select>
 
 	<!-- ユーザー登録処理 -->
-	<!-- なんかわからんけど戻り値に1しか入らん -->
-	<insert id="userInfoRegister">
-		INSERT INTO user_info(user_name, email,
+	<insert id="userInfoRegister"
+		parameterType="com.example.form.UserRegisterForm"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO user_info(user_name,
+		email,
 		engineer_type)
 		VALUES(#{userName}, #{email}, #{engineerType});
-		<selectKey resultType="java.lang.Integer"
-			keyProperty="userInfoId" order="AFTER">
-			SELECT LAST_INSERT_ID() AS VALUE
-		</selectKey>
 	</insert>
 
 	<!-- ユーザー登録処理 -->
 	<insert id="userRegister"
 		parameterType="com.example.form.UserRegisterForm">
 		INSERT INTO user(user_info_id, email, password)
-		VALUES(#{userInfoId}, #{email}, #{password});
+		VALUES(#{id}, #{email}, #{password});
 	</insert>
 
 	<!-- ユーザー情報の編集 -->
@@ -39,29 +37,98 @@
 
 	<!-- ログイン情報の編集 -->
 	<update id="userEdit">
-		UPDATE SET email=#{email}, password=#{password} WHERE
+		UPDATE user SET email=#{email}, password=#{password}
+		WHERE
 		user_info_id=#{userId};
 	</update>
 
 	<!-- ユーザータグの編集 -->
-	<insert id="userInfoTagsEdit" parameterType="java.util.List">
+	<insert id="userInfoTagsEdit">
 		INSERT INTO user_info_tags(user_info_id, tag_id)
 		VALUES
-		<foreach collection="tagsList" item="tag" separator=",">
-			(#{tag.userInfoId}, #{tag.tagId});
+		<foreach collection="tagsList" item="tagId" separator=",">
+			(#{userId}, #{tagId})
 		</foreach>
 	</insert>
 
+	<!-- ユーザータグの編集 -->
+	<delete id="deleteTags" parameterType="java.lang.Integer">
+		DELETE FROM user_info_tags
+		WHERE user_info_id = #{userId};
+	</delete>
+
+	<!-- フォロー -->
+	<insert id="userFollow"
+		parameterType="com.example.form.UserFollowForm">
+		INSERT INTO follow(user_info_id, follow_user_info_id)
+		VALUES(#{userInfoId}, #{followUserInfoId});
+	</insert>
+
+	<!-- フォロー解除 -->
+	<insert id="userRemove"
+		parameterType="com.example.form.UserFollowForm">
+		DELETE FROM follow
+		WHERE user_info_id=#{userInfoId} AND
+		follow_user_info_id=#{followUserInfoId};
+	</insert>
+	
+	<!-- フォロー表示 -->
+	<select id="followList" resultType="com.example.domain.UserInfo">
+		SELECT u.id, u.user_name, u.engineer_type, u.image
+		FROM follow as f
+		left join user_info as u on f.follow_user_info_id = u.id
+		WHERE user_info_id = #{userInfoId};
+	</select>
+	
+	<!-- フォロワーー表示 -->
+	<select id="followerList" resultType="com.example.domain.UserInfo">
+		SELECT u.id, u.user_name, u.engineer_type, u.image
+		FROM follow as f
+		left join user_info as u on f.user_info_id = u.id
+		WHERE follow_user_info_id = #{userInfoId};
+	</select>
+	
+	<!-- 記事投稿ユーザー取得 -->
+	<resultMap type="com.example.domain.UserInfo" id="userMap">
+		<id property="id" column="u_id"></id>
+		<result property="userName" column="u_user_name"></result>
+		<result property="engineerType" column="u_engineer_type"></result>
+		<result property="description" column="u_description"></result>
+		<result property="image" column="u_image"></result>
+		<result property="followCount" column="follow_count"></result>
+		<result property="followerCount" column="follower_count"></result>
+		<result property="articleCount" column="article_count"></result>
+		<collection property="tags" ofType="com.example.domain.Tag">
+			<result property="skill" column="u_tags"></result>
+		</collection>
+	</resultMap>
+	<select id="getPostedUser" resultMap="userMap">
+	SELECT
+		u.id AS u_id,
+		u.user_name AS u_user_name,
+		u.engineer_type AS u_engineer_type,
+		u.description AS u_description,
+		u.image AS u_image,
+		(SELECT skill FROM tags WHERE t.tag_id = tags.id) AS u_tags,
+		(SELECT count(*) FROM follow WHERE u.id = follow.user_info_id) AS follow_count,
+		(SELECT count(*) FROM follow WHERE u.id = follow.follow_user_info_id) AS follower_count,
+		(SELECT count(*) FROM articles WHERE u.id = articles.user_info_id) AS article_count
+	FROM user_info AS u
+	LEFT OUTER JOIN user_info_tags AS t
+	ON u.id = t.user_info_id
+	WHERE u.id = (SELECT user_info_id FROM articles WHERE id = #{articleId});
+	</select>
+	
+	<!-- パスワード再設定(ユーザー検索) -->
+	<select id="resetRequest" resultType="com.example.domain.User">
+		SELECT user_info_id, email FROM user
+		WHERE email = #{email};
+	</select>
+	
+	<!-- パスワード再設定 -->
+	<update id="resetPassword">
+		UPDATE user SET password=#{password}
+		WHERE email=#{email};
+	</update>
+
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-

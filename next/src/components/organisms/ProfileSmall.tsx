@@ -1,25 +1,41 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 // FCの型定義
 type Props = {
   user_info_data: {
-    user_info_id: number;
-    first_name: string;
-    last_name: string;
-    user_name: string;
-    email: string;
-    engineer_type: string;
-    comment: string;
+    description: string;
+    facebook_id: string;
+    followees_count: number;
+    followers_count: number;
+    github_login_name: string;
+    id: string;
+    items_count: number;
+    linkedin_id: string;
+    location: string;
+    name: string;
+    organization: string;
+    permanent_id: number;
+    profile_image_url: string;
+    team_only: boolean;
+    twitter_screen_name: string;
+    website_url: string;
     skill_tags: {
       user_info_id: number;
       skill_id: number;
       skill_name: string;
     }[];
   };
+  usrFollowFlag: boolean;
+  changeUsrFollow: () => void;
 };
 
-const ProfileSmall: React.FC<Props> = ({ user_info_data }) => {
+const ProfileSmall: React.FC<Props> = ({
+  user_info_data,
+  usrFollowFlag,
+  changeUsrFollow,
+}) => {
   const tagStyle =
     "mx-1 mb-1 p-1 bg-orange-500  text-white text-center font-sans text-xs shadow-md rounded-lg";
   const tagsName = ["フロントエンド", "CSS", "tailwindCSS", "初心者"];
@@ -28,36 +44,54 @@ const ProfileSmall: React.FC<Props> = ({ user_info_data }) => {
       <div className="m-4">
         <div className="flex justify-center items-center">
           {/* image(User) */}
-          <Image
-            className="rounded-full"
-            src={"/img/avatar.jpg"}
-            alt="アバター"
-            width={90}
-            height={90}
-          />
+          <Link href={"/profile"}>
+            <a>
+              <Image
+                className="rounded-full"
+                src={"/img/avatar.jpg"}
+                alt="アバター"
+                width={90}
+                height={90}
+              />
+            </a>
+          </Link>
           {/* userName(User) */}
           <div className="pl-3 text-center">
-            <div>@{user_info_data.user_name}</div>
-            <div className="mt-2 p-1 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-              <button>フォロー</button>
-            </div>
+            <div>@{user_info_data.name}</div>
+            {usrFollowFlag ? (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー解除
+                </div>
+              </button>
+            ) : (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー
+                </div>
+              </button>
+            )}
           </div>
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black ">
           <div className="flex-grow text-center">
             {/*  */}
             投稿数
-            <div>11</div>
+            <div>{user_info_data.items_count}</div>
           </div>
           <div className="flex-grow text-center">
-            {/*  */}
-            フォロー
-            <div>122</div>
+            <Link href={"/follow"}>
+              <a className="text-black hover:text-gray-400">
+                フォロー<div>{user_info_data.followees_count}</div>
+              </a>
+            </Link>
           </div>
           <div className="flex-grow text-center ">
-            {/*  */}
-            フォロワー
-            <div>140</div>
+            <Link href={"/follower"}>
+              <a className="text-black hover:text-gray-400">
+                フォロワー<div>{user_info_data.followers_count}</div>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="text-xl mt-2 flex justify-center items-center">
@@ -81,7 +115,7 @@ const ProfileSmall: React.FC<Props> = ({ user_info_data }) => {
         </div>
       </div>
       {/* comment(User) */}
-      <div className="block m-2">{user_info_data.comment}</div>
+      <div className="block m-2">{user_info_data.description}</div>
     </div>
   );
 };

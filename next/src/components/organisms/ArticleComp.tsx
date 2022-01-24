@@ -19,13 +19,19 @@ type Props = {
     }[];
   };
   articleLike: number;
+  articleLikeFlag: boolean;
   changeArticleLike: () => void;
+  usrFollowFlag: boolean;
+  changeUsrFollow: () => void;
 };
 
 const ArticleComp: React.FC<Props> = ({
   user_info_data,
   articleLike,
+  articleLikeFlag,
   changeArticleLike,
+  usrFollowFlag,
+  changeUsrFollow,
 }) => {
   return (
     <div className="flex justify-center">
@@ -38,7 +44,13 @@ const ArticleComp: React.FC<Props> = ({
           {/* likeCount(Article) */}
           <div className="flex justify-center items-center">
             <button onClick={changeArticleLike}>
-              <HeartOutlined className="text-2xl hover:text-orange-500" />
+              {articleLikeFlag ? (
+                <span className="text-orange-500">
+                  <HeartOutlined className="text-2xl" />
+                </span>
+              ) : (
+                <HeartOutlined className="text-2xl" />
+              )}
             </button>
             <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
               {articleLike}
@@ -53,13 +65,13 @@ const ArticleComp: React.FC<Props> = ({
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
             {/* 本来は記事のタグを回す */}
-            {user_info_data.skill_tags.map((tagName) => {
+            {user_info_data.skill_tags.map((tag) => {
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
-                  key={tagName.skill_name}
+                  key={tag.skill_name}
                 >
-                  {tagName.skill_name}
+                  {tag.skill_name}
                 </span>
               );
             })}
@@ -82,7 +94,11 @@ const ArticleComp: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
-        <ProfileSmall user_info_data={user_info_data} />
+        <ProfileSmall
+          user_info_data={user_info_data}
+          usrFollowFlag={usrFollowFlag}
+          changeUsrFollow={changeUsrFollow}
+        />
       </div>
     </div>
   );
