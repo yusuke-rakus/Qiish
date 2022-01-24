@@ -1,4 +1,5 @@
 import axios from "axios";
+import Router from "next/router";
 
 // プロフィール情報取得のAPI
 export const fetchProfile = async () => {
@@ -14,10 +15,27 @@ export const fetchArticle = async () => {
   return res.data;
 };
 
-// 記事検索、キーワードが含まれた記事
+// 検索された記事を取得するAPI
 // キーワード二つ目以降は+区切りで付け足していく仕様とする。半角スペースを+に変換する。
 export const fetchSearchedArticle = async (keyword: string) => {
-  const res = await axios.get(`http://localhost:3001/search?keyword=${keyword}`);
+  const res = await axios.get(
+    `http://localhost:3001/search?keyword=${keyword}`
+  );
   console.log(keyword);
   console.log(res);
+};
+
+export const reissuePassword = async (mailAddress: string) => {
+  // const res = await axios.post(`http://localhost:3001/resetRequest`, {
+  //   email: mailAddress,
+  // });
+  // console.log(res);
+  let errorMessage = "";
+  // if (res.data.status == "success") {
+  //   Router.push("/resetPassword");
+  // } else if (res.data.status == "error") {
+  errorMessage = "このメールアドレスは有効ではありません";
+  // }
+  console.log(errorMessage);
+  return errorMessage;
 };
