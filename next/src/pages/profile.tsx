@@ -20,9 +20,10 @@ const ProfilePage: React.FC<Props> = ({ fallback }) => {
 
 export default ProfilePage;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   // プロフィール情報取得のAPI
-  const profile = await fetchProfile();
+  // undefindの可能性があるためparamsをoptionalにした
+  const profile = await fetchProfile(params?.id);
 
   return {
     props: {

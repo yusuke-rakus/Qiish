@@ -1,14 +1,22 @@
 import axios from "axios";
 
 // プロフィール情報取得のAPI
-export const fetchProfile = async () => {
-  const res = await axios.get("http://localhost:9090/userPage?userInfoId=1");
+export const fetchProfile = async (
+  userInfoId: string | string[] | undefined
+) => {
+  const res = await axios.get(
+    `http://localhost:9090/userPage?userInfoId=${userInfoId}`
+  );
   return res.data;
 };
 
 // 特定の記事情報取得のAPI
-export const fetchArticle = async (id: string | string[] | undefined) => {
-  const res = await axios.get(`http://localhost:9090/article?articleId=${id}`);
+export const fetchArticle = async (
+  articleId: string | string[] | undefined
+) => {
+  const res = await axios.get(
+    `http://localhost:9090/article?articleId=${articleId}`
+  );
 
   return res.data;
 };
