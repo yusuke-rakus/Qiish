@@ -1,21 +1,26 @@
 import React from "react";
 import { SkillTag } from "../atoms";
+import { TagOutlined, HeartFilled } from "@ant-design/icons";
+import { listenerCount } from "process";
 
 // FCの型定義
 type Props = {
   tags: {
-    article_id: number;
-    skill_id: number;
-    skill_name: string;
+    id: number;
+    skill: string;
   }[];
 };
 
 // CSSの変更が加わるので明示的にonArticleとして分離
 const SkillTagsOnArticle: React.FC<Props> = ({ tags }) => {
   return (
-    <div className="m-1 flex flex-wrap">
+    <div className="flex flex-wrap">
+      <span className="pr-2 text-xl">
+        <TagOutlined />
+      </span>
+
       {tags.map((tag) => {
-        return <SkillTag key={tag.skill_name} {...tag} />;
+        return <SkillTag key={tag.skill} {...tag} />;
       })}
     </div>
   );

@@ -1,18 +1,17 @@
 type Props = {
-  article_id: number;
-  skill_id: number;
-  skill_name: string;
+  id: number;
+  skill: string;
 };
 
-const SkillTag: React.FC<Props> = ({ skill_name }) => {
+const SkillTag: React.FC<Props> = ({ skill }) => {
   return (
     <span
-      key={skill_name}
+      key={skill}
       className={
-        "m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded"
+        "m-1 px-3 py-1 bg-orange-400 text-white text-center font-sans text-xs rounded-sm"
       }
     >
-      {skill_name}
+      {skill}
     </span>
   );
 };
