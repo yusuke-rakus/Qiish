@@ -1,7 +1,7 @@
 import { SetStateAction, useCallback, useState } from "react";
 
 // ステートのカスタムフック(インプット、テキストエリア)
-type TextEventType =
+export type TextEventType =
   | React.ChangeEvent<HTMLInputElement>
   | React.ChangeEvent<HTMLTextAreaElement>;
 
@@ -20,7 +20,7 @@ export const useTextState = (
 };
 
 // ステートのカスタムフック(str or str[]セレクトタグ)
-type SelectStateType = string | string[];
+export type SelectStateType = string | string[];
 
 export const useSelectState = (
   initialState: SelectStateType

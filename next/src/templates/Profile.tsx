@@ -27,7 +27,7 @@ const Profile: React.FC = () => {
               </a>
             </Link>
             <ProfileLarge
-              user_info={data.userInfo}
+              userInfo={data.userInfo}
               usrFollowFlag={usrFollowFlag}
               changeUsrFollow={setUsrFollowFlag}
             />
@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
       ) : (
-        <ProfileEdit changeEditFlag={setEditFlag} />
+        <ProfileEdit userInfo={data.userInfo} changeEditFlag={setEditFlag} />
       )}
     </div>
   );

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 // FCの型定義
 type Props = {
-  user_info: {
+  userInfo: {
     id: number;
     userName: string;
     email: string;
@@ -30,7 +30,7 @@ type Props = {
 };
 
 const ProfileLarge: React.FC<Props> = ({
-  user_info,
+  userInfo,
   usrFollowFlag,
   changeUsrFollow,
 }) => {
@@ -43,10 +43,10 @@ const ProfileLarge: React.FC<Props> = ({
       <div className="m-4">
         <div className="flex justify-center items-center">
           {/* image(User) */}
-          {user_info.image ? (
+          {userInfo.image ? (
             <Image
               className="rounded-full"
-              src={user_info.image}
+              src={userInfo.image}
               alt="アバター"
               width={90}
               height={90}
@@ -62,7 +62,7 @@ const ProfileLarge: React.FC<Props> = ({
           )}
           {/* userName(User) */}
           <div className="pl-10 text-center">
-            <div className="text-xl">@{user_info.userName}</div>
+            <div className="text-xl">@{userInfo.userName}</div>
             {usrFollowFlag ? (
               <button onClick={changeUsrFollow}>
                 <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
@@ -82,19 +82,19 @@ const ProfileLarge: React.FC<Props> = ({
           <div className="flex-grow text-center">
             {/* 記事投稿数 */}
             投稿数
-            <div>{user_info.articleCount}</div>
+            <div>{userInfo.articleCount}</div>
           </div>
           <div className="flex-grow text-center">
             <Link href={"/follow"}>
               <a className="text-black hover:text-gray-400">
-                フォロー<div>{user_info.followCount}</div>
+                フォロー<div>{userInfo.followCount}</div>
               </a>
             </Link>
           </div>
           <div className="flex-grow text-center ">
             <Link href={"/follower"}>
               <a className="text-black hover:text-gray-400">
-                フォロワー<div>{user_info.followerCount}</div>
+                フォロワー<div>{userInfo.followerCount}</div>
               </a>
             </Link>
           </div>
@@ -103,13 +103,13 @@ const ProfileLarge: React.FC<Props> = ({
           職種:
           <span className="ml-4 px-3 rounded-md text-white bg-orange-500">
             {/* engineerType(User) */}
-            {user_info.engineerType}
+            {userInfo.engineerType}
           </span>
         </div>
         <div className="mt-2">
           {/* tags(User) */}
           <div className="flex flex-wrap">
-            {user_info.tags.map((tag) => {
+            {userInfo.tags.map((tag) => {
               return (
                 <span className={tagStyle} key={tag.skill}>
                   {tag.skill}
@@ -120,7 +120,7 @@ const ProfileLarge: React.FC<Props> = ({
         </div>
       </div>
       {/* description(User) */}
-      <div className="text-xl text-center m-2">{user_info.description}</div>
+      <div className="text-xl text-center m-2">{userInfo.description}</div>
     </div>
   );
 };

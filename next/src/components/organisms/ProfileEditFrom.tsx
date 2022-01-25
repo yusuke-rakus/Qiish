@@ -2,9 +2,17 @@ import React from "react";
 import Image from "next/image";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
+import { SelectStateType } from "../../hooks/useInputState";
 
 // FCの型定義
 type Props = {
+  userData: {
+    userName: string;
+    email: string;
+    description: string;
+    engineerType: SelectStateType;
+    tags: SelectStateType;
+  };
   TAGS: {
     ENGINEER: string[];
     SKILL: {
@@ -15,15 +23,14 @@ type Props = {
   Fnc: {
     setUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
     setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    setEngineerType: (value: string) => void;
-    setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setEngineerType: (value: SelectStateType) => void;
     setDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    setTags: (value: string[]) => void;
+    setTags: (value: SelectStateType) => void;
     onSubmitEditUser: (e: React.FormEvent<HTMLFormElement>) => void;
   };
 };
 
-const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
+const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
   return (
     <Form onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}>
       {/* 送信ようのメソッド用意 */}
@@ -39,6 +46,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
               height={120}
             />
             <div className="pt-7">
+              {/* defaultvalueだとエラーが表示するため用改善 */}
               <Form.Item
                 name="userName"
                 rules={[{ required: true, message: "名前が空欄です" }]}
@@ -48,6 +56,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                   placeholder="名前を入力"
                   bordered={false}
                   size={"large"}
+                  defaultValue={userData.userName}
                   onChange={Fnc.setUserName}
                 />
               </Form.Item>
@@ -60,6 +69,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                   placeholder="職種"
                   className="w-20"
                   bordered={false}
+                  defaultValue={userData.engineerType}
                   onChange={Fnc.setEngineerType}
                 >
                   {TAGS.ENGINEER.map((engineerType) => {
@@ -83,19 +93,8 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                 placeholder="メールアドレスを入力"
                 bordered={false}
                 size={"large"}
+                // defaultValue={userData.email}
                 onChange={Fnc.setEmail}
-              />
-            </Form.Item>
-            <Form.Item
-              name="passwors"
-              rules={[{ required: true, message: "パスワードが空欄です" }]}
-            >
-              <Input.Password
-                className="focus:placeholder-gray-400"
-                placeholder="パスワードを入力"
-                bordered={false}
-                size={"large"}
-                onChange={Fnc.setPassword}
               />
             </Form.Item>
             <Form.Item
@@ -108,6 +107,7 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
                 allowClear
                 placeholder="使用技術"
                 bordered={false}
+                defaultValue={userData.tags}
                 onChange={Fnc.setTags}
               >
                 {/* フロント、バックエンド、その他のそれぞれの表示 */}
@@ -139,9 +139,10 @@ const ProfileEditFrom: React.FC<Props> = ({ TAGS, Fnc }) => {
               rules={[{ required: true, message: "自己紹介が空欄です" }]}
             >
               <TextArea
-                placeholder="この読書の目的は「知ること」ではなく、「行動すること」"
+                placeholder="自己紹介文"
                 autoSize={{ minRows: 5 }}
                 bordered={false}
+                defaultValue={userData.description}
                 onChange={Fnc.setDescription}
               />
             </Form.Item>
