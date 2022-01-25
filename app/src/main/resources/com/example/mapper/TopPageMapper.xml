@@ -20,12 +20,12 @@
 	<!-- 記事一覧取得 -->
 	<select id="getArticleList" resultMap="articleList">
 		SELECT
-		a.id as article_id, a.title, a.content, a.posted_date,
-		t.id as tag_id, t.skill, t.image as tag_image,
-		(SELECT count(id) from likes where article_id = a.id) as likes_count
-		FROM articles as a
-		left join article_tags as at on at.article_id = a.id
-		left join tags as t on at.tag_id = t.id
+			a.id AS article_id, a.title, a.content, a.posted_date,
+			t.id AS tag_id, t.skill, t.image AS tag_image,
+			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count
+		FROM articles AS a
+		LEFT JOIN article_tags AS at ON at.article_id = a.id
+		LEFT JOIN tags AS t ON at.tag_id = t.id
 		ORDER BY a.id;
 	</select>
 
@@ -37,34 +37,21 @@
 	</select>
 
 	<!-- ユーザー情報（画像）取得 -->
-	<select id="getUserInfoImage"
-		resultType="com.example.domain.UserInfo">
+	<select id="getUserInfoImage" resultType="com.example.domain.UserInfo">
 		SELECT image
 		FROM user_info
-		where id = #{userInfoId};
+		WHERE id = #{userInfoId};
 	</select>
 
 	<!-- タイトルからキーワード検索 -->
-	<resultMap type="com.example.domain.Article"
-		id="searchedFromTitleArticleList">
-		<id property="id" column="a_id" />
-		<result property="title" column="a_title" />
-		<result property="content" column="a_content" />
-		<result property="postedDate" column="a_posted_date" />
-		<result property="likesCount" column="likes_count" />
-		<collection property="articleTags" ofType="com.example.domain.Tag">
-			<result property="skill" column="article_tag" />
-		</collection>
-	</resultMap>
-
-	<select id="searchKeywordFromTitle" resultMap="searchedFromTitleArticleList">
+	<select id="searchKeywordFromTitle" resultMap="articleList">
 		SELECT DISTINCT
-			a.id AS a_id,
-			a.title AS a_title,
-			a.content AS a_content,
-			a.posted_date AS a_posted_date,
+			a.id AS article_id,
+			a.title,
+			a.content,
+			a.posted_date,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
-			(SELECT skill FROM tags WHERE id = at.tag_id) AS article_tag
+			(SELECT skill FROM tags WHERE id = at.tag_id)
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
@@ -76,26 +63,14 @@
 	</select>
 	
 	<!-- コンテンツからキーワード検索 -->
- 	<resultMap type="com.example.domain.Article"
-		id="searchedForContentArticleList">
-		<id property="id" column="a_id" />
-		<result property="title" column="a_title" />
-		<result property="content" column="a_content" />
-		<result property="postedDate" column="a_posted_date" />
-		<result property="likesCount" column="likes_count" />
-		<collection property="articleTags" ofType="com.example.domain.Tag">
-			<result property="skill" column="article_tag" />
-		</collection>
-	</resultMap>
-
-	<select id="searchKeywordFromContent" resultMap="searchedForContentArticleList">
+<!-- 	<select id="searchKeywordFromContent" resultMap="articleList">
 		SELECT DISTINCT
-			a.id AS a_id,
-			a.title AS a_title,
-			a.content AS a_content,
-			a.posted_date AS a_posted_date,
+			a.id AS article_id,
+			a.title,
+			a.content,
+			a.posted_date,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
-			(SELECT skill FROM tags WHERE id = at.tag_id) AS article_tag
+			(SELECT skill FROM tags WHERE id = at.tag_id)
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
@@ -104,6 +79,6 @@
 			AND content LIKE CONCAT('%' ,#{word}, '%')
 		</foreach>
 		ORDER BY (SELECT count(*) FROM likes WHERE a.id = article_id) DESC;
-	</select>
+	</select> -->
  
 </mapper>
