@@ -112,7 +112,7 @@ INSERT INTO
         description
     )
 VALUES
-    ('qiish', 'sample@qiish.com', 'Java', 'hello');
+    ('qiish', 'sample@qiish.com', 'WEB', 'hello');
 
 INSERT INTO
     user_info(
@@ -122,7 +122,7 @@ INSERT INTO
         description
     )
 VALUES
-    ('zenn', 'sample@zenn.com', 'Python', 'Hej!');
+    ('zenn', 'sample@zenn.com', 'FR', 'Hej!');
 
 INSERT INTO
     user_info(
@@ -132,7 +132,7 @@ INSERT INTO
         description
     )
 VALUES
-    ('qiita', 'sample@qiita.com', 'React', 'hei');
+    ('qiita', 'sample@qiita.com', 'CL', 'hei');
 
 INSERT INTO
     user(user_info_id, email, PASSWORD)

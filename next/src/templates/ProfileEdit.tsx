@@ -47,8 +47,7 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
     return initialTags;
   });
 
-  const onSubmitEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmitEditUser = async () => {
     const res = await axios.post("", {});
 
     console.dir(res);
