@@ -100,15 +100,15 @@ const ProfileLarge: React.FC<Props> = ({
           </div>
         </div>
         <div className="text-2xl mt-2 flex justify-center items-center">
+          {/* engineerType(User) */}
           職種:
           <span className="ml-4 px-3 rounded-md text-white bg-orange-500">
-            {/* engineerType(User) */}
             {userInfo.engineerType}
           </span>
         </div>
         <div className="mt-2">
           {/* tags(User) */}
-          <div className="flex flex-wrap">
+          <div className="flex justify-center flex-wrap">
             {userInfo.tags.map((tag) => {
               return (
                 <span className={tagStyle} key={tag.skill}>

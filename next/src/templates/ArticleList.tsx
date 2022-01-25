@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import ArticleComp from "../components/old_organisms/ArticleComp";
+import ArticleComp from "../components/organisms/ArticleComp";
 
 const ArticleList: React.FC = () => {
   const [data, setData] = useState([]);
