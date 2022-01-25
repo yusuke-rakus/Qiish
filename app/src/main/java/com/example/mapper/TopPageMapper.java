@@ -15,9 +15,6 @@ public interface TopPageMapper {
 	/** 記事一覧 */
 	public List<Article> getArticleList();
 
-	/** 記事のいいね情報 */
-	public List<Integer> getArticleLikes();
-
 	/** タグ一覧 */
 	public List<Tag> getTags();
 
