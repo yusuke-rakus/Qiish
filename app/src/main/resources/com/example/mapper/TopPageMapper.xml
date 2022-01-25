@@ -20,18 +20,11 @@
 	<!-- 記事一覧取得 -->
 	<select id="getArticleList" resultMap="articleList">
 		SELECT
-		a.id as article_id,
-		a.title,
-		a.content,
-		a.posted_date,
-		t.id as tag_id,
-		t.skill,
-		t.image as tag_image
+		a.id as article_id, a.title, a.content, a.posted_date,
+		t.id as tag_id, t.skill, t.image as tag_image
 		FROM articles as a
-		left join article_tags as at
-		on at.article_id = a.id
-		left join tags as t
-		on at.tag_id = t.id
+		left join article_tags as at on at.article_id = a.id
+		left join tags as t on at.tag_id = t.id
 		ORDER BY a.id;
 	</select>
 
