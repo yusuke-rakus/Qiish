@@ -18,17 +18,18 @@ const ArticlePage: React.FC<Props> = ({ fallback }) => {
 
 export default ArticlePage;
 
-// [id]でgetStaticPropsを使用する場合、getStaticPathsが必要になる(API接続できたら)
+// build時に必要なpathを取得
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { id: "1" } }], //indicates that no page needs be created at build time
-    fallback: false, //indicates the type of fallback
+    paths: [{ params: { id: "1" } }, { params: { id: "2" } }],
+    fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   // 記事情報取得のAPI
-  const article = await fetchArticle();
+  // undefindの可能性があるためparamsをoptionalにした
+  const article = await fetchArticle(params?.id);
 
   return {
     props: {

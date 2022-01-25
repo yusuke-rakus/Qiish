@@ -1,5 +1,4 @@
 import axios from "axios";
-import Router from "next/router";
 
 // プロフィール情報取得のAPI
 export const fetchProfile = async () => {
@@ -8,9 +7,9 @@ export const fetchProfile = async () => {
   return res.data;
 };
 
-// 記事情報取得のAPI
-export const fetchArticle = async () => {
-  const res = await axios.get("http://localhost:9090/article?articleId=1");
+// 特定の記事情報取得のAPI
+export const fetchArticle = async (id: string | string[] | undefined) => {
+  const res = await axios.get(`http://localhost:9090/article?articleId=${id}`);
 
   return res.data;
 };
