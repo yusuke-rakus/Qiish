@@ -17,7 +17,6 @@ public class UserInfo {
 	private List<Tag> tags;
 	private List<Article> articles;
 	private Integer articleCount;
-	// 記事に対するいいね
 	private List<Likes> likes;
 	private List<Comment> comments;
 
