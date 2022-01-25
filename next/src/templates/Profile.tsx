@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
@@ -10,13 +10,8 @@ const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(true);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
 
-  // ユーザーフォロー関数
   // ユーザーのプロフィールデータ
   const { data, error } = useSWR("/profile");
-
-  useEffect(() => {
-    console.log("Profile" + data);
-  }, [data]);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -32,7 +27,7 @@ const Profile: React.FC = () => {
               </a>
             </Link>
             <ProfileLarge
-              user_info_data={user_info_data}
+              user_info={data.userInfo}
               usrFollowFlag={usrFollowFlag}
               changeUsrFollow={setUsrFollowFlag}
             />
