@@ -1,6 +1,6 @@
 import React from "react";
 import { HeartOutlined, MessageTwoTone } from "@ant-design/icons";
-import { ProfileSmall } from ".";
+import { QiitaProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
 
@@ -115,7 +115,7 @@ const QiitaComp: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
-        <ProfileSmall
+        <QiitaProfileSmall
           user_info_data={qiita.user}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}

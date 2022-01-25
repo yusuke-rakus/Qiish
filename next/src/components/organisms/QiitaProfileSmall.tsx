@@ -21,17 +21,12 @@ type Props = {
     team_only: boolean;
     twitter_screen_name: string;
     website_url: string;
-    skill_tags: {
-      user_info_id: number;
-      skill_id: number;
-      skill_name: string;
-    }[];
   };
   usrFollowFlag: boolean;
   changeUsrFollow: () => void;
 };
 
-const ProfileSmall: React.FC<Props> = ({
+const QiitaProfileSmall: React.FC<Props> = ({
   user_info_data,
   usrFollowFlag,
   changeUsrFollow,
@@ -120,4 +115,4 @@ const ProfileSmall: React.FC<Props> = ({
   );
 };
 
-export default ProfileSmall;
+export default QiitaProfileSmall;
