@@ -33,6 +33,7 @@ const Article: React.FC = () => {
     <div className="h-full">
       <ArticleDetail
         article={data.article}
+        postedUser={data.postedUser}
         likeCount={likeCount}
         articleLikeFlag={articleLikeFlag}
         changeArticleLike={changeArticleLike}

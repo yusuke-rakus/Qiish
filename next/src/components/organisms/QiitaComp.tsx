@@ -101,9 +101,7 @@ const QiitaComp: React.FC<Props> = ({
         </div>
         <div className="pt-1 text-slate-500 text-center">
           {/* posted_date(Article) */}
-          <span>
-            投稿日: {moment(qiita.created_at).format("YYYY年MM月DD日")}
-          </span>
+          <span>投稿日: {moment(qiita.created_at).format("YYYY年M月D日")}</span>
         </div>
         <div className="px-14 pt-6 text-lg">
           {/* content(Article) */}
@@ -115,6 +113,7 @@ const QiitaComp: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
+        {/* 型をArticleで変更したのでqiita用のコンポーネント使う */}
         <ProfileSmall
           user_info_data={qiita.user}
           usrFollowFlag={usrFollowFlag}

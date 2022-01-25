@@ -2,6 +2,7 @@ import React from "react";
 import { HeartOutlined, MessageTwoTone } from "@ant-design/icons";
 import { ProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
+import moment from "moment";
 
 type Props = {
   article: {
@@ -29,20 +30,23 @@ type Props = {
       comments: number;
     }[];
     likesCount: number;
-    user_info_data: {
-      user_info_id: number;
-      first_name: string;
-      last_name: string;
-      user_name: string;
-      email: string;
-      engineer_type: string;
-      comment: string;
-      skill_tags: {
-        user_info_id: number;
-        skill_id: number;
-        skill_name: string;
-      }[];
-    };
+  };
+  postedUser: {
+    id: number;
+    userName: string;
+    email: string;
+    engineerType: string;
+    description: string;
+    image: string;
+    follow: number;
+    followCount: number;
+    follower: number;
+    followerCount: number;
+    tags: { id: number; skill: string; image?: string }[];
+    articles: number;
+    articleCount: number;
+    likes: number;
+    comments: number;
   };
   likeCount: number;
   articleLikeFlag: boolean;
@@ -53,6 +57,7 @@ type Props = {
 
 const ArticleDetail: React.FC<Props> = ({
   article,
+  postedUser,
   likeCount,
   articleLikeFlag,
   changeArticleLike,
@@ -90,22 +95,24 @@ const ArticleDetail: React.FC<Props> = ({
         <div className="px-10">
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
-            {/* 本来は記事のタグを回す */}
-            {/* {articleData.articleTags.map((tag) => {
+            {/* idがnullになっているため、keyはskill名で代用 */}
+            {article.articleTags.map((tag) => {
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
-                  key={tag.id}
+                  key={tag.skill}
                 >
                   {tag.skill}
                 </span>
               );
-            })} */}
+            })}
           </div>
         </div>
         <div className="pt-1 text-slate-500 text-center">
-          {/* posted_date(Article) */}
-          <span>投稿日: 2021年12月7日</span>
+          {/* postedDate(Article) */}
+          <span>
+            投稿日: {moment(article.postedDate).format("YYYY年M月D日")}
+          </span>
         </div>
         <div className="px-14 pt-6 text-lg">
           {/* content(Article) */}
@@ -121,11 +128,11 @@ const ArticleDetail: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
-        {/* <ProfileSmall
-          user_info_data={articleData.user_info_data}
+        <ProfileSmall
+          user={postedUser}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}
-        /> */}
+        />
       </div>
     </div>
   );
