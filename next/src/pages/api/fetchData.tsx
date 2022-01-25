@@ -10,7 +10,7 @@ export const fetchProfile = async () => {
 
 // 記事情報取得のAPI
 export const fetchArticle = async () => {
-  const res = await axios.get("http://localhost:3001");
+  const res = await axios.get("http://localhost:9090/article?articleId=1");
 
   return res.data;
 };

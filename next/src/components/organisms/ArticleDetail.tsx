@@ -4,9 +4,31 @@ import { ProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
 
 type Props = {
-  articleData: {
+  article: {
     id: number;
-    // user_info_id: 1,
+    userInfoId: 1;
+    title: string;
+    content: string;
+    postedDate: string;
+    articleTags: { id: number; skill: string; image?: string }[];
+    lieksUserList: {
+      id: 2;
+      userName: string;
+      email: string;
+      engineerType: string;
+      description: string;
+      image?: string;
+      follow: number;
+      followCount: number;
+      follower: number;
+      followerCount: number;
+      tags: string;
+      articles: number;
+      articleCount: number;
+      likes: number;
+      comments: number;
+    }[];
+    likesCount: number;
     user_info_data: {
       user_info_id: number;
       first_name: string;
@@ -21,12 +43,8 @@ type Props = {
         skill_name: string;
       }[];
     };
-    title: string;
-    content: string;
-    posted_date: string;
-    skill_tags: { article_id: number; skill_id: number; skill_name: string }[];
   };
-  articleLike: number;
+  likeCount: number;
   articleLikeFlag: boolean;
   changeArticleLike: () => void;
   usrFollowFlag: boolean;
@@ -34,8 +52,8 @@ type Props = {
 };
 
 const ArticleDetail: React.FC<Props> = ({
-  articleData,
-  articleLike,
+  article,
+  likeCount,
   articleLikeFlag,
   changeArticleLike,
   usrFollowFlag,
@@ -46,7 +64,7 @@ const ArticleDetail: React.FC<Props> = ({
       <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
         <div className="pb-10 pt-20 text-2xl font-bold">
           {/* title(Article) */}
-          TailwindCSSのチートシートを公開します。
+          {article.title}
         </div>
         <div className="pb-2">
           {/* likeCount(Article) */}
@@ -61,7 +79,7 @@ const ArticleDetail: React.FC<Props> = ({
               )}
             </button>
             <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
-              {articleLike}
+              {likeCount ? likeCount : 0}
             </a>
             &nbsp;
             {/* commentCount(Article) */}
@@ -73,16 +91,16 @@ const ArticleDetail: React.FC<Props> = ({
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
             {/* 本来は記事のタグを回す */}
-            {articleData.user_info_data.skill_tags.map((tag) => {
+            {/* {articleData.articleTags.map((tag) => {
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
-                  key={tag.skill_name}
+                  key={tag.id}
                 >
-                  {tag.skill_name}
+                  {tag.skill}
                 </span>
               );
-            })}
+            })} */}
           </div>
         </div>
         <div className="pt-1 text-slate-500 text-center">
@@ -93,8 +111,9 @@ const ArticleDetail: React.FC<Props> = ({
           {/* content(Article) */}
           <div className="markdown">
             <ReactMarkdown>
-              ###
-              プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。
+              {article.content}
+              {/* ###
+              プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。 */}
             </ReactMarkdown>
           </div>
         </div>
@@ -102,11 +121,11 @@ const ArticleDetail: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
-        <ProfileSmall
+        {/* <ProfileSmall
           user_info_data={articleData.user_info_data}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}
-        />
+        /> */}
       </div>
     </div>
   );
