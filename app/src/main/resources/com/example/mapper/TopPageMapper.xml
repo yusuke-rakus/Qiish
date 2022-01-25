@@ -21,26 +21,17 @@
 	<select id="getArticleList" resultMap="articleList">
 		SELECT
 		a.id as article_id, a.title, a.content, a.posted_date,
-		t.id as tag_id, t.skill, t.image as tag_image
+		t.id as tag_id, t.skill, t.image as tag_image,
+		(SELECT count(id) from likes where article_id = a.id) as likes_count
 		FROM articles as a
 		left join article_tags as at on at.article_id = a.id
 		left join tags as t on at.tag_id = t.id
 		ORDER BY a.id;
 	</select>
 
-	<!-- 記事一覧(いいね情報)取得 -->
-	<select id="getArticleLikes" resultType="Integer">
-		SELECT
-		count(li.user_info_id) as likes_count
-		FROM articles as a
-		left join likes as li on li.article_id = a.id
-		GROUP BY a.id
-		ORDER BY a.id;
-	</select>
-
 	<!-- タグ一覧取得 -->
 	<select id="getTags" resultType="com.example.domain.Tag">
-		SELECT skill, image
+		SELECT id, skill, image
 		FROM tags
 		ORDER BY id;
 	</select>

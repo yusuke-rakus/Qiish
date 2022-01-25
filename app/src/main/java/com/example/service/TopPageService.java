@@ -19,23 +19,18 @@ public class TopPageService {
 	@Autowired
 	private TopPageMapper topPageMapper;
 
+	/** 記事一覧取得 */
 	public TopPageResponse topPage(Integer userInfoId) {
 		TopPageResponse res = new TopPageResponse();
 		try {
 			if (userInfoId != null) {
 				res.setUserInfo(topPageMapper.getUserInfoImage(userInfoId));
 			}
-			// 記事情報取得（いいね数以外）
-			List<Article> articleList = topPageMapper.getArticleList();
-			// 記事情報取得（いいね数）
-			List<Integer> likesCount = topPageMapper.getArticleLikes();
-			for (int i = 0; i < articleList.size(); i++) {
-				articleList.get(i).setLikesCount(likesCount.get(i));
-			}
-			res.setArticleList(articleList);
+			res.setArticleList(topPageMapper.getArticleList());
 			res.setTags(topPageMapper.getTags());
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
+			e.printStackTrace();
 		}
 		return res;
 	}
