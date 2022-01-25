@@ -10,11 +10,9 @@ type Props = {
 
 const ProfilePage: React.FC<Props> = ({ fallback }) => {
   return (
-    <div>
-      <SWRConfig value={{ fallback }}>
-        <Profile />
-      </SWRConfig>
-    </div>
+    <SWRConfig value={{ fallback }}>
+      <Profile />
+    </SWRConfig>
   );
 };
 
@@ -22,7 +20,8 @@ export default ProfilePage;
 
 export const getStaticProps: GetStaticProps = async () => {
   // プロフィール情報取得のAPI
-  const profile = await fetchProfile();
+  const userInfoId = "1";
+  const profile = await fetchProfile(userInfoId);
 
   return {
     props: {

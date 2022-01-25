@@ -4,26 +4,33 @@ import Link from "next/link";
 
 // FCの型定義
 type Props = {
-  user_info_data: {
-    user_info_id: number;
-    first_name: string;
-    last_name: string;
-    user_name: string;
+  userInfo: {
+    id: number;
+    userName: string;
     email: string;
-    engineer_type: string;
-    comment: string;
-    skill_tags: {
-      user_info_id: number;
-      skill_id: number;
-      skill_name: string;
+    engineerType: string;
+    description: string;
+    image: string;
+    follow: number;
+    followCount: number;
+    follower: number;
+    followerCount: number;
+    tags: {
+      id: number;
+      skill: string;
+      image: number;
     }[];
+    articles: string;
+    articleCount: number;
+    likes: number;
+    comments: number;
   };
   usrFollowFlag: boolean;
   changeUsrFollow: () => void;
 };
 
 const ProfileLarge: React.FC<Props> = ({
-  user_info_data,
+  userInfo,
   usrFollowFlag,
   changeUsrFollow,
 }) => {
@@ -36,16 +43,26 @@ const ProfileLarge: React.FC<Props> = ({
       <div className="m-4">
         <div className="flex justify-center items-center">
           {/* image(User) */}
-          <Image
-            className="rounded-full"
-            src={"/img/avatar.jpg"}
-            alt="アバター"
-            width={120}
-            height={120}
-          />
+          {userInfo.image ? (
+            <Image
+              className="rounded-full"
+              src={userInfo.image}
+              alt="アバター"
+              width={90}
+              height={90}
+            />
+          ) : (
+            <Image
+              className="rounded-full"
+              src={"/img/avatar.jpg"}
+              alt="アバター"
+              width={90}
+              height={90}
+            />
+          )}
           {/* userName(User) */}
           <div className="pl-10 text-center">
-            <div className="text-xl">@{user_info_data.user_name}</div>
+            <div className="text-xl">@{userInfo.userName}</div>
             {usrFollowFlag ? (
               <button onClick={changeUsrFollow}>
                 <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
@@ -63,21 +80,21 @@ const ProfileLarge: React.FC<Props> = ({
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black text-lg">
           <div className="flex-grow text-center">
-            {/*  */}
+            {/* 記事投稿数 */}
             投稿数
-            <div>11</div>
+            <div>{userInfo.articleCount}</div>
           </div>
           <div className="flex-grow text-center">
             <Link href={"/follow"}>
               <a className="text-black hover:text-gray-400">
-                フォロー<div>122</div>
+                フォロー<div>{userInfo.followCount}</div>
               </a>
             </Link>
           </div>
           <div className="flex-grow text-center ">
             <Link href={"/follower"}>
               <a className="text-black hover:text-gray-400">
-                フォロワー<div>140</div>
+                フォロワー<div>{userInfo.followerCount}</div>
               </a>
             </Link>
           </div>
@@ -86,24 +103,24 @@ const ProfileLarge: React.FC<Props> = ({
           職種:
           <span className="ml-4 px-3 rounded-md text-white bg-orange-500">
             {/* engineerType(User) */}
-            FR
+            {userInfo.engineerType}
           </span>
         </div>
         <div className="mt-2">
           {/* tags(User) */}
           <div className="flex flex-wrap">
-            {tagsName.map((tagName) => {
+            {userInfo.tags.map((tag) => {
               return (
-                <span className={tagStyle} key={tagName}>
-                  {tagName}
+                <span className={tagStyle} key={tag.skill}>
+                  {tag.skill}
                 </span>
               );
             })}
           </div>
         </div>
       </div>
-      {/* comment(User) */}
-      <div className="text-xl text-center m-2">{user_info_data.comment}</div>
+      {/* description(User) */}
+      <div className="text-xl text-center m-2">{userInfo.description}</div>
     </div>
   );
 };

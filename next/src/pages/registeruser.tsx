@@ -146,11 +146,11 @@ const RegisterUser: React.FC = () => {
             className="ml-4 px-4 py-4 w-36 bg-white rounded-sm"
           >
             <option>Please select</option>
-            <option value="1">FR</option>
-            <option value="2">Web</option>
-            <option value="3">CL</option>
-            <option value="4">QA</option>
-            <option value="5">ML</option>
+            <option value="FR">FR</option>
+            <option value="Web">Web</option>
+            <option value="CL">CL</option>
+            <option value="QA">QA</option>
+            <option value="ML">ML</option>
           </select>
         </div>
       </div>

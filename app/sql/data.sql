@@ -1,5 +1,23 @@
 DROP TABLE IF EXISTS user_info;
 
+DROP TABLE IF EXISTS user;
+
+DROP TABLE IF EXISTS user_info_tags;
+
+DROP TABLE IF EXISTS articles;
+
+DROP TABLE IF EXISTS likes;
+
+DROP TABLE IF EXISTS article_tags;
+
+DROP TABLE IF EXISTS follow;
+
+DROP TABLE IF EXISTS comments;
+
+DROP TABLE IF EXISTS comment_likes;
+
+DROP TABLE IF EXISTS tags;
+
 CREATE TABLE user_info(
     id int NOT NULL AUTO_INCREMENT,
     user_name varchar(18) NOT NULL,
@@ -10,16 +28,12 @@ CREATE TABLE user_info(
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS user;
-
 CREATE TABLE user(
     user_info_id int NOT NULL,
     email text NOT NULL,
-    password text NOT NULL,
+    PASSWORD text NOT NULL,
     FOREIGN KEY fk_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
-
-DROP TABLE IF EXISTS articles;
 
 CREATE TABLE articles(
     id int NOT NULL AUTO_INCREMENT,
@@ -31,8 +45,6 @@ CREATE TABLE articles(
     FOREIGN KEY fk_articles_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS likes;
-
 CREATE TABLE likes(
     id int NOT NULL AUTO_INCREMENT,
     user_info_id int NOT NULL,
@@ -42,20 +54,16 @@ CREATE TABLE likes(
     FOREIGN KEY fk_likes_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS comments;
-
 CREATE TABLE comments(
     id int NOT NULL AUTO_INCREMENT,
     article_id int NOT NULL,
     user_info_id int NOT NULL,
-    comment text NOT NULL,
+    COMMENT text NOT NULL,
     comment_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     FOREIGN KEY fk_comments_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE,
     FOREIGN KEY fk_comments_user_info_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
-
-DROP TABLE IF EXISTS comment_likes;
 
 CREATE TABLE comment_likes(
     id int NOT NULL AUTO_INCREMENT,
@@ -66,8 +74,6 @@ CREATE TABLE comment_likes(
     FOREIGN KEY fk_comment_likes_comments_id(comments_id) REFERENCES comments(id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS follow;
-
 CREATE TABLE follow(
     id int NOT NULL AUTO_INCREMENT,
     user_info_id int NOT NULL,
@@ -77,8 +83,6 @@ CREATE TABLE follow(
     FOREIGN KEY fk_follow_id(follow_user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS tags;
-
 CREATE TABLE tags(
     id int NOT NULL AUTO_INCREMENT,
     skill text NOT NULL,
@@ -86,16 +90,12 @@ CREATE TABLE tags(
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS user_info_tags;
-
 CREATE TABLE user_info_tags(
     user_info_id int NOT NULL,
     tag_id int NOT NULL,
     FOREIGN KEY fk_tags_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
     FOREIGN KEY fk_user_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
-
-DROP TABLE IF EXISTS article_tags;
 
 CREATE TABLE article_tags(
     article_id int NOT NULL,
@@ -135,17 +135,17 @@ VALUES
     ('qiita', 'sample@qiita.com', 'React', 'hei');
 
 INSERT INTO
-    user(user_info_id, email, password)
+    user(user_info_id, email, PASSWORD)
 VALUES
     (1, 'sample@qiish.com', 'qiish');
 
 INSERT INTO
-    user(user_info_id, email, password)
+    user(user_info_id, email, PASSWORD)
 VALUES
     (2, 'sample@zenn.com', 'zenn');
 
 INSERT INTO
-    user(user_info_id, email, password)
+    user(user_info_id, email, PASSWORD)
 VALUES
     (3, 'sample@qiita.com', 'qiita');
 
@@ -229,7 +229,7 @@ VALUES
     (2, 1);
 
 INSERT INTO
-    comments(article_id, user_info_id, comment)
+    comments(article_id, user_info_id, COMMENT)
 VALUES
     (1, 3, 'I agree.');
 

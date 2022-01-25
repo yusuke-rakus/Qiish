@@ -28,10 +28,10 @@ const LoginUser: React.FC = () => {
       password: password,
     });
 
-    //コンソールに入力値・レスポンスデータを出力（確認出来たら削除する）
-    console.log(mailAddress);
-    console.log(password);
-    console.log(res);
+    // //コンソールに入力値・レスポンスデータを出力（確認出来たら削除する）
+    // console.log(mailAddress);
+    // console.log(password);
+    // console.log(res);
 
     //error(ログイン失敗):エラーメッセージ表示 /success(ログイン成功):ホーム画面に遷移
     if (res.data.status == "error") {

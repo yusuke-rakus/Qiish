@@ -48,7 +48,7 @@
 	<!-- 記事投稿（タグ情報を保存） -->
 	<insert id="articleTagsPost">
 		INSERT INTO article_tags(article_id, tag_id)
-		values
+		VALUES
 		<foreach collection="tagId" item="tagId" separator=",">
 			(
 			#{articleId},
@@ -65,8 +65,8 @@
 
 	<!-- タグ情報削除 -->
 	<delete id="articleTagsDelete" parameterType="Integer">
-		DELETE FROM
-		article_tags WHERE article_id=#{articleId};
+		DELETE FROM article_tags 
+		WHERE article_id=#{articleId};
 	</delete>
 
 	<!-- 記事更新 -->

@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useSWR from "swr";
 import { Comments } from ".";
-import { ArticleComp, ArticleDetail } from "../components/organisms";
+import { ArticleDetail } from "../components/organisms";
 
 const Article: React.FC = () => {
-  const [articleLike, setArticleLike] = useState(10);
+  const { data, error } = useSWR("/article");
+  const [likeCount, setlikeCount] = useState(data.article.likesCount);
   const [articleLikeFlag, setArticleLikeFlag] = useState(false);
   const [usrFollowFlag, setUsrFollowFlag] = useState(false);
-  // 記事データ(API実装できたら再度行う)
-  // const { data, error } = useSWR("/profile");
+  // 記事データ(API実装できたら再度行う);
+  // データ取得確認用
   // useEffect(() => {
-  //   console.log("Article" + data);
+  //   console.dir("Article: " + JSON.stringify(data.article));
   // }, [data]);
 
   const changeArticleLike = () => {
     if (articleLikeFlag) {
       setArticleLikeFlag(!articleLikeFlag);
-      setArticleLike((prevLike) => prevLike - 1);
+      setlikeCount((prevLike: number) => prevLike - 1);
     } else {
       setArticleLikeFlag(!articleLikeFlag);
-      setArticleLike((prevLike) => prevLike + 1);
+      setlikeCount((prevLike: number) => prevLike + 1);
     }
   };
   const changeUsrFollow = () => {
@@ -30,8 +32,9 @@ const Article: React.FC = () => {
   return (
     <div className="h-full">
       <ArticleDetail
-        articleData={articleData}
-        articleLike={articleLike}
+        article={data.article}
+        postedUser={data.postedUser}
+        likeCount={likeCount}
         articleLikeFlag={articleLikeFlag}
         changeArticleLike={changeArticleLike}
         usrFollowFlag={usrFollowFlag}

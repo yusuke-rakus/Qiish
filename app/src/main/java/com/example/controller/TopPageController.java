@@ -17,7 +17,8 @@ import com.example.service.TopPageService;
 public class TopPageController {
 	@Autowired
 	private TopPageService topPageService;
-
+	
+	/** 記事一覧取得 */
 	@GetMapping("")
 	public TopPageResponse topPage(Integer userInfoId) {
 		return topPageService.topPage(userInfoId);

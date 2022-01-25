@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.ResetPasswordForm;
-import com.example.response.ResetPasswordResponse;
 import com.example.response.Response;
 import com.example.service.ResetPasswordService;
 
@@ -19,7 +18,7 @@ public class ResetPasswordController {
 	private ResetPasswordService resetPasswordService;
 
 	@PostMapping("/resetRequest")
-	public ResetPasswordResponse resetRequest(@RequestBody String email) {
+	public Response resetRequest(@RequestBody String email) {
 		return resetPasswordService.ResetRequest(email);
 	}
 	
