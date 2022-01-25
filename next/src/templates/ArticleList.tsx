@@ -1,5 +1,5 @@
 import React from "react";
-import ArticleComp from "../components/old_organisms/ArticleComp";
+import { ArticleComp } from "../components/organisms";
 
 const ArticleList: React.FC = () => {
   return (

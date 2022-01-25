@@ -9,3 +9,5 @@ export { default as ProfileLarge } from "./ProfileLarge";
 export { default as ProfileSmall } from "./ProfileSmall";
 export { default as QiitaComp } from "./QiitaComp";
 export { default as QiitaListComp } from "./QiitaListComp";
+export { default as HeaderComp } from "./HeaderComp";
+export { default as QiitaProfileSmall } from "./QiitaProfileSmall";
