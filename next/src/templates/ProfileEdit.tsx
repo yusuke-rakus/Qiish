@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../const/Tags";
@@ -39,7 +39,15 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
   // カスタムフック使用(Select)
   const [engineerType, setEngineerType] = useSelectState(userInfo.engineerType);
   // タグが初期化できていない
-  const [tags, setTags] = useSelectState([]);
+  const [tags, setTags] = useSelectState(() => {
+    const initialTags = [];
+    for (const tag of userInfo.tags) {
+      initialTags.push(tag.skill);
+    }
+    return initialTags;
+  });
+  // useEffect(() => {}, []);
+  // console.log(tags);
 
   const onSubmitEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

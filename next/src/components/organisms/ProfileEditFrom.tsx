@@ -32,8 +32,16 @@ type Props = {
 
 const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
   return (
-    <Form onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}>
-      {/* 送信ようのメソッド用意 */}
+    // initialValuesはname属性に対応
+    <Form
+      initialValues={{
+        userName: userData.userName,
+        engineerType: userData.engineerType,
+        email: userData.email,
+        description: userData.description,
+      }}
+      onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}
+    >
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
         <div className="m-4">
           <div className="flex justify-center items-center">
@@ -56,7 +64,6 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                   placeholder="名前を入力"
                   bordered={false}
                   size={"large"}
-                  defaultValue={userData.userName}
                   onChange={Fnc.setUserName}
                 />
               </Form.Item>
@@ -69,7 +76,6 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                   placeholder="職種"
                   className="w-20"
                   bordered={false}
-                  defaultValue={userData.engineerType}
                   onChange={Fnc.setEngineerType}
                 >
                   {TAGS.ENGINEER.map((engineerType) => {
@@ -93,18 +99,15 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                 placeholder="メールアドレスを入力"
                 bordered={false}
                 size={"large"}
-                // defaultValue={userData.email}
                 onChange={Fnc.setEmail}
               />
             </Form.Item>
             <Form.Item
               className="hover:bg-gray-100"
-              name="tags"
               rules={[{ required: true, message: "使用技術が空欄です" }]}
             >
               <Select
-                mode="tags"
-                allowClear
+                mode="multiple"
                 placeholder="使用技術"
                 bordered={false}
                 defaultValue={userData.tags}
@@ -142,7 +145,6 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                 placeholder="自己紹介文"
                 autoSize={{ minRows: 5 }}
                 bordered={false}
-                defaultValue={userData.description}
                 onChange={Fnc.setDescription}
               />
             </Form.Item>

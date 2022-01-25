@@ -20,7 +20,8 @@ export const useTextState = (
 };
 
 // ステートのカスタムフック(str or str[]セレクトタグ)
-export type SelectStateType = string | string[];
+// タグの初期化時にコールバック関数を使用するため3つ目のtypeがある
+export type SelectStateType = string | string[] | (() => SelectStateType);
 
 export const useSelectState = (
   initialState: SelectStateType
