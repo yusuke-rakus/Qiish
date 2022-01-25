@@ -23,14 +23,14 @@
 	<!-- マイページ表示 -->
 	<select id="myPage" resultMap="userInfo">
 		SELECT DISTINCT
-		u.id as user_info_id, u.user_name, u.engineer_type, u.image, u.description,
-		t.skill,
-		(SELECT count(follow_user_info_id) from follow where user_info_id = u.id) as follow_count,
-		(SELECT count(user_info_id) from follow where follow_user_info_id = u.id) as follower_count,
-		(SELECT count(id) from articles where user_info_id = u.id) as article_count
-		FROM user_info as u 
-		left join user_info_tags as ut on ut.user_info_id = u.id
-		left join tags as t on t.id = ut.tag_id 
+			u.id AS user_info_id, u.user_name, u.engineer_type, u.image, u.description,
+			t.skill,
+			(SELECT count(follow_user_info_id) from follow where user_info_id = u.id) AS follow_count,
+			(SELECT count(user_info_id) from follow where follow_user_info_id = u.id) AS follower_count,
+			(SELECT count(id) from articles where user_info_id = u.id) AS article_count
+		FROM user_info AS u 
+		LEFT JOIN user_info_tags AS ut ON ut.user_info_id = u.id 
+		LEFT JOIN tags AS t ON t.id = ut.tag_id 
 		WHERE u.id = #{userInfoId};
 	</select>
 	

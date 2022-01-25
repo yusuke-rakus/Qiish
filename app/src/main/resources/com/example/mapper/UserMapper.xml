@@ -76,7 +76,7 @@
 	<select id="followList" resultType="com.example.domain.UserInfo">
 		SELECT u.id, u.user_name, u.engineer_type, u.image
 		FROM follow as f
-		left join user_info as u on f.follow_user_info_id = u.id
+		LEFT JOIN user_info as u ON f.follow_user_info_id = u.id
 		WHERE user_info_id = #{userInfoId};
 	</select>
 	
@@ -84,7 +84,7 @@
 	<select id="followerList" resultType="com.example.domain.UserInfo">
 		SELECT u.id, u.user_name, u.engineer_type, u.image
 		FROM follow as f
-		left join user_info as u on f.user_info_id = u.id
+		LEFT JOIN user_info as u ON f.user_info_id = u.id
 		WHERE follow_user_info_id = #{userInfoId};
 	</select>
 	
