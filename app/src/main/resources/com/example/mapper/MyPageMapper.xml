@@ -20,22 +20,14 @@
 		<collection property="tags" resultMap="tag"/>
 	</resultMap>
 	
-	<!-- マイページ表示 タグ情報以外-->
+	<!-- マイページ表示 -->
 	<select id="myPage" resultMap="userInfo">
-		SELECT u.id as user_info_id, u.user_name, u.engineer_type, u.image, u.description,
-		count(DISTINCT f.follow_user_info_id) as follow_count, 
-		count(DISTINCT fw.user_info_id) as follower_count, 
-		count(DISTINCT a.id) as article_count
-		FROM user_info as u 
-		left join follow as f on f.user_info_id = u.id 
-		left join follow as fw on fw.follow_user_info_id = u.id 
-		left join articles as a on a.user_info_id = u.id 
-		WHERE u.id = #{userInfoId};
-	</select>
-	
-	<!-- マイページ表示 タグ情報-->
-	<select id="getTagInfo" resultMap="tag">
-		SELECT t.skill
+		SELECT DISTINCT
+		u.id as user_info_id, u.user_name, u.engineer_type, u.image, u.description,
+		t.skill,
+		(SELECT count(follow_user_info_id) from follow where user_info_id = u.id) as follow_count,
+		(SELECT count(user_info_id) from follow where follow_user_info_id = u.id) as follower_count,
+		(SELECT count(id) from articles where user_info_id = u.id) as article_count
 		FROM user_info as u 
 		left join user_info_tags as ut on ut.user_info_id = u.id
 		left join tags as t on t.id = ut.tag_id 
