@@ -10,13 +10,13 @@ type Props = {
   Fnc: {
     setTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
     setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    setTags: (value: string[]) => void;
+    setTags: (value: number[]) => void;
     setPreviewFlag: () => void;
     onAddArticle: () => void;
   };
   SKILLTAGS: {
     label: string;
-    data: string[];
+    tags: { id: number; name: string }[];
   }[];
 };
 
@@ -58,10 +58,10 @@ const ArticleAddFrom: React.FC<Props> = ({
             {SKILLTAGS.map((SkillType) => {
               return (
                 <Select.OptGroup key={SkillType.label} label={SkillType.label}>
-                  {SkillType.data.map((SkillTag) => {
+                  {SkillType.tags.map((tags) => {
                     return (
-                      <Select.Option key={SkillTag} value={SkillTag}>
-                        {SkillTag}
+                      <Select.Option key={tags.id} value={tags.id}>
+                        {tags.name}
                       </Select.Option>
                     );
                   })}

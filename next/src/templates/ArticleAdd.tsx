@@ -23,8 +23,7 @@ const ArticleAdd: React.FC = () => {
   // success: 記事が保存されて記事一覧表示  fail: エラーメッセージ表示(未実装)
   const onAddArticle = async () => {
     try {
-      const res = await addArticle(title, content);
-
+      const res = await addArticle(title, content, tags);
       if (res.status === 200) {
         alert("記事投稿成功しました。記事一覧へ戻ります。");
         router.push("/");

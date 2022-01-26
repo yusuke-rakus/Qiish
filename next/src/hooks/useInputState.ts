@@ -21,7 +21,7 @@ export const useTextState = (
 
 // ステートのカスタムフック(str or str[]セレクトタグ)
 // タグの初期化時にコールバック関数を使用するため3つ目のtypeがある
-export type SelectStateType = string | string[] | (() => SelectStateType);
+export type SelectStateType = string | number[] | (() => SelectStateType);
 
 export const useSelectState = (
   initialState: SelectStateType
