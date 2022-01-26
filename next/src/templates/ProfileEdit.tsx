@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../const/Tags";
 import axios from "axios";
 import { useTextState, useSelectState } from "../hooks";
+import { editUserInfo } from "../pages/api/editData";
+import { useRouter } from "next/router";
 
 type Props = {
   userInfo: {
@@ -32,6 +34,7 @@ type Props = {
 const TAGS = { ENGINEER, SKILL };
 
 const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
+  const router = useRouter();
   // カスタムフック使用(Text)
   const [userName, setUserName] = useTextState(userInfo.userName);
   const [email, setEmail] = useTextState(userInfo.email);
@@ -42,15 +45,30 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
   const [tags, setTags] = useSelectState(() => {
     const initialTags = [];
     for (const tag of userInfo.tags) {
-      initialTags.push(tag.skill);
+      initialTags.push(tag.id);
     }
     return initialTags;
   });
+  const [error, SetError] = useState("");
 
   const onSubmitEditUser = async () => {
-    const res = await axios.post("", {});
+    try {
+      const res = await editUserInfo(
+        userName,
+        email,
+        description,
+        engineerType,
+        tags
+      );
 
-    console.dir(res);
+      if (res.data.status === "success") {
+        alert("ユーザー情報編集に成功しました。プロフィール画面へ戻ります。");
+        router.push("/profile");
+        console.dir(res);
+      }
+    } catch (error) {
+      SetError("ユーザー情報編集に失敗しました。");
+    }
   };
 
   const Fnc = {

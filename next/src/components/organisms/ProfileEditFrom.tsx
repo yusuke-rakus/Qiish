@@ -17,7 +17,7 @@ type Props = {
     ENGINEER: string[];
     SKILL: {
       label: string;
-      data: string[];
+      tags: { id: number; name: string }[];
     }[];
   };
   Fnc: {
@@ -39,6 +39,7 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
         engineerType: userData.engineerType,
         email: userData.email,
         description: userData.description,
+        tags: userData.tags,
       }}
       onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}
     >
@@ -54,7 +55,6 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
               height={120}
             />
             <div className="pt-7">
-              {/* defaultvalueだとエラーが表示するため用改善 */}
               <Form.Item
                 name="userName"
                 rules={[{ required: true, message: "名前が空欄です" }]}
@@ -120,10 +120,10 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                       key={SkillType.label}
                       label={SkillType.label}
                     >
-                      {SkillType.data.map((SkillTag) => {
+                      {SkillType.tags.map((tags) => {
                         return (
-                          <Select.Option key={SkillTag} value={SkillTag}>
-                            {SkillTag}
+                          <Select.Option key={tags.id} value={tags.id}>
+                            {tags.name}
                           </Select.Option>
                         );
                       })}
