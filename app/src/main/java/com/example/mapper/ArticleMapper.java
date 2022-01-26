@@ -46,5 +46,8 @@ public interface ArticleMapper {
 
 	/** 記事詳細 */
 	public Article articleDetail(Integer articleId);
+	
+	/** 訪問回数更新 */
+	public void updateVisitedCount(Integer articleId);
 
 }

@@ -41,6 +41,7 @@ CREATE TABLE articles(
     title varchar(50) NOT NULL,
     content text NOT NULL,
     posted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    visited_count int NOT NULL DEFAULT 0,
     PRIMARY KEY(id),
     FOREIGN KEY fk_articles_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
@@ -168,7 +169,7 @@ INSERT INTO
     tags(skill)
 VALUES
     ('jQuery');
-    
+
 INSERT INTO
     tags(skill)
 VALUES
@@ -178,7 +179,7 @@ INSERT INTO
     tags(skill)
 VALUES
     ('Angular');
-    
+
 INSERT INTO
     tags(skill)
 VALUES

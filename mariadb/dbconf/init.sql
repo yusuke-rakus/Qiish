@@ -23,6 +23,7 @@ CREATE TABLE articles(
     title varchar(50) NOT NULL,
     content text NOT NULL,
     posted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    visited_count int NOT NULL DEFAULT 0,
     PRIMARY KEY(id),
     FOREIGN KEY fk_articles_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
@@ -94,7 +95,7 @@ INSERT INTO
         description
     )
 VALUES
-    ('qiish', 'sample@qiish.com', 'Java', 'hello');
+    ('qiish', 'sample@qiish.com', 'WEB', 'hello');
 
 INSERT INTO
     user_info(
@@ -104,7 +105,7 @@ INSERT INTO
         description
     )
 VALUES
-    ('zenn', 'sample@zenn.com', 'Python', 'Hej!');
+    ('zenn', 'sample@zenn.com', 'FR', 'Hej!');
 
 INSERT INTO
     user_info(
@@ -114,7 +115,7 @@ INSERT INTO
         description
     )
 VALUES
-    ('qiita', 'sample@qiita.com', 'React', 'hei');
+    ('qiita', 'sample@qiita.com', 'CL', 'hei');
 
 INSERT INTO
     user(user_info_id, email, password)
@@ -134,17 +135,107 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
-    ('Java');
+    ('HTML');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('Python');
+    ('CSS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('JavaScript');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('jQuery');
 
 INSERT INTO
     tags(skill)
 VALUES
     ('React');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Angular');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Vue');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('TypeScript');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('CoffeeScript');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('C');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('C+');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('C#');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Java');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Ruby');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('PHP');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Phyton');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Objective-C');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Perl');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Node.js');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Swift');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('kotolin');
 
 INSERT INTO
     user_info_tags(user_info_id, tag_id)
