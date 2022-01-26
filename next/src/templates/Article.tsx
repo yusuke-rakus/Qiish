@@ -11,12 +11,6 @@ const Article: React.FC = () => {
   const [usrFollowFlag, setUsrFollowFlag] = useState(false);
   const [editFlag, setEditFlag] = useToggle(false);
 
-  // 記事データ(API実装できたら再度行う);
-  // データ取得確認用
-  // useEffect(() => {
-  //   console.dir("Article: " + JSON.stringify(data.article));
-  // }, [data]);
-
   const changeArticleLike = () => {
     if (articleLikeFlag) {
       setArticleLikeFlag(!articleLikeFlag);
@@ -35,7 +29,7 @@ const Article: React.FC = () => {
   return (
     <div className="h-full">
       {editFlag ? (
-        <ArticleEdit setEditFlag={setEditFlag} />
+        <ArticleEdit article={data.article} setEditFlag={setEditFlag} />
       ) : (
         <React.Fragment>
           <ArticleDetail

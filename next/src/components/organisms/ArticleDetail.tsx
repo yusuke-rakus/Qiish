@@ -133,11 +133,7 @@ const ArticleDetail: React.FC<Props> = ({
         <div className="px-14 pt-6 text-lg">
           {/* content(Article) */}
           <div className="markdown">
-            <ReactMarkdown>
-              {article.content}
-              {/* ###
-              プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。 */}
-            </ReactMarkdown>
+            <ReactMarkdown>{article.content}</ReactMarkdown>
           </div>
         </div>
       </div>

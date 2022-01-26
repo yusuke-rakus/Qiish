@@ -4,19 +4,36 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import { ArticleEditFrom } from "../components/organisms";
 import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { addArticle } from "../pages/api/addData";
+import { editArticle } from "../pages/api/editData";
 
 type Props = {
+  article: {
+    id: number;
+    userInfoId: 1;
+    title: string;
+    content: string;
+    postedDate: string;
+    articleTags: {
+      id: number;
+      skill: string;
+      image?: string | undefined;
+    }[];
+  };
   setEditFlag: () => void;
 };
 
-const ArticleEdit: React.FC<Props> = ({ setEditFlag }) => {
+const ArticleEdit: React.FC<Props> = ({ article, setEditFlag }) => {
   // カスタムフック使用(Text)
-  const [title, setTitle] = useTextState("");
-  const [content, setContent] = useTextState("");
+  const [editTitle, setEditTitle] = useTextState(article.title);
+  const [editContent, setEditContent] = useTextState(article.content);
   // カスタムフック使用(Select)
-  // バック側でIntegerを求めてたがstringではないのか？
-  const [tags, setTags] = useSelectState([]);
+  const [editTags, setEditTags] = useSelectState(() => {
+    const initialTags = [];
+    for (const tag of article.articleTags) {
+      initialTags.push(tag.id);
+    }
+    return initialTags;
+  });
   // カスタムフック使用(Toggle)
   const [previewFlag, setPreviewFlag] = useToggle(true);
   const [error, SetError] = useState("");
@@ -24,9 +41,14 @@ const ArticleEdit: React.FC<Props> = ({ setEditFlag }) => {
 
   // 通信成功。タグの問題とユーザーIDを解決する。
   // success: 記事が保存されて記事一覧表示  fail: エラーメッセージ表示(未実装)
-  const onAddArticle = async () => {
+  const onEditArticle = async () => {
     try {
-      const res = await addArticle(title, content, tags);
+      const res = await editArticle(
+        article.id,
+        editTitle,
+        editContent,
+        editTags
+      );
       if (res.status === 200) {
         alert("記事編集成功しました。記事一覧へ戻ります。");
         router.push("/");
@@ -37,12 +59,14 @@ const ArticleEdit: React.FC<Props> = ({ setEditFlag }) => {
   };
 
   const Fnc = {
-    setTitle,
-    setContent,
-    setTags,
+    setEditTitle,
+    setEditContent,
+    setEditTags,
     setPreviewFlag,
-    onAddArticle,
+    onEditArticle,
   };
+
+  const articleData = { editTitle, editContent, editTags };
 
   return (
     <div>
@@ -52,8 +76,9 @@ const ArticleEdit: React.FC<Props> = ({ setEditFlag }) => {
             <LeftCircleOutlined className="hover:text-gray-400 ml-4 mb-2 text-4xl" />
           </button>
           <ArticleEditFrom
-            previewContent={content}
+            previewContent={editContent}
             prevFlag={previewFlag}
+            articleData={articleData}
             Fnc={Fnc}
             SKILLTAGS={SKILLTAGS}
           />

@@ -2,17 +2,23 @@ import React from "react";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
+import { SelectStateType } from "../../hooks/useInputState";
 
 // FCの型定義
 type Props = {
   previewContent: string;
   prevFlag: boolean;
+  articleData: {
+    editTitle: string;
+    editContent: string;
+    editTags: SelectStateType;
+  };
   Fnc: {
-    setTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    setTags: (value: number[]) => void;
+    setEditTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setEditContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    setEditTags: (value: number[]) => void;
     setPreviewFlag: () => void;
-    onAddArticle: () => void;
+    onEditArticle: () => void;
   };
   SKILLTAGS: {
     label: string;
@@ -23,14 +29,21 @@ type Props = {
 const ArticleEditFrom: React.FC<Props> = ({
   previewContent,
   prevFlag,
+  articleData,
   Fnc,
   SKILLTAGS,
 }) => {
   return (
     <div>
-      <Form onSubmitCapture={Fnc.onAddArticle}>
+      <Form
+        initialValues={{
+          title: articleData.editTitle,
+          content: articleData.editContent,
+          tags: articleData.editTags,
+        }}
+        onSubmitCapture={Fnc.onEditArticle}
+      >
         {/* 送信ようのメソッド用意 */}
-        ArticleEditFromのコンポーネント
         <Form.Item
           name="title"
           rules={[{ required: true, message: `タイトルが空欄です` }]}
@@ -41,7 +54,7 @@ const ArticleEditFrom: React.FC<Props> = ({
               placeholder="タイトル"
               bordered={false}
               size={"large"}
-              onChange={Fnc.setTitle}
+              onChange={Fnc.setEditTitle}
             />
           </span>
         </Form.Item>
@@ -54,7 +67,7 @@ const ArticleEditFrom: React.FC<Props> = ({
             allowClear
             placeholder="使用技術"
             bordered={false}
-            onChange={Fnc.setTags}
+            onChange={Fnc.setEditTags}
           >
             {SKILLTAGS.map((SkillType) => {
               return (
@@ -82,7 +95,7 @@ const ArticleEditFrom: React.FC<Props> = ({
                   placeholder="この読書の目的は「知ること」ではなく、「行動すること」"
                   autoSize={{ minRows: 5 }}
                   bordered={false}
-                  onChange={Fnc.setContent}
+                  onChange={Fnc.setEditContent}
                 />
               </Form.Item>
             </div>
