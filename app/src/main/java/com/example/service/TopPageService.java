@@ -39,12 +39,11 @@ public class TopPageService {
 	public SearchResponse searchKeyword(List<String> keywordList) {
 		SearchResponse res = new SearchResponse();
 		try {
-//			List<Article> articleList = Stream
-//					.concat(topPageMapper.searchKeywordFromTitle(keywordList).stream(),
-//							topPageMapper.searchKeywordFromContent(keywordList).stream())
-//					.distinct().collect(Collectors.toList());
-//			System.out.println(articleList);
-			List<Article> articleList = topPageMapper.searchKeywordFromTitle(keywordList);
+			List<Article> articleList = Stream
+					.concat(topPageMapper.searchKeywordFromTitle(keywordList).stream(),
+							topPageMapper.searchKeywordFromContent(keywordList).stream())
+					.distinct().collect(Collectors.toList());
+			System.out.println(articleList);
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
