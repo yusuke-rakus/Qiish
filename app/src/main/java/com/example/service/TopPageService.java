@@ -1,11 +1,10 @@
 package com.example.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.common.Status;
 import com.example.domain.Article;
@@ -14,6 +13,7 @@ import com.example.response.SearchResponse;
 import com.example.response.TopPageResponse;
 
 @Service
+@Transactional
 public class TopPageService {
 
 	@Autowired
@@ -39,11 +39,11 @@ public class TopPageService {
 	public SearchResponse searchKeyword(List<String> keywordList) {
 		SearchResponse res = new SearchResponse();
 		try {
-			List<Article> articleList = Stream
-					.concat(topPageMapper.searchKeywordFromTitle(keywordList).stream(),
-							topPageMapper.searchKeywordFromContent(keywordList).stream())
-					.distinct().collect(Collectors.toList());
-			System.out.println(articleList);
+//			List<Article> articleList = Stream
+//					.concat(topPageMapper.searchKeywordFromTitle(keywordList).stream(),
+//							topPageMapper.searchKeywordFromContent(keywordList).stream())
+//					.distinct().collect(Collectors.toList());
+			List<Article> articleList = topPageMapper.searchKeywordFromTitle(keywordList);
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
