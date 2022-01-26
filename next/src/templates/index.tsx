@@ -2,6 +2,7 @@
 // ディレクトリ順
 export { default as Article } from "./Article";
 export { default as ArticleAdd } from "./ArticleAdd";
+export { default as ArticleEdit } from "./ArticleEdit";
 export { default as ArticleList } from "./ArticleList";
 export { default as Comments } from "./Comments";
 export { default as Follow } from "./Follow";

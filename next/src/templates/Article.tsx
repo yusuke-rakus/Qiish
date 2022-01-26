@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-import { Comments } from ".";
+import { ArticleEdit, Comments } from ".";
 import { ArticleDetail } from "../components/organisms";
+import { useToggle } from "../hooks";
 
 const Article: React.FC = () => {
   const { data, error } = useSWR("/article");
   const [likeCount, setlikeCount] = useState(data.article.likesCount);
   const [articleLikeFlag, setArticleLikeFlag] = useState(false);
   const [usrFollowFlag, setUsrFollowFlag] = useState(false);
+  const [editFlag, setEditFlag] = useToggle(false);
+
   // 記事データ(API実装できたら再度行う);
   // データ取得確認用
   // useEffect(() => {
@@ -31,16 +34,23 @@ const Article: React.FC = () => {
 
   return (
     <div className="h-full">
-      <ArticleDetail
-        article={data.article}
-        postedUser={data.postedUser}
-        likeCount={likeCount}
-        articleLikeFlag={articleLikeFlag}
-        changeArticleLike={changeArticleLike}
-        usrFollowFlag={usrFollowFlag}
-        changeUsrFollow={changeUsrFollow}
-      />
-      <Comments />
+      {editFlag ? (
+        <ArticleEdit setEditFlag={setEditFlag} />
+      ) : (
+        <React.Fragment>
+          <ArticleDetail
+            article={data.article}
+            postedUser={data.postedUser}
+            likeCount={likeCount}
+            articleLikeFlag={articleLikeFlag}
+            changeArticleLike={changeArticleLike}
+            usrFollowFlag={usrFollowFlag}
+            changeUsrFollow={changeUsrFollow}
+            setEditFlag={setEditFlag}
+          />
+          <Comments />
+        </React.Fragment>
+      )}
     </div>
   );
 };
