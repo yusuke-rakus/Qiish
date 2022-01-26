@@ -112,34 +112,23 @@
 
 	<select id="articleDetail" resultMap="articleMap">
 		SELECT
-		a.id AS a_id,
-		a.user_info_id AS a_user_info_id,
-		a.title AS a_title,
-		a.content AS a_content,
-		a.posted_date AS a_posted_date,
-		c.user_info_id
-		AS c_user_info_id,
-		c.comment AS c_comment,
-		c.comment_date AS
-		c_comment_date,
-		(SELECT COUNT(*) FROM comment_likes WHERE
-		comment_likes.comments_id = c.id) AS c_likes_count,
-		(SELECT tags.skill
-		FROM tags WHERE at.tag_id = tags.id) AS tag_name,
-		(SELECT id FROM
-		user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
-		(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id)
-		AS l_user_name,
-		(SELECT engineer_type FROM user_info WHERE user_info.id
-		= l.user_info_id) AS l_engineer_type,
-		(SELECT description FROM
-		user_info WHERE user_info.id = l.user_info_id) AS l_description,
-		(SELECT id FROM user_info WHERE user_info.id = c.user_info_id) AS
-		c_user_info_id,
-		(SELECT user_name FROM user_info WHERE user_info.id =
-		c.user_info_id) AS c_user_name,
-		(SELECT image FROM user_info WHERE
-		user_info.id = c.user_info_id) AS c_image
+			a.id AS a_id,
+			a.user_info_id AS a_user_info_id,
+			a.title AS a_title,
+			a.content AS a_content,
+			a.posted_date AS a_posted_date,
+			c.user_info_id AS c_user_info_id, 
+			c.comment AS c_comment,
+			c.comment_date AS c_comment_date,
+			(SELECT COUNT(*) FROM comment_likes WHERE comment_likes.comments_id = c.id) AS c_likes_count,
+			(SELECT tags.skill FROM tags WHERE at.tag_id = tags.id) AS tag_name,
+			(SELECT id FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
+			(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_name,
+			(SELECT engineer_type FROM user_info WHERE user_info.id = l.user_info_id) AS l_engineer_type,
+			(SELECT description FROM user_info WHERE user_info.id = l.user_info_id) AS l_description,
+			(SELECT id FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_info_id,
+			(SELECT user_name FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_name,
+			(SELECT image FROM user_info WHERE user_info.id = c.user_info_id) AS c_image
 		FROM articles AS a
 		LEFT OUTER JOIN comments AS c
 		ON a.id = c.article_id
@@ -149,5 +138,12 @@
 		ON a.id = l.article_id
 		WHERE a.id = #{articleId};
 	</select>
+	
+	<update id="updateVisitedCount">
+		UPDATE articles 
+		SET visited_count = visited_count + 1 
+		WHERE id = #{articleId};
+	</update>
+	
 
 </mapper>
