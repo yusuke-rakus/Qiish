@@ -100,6 +100,7 @@
 		<collection property="articleTags"
 			ofType="com.example.domain.Tag">
 			<result property="skill" column="tag_name"></result>
+			<result property="id" column="tag_id"></result>
 		</collection>
 		<collection property="lieksUserList"
 			ofType="com.example.domain.UserInfo">
@@ -121,6 +122,7 @@
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
 			(SELECT COUNT(*) FROM comment_likes WHERE comment_likes.comments_id = c.id) AS c_likes_count,
+			(SELECT tags.id FROM tags WHERE at.tag_id = tags.id) AS tag_id,
 			(SELECT tags.skill FROM tags WHERE at.tag_id = tags.id) AS tag_name,
 			(SELECT id FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
 			(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_name,
