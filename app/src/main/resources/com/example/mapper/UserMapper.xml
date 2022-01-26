@@ -32,14 +32,14 @@
 		email=#{email},
 		engineer_type=#{engineerType},
 		description=#{description}, image=#{image}
-		WHERE id=#{userId};
+		WHERE id=#{userInfoId};
 	</update>
 
 	<!-- ログイン情報の編集 -->
 	<update id="userEdit">
 		UPDATE user SET email=#{email}, password=#{password}
 		WHERE
-		user_info_id=#{userId};
+		user_info_id=#{userInfoId};
 	</update>
 
 	<!-- ユーザータグの編集 -->

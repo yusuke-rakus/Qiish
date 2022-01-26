@@ -7,7 +7,6 @@ package com.example.form;
 public class UserFollowForm {
 
 	private Integer userInfoId;
-	
 	private Integer followUserInfoId;
 
 	public Integer getUserInfoId() {
@@ -30,5 +29,5 @@ public class UserFollowForm {
 	public String toString() {
 		return "UserFollowForm [userInfoId=" + userInfoId + ", followUserInfoId=" + followUserInfoId + "]";
 	}
-	
+
 }

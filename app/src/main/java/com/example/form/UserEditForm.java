@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserEditForm {
 
-	private Integer userId;
+	private Integer userInfoId;
 	private String userName;
 	private String image;
 	private String email;
@@ -17,12 +17,12 @@ public class UserEditForm {
 	private String description;
 	private List<Integer> tag;
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getUserInfoId() {
+		return userInfoId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserInfoId(Integer userInfoId) {
+		this.userInfoId = userInfoId;
 	}
 
 	public String getUserName() {
@@ -83,8 +83,8 @@ public class UserEditForm {
 
 	@Override
 	public String toString() {
-		return "UserEditForm [userId=" + userId + ", userName=" + userName + ", image=" + image + ", email=" + email
-				+ ", engineerType=" + engineerType + ", password=" + password + ", description=" + description
+		return "UserEditForm [userInfoId=" + userInfoId + ", userName=" + userName + ", image=" + image + ", email="
+				+ email + ", engineerType=" + engineerType + ", password=" + password + ", description=" + description
 				+ ", tag=" + tag + "]";
 	}
 

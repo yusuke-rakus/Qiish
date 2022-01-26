@@ -1,10 +1,6 @@
-DROP TABLE IF EXISTS user_info;
-
 DROP TABLE IF EXISTS user;
 
 DROP TABLE IF EXISTS user_info_tags;
-
-DROP TABLE IF EXISTS articles;
 
 DROP TABLE IF EXISTS likes;
 
@@ -12,11 +8,15 @@ DROP TABLE IF EXISTS article_tags;
 
 DROP TABLE IF EXISTS follow;
 
-DROP TABLE IF EXISTS comments;
-
 DROP TABLE IF EXISTS comment_likes;
 
 DROP TABLE IF EXISTS tags;
+
+DROP TABLE IF EXISTS comments;
+
+DROP TABLE IF EXISTS articles;
+
+DROP TABLE IF EXISTS user_info;
 
 CREATE TABLE user_info(
     id int NOT NULL AUTO_INCREMENT,
@@ -31,7 +31,7 @@ CREATE TABLE user_info(
 CREATE TABLE user(
     user_info_id int NOT NULL,
     email text NOT NULL,
-    PASSWORD text NOT NULL,
+    password text NOT NULL,
     FOREIGN KEY fk_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
 
@@ -58,7 +58,7 @@ CREATE TABLE comments(
     id int NOT NULL AUTO_INCREMENT,
     article_id int NOT NULL,
     user_info_id int NOT NULL,
-    COMMENT text NOT NULL,
+    comment text NOT NULL,
     comment_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     FOREIGN KEY fk_comments_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE,
@@ -135,17 +135,17 @@ VALUES
     ('qiita', 'sample@qiita.com', 'CL', 'hei');
 
 INSERT INTO
-    user(user_info_id, email, PASSWORD)
+    user(user_info_id, email, password)
 VALUES
     (1, 'sample@qiish.com', 'qiish');
 
 INSERT INTO
-    user(user_info_id, email, PASSWORD)
+    user(user_info_id, email, password)
 VALUES
     (2, 'sample@zenn.com', 'zenn');
 
 INSERT INTO
-    user(user_info_id, email, PASSWORD)
+    user(user_info_id, email, password)
 VALUES
     (3, 'sample@qiita.com', 'qiita');
 
@@ -229,7 +229,7 @@ VALUES
     (2, 1);
 
 INSERT INTO
-    comments(article_id, user_info_id, COMMENT)
+    comments(article_id, user_info_id, comment)
 VALUES
     (1, 3, 'I agree.');
 

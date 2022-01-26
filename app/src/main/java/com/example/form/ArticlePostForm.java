@@ -8,11 +8,8 @@ import java.util.List;
 public class ArticlePostForm {
 
 	private Integer userInfoId;
-
 	private String title;
-
 	private String content;
-
 	private List<Integer> tags;
 
 	public Integer getUserInfoId() {

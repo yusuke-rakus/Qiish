@@ -6,15 +6,15 @@ package com.example.form;
 
 public class CommentLikeForm {
 
-	private Integer userId;
+	private Integer userInfoId;
 	private Integer commentId;
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getUserInfoId() {
+		return userInfoId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserInfoId(Integer userInfoId) {
+		this.userInfoId = userInfoId;
 	}
 
 	public Integer getCommentId() {
@@ -27,7 +27,7 @@ public class CommentLikeForm {
 
 	@Override
 	public String toString() {
-		return "CommentLikeForm [userId=" + userId + ", commentId=" + commentId + "]";
+		return "CommentLikeForm [userInfoId=" + userInfoId + ", commentId=" + commentId + "]";
 	}
 
 }
