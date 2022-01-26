@@ -9,11 +9,8 @@ import java.util.List;
 public class ArticleEditForm {
 
 	private Integer articleId;
-	
 	private String title;
-	
 	private String content;
-	
 	private List<Integer> tags;
 
 	public Integer getArticleId() {
@@ -53,6 +50,5 @@ public class ArticleEditForm {
 		return "ArticleEditForm [articleId=" + articleId + ", title=" + title + ", content=" + content + ", tags="
 				+ tags + "]";
 	}
-	
-	
+
 }

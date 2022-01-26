@@ -13,13 +13,13 @@
 	<insert id="commentLike"
 		parameterType="com.example.form.CommentLikeForm">
 		INSERT INTO comment_likes(user_info_id, comments_id)
-		VALUES(#{userId}, #{commentId});
+		VALUES(#{userInfoId}, #{commentId});
 	</insert>
 
 	<!-- コメントLIKE解除 -->
 	<delete id="removeCommentLike"
 		parameterType="com.example.form.CommentLikeForm">
-		DELETE FROM comment_likes WHERE user_info_id=#{userId}
+		DELETE FROM comment_likes WHERE user_info_id=#{userInfoId}
 		AND comments_id=#{commentId};
 	</delete>
 
@@ -27,13 +27,13 @@
 	<insert id="articleLike"
 		parameterType="com.example.form.ArticleLikeForm">
 		INSERT INTO likes(user_info_id, article_id)
-		VALUES(#{userId},#{articleId});
+		VALUES(#{userInfoId},#{articleId});
 	</insert>
 
 	<!-- LIKE解除 -->
 	<delete id="articleRemoveLike"
 		parameterType="com.example.form.ArticleLikeForm">
-		DELETE FROM likes WHERE user_info_id=#{userId} AND
+		DELETE FROM likes WHERE user_info_id=#{userInfoId} AND
 		article_id=#{articleId};
 	</delete>
 
@@ -65,7 +65,8 @@
 
 	<!-- タグ情報削除 -->
 	<delete id="articleTagsDelete" parameterType="Integer">
-		DELETE FROM article_tags 
+		DELETE FROM
+		article_tags
 		WHERE article_id=#{articleId};
 	</delete>
 
@@ -84,54 +85,69 @@
 		<result property="title" column="a_title"></result>
 		<result property="content" column="a_content"></result>
 		<result property="postedDate" column="a_posted_date"></result>
-		<collection property="comments" ofType="com.example.domain.Comment">
+		<collection property="comments"
+			ofType="com.example.domain.Comment">
 			<result property="comment" column="c_comment"></result>
 			<result property="commentDate" column="c_comment_date"></result>
 			<result property="likesCount" column="c_likes_count"></result>
-			<association property="userInfo" javaType="com.example.domain.UserInfo">
+			<association property="userInfo"
+				javaType="com.example.domain.UserInfo">
 				<id property="id" column="c_user_info_id"></id>
 				<result property="userName" column="c_user_name"></result>
 				<result property="image" column="c_image"></result>
 			</association>
 		</collection>
-		<collection property="articleTags" ofType="com.example.domain.Tag">
+		<collection property="articleTags"
+			ofType="com.example.domain.Tag">
 			<result property="skill" column="tag_name"></result>
 		</collection>
-		<collection property="lieksUserList" ofType="com.example.domain.UserInfo">
+		<collection property="lieksUserList"
+			ofType="com.example.domain.UserInfo">
 			<result property="id" column="l_user_info_id"></result>
 			<result property="userName" column="l_user_name"></result>
 			<result property="engineerType" column="l_engineer_type"></result>
 			<result property="description" column="l_description"></result>
 		</collection>
 	</resultMap>
-	
+
 	<select id="articleDetail" resultMap="articleMap">
-	SELECT
+		SELECT
 		a.id AS a_id,
 		a.user_info_id AS a_user_info_id,
 		a.title AS a_title,
 		a.content AS a_content,
 		a.posted_date AS a_posted_date,
-		c.user_info_id AS c_user_info_id,
+		c.user_info_id
+		AS c_user_info_id,
 		c.comment AS c_comment,
-		c.comment_date AS c_comment_date,
-		(SELECT COUNT(*) FROM comment_likes WHERE comment_likes.comments_id = c.id) AS c_likes_count,
-		(SELECT tags.skill FROM tags WHERE at.tag_id = tags.id) AS tag_name,
-		(SELECT id FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
-		(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_name,
-		(SELECT engineer_type FROM user_info WHERE user_info.id = l.user_info_id) AS l_engineer_type,
-		(SELECT description FROM user_info WHERE user_info.id = l.user_info_id) AS l_description,
-		(SELECT id FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_info_id,
-		(SELECT user_name FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_name,
-		(SELECT image FROM user_info WHERE user_info.id = c.user_info_id) AS c_image
-	FROM articles AS a
-	LEFT OUTER JOIN comments AS c
-	ON a.id = c.article_id
-	LEFT OUTER JOIN article_tags AS at
-	ON a.id = at.article_id
-	LEFT OUTER JOIN likes AS l
-	ON a.id = l.article_id
-	WHERE a.id = #{articleId};
+		c.comment_date AS
+		c_comment_date,
+		(SELECT COUNT(*) FROM comment_likes WHERE
+		comment_likes.comments_id = c.id) AS c_likes_count,
+		(SELECT tags.skill
+		FROM tags WHERE at.tag_id = tags.id) AS tag_name,
+		(SELECT id FROM
+		user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
+		(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id)
+		AS l_user_name,
+		(SELECT engineer_type FROM user_info WHERE user_info.id
+		= l.user_info_id) AS l_engineer_type,
+		(SELECT description FROM
+		user_info WHERE user_info.id = l.user_info_id) AS l_description,
+		(SELECT id FROM user_info WHERE user_info.id = c.user_info_id) AS
+		c_user_info_id,
+		(SELECT user_name FROM user_info WHERE user_info.id =
+		c.user_info_id) AS c_user_name,
+		(SELECT image FROM user_info WHERE
+		user_info.id = c.user_info_id) AS c_image
+		FROM articles AS a
+		LEFT OUTER JOIN comments AS c
+		ON a.id = c.article_id
+		LEFT OUTER JOIN article_tags AS at
+		ON a.id = at.article_id
+		LEFT OUTER JOIN likes AS l
+		ON a.id = l.article_id
+		WHERE a.id = #{articleId};
 	</select>
 
 </mapper>
