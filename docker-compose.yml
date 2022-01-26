@@ -10,6 +10,7 @@ services:
     volumes:
       - ./next:/usr/src/app/next
     command: "npm run dev"
+  #   ports:
 
   # spring
   app:

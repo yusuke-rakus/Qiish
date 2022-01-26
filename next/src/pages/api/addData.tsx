@@ -1,8 +1,7 @@
 import axios from "axios";
 import { SelectStateType } from "../../hooks/useInputState";
 
-// バック側でIntegerを求めてたがstringではないのか？
-// 通信成功。タグの問題とユーザーIDを解決する。
+// 記事追加機能(userIdを取得する)
 export const addArticle = async (
   title: string,
   content: string,
@@ -15,4 +14,21 @@ export const addArticle = async (
     tags: tags,
   });
   return res;
+};
+
+// ユーザーフォロー機能(userIdを取得する)
+export const changeFollowStatus = async (usrFollowFlag: boolean) => {
+  if (!usrFollowFlag) {
+    const res = await axios.post("http://localhost:9090/user/follow", {
+      userInfoId: 1,
+      followUserInfoId: 2,
+    });
+    return res;
+  } else {
+    const res = await axios.post("http://localhost:9090/user/remove", {
+      userInfoId: 1,
+      followUserInfoId: 2,
+    });
+    return res;
+  }
 };

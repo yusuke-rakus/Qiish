@@ -10,6 +10,12 @@ export const fetchProfile = async (
   return res.data;
 };
 
+// export const fetchFollowList = async (userInfoId: number) => {
+//   const res = await axios.post("", { userInfoId: userInfoId });
+
+//   return res.data;
+// };
+
 // 記事一覧情報の取得のAPI
 export const fetchArticleList = async () => {
   const res = await axios.get("http://localhost:9090");
