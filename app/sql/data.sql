@@ -152,17 +152,107 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
+    ('HTML');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('CSS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('JavaScript');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('jQuery');
+    
+INSERT INTO
+    tags(skill)
+VALUES
+    ('React');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Angular');
+    
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Vue');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('TypeScript');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('CoffeeScript');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('C');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('C+');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('C#');
+
+INSERT INTO
+    tags(skill)
+VALUES
     ('Java');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('Python');
+    ('Ruby');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('React');
+    ('PHP');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Phyton');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Objective-C');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Perl');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Node.js');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Swift');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('kotolin');
 
 INSERT INTO
     user_info_tags(user_info_id, tag_id)
