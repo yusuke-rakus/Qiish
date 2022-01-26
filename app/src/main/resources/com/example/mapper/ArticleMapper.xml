@@ -146,6 +146,5 @@
 		SET visited_count = visited_count + 1 
 		WHERE id = #{articleId};
 	</update>
-	
 
 </mapper>
