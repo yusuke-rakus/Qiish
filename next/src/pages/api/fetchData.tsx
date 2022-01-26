@@ -10,6 +10,13 @@ export const fetchProfile = async (
   return res.data;
 };
 
+// 記事一覧情報の取得のAPI
+export const fetchArticleList = async () => {
+  const res = await axios.get("http://localhost:9090");
+
+  return res.data;
+};
+
 // 特定の記事情報取得のAPI
 export const fetchArticle = async (
   articleId: string | string[] | undefined
