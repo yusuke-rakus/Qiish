@@ -53,6 +53,7 @@
 		<result property="postedDate" column="a_posted_date" />
 		<result property="likesCount" column="likes_count" />
 		<collection property="articleTags" ofType="com.example.domain.Tag">
+			<result property="id" column="tag_id" />
 			<result property="skill" column="article_tag" />
 		</collection>
 	</resultMap>
@@ -64,6 +65,7 @@
 			a.content AS a_content,
 			a.posted_date AS a_posted_date,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
+			(SELECT id FROM tags WHERE id = at.tag_id) AS tag_id,
 			(SELECT skill FROM tags WHERE id = at.tag_id) AS article_tag
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
