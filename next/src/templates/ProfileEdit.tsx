@@ -38,7 +38,7 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
   const [description, setDescription] = useTextState(userInfo.description);
   // カスタムフック使用(Select)
   const [engineerType, setEngineerType] = useSelectState(userInfo.engineerType);
-  // タグが初期化できていない
+  // カスタムフック使用(タグを初期化)
   const [tags, setTags] = useSelectState(() => {
     const initialTags = [];
     for (const tag of userInfo.tags) {
@@ -46,11 +46,8 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
     }
     return initialTags;
   });
-  // useEffect(() => {}, []);
-  // console.log(tags);
 
-  const onSubmitEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmitEditUser = async () => {
     const res = await axios.post("", {});
 
     console.dir(res);

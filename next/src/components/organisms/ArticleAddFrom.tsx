@@ -12,6 +12,7 @@ type Props = {
     setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     setTags: (value: string[]) => void;
     setPreviewFlag: () => void;
+    onAddArticle: () => void;
   };
   SKILLTAGS: {
     label: string;
@@ -27,7 +28,7 @@ const ArticleAddFrom: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <Form>
+      <Form onSubmitCapture={Fnc.onAddArticle}>
         {/* 送信ようのメソッド用意 */}
         <Form.Item
           name="title"

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="WP1-JnF1_EIwP2eSbvKK" name="README">
-        <mxGraphModel dx="1766" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="490" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="ElkovE41W0XgGfoDvlom-0"/>
                 <mxCell id="ElkovE41W0XgGfoDvlom-1" parent="ElkovE41W0XgGfoDvlom-0"/>
@@ -2177,7 +2177,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="8BKBvEkpiof9vp72qdD7" name="記事投稿機能">
-        <mxGraphModel dx="1294" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="490" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="88eXMWmy90K6hAgqGsGz-0"/>
                 <mxCell id="88eXMWmy90K6hAgqGsGz-1" parent="88eXMWmy90K6hAgqGsGz-0"/>
