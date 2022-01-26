@@ -123,6 +123,7 @@ public class ArticleService {
 		ArticleDetailResponse res = new ArticleDetailResponse();
 		try {
 			res.setArticle(articleMapper.articleDetail(articleId));
+			articleMapper.updateVisitedCount(articleId);
 			res.setPostedUser(userMapper.getPostedUser(articleId));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
