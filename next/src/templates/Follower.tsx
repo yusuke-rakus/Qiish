@@ -1,9 +1,18 @@
 import React from "react";
 import { FollowComp } from "../components/organisms";
 import { useToggle } from "../hooks";
+import { changeFollowStatus } from "../pages/api/addData";
 
 const Follower: React.FC = () => {
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+
+  // 現状はuid１がuid2にフォローする処理
+  const usrFollowing = async () => {
+    // フォローのデータをDBに保存()
+    await changeFollowStatus(usrFollowFlag);
+    // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
+    setUsrFollowFlag();
+  };
 
   return (
     <div className="p-3 text-center">
@@ -11,7 +20,7 @@ const Follower: React.FC = () => {
         followText="フォロワー"
         user_info_datas={user_info_datas}
         usrFollowFlag={usrFollowFlag}
-        changeUsrFollow={setUsrFollowFlag}
+        changeUsrFollow={usrFollowing}
       />
     </div>
   );
