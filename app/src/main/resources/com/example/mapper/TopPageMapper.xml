@@ -26,7 +26,7 @@
 		FROM articles as a
 		left join article_tags as at on at.article_id = a.id
 		left join tags as t on at.tag_id = t.id
-		ORDER BY a.id;
+		ORDER BY visited_count DESC;
 	</select>
 
 	<!-- タグ一覧取得 -->
@@ -72,7 +72,7 @@
 		<foreach collection="wordList" item="word">
 			AND title LIKE CONCAT('%' ,#{word}, '%')
 		</foreach>
-		ORDER BY (SELECT count(*) FROM likes WHERE a.id = article_id) DESC;
+		ORDER BY visited_count DESC;
 	</select>
 	
 	<!-- コンテンツからキーワード検索 -->
