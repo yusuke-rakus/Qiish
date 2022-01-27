@@ -3,24 +3,34 @@ import Image from "next/image";
 
 // FCの型定義
 type Props = {
-  user_info_data: {
-    user_info_id: number;
-    user_name: string;
+  user_data: {
+    id: number;
+    userName: string;
     email: string;
     engineer_type: string;
-    comment: string;
-    skill_tags: {
+    description: string;
+    tags: {
       user_info_id: number;
       skill_id: number;
       skill_name: string;
     }[];
+    articleCount: number;
+    articles: number;
+    comments: string;
+    engineerType: string;
+    follow: string;
+    followCount: number;
+    follower: string;
+    followerCount: number;
+    image: string;
+    likes: number;
   };
   usrFollowFlag: boolean;
   changeUsrFollow: () => void;
 };
 
 const ProfileRectangle: React.FC<Props> = ({
-  user_info_data,
+  user_data,
   changeUsrFollow,
   usrFollowFlag,
 }) => {
@@ -35,7 +45,7 @@ const ProfileRectangle: React.FC<Props> = ({
       />
       <div className="w-2/5 flex items-center">
         <div className="text-center ml-10">
-          <div>@{user_info_data.user_name}</div>
+          <div>@{user_data.userName}</div>
           <div className="mt-2 text-lg">
             職種<span className="mx-1">:</span>
             <span className="px-3 rounded-md text-white bg-orange-500">FR</span>

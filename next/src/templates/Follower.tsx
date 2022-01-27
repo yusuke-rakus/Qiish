@@ -4,21 +4,31 @@ import { useToggle } from "../hooks";
 import { changeFollowStatus } from "../pages/api/addData";
 
 type Props = {
-  user_info_data: {
-    user_info_id: number;
-    user_name: string;
+  user_data: {
+    id: number;
+    userName: string;
     email: string;
     engineer_type: string;
-    comment: string;
-    skill_tags: {
+    description: string;
+    tags: {
       user_info_id: number;
       skill_id: number;
       skill_name: string;
     }[];
+    articleCount: number;
+    articles: number;
+    comments: string;
+    engineerType: string;
+    follow: string;
+    followCount: number;
+    follower: string;
+    followerCount: number;
+    image: string;
+    likes: number;
   };
 };
 
-const Follower: React.FC<Props> = ({ user_info_data }) => {
+const Follower: React.FC<Props> = ({ user_data }) => {
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
 
   // 現状はuid１がuid2にフォローする処理
@@ -31,8 +41,8 @@ const Follower: React.FC<Props> = ({ user_info_data }) => {
   return (
     <div>
       <ProfileRectangle
-        key={user_info_data.user_info_id}
-        user_info_data={user_info_data}
+        key={user_data.id}
+        user_data={user_data}
         usrFollowFlag={usrFollowFlag}
         changeUsrFollow={usrFollowing}
       />
