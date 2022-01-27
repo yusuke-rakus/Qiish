@@ -8,19 +8,21 @@ const ArticleList: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios(`http://localhost:9090`);
-      console.log(res.data.articleList);
+      console.dir(res.data);
       setData(res.data.articleList);
     };
     fetchData();
   }, []);
 
+  // console.dir(data);
+
   return (
     <div>
-      <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
+      {/* <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
         {data.map((articleData: any) => {
           return <ArticleComp key={articleData.id} articleData={articleData} />;
         })}
-      </div>
+      </div> */}
     </div>
   );
 };

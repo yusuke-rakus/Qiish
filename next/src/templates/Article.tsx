@@ -1,25 +1,32 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import useSWR from "swr";
 import { ArticleEdit, Comments } from ".";
 import { ArticleDetail } from "../components/organisms";
 import { useToggle } from "../hooks";
-import { changeFollowStatus } from "../pages/api/addData";
+import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
+import { deleteArticleById } from "../pages/api/deleteData";
 
 const Article: React.FC = () => {
+  const router = useRouter();
   const { data } = useSWR("/article");
-  const [likeCount, setlikeCount] = useState(data.article.likesCount);
-  const [articleLikeFlag, setArticleLikeFlag] = useState(false);
+  const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
+  const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
   const [editFlag, setEditFlag] = useToggle(false);
 
-  const changeArticleLike = () => {
-    if (articleLikeFlag) {
-      setArticleLikeFlag(!articleLikeFlag);
-      setlikeCount((prevLike: number) => prevLike - 1);
-    } else {
-      setArticleLikeFlag(!articleLikeFlag);
-      setlikeCount((prevLike: number) => prevLike + 1);
-    }
+  // 現状はuid１がuid1にフォローする処理
+  // 永続化のためにcookieにarticlelikeFlagを立てる
+  const changeArticleLike = async () => {
+    const addedLike = await changeLikeStatus(
+      data.article.id,
+      likeCount,
+      articleLikeFlag
+    );
+    // いいねしたら+1、いいねを解除したら-1
+    setlikeCount(addedLike);
+    // いいねの真偽値切り替え true:いいね中、false:いいね解除
+    setArticleLikeFlag();
   };
   // 現状はuid１がuid2にフォローする処理
   const usrFollowing = async () => {
@@ -27,6 +34,15 @@ const Article: React.FC = () => {
     await changeFollowStatus(usrFollowFlag);
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setUsrFollowFlag();
+  };
+  const onDeleteArticle = async () => {
+    const res = await deleteArticleById(3);
+    if (res.status === 200) {
+      alert("記事を削除しました。記事一覧に戻ります。");
+      router.push("/");
+    } else {
+      alert("記事を削除できませんでした。");
+    }
   };
 
   return (
@@ -44,6 +60,7 @@ const Article: React.FC = () => {
             usrFollowFlag={usrFollowFlag}
             changeUsrFollow={usrFollowing}
             setEditFlag={setEditFlag}
+            onDeleteArticle={onDeleteArticle}
           />
           <Comments />
         </React.Fragment>

@@ -8,13 +8,13 @@ import { Dropdown, Menu } from "antd";
 type Props = {
   article: {
     id: number;
-    userInfoId: 1;
+    userInfoId: number;
     title: string;
     content: string;
     postedDate: string;
     articleTags: { id: number; skill: string; image?: string }[];
     lieksUserList: {
-      id: 2;
+      id: number;
       userName: string;
       email: string;
       engineerType: string;
@@ -55,6 +55,7 @@ type Props = {
   usrFollowFlag: boolean;
   changeUsrFollow: () => void;
   setEditFlag: () => void;
+  onDeleteArticle: () => void;
 };
 
 const ArticleDetail: React.FC<Props> = ({
@@ -66,6 +67,7 @@ const ArticleDetail: React.FC<Props> = ({
   usrFollowFlag,
   changeUsrFollow,
   setEditFlag,
+  onDeleteArticle,
 }) => {
   const menu = (
     <Menu>
@@ -73,7 +75,7 @@ const ArticleDetail: React.FC<Props> = ({
         <button onClick={setEditFlag}>編集</button>
       </Menu.Item>
       <Menu.Item key="1">
-        <a href={"/#"}>削除</a>
+        <button onClick={onDeleteArticle}>削除</button>
       </Menu.Item>
     </Menu>
   );
@@ -140,11 +142,11 @@ const ArticleDetail: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
-        <ProfileSmall
+        {/* <ProfileSmall
           user={postedUser}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}
-        />
+        /> */}
       </div>
     </div>
   );
