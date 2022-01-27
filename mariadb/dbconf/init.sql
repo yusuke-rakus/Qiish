@@ -34,7 +34,8 @@ CREATE TABLE likes(
     article_id int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY fk_likes_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
-    FOREIGN KEY fk_likes_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE
+    FOREIGN KEY fk_likes_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE,
+    UNIQUE (user_info_id, article_id)
 );
 
 CREATE TABLE comments(
@@ -54,7 +55,8 @@ CREATE TABLE comment_likes(
     comments_id int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY fk_comment_likes_user_info_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
-    FOREIGN KEY fk_comment_likes_comments_id(comments_id) REFERENCES comments(id) ON DELETE CASCADE
+    FOREIGN KEY fk_comment_likes_comments_id(comments_id) REFERENCES comments(id) ON DELETE CASCADE,
+    UNIQUE (user_info_id, comments_id)
 );
 
 CREATE TABLE follow(
@@ -63,7 +65,8 @@ CREATE TABLE follow(
     follow_user_info_id int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY fk_follow_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
-    FOREIGN KEY fk_follow_id(follow_user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
+    FOREIGN KEY fk_follow_id(follow_user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
+    UNIQUE (user_info_id, follow_user_info_id)
 );
 
 CREATE TABLE tags(
@@ -77,14 +80,16 @@ CREATE TABLE user_info_tags(
     user_info_id int NOT NULL,
     tag_id int NOT NULL,
     FOREIGN KEY fk_tags_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
-    FOREIGN KEY fk_user_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE
+    FOREIGN KEY fk_user_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+    UNIQUE (user_info_id, tag_id)
 );
 
 CREATE TABLE article_tags(
     article_id int NOT NULL,
     tag_id int NOT NULL,
     FOREIGN KEY fk_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE,
-    FOREIGN KEY fk_article_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE
+    FOREIGN KEY fk_article_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+    UNIQUE (article_id, tag_id)
 );
 
 INSERT INTO
