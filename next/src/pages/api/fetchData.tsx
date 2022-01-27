@@ -19,7 +19,6 @@ export const fetchProfile = async (
 // 記事一覧情報の取得のAPI
 export const fetchArticleList = async () => {
   const res = await axios.get("http://localhost:9090");
-
   return res.data;
 };
 
