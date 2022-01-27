@@ -1,5 +1,7 @@
 package com.example.form;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * コメント投稿フォーム
  */
@@ -8,6 +10,7 @@ public class ArticleCommentForm {
 
 	private Integer articleId;
 	private Integer userInfoId;
+	@NotBlank
 	private String comment;
 
 	public Integer getArticleId() {

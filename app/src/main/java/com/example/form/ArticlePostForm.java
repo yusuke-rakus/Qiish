@@ -5,10 +5,16 @@ package com.example.form;
  */
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class ArticlePostForm {
 
 	private Integer userInfoId;
+	@NotBlank
+	@Size(min = 1, max = 50)
 	private String title;
+	@NotBlank
 	private String content;
 	private List<Integer> tags;
 
