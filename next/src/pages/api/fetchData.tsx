@@ -79,3 +79,17 @@ export const fetchQiita = async (qiitaId: string | string[] | undefined) => {
 
   return res.data;
 };
+
+export const fetchFollowList = async (userInfoId: number) => {
+  const res = await axios.post("http://localhost:9090/user/followList", {
+    userInfoId: userInfoId,
+  });
+  return res.data;
+};
+
+export const fetchFollowerList = async (userInfoId: number) => {
+  const res = await axios.post("http://localhost:9090/user/followerList", {
+    userInfoId: userInfoId,
+  });
+  return res.data;
+};
