@@ -2,6 +2,11 @@ package com.example.form;
 
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * ユーザー情報を編集するフォーム
  */
@@ -9,10 +14,16 @@ import java.util.List;
 public class UserEditForm {
 
 	private Integer userInfoId;
+	@NotBlank
+	@Size(min=1, max=18)
 	private String userName;
 	private String image;
+	@NotBlank
+	@Email
 	private String email;
+	@NotBlank
 	private String engineerType;
+	@Pattern(regexp = "^(?=.*?[a-zA-Z])(?=.*?\\d)[a-zA-Z\\d]{8,}$")
 	private String password;
 	private String description;
 	private List<Integer> tag;

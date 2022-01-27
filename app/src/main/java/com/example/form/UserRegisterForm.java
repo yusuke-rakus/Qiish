@@ -1,5 +1,10 @@
 package com.example.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * ユーザー登録フォーム
  */
@@ -7,9 +12,15 @@ package com.example.form;
 public class UserRegisterForm {
 
 	private Integer id;
+	@NotBlank
+	@Size(min=1, max=18)
 	private String userName;
+	@NotBlank
+	@Email
 	private String email;
+	@Pattern(regexp = "^(?=.*?[a-zA-Z])(?=.*?\\d)[a-zA-Z\\d]{8,}$")
 	private String password;
+	@NotBlank
 	private String engineerType;
 
 	public Integer getId() {

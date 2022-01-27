@@ -1,8 +1,15 @@
 package com.example.form;
 
-public class ResetPasswordForm {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
+public class ResetPasswordForm {
+	
+	@NotBlank
+	@Email
 	private String email;
+	@Pattern(regexp = "^(?=.*?[a-zA-Z])(?=.*?\\d)[a-zA-Z\\d]{8,}$")
 	private String password;
 	
 	public String getEmail() {

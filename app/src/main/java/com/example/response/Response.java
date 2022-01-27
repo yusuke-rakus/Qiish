@@ -20,4 +20,10 @@ public class Response {
 		this.status = status;
 	}
 
+	public Response(Boolean result) {
+		this.status = Status.ERROR.getStatus();
+	}
+
+	public Response() {}
+
 }

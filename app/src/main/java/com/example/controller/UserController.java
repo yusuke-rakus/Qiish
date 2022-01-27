@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +32,19 @@ public class UserController {
 
 	/** ユーザー登録 */
 	@PostMapping("/register")
-	public Response userRegister(@RequestBody UserRegisterForm form) {
+	public Response userRegister(@RequestBody @Validated UserRegisterForm form, BindingResult result) {
+		if(result.hasErrors()) {
+			return new Response(result.hasErrors());
+		}
 		return userService.userRegister(form);
 	}
 
 	/** ユーザー情報編集 */
 	@PostMapping("/edit")
-	public Response userEdit(@RequestBody UserEditForm form) {
+	public Response userEdit(@RequestBody @Validated UserEditForm form, BindingResult result) {
+		if(result.hasErrors()) {
+			return new Response(result.hasErrors());
+		}
 		return userService.userEdit(form);
 	}
 
