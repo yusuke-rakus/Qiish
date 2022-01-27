@@ -99,9 +99,11 @@
 		<result property="followerCount" column="follower_count"></result>
 		<result property="articleCount" column="article_count"></result>
 		<collection property="tags" ofType="com.example.domain.Tag">
+			<result property="id" column="tag_id"></result>
 			<result property="skill" column="u_tags"></result>
 		</collection>
 	</resultMap>
+	
 	<select id="getPostedUser" resultMap="userMap">
 	SELECT
 		u.id AS u_id,
@@ -109,6 +111,7 @@
 		u.engineer_type AS u_engineer_type,
 		u.description AS u_description,
 		u.image AS u_image,
+		t.tag_id,
 		(SELECT skill FROM tags WHERE t.tag_id = tags.id) AS u_tags,
 		(SELECT count(*) FROM follow WHERE u.id = follow.user_info_id) AS follow_count,
 		(SELECT count(*) FROM follow WHERE u.id = follow.follow_user_info_id) AS follower_count,

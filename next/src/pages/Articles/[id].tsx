@@ -20,12 +20,12 @@ export default ArticlePage;
 
 // build時に必要なpathを取得
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetchArticleList();
-  const paths = res.articleList.map(
-    (article: any) => `/articles/${String(article.id)}`
-  );
+  // const res = await fetchArticleList();
+  // const paths = res.articleList.map(
+  //   (article: any) => `/articles/${String(article.id)}`
+  // );
   return {
-    paths,
+    paths: [{ params: { id: "1" } }, { params: { id: "2" } }],
     fallback: false,
   };
 };

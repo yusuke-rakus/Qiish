@@ -2,6 +2,7 @@ package com.example.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.common.Status;
 import com.example.form.ResetPasswordForm;
@@ -9,6 +10,7 @@ import com.example.mapper.UserMapper;
 import com.example.response.Response;
 
 @Service
+@Transactional
 public class ResetPasswordService {
 
 	@Autowired

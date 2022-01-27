@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.common.Status;
 import com.example.domain.Article;
@@ -12,6 +13,7 @@ import com.example.response.SearchResponse;
 import com.example.response.TopPageResponse;
 
 @Service
+@Transactional
 public class TopPageService {
 
 	@Autowired

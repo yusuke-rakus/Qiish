@@ -20,12 +20,12 @@
 	<!-- 記事一覧取得 -->
 	<select id="getArticleList" resultMap="articleList">
 		SELECT
-		a.id as article_id, a.title, a.content, a.posted_date,
-		t.id as tag_id, t.skill, t.image as tag_image,
-		(SELECT count(id) from likes where article_id = a.id) as likes_count
-		FROM articles as a
-		left join article_tags as at on at.article_id = a.id
-		left join tags as t on at.tag_id = t.id
+			a.id AS article_id, a.title, a.content, a.posted_date,
+			t.id AS tag_id, t.skill, t.image AS tag_image,
+			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count
+		FROM articles AS a
+		LEFT JOIN article_tags AS at ON at.article_id = a.id
+		LEFT JOIN tags AS t ON at.tag_id = t.id
 		ORDER BY visited_count DESC;
 	</select>
 
@@ -41,7 +41,7 @@
 		resultType="com.example.domain.UserInfo">
 		SELECT image
 		FROM user_info
-		where id = #{userInfoId};
+		WHERE id = #{userInfoId};
 	</select>
 
 	<!-- タイトルからキーワード検索 -->
@@ -86,6 +86,7 @@
 		<result property="postedDate" column="a_posted_date" />
 		<result property="likesCount" column="likes_count" />
 		<collection property="articleTags" ofType="com.example.domain.Tag">
+			<result property="id" column="tag_id" />
 			<result property="skill" column="article_tag" />
 		</collection>
 	</resultMap>
@@ -97,6 +98,7 @@
 			a.content AS a_content,
 			a.posted_date AS a_posted_date,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
+			(SELECT id FROM tags WHERE id = at.tag_id) AS tag_id,
 			(SELECT skill FROM tags WHERE id = at.tag_id) AS article_tag
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
