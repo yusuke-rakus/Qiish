@@ -17,9 +17,12 @@ const ArticleList: React.FC = () => {
   return (
     <div>
       <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
-        {data.map((articleData: any) => {
-          return <ArticleComp key={articleData.id} articleData={articleData} />;
-        })}
+        {data &&
+          data.map((articleData: any) => {
+            return (
+              <ArticleComp key={articleData.id} articleData={articleData} />
+            );
+          })}
       </div>
     </div>
   );
