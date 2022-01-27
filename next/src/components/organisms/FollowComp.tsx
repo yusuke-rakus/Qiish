@@ -1,5 +1,5 @@
 import React from "react";
-import { ProfileRectangle } from "../molecules";
+import { ProfileRectangle } from ".";
 
 type Props = {
   followText: string;

@@ -115,7 +115,6 @@ const QiitaComp: React.FC<Props> = ({
         {/* profile(User) */}
 
         <QiitaProfileSmall
-
           user_info_data={qiita.user}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}

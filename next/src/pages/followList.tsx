@@ -1,32 +1,32 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import { SWRConfig } from "swr";
-import { Follower } from "../templates";
-import { fetchFollowerList } from "./api/fetchData";
+import { FollowList } from "../templates";
+import { fetchFollowList } from "./api/fetchData";
 
 type Props = {
   [key: string]: object;
 };
 
-const FollowerPage: React.FC<Props> = ({ fallback }) => {
+const FollowListPage: React.FC<Props> = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
-      <Follower />
+      <FollowList />;
     </SWRConfig>
   );
 };
 
-export default FollowerPage;
+export default FollowListPage;
 
 // フォローリスト取得の処理
 export const getStaticProps: GetStaticProps = async () => {
   const userInfoId = 1;
-  const follower = await fetchFollowerList(userInfoId);
+  const followList = await fetchFollowList(userInfoId);
 
   return {
     props: {
       fallback: {
-        "/follower": follower,
+        "/followList": followList,
       },
     },
   };

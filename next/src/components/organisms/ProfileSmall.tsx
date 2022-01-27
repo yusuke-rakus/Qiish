@@ -89,14 +89,14 @@ const ProfileSmall: React.FC<Props> = ({
             <div>{user.articleCount}</div>
           </div>
           <div className="flex-grow text-center">
-            <Link href={"/follow"}>
+            <Link href={"/followList"}>
               <a className="text-black hover:text-gray-400">
                 フォロー<div>{user.followCount}</div>
               </a>
             </Link>
           </div>
           <div className="flex-grow text-center ">
-            <Link href={"/follower"}>
+            <Link href={"/followerList"}>
               <a className="text-black hover:text-gray-400">
                 フォロワー<div>{user.followerCount}</div>
               </a>
