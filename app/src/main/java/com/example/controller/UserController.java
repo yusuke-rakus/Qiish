@@ -54,14 +54,14 @@ public class UserController {
 
 	/** フォロー一覧表示 */
 	@PostMapping("/followList")
-	public FollowResponse followList(@RequestBody Integer userInfoId) {
-		return userService.followList(userInfoId);
+	public FollowResponse followList(@RequestBody UserFollowForm form) {
+		return userService.followList(form.getUserInfoId());
 	}
 
 	/** フォロワー一覧表示 */
 	@PostMapping("/followerList")
-	public FollowResponse followerList(@RequestBody Integer userInfoId) {
-		return userService.followerList(userInfoId);
+	public FollowResponse followerList(@RequestBody UserFollowForm form) {
+		return userService.followerList(form.getUserInfoId());
 	}
 
 }

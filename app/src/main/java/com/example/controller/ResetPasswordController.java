@@ -18,8 +18,8 @@ public class ResetPasswordController {
 	private ResetPasswordService resetPasswordService;
 
 	@PostMapping("/resetRequest")
-	public Response resetRequest(@RequestBody String email) {
-		return resetPasswordService.ResetRequest(email);
+	public Response resetRequest(@RequestBody ResetPasswordForm form) {
+		return resetPasswordService.ResetRequest(form.getEmail());
 	}
 	
 	@PostMapping("/reset")

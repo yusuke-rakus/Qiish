@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
+import com.example.form.ArticleIdFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
@@ -67,8 +68,8 @@ public class ArticleController {
 
 	/** 記事削除 */
 	@PostMapping("/delete")
-	public Response ArticleDelete(@RequestBody Integer articleId) {
-		return articleService.articleDelete(articleId);
+	public Response ArticleDelete(@RequestBody ArticleIdFrom form) {
+		return articleService.articleDelete(form.getArticleId());
 	}
 
 	/** 記事編集 */
