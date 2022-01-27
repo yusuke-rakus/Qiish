@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import useSWR from "swr";
 import { ArticleEdit, Comments } from ".";
 import { ArticleDetail } from "../components/organisms";
@@ -36,7 +36,7 @@ const Article: React.FC = () => {
     setUsrFollowFlag();
   };
   const onDeleteArticle = async () => {
-    const res = await deleteArticleById(3);
+    const res = await deleteArticleById(data.article.id);
     if (res.status === 200) {
       alert("記事を削除しました。記事一覧に戻ります。");
       router.push("/");

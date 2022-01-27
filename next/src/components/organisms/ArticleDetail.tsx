@@ -142,11 +142,11 @@ const ArticleDetail: React.FC<Props> = ({
 
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
-        {/* <ProfileSmall
+        <ProfileSmall
           user={postedUser}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}
-        /> */}
+        />
       </div>
     </div>
   );
