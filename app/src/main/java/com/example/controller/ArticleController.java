@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +28,10 @@ public class ArticleController {
 
 	/** コメント投稿 */
 	@PostMapping("/comment")
-	public Response articleComment(@RequestBody ArticleCommentForm form) {
+	public Response articleComment(@RequestBody @Validated ArticleCommentForm form, BindingResult result) {
+		if (result.hasErrors()) {
+			return new Response(result.hasErrors());
+		}
 		return articleService.articleComment(form);
 	}
 
@@ -56,7 +61,10 @@ public class ArticleController {
 
 	/** 記事投稿 */
 	@PostMapping("/add")
-	public Response ArticlePost(@RequestBody ArticlePostForm form) {
+	public Response ArticlePost(@RequestBody @Validated ArticlePostForm form, BindingResult result) {
+		if (result.hasErrors()) {
+			return new Response(result.hasErrors());
+		}
 		return articleService.ArticlePost(form);
 	}
 
