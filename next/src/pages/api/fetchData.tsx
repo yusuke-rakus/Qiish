@@ -32,18 +32,11 @@ export const fetchSearchedArticle = async (keyword: string) => {
 };
 
 export const reissuePassword = async (mailAddress: string) => {
-  // const res = await axios.post(`http://localhost:3001/resetRequest`, {
-  //   email: mailAddress,
-  // });
-  // console.log(res);
-  let errorMessage = "";
-  // if (res.data.status == "success") {
-  //   Router.push("/resetPassword");
-  // } else if (res.data.status == "error") {
-  errorMessage = "このメールアドレスは有効ではありません";
-  // }
-  console.log(errorMessage);
-  return errorMessage;
+  const res = await axios.post(`http://localhost:9090/resetRequest`, {
+    email: mailAddress,
+  });
+  console.log(mailAddress);
+  console.log(res.data);
 };
 
 export const fetchQiitaList = async () => {

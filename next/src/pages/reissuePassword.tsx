@@ -33,7 +33,6 @@ const ReissuePassword: React.FC = () => {
       >
         送信
       </button>
-      <div>{reissue}</div>
     </div>
   );
 };
