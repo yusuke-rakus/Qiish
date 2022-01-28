@@ -35,6 +35,7 @@ const ArticleEditFrom: React.FC<Props> = ({
 }) => {
   return (
     <div>
+      {/* initialValuesはname属性に対応 */}
       <Form
         initialValues={{
           title: articleData.editTitle,
@@ -54,6 +55,7 @@ const ArticleEditFrom: React.FC<Props> = ({
               placeholder="タイトル"
               bordered={false}
               size={"large"}
+              defaultValue={articleData.editTitle}
               onChange={Fnc.setEditTitle}
             />
           </span>

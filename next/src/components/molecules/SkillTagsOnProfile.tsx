@@ -4,9 +4,8 @@ import { SkillTag } from "../atoms";
 // FCの型定義
 type Props = {
   tags: {
-    article_id: number;
-    skill_id: number;
-    skill_name: string;
+    id: number;
+    skill: string;
   }[];
 };
 
@@ -15,7 +14,7 @@ const SkillTagsOnProfile: React.FC<Props> = ({ tags }) => {
   return (
     <div className="m-1 flex flex-wrap">
       {tags.map((tag) => {
-        return <SkillTag key={tag.skill_name} {...tag} />;
+        return <SkillTag key={tag.id} {...tag} />;
       })}
     </div>
   );

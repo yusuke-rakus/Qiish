@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { ArticleEdit, Comments } from ".";
@@ -6,10 +6,12 @@ import { ArticleDetail } from "../components/organisms";
 import { useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
 import { deleteArticleById } from "../pages/api/deleteData";
+// import { fetchArticle } from "../pages/api/fetchData";
 
 const Article: React.FC = () => {
   const router = useRouter();
-  const { data } = useSWR("/article");
+  // 記事詳細データ取得
+  let { data } = useSWR("/article");
   const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
   const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
