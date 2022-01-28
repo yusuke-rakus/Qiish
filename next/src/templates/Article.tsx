@@ -12,7 +12,10 @@ const Article: React.FC = () => {
   const router = useRouter();
   // 記事詳細データ取得
   let { data } = useSWR("/article");
-  const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
+  console.dir(data);
+
+  const [likeCount, setlikeCount] = useState(1);
+  // const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
   const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
   const [editFlag, setEditFlag] = useToggle(false);

@@ -1,8 +1,9 @@
 import React from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { FollowerList } from "../templates";
 import { fetchFollowerList } from "./api/fetchData";
+import getCookie from "../hooks/cookie/handleCookie";
 
 type Props = {
   [key: string]: object;
@@ -19,9 +20,9 @@ const FollowerListPage: React.FC<Props> = ({ fallback }) => {
 export default FollowerListPage;
 
 // フォローリスト取得の処理
-export const getStaticProps: GetStaticProps = async () => {
-  const userInfoId = 1;
-  const followerList = await fetchFollowerList(userInfoId);
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const userId = Number(getCookie(ctx));
+  const followerList = await fetchFollowerList(userId);
 
   return {
     props: {

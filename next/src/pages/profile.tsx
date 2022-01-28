@@ -19,10 +19,9 @@ const ProfilePage: React.FC<Props> = ({ fallback }) => {
 
 export default ProfilePage;
 
+// ユーザーIDよりプロフィール情報を取得
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const userId = getCookie(ctx);
-  // console.log("userId: " + userId);
-  // console.log(ctx);
 
   const profile = await fetchProfile(userId);
   return {

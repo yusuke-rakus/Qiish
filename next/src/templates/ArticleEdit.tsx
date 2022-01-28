@@ -5,6 +5,7 @@ import { ArticleEditFrom } from "../components/organisms";
 import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { editArticle } from "../pages/api/editData";
+import { mutate } from "swr";
 
 type Props = {
   article: {
@@ -49,6 +50,7 @@ const ArticleEdit: React.FC<Props> = ({ article, setEditFlag }) => {
         editContent,
         editTags
       );
+      mutate("http://localhost:9090/article/edit");
       if (res.status === 200) {
         alert("記事編集成功しました。記事一覧へ戻ります。");
         router.push("/");
