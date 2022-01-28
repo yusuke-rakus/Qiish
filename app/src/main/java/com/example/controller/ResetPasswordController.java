@@ -15,21 +15,21 @@ import com.example.service.ResetPasswordService;
 @RestController
 @RequestMapping("")
 public class ResetPasswordController {
-	
+
 	@Autowired
 	private ResetPasswordService resetPasswordService;
 
 	@PostMapping("/resetRequest")
 	public Response resetRequest(@RequestBody @Validated ResetPasswordForm form, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return new Response(result.hasErrors());
 		}
 		return resetPasswordService.ResetRequest(form.getEmail());
 	}
-	
+
 	@PostMapping("/reset")
-	public Response passwordReset(@Validated ResetPasswordForm form, BindingResult result) {
-		if(result.hasErrors()) {
+	public Response passwordReset(@RequestBody @Validated ResetPasswordForm form, BindingResult result) {
+		if (result.hasErrors()) {
 			return new Response(result.hasErrors());
 		}
 		return resetPasswordService.passwordReset(form);
