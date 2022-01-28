@@ -126,7 +126,7 @@ public class ArticleService {
 		try {
 			
 			// 第２引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
-			res.setArticle(articleMapper.articleDetail(articleId, 3));
+			res.setArticle(articleMapper.articleDetail(articleId, null));
 			
 			articleMapper.updateVisitedCount(articleId);
 			res.setPostedUser(userMapper.getPostedUser(articleId));
