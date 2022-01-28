@@ -1,17 +1,15 @@
 import axios from "axios";
 import { SelectStateType } from "../../hooks/useInputState";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
 
 // 記事追加機能(userIdを取得する)
 export const addArticle = async (
+  userId: number,
   title: string,
   content: string,
   tags: SelectStateType
 ) => {
   const res = await axios.post("http://localhost:9090/article/add", {
-    userInfoId: 1,
+    userInfoId: userId,
     title: title,
     content: content,
     tags: tags,
@@ -22,6 +20,7 @@ export const addArticle = async (
 // いいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
 // cookieにいいねしたidを保存
 export const changeLikeStatus = async (
+  userId: number,
   articleId: number,
   likeCount: number,
   articleLikeFlag: boolean
@@ -29,17 +28,15 @@ export const changeLikeStatus = async (
   if (!articleLikeFlag) {
     // (userInfoIdを取得する)
     await axios.post("http://localhost:9090/article/like", {
-      userInfoId: 1,
-      articleId: 1,
+      userInfoId: userId,
+      articleId: articleId,
     });
-    cookies.set(`idLikeFlag/${articleId}`, `${likeCount + 1}`);
     return likeCount + 1;
   } else {
     await axios.post("http://localhost:9090/article/removeLike", {
-      userInfoId: 1,
-      articleId: 1,
+      userInfoId: userId,
+      articleId: articleId,
     });
-    cookies.remove(`idLikeFlag/${articleId}`);
     return likeCount - 1;
   }
 };

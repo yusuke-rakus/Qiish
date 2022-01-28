@@ -6,7 +6,7 @@ import { ArticleDetail } from "../components/organisms";
 import { useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
 import { deleteArticleById } from "../pages/api/deleteData";
-// import { fetchArticle } from "../pages/api/fetchData";
+import { getCookie } from "../pages/cookie/handleCookie";
 
 const Article: React.FC = () => {
   const router = useRouter();
@@ -17,10 +17,14 @@ const Article: React.FC = () => {
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
   const [editFlag, setEditFlag] = useToggle(false);
 
+  // cookieからuid取得(Number型に変換)
+  const userId = Number(getCookie());
+
   // 現状はuid１がuid1にフォローする処理
   // 永続化のためにcookieにarticlelikeFlagを立てる
   const changeArticleLike = async () => {
     const addedLike = await changeLikeStatus(
+      userId,
       data.article.id,
       likeCount,
       articleLikeFlag

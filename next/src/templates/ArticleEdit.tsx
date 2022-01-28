@@ -9,7 +9,7 @@ import { editArticle } from "../pages/api/editData";
 type Props = {
   article: {
     id: number;
-    userInfoId: 1;
+    userInfoId: number;
     title: string;
     content: string;
     postedDate: string;

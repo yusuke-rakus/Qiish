@@ -6,6 +6,7 @@ import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { addArticle } from "../pages/api/addData";
 import { useRouter } from "next/router";
+import { getCookie } from "../pages/cookie/handleCookie";
 
 const ArticleAdd: React.FC = () => {
   // カスタムフック使用(Text)
@@ -17,12 +18,14 @@ const ArticleAdd: React.FC = () => {
   const [previewFlag, setPreviewFlag] = useToggle(true);
   const [error, SetError] = useState("");
   const router = useRouter();
+  // cookieからuid取得(Number型に変換)
+  const userId = Number(getCookie());
 
   // 通信成功。タグの問題とユーザーIDを解決する。
   // success: 記事が保存されて記事一覧表示  fail: エラーメッセージ表示(未実装)
   const onAddArticle = async () => {
     try {
-      const res = await addArticle(title, content, tags);
+      const res = await addArticle(userId, title, content, tags);
       if (res.status === 200) {
         alert("記事投稿成功しました。記事一覧へ戻ります。");
         router.push("/");
