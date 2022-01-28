@@ -6,7 +6,7 @@ import { ArticleDetail } from "../components/organisms";
 import { useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
 import { deleteArticleById } from "../pages/api/deleteData";
-import { getCookie } from "../pages/cookie/handleCookie";
+import getCookie from "../hooks/cookie/handleCookie";
 
 const Article: React.FC = () => {
   const router = useRouter();

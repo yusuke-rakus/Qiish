@@ -2,7 +2,7 @@ import Router from "next/router";
 import axios from "axios";
 import { message } from "antd";
 import { ChangeEvent, useState } from "react";
-import { getCookie, settingUserId } from "./cookie/handleCookie";
+import getCookie, { settingUserId } from "../hooks/cookie/handleCookie";
 
 const goToReissue = () => {
   Router.push("/reissuePassword");

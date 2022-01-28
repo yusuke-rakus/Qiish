@@ -1,8 +1,9 @@
 import React from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { Profile } from "../templates";
 import { fetchProfile } from "./api/fetchData";
+import getCookie from "../hooks/cookie/handleCookie";
 
 type Props = {
   [key: string]: object;
@@ -18,11 +19,12 @@ const ProfilePage: React.FC<Props> = ({ fallback }) => {
 
 export default ProfilePage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  // プロフィール情報取得のAPI
-  const userInfoId = "1";
-  const profile = await fetchProfile(userInfoId);
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const userId = getCookie(ctx);
+  // console.log("userId: " + userId);
+  // console.log(ctx);
 
+  const profile = await fetchProfile(userId);
   return {
     props: {
       fallback: {

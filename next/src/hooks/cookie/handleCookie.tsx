@@ -1,14 +1,14 @@
 import { parseCookies, setCookie, destroyCookie } from "nookies";
-import { NextPageContext } from "next";
 
 // cookieからデータを取得
-export const getCookie = (ctx?: NextPageContext): string => {
+const getCookie = (ctx?: any) => {
   const cookie = parseCookies(ctx);
 
   //クッキーに設定したUserIdを取得して出力（確認できたら削除）
   console.log(cookie.userId);
   return cookie.userId;
 };
+export default getCookie;
 
 // ユーザーIDをCookiesに設定する
 export const settingUserId = (userId: number) => {

@@ -1,11 +1,9 @@
 import axios from "axios";
 
 // プロフィール情報取得のAPI
-export const fetchProfile = async (
-  userInfoId: string | string[] | undefined
-) => {
+export const fetchProfile = async (userId: string) => {
   const res = await axios.get(
-    `http://localhost:9090/userPage?userInfoId=${userInfoId}`
+    `http://localhost:9090/userPage?userInfoId=${userId}`
   );
   return res.data;
 };
