@@ -26,7 +26,9 @@ public class TopPageService {
 			if (userInfoId != null) {
 				res.setUserInfo(topPageMapper.getUserInfoImage(userInfoId));
 			}
-			res.setArticleList(topPageMapper.getArticleList());
+			
+			// 引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
+			res.setArticleList(topPageMapper.getArticleList(1));
 			res.setTags(topPageMapper.getTags());
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
@@ -39,11 +41,22 @@ public class TopPageService {
 	public SearchResponse searchKeyword(List<String> keywordList) {
 		SearchResponse res = new SearchResponse();
 		try {
-//			List<Article> articleList = Stream
-//					.concat(topPageMapper.searchKeywordFromTitle(keywordList).stream(),
-//							topPageMapper.searchKeywordFromContent(keywordList).stream())
-//					.distinct().collect(Collectors.toList());
-			List<Article> articleList = topPageMapper.searchKeywordFromTitle(keywordList);
+			
+			// 第２引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
+			List<Article> articleList = topPageMapper.searchKeywordFromTitle(keywordList, null);
+			res.setArticleList(articleList);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** タグ検索 */
+	public SearchResponse searchTagId(Integer tagId) {
+		SearchResponse res = new SearchResponse();
+		try {
+			// 第２引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
+			List<Article> articleList = topPageMapper.searchWidhTagId(tagId, null);
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());

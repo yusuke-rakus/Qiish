@@ -17,7 +17,7 @@ import com.example.service.TopPageService;
 public class TopPageController {
 	@Autowired
 	private TopPageService topPageService;
-	
+
 	/** 記事一覧取得 */
 	@GetMapping("")
 	public TopPageResponse topPage(Integer userInfoId) {
@@ -29,5 +29,11 @@ public class TopPageController {
 	public SearchResponse searchKeyword(String keyword) {
 		List<String> keywordList = Arrays.asList(keyword.split(" "));
 		return topPageService.searchKeyword(keywordList);
+	}
+
+	/** タグ検索 */
+	@GetMapping("/searchTag")
+	public SearchResponse searchTag(Integer tag) {
+		return topPageService.searchTagId(tag);
 	}
 }

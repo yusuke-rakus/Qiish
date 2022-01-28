@@ -14,6 +14,7 @@ public class Article {
 	private List<UserInfo> lieksUserList;
 	private Integer likesCount;
 	private List<Comment> comments;
+	private Integer likeStatus;
 
 	public Integer getId() {
 		return id;
@@ -71,6 +72,14 @@ public class Article {
 		this.lieksUserList = lieksUserList;
 	}
 
+	public Integer getLikesCount() {
+		return likesCount;
+	}
+
+	public void setLikesCount(Integer likesCount) {
+		this.likesCount = likesCount;
+	}
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -79,18 +88,19 @@ public class Article {
 		this.comments = comments;
 	}
 
-	public Integer getLikesCount() {
-		return likesCount;
+	public Integer getLikeStatus() {
+		return likeStatus;
 	}
-	public void setLikesCount(Integer likesCount) {
-		this.likesCount = likesCount;
+
+	public void setLikeStatus(Integer likeStatus) {
+		this.likeStatus = likeStatus;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
 				+ ", postedDate=" + postedDate + ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList
-				+ ", likesCount=" + likesCount + ", comments=" + comments + "]";
+				+ ", likesCount=" + likesCount + ", comments=" + comments + ", likeStatus=" + likeStatus + "]";
 	}
 
 }

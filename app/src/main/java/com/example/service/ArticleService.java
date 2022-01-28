@@ -124,7 +124,10 @@ public class ArticleService {
 	public ArticleDetailResponse articleDetail(Integer articleId) {
 		ArticleDetailResponse res = new ArticleDetailResponse();
 		try {
-			res.setArticle(articleMapper.articleDetail(articleId));
+			
+			// 第２引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
+			res.setArticle(articleMapper.articleDetail(articleId, 3));
+			
 			articleMapper.updateVisitedCount(articleId);
 			res.setPostedUser(userMapper.getPostedUser(articleId));
 		} catch (Exception e) {
