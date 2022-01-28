@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.common.Status;
 import com.example.domain.Article;
+import com.example.form.TopPageForm;
 import com.example.mapper.TopPageMapper;
 import com.example.response.SearchResponse;
 import com.example.response.TopPageResponse;
@@ -20,15 +21,13 @@ public class TopPageService {
 	private TopPageMapper topPageMapper;
 
 	/** 記事一覧取得 */
-	public TopPageResponse topPage(Integer userInfoId) {
+	public TopPageResponse topPage(TopPageForm form) {
 		TopPageResponse res = new TopPageResponse();
 		try {
-			if (userInfoId != null) {
-				res.setUserInfo(topPageMapper.getUserInfoImage(userInfoId));
+			if (form.getGuestId() != null) {
+				res.setUserInfo(topPageMapper.getUserInfoImage(form.getGuestId()));
 			}
-			
-			// 引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
-			res.setArticleList(topPageMapper.getArticleList(1));
+			res.setArticleList(topPageMapper.getArticleList(form.getGuestId()));
 			res.setTags(topPageMapper.getTags());
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
@@ -38,12 +37,13 @@ public class TopPageService {
 	}
 
 	/** キーワード検索 */
-	public SearchResponse searchKeyword(List<String> keywordList) {
+	public SearchResponse searchKeyword(TopPageForm form) {
 		SearchResponse res = new SearchResponse();
 		try {
-			
-			// 第２引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
-			List<Article> articleList = topPageMapper.searchKeywordFromTitle(keywordList, null);
+			List<Article> articleList = topPageMapper.searchKeywordFromTitle(form.getKeyword(), form.getGuestId());
+			if (articleList.isEmpty()) {
+				throw new NullPointerException();
+			}
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
@@ -52,15 +52,16 @@ public class TopPageService {
 	}
 
 	/** タグ検索 */
-	public SearchResponse searchTagId(Integer tagId) {
+	public SearchResponse searchTagId(TopPageForm form) {
 		SearchResponse res = new SearchResponse();
 		try {
-			// 第２引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
-			List<Article> articleList = topPageMapper.searchWidhTagId(tagId, null);
+			List<Article> articleList = topPageMapper.searchWidhTagId(form.getTagId(), form.getGuestId());
+			if (articleList.isEmpty()) {
+				throw new NullPointerException();
+			}
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
-			e.printStackTrace();
 		}
 		return res;
 	}

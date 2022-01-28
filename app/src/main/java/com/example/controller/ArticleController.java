@@ -3,13 +3,13 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.ArticleCommentForm;
+import com.example.form.ArticleDetailForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleIdFrom;
 import com.example.form.ArticleLikeForm;
@@ -69,9 +69,9 @@ public class ArticleController {
 	}
 
 	/** 記事情報取得 */
-	@GetMapping("")
-	public ArticleDetailResponse ArticleDetail(Integer articleId) {
-		return articleService.articleDetail(articleId);
+	@PostMapping("")
+	public ArticleDetailResponse ArticleDetail(@RequestBody ArticleDetailForm form) {
+		return articleService.articleDetail(form);
 	}
 
 	/** 記事削除 */

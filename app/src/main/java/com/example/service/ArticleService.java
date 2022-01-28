@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.Objects;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.common.Status;
 import com.example.domain.Article;
+import com.example.domain.UserInfo;
 import com.example.form.ArticleCommentForm;
+import com.example.form.ArticleDetailForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
@@ -121,15 +125,17 @@ public class ArticleService {
 	}
 
 	/** 記事詳細 */
-	public ArticleDetailResponse articleDetail(Integer articleId) {
+	public ArticleDetailResponse articleDetail(ArticleDetailForm form) {
 		ArticleDetailResponse res = new ArticleDetailResponse();
 		try {
-			
-			// 第２引数にguestId(ログインしていない、つまりCookieがnullの状態の場合likeStatusはnullで返却される)
-			res.setArticle(articleMapper.articleDetail(articleId, null));
-			
-			articleMapper.updateVisitedCount(articleId);
-			res.setPostedUser(userMapper.getPostedUser(articleId));
+			Article article = articleMapper.articleDetail(form.getArticleId(), form.getGuestId());
+			if (Objects.isNull(article)) {
+				throw new NullPointerException();
+			}
+			res.setArticle(article);
+			articleMapper.updateVisitedCount(form.getArticleId());
+			UserInfo postedUser = userMapper.getPostedUser(form.getArticleId());
+			res.setPostedUser(postedUser);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
