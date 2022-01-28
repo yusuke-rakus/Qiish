@@ -2,6 +2,7 @@ import Router from "next/router";
 import axios from "axios";
 import { message } from "antd";
 import { ChangeEvent, useState } from "react";
+import { getCookie, settingUserId } from "./cookie/handleCookie";
 
 const goToReissue = () => {
   Router.push("/reissuePassword");
@@ -18,8 +19,6 @@ const LoginUser: React.FC = () => {
   // テキストボックス入力時に入力内容をStateに設定
   const onChangePassword = (e: ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
-  // エラーメッセージ
-  const [errorMessage, setErrorMessage] = useState<string>("");
 
   // ログイン処理
   const login = async () => {
@@ -28,19 +27,22 @@ const LoginUser: React.FC = () => {
       password: password,
     });
 
-    // //コンソールに入力値・レスポンスデータを出力（確認出来たら削除する）
+    // ユーザーIDをCookieに設定
+    settingUserId(res.data.userId);
+
+    //コンソールに入力値・レスポンスデータを出力（確認出来たら削除する）
     // console.log(mailAddress);
     // console.log(password);
-    // console.log(res);
+    // console.log(res.data.userId);
+
+    // ユーザーIDをCookieから取得
+    getCookie();
 
     //error(ログイン失敗):エラーメッセージ表示 /success(ログイン成功):ホーム画面に遷移
     if (res.data.status == "error") {
-      setErrorMessage("ログインに失敗しました");
+      message.info(`ログインに失敗しました!`);
     } else {
-      message.info(
-        `ログイン成功! E-mail:${mailAddress}/パスワード:${password}`
-      );
-      setErrorMessage("");
+      message.info(`ログインに成功しました!`);
       Router.push("/");
     }
   };
@@ -74,7 +76,6 @@ const LoginUser: React.FC = () => {
       >
         ログイン
       </button>
-      <div className="font-thin text-sm text-red-600">{errorMessage}</div>
     </div>
   );
 };
