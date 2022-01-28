@@ -45,8 +45,8 @@ public interface ArticleMapper {
 	public void articleTagsDelete(Integer articleId);
 
 	/** 記事詳細 */
-	public Article articleDetail(Integer articleId);
-	
+	public Article articleDetail(@Param("articleId") Integer articleId, @Param("userInfoId") Integer userInfoId);
+
 	/** 訪問回数更新 */
 	public void updateVisitedCount(Integer articleId);
 

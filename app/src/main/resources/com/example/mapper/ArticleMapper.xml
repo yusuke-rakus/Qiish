@@ -85,6 +85,7 @@
 		<result property="title" column="a_title"></result>
 		<result property="content" column="a_content"></result>
 		<result property="postedDate" column="a_posted_date"></result>
+		<result property="likeStatus" column="like_status"></result>
 		<collection property="comments"
 			ofType="com.example.domain.Comment">
 			<result property="comment" column="c_comment"></result>
@@ -121,6 +122,7 @@
 			c.user_info_id AS c_user_info_id, 
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
+			(SELECT COALESCE(l.user_info_id = #{userInfoId}, '0') FROM likes) AS like_status,
 			(SELECT COUNT(*) FROM comment_likes WHERE comment_likes.comments_id = c.id) AS c_likes_count,
 			(SELECT tags.id FROM tags WHERE at.tag_id = tags.id) AS tag_id,
 			(SELECT tags.skill FROM tags WHERE at.tag_id = tags.id) AS tag_name,

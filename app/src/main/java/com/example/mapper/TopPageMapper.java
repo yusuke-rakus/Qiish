@@ -13,7 +13,7 @@ import com.example.domain.UserInfo;
 public interface TopPageMapper {
 
 	/** 記事一覧 */
-	public List<Article> getArticleList();
+	public List<Article> getArticleList(@Param("guestId") Integer guestId);
 
 	/** タグ一覧 */
 	public List<Tag> getTags();
@@ -22,9 +22,10 @@ public interface TopPageMapper {
 	public UserInfo getUserInfoImage(Integer userInfoId);
 
 	/** タイトルからキーワード検索 */
-	public List<Article> searchKeywordFromTitle(@Param("wordList") List<String> wordList);
+	public List<Article> searchKeywordFromTitle(@Param("wordList") List<String> wordList,
+			@Param("guestId") Integer guestId);
 
-	/** コンテンツからキーワード検索 */
-	public List<Article> searchKeywordFromContent(@Param("wordList") List<String> wordList);
+	/** タグ検索 */
+	public List<Article> searchWidhTagId(@Param("tagId") Integer tagId, @Param("guestId") Integer guestId);
 
 }

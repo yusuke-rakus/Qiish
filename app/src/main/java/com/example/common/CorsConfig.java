@@ -24,6 +24,7 @@ public class CorsConfig {
 		config.setAllowedMethods(Arrays.asList("GET", "POST"));
 		config.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
 		config.addExposedHeader("*");
+		config.addExposedHeader("Set-Cookie");
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", config);
