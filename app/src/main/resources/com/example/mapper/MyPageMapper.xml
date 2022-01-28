@@ -11,6 +11,7 @@
 	<resultMap type="com.example.domain.UserInfo" id="userInfo">
 		<id column="user_info_id" property="id"/>
 		<result column="user_name" property="userName"/>
+		<result column="email" property="email"/>
  		<result column="engineer_type" property="engineerType"/>
  		<result column="image" property="image"/>
 		<result column="description" property="description"/>
@@ -23,13 +24,9 @@
 	<!-- マイページ表示 -->
 	<select id="myPage" resultMap="userInfo">
 		SELECT DISTINCT
-			u.id AS user_info_id, 
-			u.user_name, 
-			u.engineer_type, 
-			u.image, 
-			u.description,
-			t.id AS tag_id,
-			t.skill,
+			u.id AS user_info_id, u.user_name, u.email, 
+			u.engineer_type, u.image, u.description,
+			t.id AS tag_id,t.skill,
 			(SELECT COUNT(follow_user_info_id) FROM follow WHERE user_info_id = u.id) AS follow_count,
 			(SELECT COUNT(user_info_id) FROM follow WHERE follow_user_info_id = u.id) AS follower_count,
 			(SELECT COUNT(id) FROM articles WHERE user_info_id = u.id) AS article_count

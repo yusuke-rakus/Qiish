@@ -901,7 +901,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="CKPKtKCXPZkH5LKK1Fu8-13" value="userInfo" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="CKPKtKCXPZkH5LKK1Fu8-5" vertex="1">
-                    <mxGeometry x="20" y="160" width="180" height="309.9999999999999" as="geometry"/>
+                    <mxGeometry x="20" y="160" width="180" height="339.9999999999999" as="geometry"/>
                 </mxCell>
                 <mxCell id="CKPKtKCXPZkH5LKK1Fu8-14" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="CKPKtKCXPZkH5LKK1Fu8-13" vertex="1">
                     <mxGeometry y="30" width="180" height="30" as="geometry"/>

@@ -27,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -36,11 +36,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // undefindの可能性があるためparamsをoptionalにした
   const article = await fetchArticle(params?.id);
 
+  // revalidate追加でISRを実現
   return {
     props: {
       fallback: {
         "/article": article,
       },
     },
+    revalidate: 1,
   };
 };

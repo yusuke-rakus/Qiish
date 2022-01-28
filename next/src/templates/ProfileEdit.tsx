@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../const/Tags";
-import axios from "axios";
 import { useTextState, useSelectState } from "../hooks";
 import { editUserInfo } from "../pages/api/editData";
 import { useRouter } from "next/router";
@@ -49,8 +48,8 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
     }
     return initialTags;
   });
-  const [error, SetError] = useState("");
 
+  // ユーザー情報編集の処理
   const onSubmitEditUser = async () => {
     try {
       const res = await editUserInfo(
@@ -64,10 +63,9 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
       if (res.data.status === "success") {
         alert("ユーザー情報編集に成功しました。プロフィール画面へ戻ります。");
         router.push("/profile");
-        console.dir(res);
       }
     } catch (error) {
-      SetError("ユーザー情報編集に失敗しました。");
+      console.log(error);
     }
   };
 

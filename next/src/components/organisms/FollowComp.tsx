@@ -4,16 +4,26 @@ import { ProfileRectangle } from ".";
 type Props = {
   followText: string;
   user_info_datas: {
-    user_info_id: number;
-    user_name: string;
+    id: number;
+    userName: string;
     email: string;
     engineer_type: string;
-    comment: string;
-    skill_tags: {
+    description: string;
+    tags: {
       user_info_id: number;
       skill_id: number;
       skill_name: string;
     }[];
+    articleCount: number;
+    articles: number;
+    comments: string;
+    engineerType: string;
+    follow: string;
+    followCount: number;
+    follower: string;
+    followerCount: number;
+    image: string;
+    likes: number;
   }[];
   usrFollowFlag: boolean;
   changeUsrFollow: () => void;
@@ -33,8 +43,8 @@ const FollowComp: React.FC<Props> = ({
           {user_info_datas.map((user_info_data) => {
             return (
               <ProfileRectangle
-                key={user_info_data.user_info_id}
-                user_info_data={user_info_data}
+                key={user_info_data.id}
+                user_data={user_info_data}
                 usrFollowFlag={usrFollowFlag}
                 changeUsrFollow={changeUsrFollow}
               />
