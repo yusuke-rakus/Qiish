@@ -20,3 +20,17 @@ export const settingUserId = (userId: number) => {
   // クッキーに設定したUserIdを削除する処理
   // destroyCookie(null, "userId");
 };
+
+// 記事投稿者のIdをCookieから取得する処理
+export const getArticleUserId = (ctx?: any) => {
+  const cookie = parseCookies(ctx);
+  return cookie.articleUserId;
+};
+// 記事投稿者のIdをCookieに保存する処理
+export const setArticleUserId = (userId: number) => {
+  // Set
+  setCookie(null, "articleUserId", String(userId), {
+    // 60秒 * 60 秒 * 24 で一日間保存
+    maxAge: 24 * 60 * 60,
+  });
+};

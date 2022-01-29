@@ -6,7 +6,7 @@ import { ArticleDetail } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
 import { deleteArticleById } from "../pages/api/deleteData";
-import getCookie from "../hooks/cookie/handleCookie";
+import getCookie, { setArticleUserId } from "../hooks/cookie/handleCookie";
 import { editArticle } from "../pages/api/editData";
 
 const Article: React.FC = () => {
@@ -31,6 +31,9 @@ const Article: React.FC = () => {
   const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
   const [editFlag, setEditFlag] = useToggle(false);
+
+  // cookieに投稿者のidを追加
+  setArticleUserId(data.postedUser.id);
 
   // cookieからuid取得(Number型に変換)
   const userId = Number(getCookie());
