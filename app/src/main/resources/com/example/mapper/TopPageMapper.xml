@@ -7,6 +7,12 @@
 		<result column="skill" property="skill" />
 		<result column="tag_image" property="image" />
 	</resultMap>
+	
+	<resultMap type="com.example.domain.UserInfo" id="userInfo">
+		<id column="user_info_id" property="id"/>
+		<result column="user_name" property="userName"/>
+ 		<result column="image" property="image"/>
+	</resultMap>
 
 	<resultMap type="com.example.domain.Article" id="articleList">
 		<id column="article_id" property="id" />
@@ -15,6 +21,7 @@
 		<result column="posted_date" property="postedDate" />
 		<result column="likes_count" property="likesCount" />
 		<result column="like_status" property="likeStatus" />
+		<association property="userInfo" resultMap="userInfo" />
 		<collection property="articleTags" resultMap="tag" />
 	</resultMap>
 
@@ -29,12 +36,15 @@
 			t.skill, 
 			t.image AS tag_image,
 			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count,
-			(SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id) AS like_status
+			(SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id) AS like_status, 
+			u.id AS user_info_id, u.user_name, u.image
 		FROM articles AS a
 		LEFT JOIN article_tags AS at 
 		ON at.article_id = a.id
 		LEFT JOIN tags AS t 
-		ON at.tag_id = t.id
+		ON at.tag_id = t.id 
+		LEFT JOIN user_info AS u
+		ON a.user_info_id = u.id 
 		ORDER BY visited_count DESC;
 	</select>
 
