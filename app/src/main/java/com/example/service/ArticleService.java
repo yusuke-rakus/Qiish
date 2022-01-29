@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.example.common.Status;
 import com.example.domain.Article;
@@ -93,7 +94,9 @@ public class ArticleService {
 		BeanUtils.copyProperties(form, article);
 		try {
 			articleMapper.articlePost(article);
-			articleMapper.articleTagsPost(article.getId(), form.getTags());
+			if (!CollectionUtils.isEmpty(form.getTags())) {
+				articleMapper.articleTagsPost(article.getId(), form.getTags());
+			}
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -133,7 +136,7 @@ public class ArticleService {
 				throw new NullPointerException();
 			}
 			res.setArticle(article);
-			if(form.getArticleId() != form.getGuestId()) {				
+			if (form.getArticleId() != form.getGuestId()) {
 				articleMapper.updateVisitedCount(form.getArticleId());
 			}
 			UserInfo postedUser = userMapper.getPostedUser(form.getArticleId());
