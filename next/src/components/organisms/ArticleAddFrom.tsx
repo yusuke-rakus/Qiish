@@ -78,7 +78,7 @@ const ArticleAddFrom: React.FC<Props> = ({
                 rules={[{ required: true, message: "記事が空欄です" }]}
               >
                 <TextArea
-                  placeholder="この読書の目的は「知ること」ではなく、「行動すること」"
+                  placeholder="マークダウン記法で記述してください"
                   autoSize={{ minRows: 5 }}
                   bordered={false}
                   onChange={Fnc.setContent}

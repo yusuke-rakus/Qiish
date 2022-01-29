@@ -3,19 +3,35 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import { ArticleEdit, Comments } from ".";
 import { ArticleDetail } from "../components/organisms";
-import { useToggle } from "../hooks";
+import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
 import { deleteArticleById } from "../pages/api/deleteData";
 import getCookie from "../hooks/cookie/handleCookie";
+import { editArticle } from "../pages/api/editData";
 
 const Article: React.FC = () => {
   const router = useRouter();
   // 記事詳細データ取得
-  let { data } = useSWR("/article");
-  console.dir(data);
+  const { data } = useSWR("/article");
 
-  const [likeCount, setlikeCount] = useState(1);
-  // const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
+  //edit用ステート
+  // カスタムフック使用(Text)
+  const [title, setTitle] = useTextState(data.article.title);
+  const [content, setContent] = useTextState(data.article.content);
+  // カスタムフック使用(Select)
+  const [tags, setTags] = useSelectState(() => {
+    const initialTags = [];
+    for (const tag of data.article.articleTags) {
+      initialTags.push(tag.id);
+    }
+    return initialTags;
+  });
+  // useEffect(() => {
+  //   const skillTags = fetch("http://localhost:9090/").then((res) => res);
+  //   console.log("skillTags" + skillTags);
+  // });
+
+  const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
   const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
   const [editFlag, setEditFlag] = useToggle(false);
@@ -53,15 +69,41 @@ const Article: React.FC = () => {
       alert("記事を削除できませんでした。");
     }
   };
+  // 通信成功。タグの問題とユーザーIDを解決する。
+  // success: 記事が保存されて記事一覧表示  fail: アラート表示
+  const onEditArticle = async () => {
+    try {
+      const res = await editArticle(data.article.id, title, content, tags);
+      if (res.status === 200) {
+        setEditFlag();
+      }
+    } catch (error) {
+      alert("記事編集に失敗しました");
+    }
+  };
+
+  const article = {
+    id: data.article.id,
+    title: title,
+    content: content,
+    postedDate: data.article.postedDate,
+  };
+  const editFunc = { setTitle, setContent, setTags, onEditArticle };
 
   return (
     <div className="h-full">
       {editFlag ? (
-        <ArticleEdit article={data.article} setEditFlag={setEditFlag} />
+        <ArticleEdit
+          article={article}
+          articleTagsNum={tags}
+          editFunc={editFunc}
+          setEditFlag={setEditFlag}
+        />
       ) : (
         <React.Fragment>
           <ArticleDetail
-            article={data.article}
+            article={article}
+            articleTags={data.article.articleTags}
             postedUser={data.postedUser}
             likeCount={likeCount}
             articleLikeFlag={articleLikeFlag}

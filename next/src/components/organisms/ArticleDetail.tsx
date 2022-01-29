@@ -7,31 +7,12 @@ import { Dropdown, Menu } from "antd";
 
 type Props = {
   article: {
-    id: number;
-    userInfoId: number;
+    id: any;
     title: string;
     content: string;
-    postedDate: string;
-    articleTags: { id: number; skill: string; image?: string }[];
-    lieksUserList: {
-      id: number;
-      userName: string;
-      email: string;
-      engineerType: string;
-      description: string;
-      image?: string;
-      follow: number;
-      followCount: number;
-      follower: number;
-      followerCount: number;
-      tags: string;
-      articles: number;
-      articleCount: number;
-      likes: number;
-      comments: number;
-    }[];
-    likesCount: number;
+    postedDate: any;
   };
+  articleTags: { id: number; skill: string; image: number }[];
   postedUser: {
     id: number;
     userName: string;
@@ -60,6 +41,7 @@ type Props = {
 
 const ArticleDetail: React.FC<Props> = ({
   article,
+  articleTags,
   postedUser,
   likeCount,
   articleLikeFlag,
@@ -114,7 +96,7 @@ const ArticleDetail: React.FC<Props> = ({
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
             {/* idがnullになっているため、keyはskill名で代用 */}
-            {article.articleTags.map((tag) => {
+            {articleTags.map((tag: any) => {
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
