@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.form.FollowListForm;
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
 import com.example.form.UserFollowForm;
@@ -62,14 +63,15 @@ public class UserController {
 
 	/** フォロー一覧表示 */
 	@PostMapping("/followList")
-	public FollowResponse followList(@RequestBody UserFollowForm form) {
-		return userService.followList(form.getUserInfoId());
+	public FollowResponse followList(@RequestBody FollowListForm form) {
+		System.out.println(form);
+		return userService.followList(form);
 	}
 
 	/** フォロワー一覧表示 */
 	@PostMapping("/followerList")
-	public FollowResponse followerList(@RequestBody UserFollowForm form) {
-		return userService.followerList(form.getUserInfoId());
+	public FollowResponse followerList(@RequestBody FollowListForm form) {
+		return userService.followerList(form);
 	}
 
 }

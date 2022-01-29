@@ -74,7 +74,8 @@
 	
 	<!-- フォロー表示 -->
 	<select id="followList" resultType="com.example.domain.UserInfo">
-		SELECT u.id, u.user_name, u.engineer_type, u.image
+		SELECT u.id, u.user_name, u.engineer_type, u.image,
+		COALESCE((SELECT u.id = follow_user_info_id FROM follow WHERE follow_user_info_id = f.follow_user_info_id AND user_info_id = #{guestId}),0) AS follow_status
 		FROM follow as f
 		LEFT JOIN user_info as u ON f.follow_user_info_id = u.id
 		WHERE user_info_id = #{userInfoId};
@@ -82,7 +83,8 @@
 	
 	<!-- フォロワーー表示 -->
 	<select id="followerList" resultType="com.example.domain.UserInfo">
-		SELECT u.id, u.user_name, u.engineer_type, u.image
+		SELECT u.id, u.user_name, u.engineer_type, u.image,
+		COALESCE((SELECT u.id = follow_user_info_id FROM follow WHERE follow_user_info_id = f.user_info_id AND user_info_id = #{guestId}),0) AS follow_status
 		FROM follow as f
 		LEFT JOIN user_info as u ON f.user_info_id = u.id
 		WHERE follow_user_info_id = #{userInfoId};
