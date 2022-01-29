@@ -19,6 +19,7 @@ public class UserInfo {
 	private Integer articleCount;
 	private List<Likes> likes;
 	private List<Comment> comments;
+	private Integer followStatus;
 
 	public Integer getId() {
 		return id;
@@ -140,13 +141,23 @@ public class UserInfo {
 		this.comments = comments;
 	}
 
+	public Integer getFollowStatus() {
+		return followStatus;
+	}
+
+	public void setFollowStatus(Integer followStatus) {
+		this.followStatus = followStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "UserInfo [id=" + id + ", userName=" + userName + ", email=" + email + ", engineerType=" + engineerType
 				+ ", description=" + description + ", image=" + image + ", follow=" + follow + ", followCount="
 				+ followCount + ", follower=" + follower + ", followerCount=" + followerCount + ", tags=" + tags
 				+ ", articles=" + articles + ", articleCount=" + articleCount + ", likes=" + likes + ", comments="
-				+ comments + "]";
+				+ comments + ", followStatus=" + followStatus + "]";
 	}
+
+
 
 }
