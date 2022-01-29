@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 .markdown ol {
-  @apply list-decimal pl-10;
+  @apply list-decimal;
 }
 .markdown ul {
-  @apply list-disc pl-10;
+  @apply list-disc;
 }
 .markdown h4 {
   @apply text-lg border-b border-black my-5;

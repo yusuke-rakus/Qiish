@@ -47,7 +47,7 @@ type Props = {
 const QiitaComp: React.FC<Props> = ({ qiita, isExistProfile }) => {
   return (
     <div className="flex justify-center">
-      <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
+      <div className="m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
         <div className="pb-10 pt-20 px-10 text-2xl font-bold">
           {qiita.title}
         </div>

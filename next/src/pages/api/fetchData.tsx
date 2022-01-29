@@ -5,6 +5,11 @@ export const fetchProfile = async (userId: string) => {
   const res = await axios.get(
     `http://localhost:9090/userPage?userInfoId=${userId}`
   );
+  // const res = await axios.get(
+  //  "http://localhost:9090/userPage", {
+  // guestId: userId
+  // }
+  // );
   return res.data;
 };
 
@@ -21,6 +26,12 @@ export const fetchArticle = async (
   const res = await axios.get(
     `http://localhost:9090/article?articleId=${articleId}`
   );
+  // const res = await axios.get(
+  //   "http://localhost:9090/article", {
+  // articleId: articleId
+  // guestId: userId
+  // }
+  // );
 
   return res.data;
 };
@@ -75,6 +86,7 @@ export const fetchQiita = async (qiitaId: string | string[] | undefined) => {
 export const fetchFollowList = async (userInfoId: number) => {
   const res = await axios.post("http://localhost:9090/user/followList", {
     userInfoId: userInfoId,
+    // guestId: userInfoId,
   });
   return res.data;
 };
@@ -82,6 +94,7 @@ export const fetchFollowList = async (userInfoId: number) => {
 export const fetchFollowerList = async (userInfoId: number) => {
   const res = await axios.post("http://localhost:9090/user/followerList", {
     userInfoId: userInfoId,
+    // guestId: userInfoId,
   });
   return res.data;
 };
