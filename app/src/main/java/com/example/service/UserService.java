@@ -9,6 +9,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.example.common.Status;
 import com.example.domain.UserInfo;
+import com.example.form.FollowListForm;
 import com.example.form.LoginForm;
 import com.example.form.UserEditForm;
 import com.example.form.UserFollowForm;
@@ -98,10 +99,10 @@ public class UserService {
 	}
 
 	/** フォロー一覧表示 */
-	public FollowResponse followList(Integer userInfoId) {
+	public FollowResponse followList(FollowListForm form) {
 		FollowResponse res = new FollowResponse();
 		try {
-			List<UserInfo> followList = userMapper.followList(userInfoId);
+			List<UserInfo> followList = userMapper.followList(form);
 			res.setUserList(followList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
@@ -110,10 +111,10 @@ public class UserService {
 	}
 
 	/** フォロワー一覧表示 */
-	public FollowResponse followerList(Integer userInfoId) {
+	public FollowResponse followerList(FollowListForm form) {
 		FollowResponse res = new FollowResponse();
 		try {
-			List<UserInfo> followerList = userMapper.followerList(userInfoId);
+			List<UserInfo> followerList = userMapper.followerList(form);
 			res.setUserList(followerList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());

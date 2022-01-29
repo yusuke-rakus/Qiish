@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.example.domain.User;
 import com.example.domain.UserInfo;
+import com.example.form.FollowListForm;
 import com.example.form.LoginForm;
 import com.example.form.ResetPasswordForm;
 import com.example.form.UserEditForm;
@@ -45,10 +46,10 @@ public interface UserMapper {
 	public void userRemove(UserFollowForm form);
 
 	/** フォロー表示 */
-	public List<UserInfo> followList(Integer userInfoId);
+	public List<UserInfo> followList(FollowListForm form);
 
 	/** フォロワー表示 */
-	public List<UserInfo> followerList(Integer userInfoId);
+	public List<UserInfo> followerList(FollowListForm form);
 
 	/** 投稿ユーザー */
 	public UserInfo getPostedUser(Integer articleId);
