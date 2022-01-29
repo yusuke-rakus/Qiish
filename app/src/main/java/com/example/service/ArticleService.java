@@ -133,7 +133,9 @@ public class ArticleService {
 				throw new NullPointerException();
 			}
 			res.setArticle(article);
-			articleMapper.updateVisitedCount(form.getArticleId());
+			if(form.getArticleId() != form.getGuestId()) {				
+				articleMapper.updateVisitedCount(form.getArticleId());
+			}
 			UserInfo postedUser = userMapper.getPostedUser(form.getArticleId());
 			res.setPostedUser(postedUser);
 		} catch (Exception e) {
