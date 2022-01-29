@@ -42,18 +42,18 @@ export const changeLikeStatus = async (
 };
 
 // ユーザーフォロー機能
-export const changeFollowStatus = async (usrFollowFlag: boolean) => {
-  if (!usrFollowFlag) {
+export const changeFollowStatus = async (followUserId: boolean) => {
+  if (!followUserId) {
     // (userInfoIdを取得する)
     const res = await axios.post("http://localhost:9090/user/follow", {
       userInfoId: 1,
-      followUserInfoId: 2,
+      followUserId: 2,
     });
     return res;
   } else {
     const res = await axios.post("http://localhost:9090/user/remove", {
       userInfoId: 1,
-      followUserInfoId: 2,
+      followUserId: 2,
     });
     return res;
   }

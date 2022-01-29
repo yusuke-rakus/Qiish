@@ -2,6 +2,7 @@ import axios from "axios";
 import { SelectStateType } from "../../hooks/useInputState";
 
 export const editUserInfo = async (
+  userId: number,
   userName: string,
   email: string,
   description: string,
@@ -9,11 +10,10 @@ export const editUserInfo = async (
   tags: SelectStateType
 ) => {
   const res = await axios.post("http://localhost:9090/user/edit", {
-    userInfoId: 1,
+    userInfoId: userId,
     userName: userName,
     image: null,
     email: email,
-    password: "",
     engineerType: engineerType,
     description: description,
     tags: tags,

@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { FollowerList } from "../templates";
 import { fetchFollowerList } from "./api/fetchData";
-import getCookie from "../hooks/cookie/handleCookie";
+import { getArticleUserId } from "../hooks/cookie/handleCookie";
 
 type Props = {
   [key: string]: object;
@@ -21,7 +21,9 @@ export default FollowerListPage;
 
 // フォローリスト取得の処理
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const userId = Number(getCookie(ctx));
+  const userId = getArticleUserId(ctx);
+  console.log(userId);
+
   const followerList = await fetchFollowerList(userId);
 
   return {

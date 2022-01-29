@@ -1,19 +1,22 @@
 import axios from "axios";
+import getCookie from "../../hooks/cookie/handleCookie";
+// ログインユーザーのIdを取得
+const guestId = getCookie();
 
 // プロフィール情報取得のAPI
-export const fetchProfile = async (userId: string) => {
-  // const res = await axios.get(
-  //   `http://localhost:9090/userPage?userInfoId=${userId}`
-  // );
+export const fetchProfile = async (guestId: string) => {
   const res = await axios.post("http://localhost:9090/userPage", {
-    guestId: userId,
+    userInfoId: guestId,
+    guestId: guestId,
   });
   return res.data;
 };
 
 // 記事一覧情報の取得のAPI
 export const fetchArticleList = async () => {
-  const res = await axios.get("http://localhost:9090");
+  const res = await axios.post(`http://localhost:9090`, {
+    guestId: guestId,
+  });
   return res.data;
 };
 
@@ -21,15 +24,10 @@ export const fetchArticleList = async () => {
 export const fetchArticle = async (
   articleId: string | string[] | undefined
 ) => {
-  const res = await axios.get(
-    `http://localhost:9090/article?articleId=${articleId}`
-  );
-  // const res = await axios.get(
-  //   "http://localhost:9090/article", {
-  // articleId: articleId
-  // guestId: userId
-  // }
-  // );
+  const res = await axios.post("http://localhost:9090/article", {
+    articleId: articleId,
+    guestId: guestId,
+  });
 
   return res.data;
 };
@@ -81,18 +79,41 @@ export const fetchQiita = async (qiitaId: string | string[] | undefined) => {
   return res.data;
 };
 
-export const fetchFollowList = async (userInfoId: number) => {
-  const res = await axios.post("http://localhost:9090/user/followList", {
-    userInfoId: userInfoId,
-    // guestId: userInfoId,
-  });
-  return res.data;
+// フォローリスト取得の処理(記事投稿者IDはオプショナル)
+export const fetchFollowList = async (userInfoId?: string) => {
+  // もし記事投稿者IDがあるなら記事投稿者のフォローリストを取得
+  // もし記事投稿者IDがないならログインユーザーのフォローリストを取得
+  if (userInfoId) {
+    const res = await axios.post("http://localhost:9090/user/followList", {
+      userInfoId: userInfoId,
+      guestId: guestId,
+    });
+    return res.data;
+  } else {
+    // マイプロフィールから直接フォローリストに遷移する場合
+    const res = await axios.post("http://localhost:9090/user/followList", {
+      userInfoId: guestId,
+      guestId: guestId,
+    });
+    return res.data;
+  }
 };
-
-export const fetchFollowerList = async (userInfoId: number) => {
-  const res = await axios.post("http://localhost:9090/user/followerList", {
-    userInfoId: userInfoId,
-    // guestId: userInfoId,
-  });
-  return res.data;
+// フォロワーリスト取得の処理(記事投稿者IDはオプショナル)
+export const fetchFollowerList = async (userInfoId?: string) => {
+  // もし記事投稿者IDがあるなら記事投稿者のフォロワーリストを取得
+  // もし記事投稿者IDがないならログインユーザーのフォロワーリストを取得
+  if (userInfoId) {
+    const res = await axios.post("http://localhost:9090/user/followerList", {
+      userInfoId: userInfoId,
+      guestId: guestId,
+    });
+    return res.data;
+  } else {
+    // マイプロフィールから直接フォロワーリストに遷移する場合
+    const res = await axios.post("http://localhost:9090/user/followerList", {
+      userInfoId: guestId,
+      guestId: guestId,
+    });
+    return res.data;
+  }
 };
