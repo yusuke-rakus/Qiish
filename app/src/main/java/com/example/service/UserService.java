@@ -51,7 +51,6 @@ public class UserService {
 			// user へ insert
 			userMapper.userRegister(form);
 		} catch (Exception e) {
-			e.printStackTrace();
 			res.setStatus(Status.ERROR.getStatus());
 		}
 		return res;
@@ -80,6 +79,9 @@ public class UserService {
 	public Response userFollow(UserFollowForm form) {
 		Response res = new Response();
 		try {
+			if (form.getUserInfoId() == form.getFollowUserInfoId()) {
+				throw new Exception();
+			}
 			userMapper.userFollow(form);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());

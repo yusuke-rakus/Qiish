@@ -36,7 +36,7 @@
 			t.skill, 
 			t.image AS tag_image,
 			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count,
-			(SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id) AS like_status, 
+			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status, 
 			u.id AS user_info_id, u.user_name, u.image
 		FROM articles AS a
 		LEFT JOIN article_tags AS at 
@@ -74,7 +74,7 @@
 			t.skill,
 			t.image AS tag_image,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
-			(SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id) AS like_status
+			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
@@ -98,13 +98,13 @@
 			t.skill,
 			t.image AS tag_image,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
-			(SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id) AS like_status
+			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
 		LEFT OUTER JOIN tags AS t
 		ON at.tag_id = t.id
-		WHERE a.id = (SELECT article_id FROM article_tags WHERE tag_id = #{tagId})
+		WHERE a.id IN ((SELECT article_id FROM article_tags WHERE tag_id = #{tagId}))
 		ORDER BY visited_count DESC;
 	</select>
  
