@@ -28,18 +28,20 @@
 
 	<!-- ユーザー情報の編集 -->
 	<update id="userInfoEdit">
-		UPDATE user_info SET user_name=#{userName},
-		email=#{email},
-		engineer_type=#{engineerType},
-		description=#{description}, image=#{image}
+		UPDATE user_info SET 
+			user_name=#{userName},
+			email=#{email},
+			engineer_type=#{engineerType},
+			description=#{description}, 
+			image=#{image}
 		WHERE id=#{userInfoId};
 	</update>
 
 	<!-- ログイン情報の編集 -->
 	<update id="userEdit">
-		UPDATE user SET email=#{email}, password=#{password}
-		WHERE
-		user_info_id=#{userInfoId};
+		UPDATE user SET 
+			email=#{email}
+		WHERE user_info_id=#{userInfoId};
 	</update>
 
 	<!-- ユーザータグの編集 -->
@@ -60,8 +62,15 @@
 	<!-- フォロー -->
 	<insert id="userFollow"
 		parameterType="com.example.form.UserFollowForm">
-		INSERT INTO follow(user_info_id, follow_user_info_id)
-		VALUES(#{userInfoId}, #{followUserInfoId});
+		INSERT INTO 
+			follow(
+			user_info_id, 
+			follow_user_info_id
+			)
+		VALUES(
+			#{userInfoId}, 
+			#{followUserInfoId}
+			);
 	</insert>
 
 	<!-- フォロー解除 -->
@@ -74,19 +83,27 @@
 	
 	<!-- フォロー表示 -->
 	<select id="followList" resultType="com.example.domain.UserInfo">
-		SELECT u.id, u.user_name, u.engineer_type, u.image,
-		COALESCE((SELECT u.id = follow_user_info_id FROM follow WHERE follow_user_info_id = f.follow_user_info_id AND user_info_id = #{guestId}),0) AS follow_status
-		FROM follow as f
-		LEFT JOIN user_info as u ON f.follow_user_info_id = u.id
+		SELECT 
+			u.id, 
+			u.user_name, 
+			u.engineer_type, 
+			u.image,
+			COALESCE((SELECT u.id = follow_user_info_id FROM follow WHERE follow_user_info_id = f.follow_user_info_id AND user_info_id = #{guestId}),0) AS follow_status
+		FROM follow AS f
+		LEFT JOIN user_info AS u ON f.follow_user_info_id = u.id
 		WHERE user_info_id = #{userInfoId};
 	</select>
 	
 	<!-- フォロワーー表示 -->
 	<select id="followerList" resultType="com.example.domain.UserInfo">
-		SELECT u.id, u.user_name, u.engineer_type, u.image,
-		COALESCE((SELECT u.id = follow_user_info_id FROM follow WHERE follow_user_info_id = f.user_info_id AND user_info_id = #{guestId}),0) AS follow_status
-		FROM follow as f
-		LEFT JOIN user_info as u ON f.user_info_id = u.id
+		SELECT 
+			u.id, 
+			u.user_name, 
+			u.engineer_type, 
+			u.image,
+			COALESCE((SELECT u.id = follow_user_info_id FROM follow WHERE follow_user_info_id = f.user_info_id AND user_info_id = #{guestId}),0) AS follow_status
+		FROM follow AS f
+		LEFT JOIN user_info AS u ON f.user_info_id = u.id
 		WHERE follow_user_info_id = #{userInfoId};
 	</select>
 	
@@ -126,7 +143,10 @@
 	
 	<!-- パスワード再設定(ユーザー検索) -->
 	<select id="resetRequest" resultType="com.example.domain.User">
-		SELECT user_info_id, email FROM user
+		SELECT 
+			user_info_id, 
+			email 
+		FROM user
 		WHERE email = #{email};
 	</select>
 	

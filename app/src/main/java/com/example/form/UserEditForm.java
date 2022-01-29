@@ -15,7 +15,7 @@ public class UserEditForm {
 
 	private Integer userInfoId;
 	@NotBlank
-	@Size(min=1, max=18)
+	@Size(min = 1, max = 18)
 	private String userName;
 	private String image;
 	@NotBlank
@@ -23,8 +23,6 @@ public class UserEditForm {
 	private String email;
 	@NotBlank
 	private String engineerType;
-	@Pattern(regexp = "^(?=.*?[a-zA-Z])(?=.*?\\d)[a-zA-Z\\d]{8,}$")
-	private String password;
 	private String description;
 	private List<Integer> tag;
 
@@ -68,14 +66,6 @@ public class UserEditForm {
 		this.engineerType = engineerType;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -95,8 +85,7 @@ public class UserEditForm {
 	@Override
 	public String toString() {
 		return "UserEditForm [userInfoId=" + userInfoId + ", userName=" + userName + ", image=" + image + ", email="
-				+ email + ", engineerType=" + engineerType + ", password=" + password + ", description=" + description
-				+ ", tag=" + tag + "]";
+				+ email + ", engineerType=" + engineerType + ", description=" + description + ", tag=" + tag + "]";
 	}
 
 }
