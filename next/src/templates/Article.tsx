@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { ArticleEdit, Comments } from ".";
@@ -26,10 +26,6 @@ const Article: React.FC = () => {
     }
     return initialTags;
   });
-  // useEffect(() => {
-  //   const skillTags = fetch("http://localhost:9090/").then((res) => res);
-  //   console.log("skillTags" + skillTags);
-  // });
 
   const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
   const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);

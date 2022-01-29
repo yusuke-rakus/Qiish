@@ -41,21 +41,9 @@ type Props = {
       website_url: string;
     };
   };
-  articleLike: number;
-  articleLikeFlag: boolean;
-  changeArticleLike: () => void;
-  usrFollowFlag: boolean;
-  changeUsrFollow: () => void;
 };
 
-const QiitaComp: React.FC<Props> = ({
-  qiita,
-  articleLike,
-  articleLikeFlag,
-  changeArticleLike,
-  usrFollowFlag,
-  changeUsrFollow,
-}) => {
+const QiitaComp: React.FC<Props> = ({ qiita }) => {
   return (
     <div className="flex justify-center">
       <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
@@ -65,17 +53,9 @@ const QiitaComp: React.FC<Props> = ({
         <div className="pb-2">
           {/* likeCount(Article) */}
           <div className="flex justify-center items-center">
-            <button onClick={changeArticleLike}>
-              {articleLikeFlag ? (
-                <span className="text-orange-500">
-                  <HeartOutlined className="text-2xl" />
-                </span>
-              ) : (
-                <HeartOutlined className="text-2xl" />
-              )}
-            </button>
+            <HeartOutlined className="text-2xl" />
             <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
-              {articleLike}
+              {qiita.likes_count}
             </a>
             &nbsp;
             {/* commentCount(Article) */}
@@ -114,11 +94,7 @@ const QiitaComp: React.FC<Props> = ({
       <div className="w-1/5 mt-8">
         {/* profile(User) */}
 
-        <QiitaProfileSmall
-          user_info_data={qiita.user}
-          usrFollowFlag={usrFollowFlag}
-          changeUsrFollow={changeUsrFollow}
-        />
+        <QiitaProfileSmall user_info_data={qiita.user} />
       </div>
     </div>
   );
