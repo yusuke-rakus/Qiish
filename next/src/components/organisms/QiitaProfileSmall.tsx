@@ -3,7 +3,7 @@ import Image from "next/image";
 
 // FCの型定義
 type Props = {
-  user_info_data: {
+  qiita_user: {
     description: string;
     facebook_id: string;
     followees_count: number;
@@ -23,39 +23,37 @@ type Props = {
   };
 };
 
-const QiitaProfileSmall: React.FC<Props> = ({ user_info_data }) => {
+const QiitaProfileSmall: React.FC<Props> = ({ qiita_user }) => {
   return (
     <div className="w-full p-2 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">
         <div className="text-center font-bold">Qiitaプロフィール</div>
         <hr />
         <div className="mt-2 flex justify-center items-center">
-          <Image
-            className="rounded-full"
-            src={"/img/avatar.jpg"}
-            alt="アバター"
-            width={90}
-            height={90}
-          />
-          <div className="pl-3 text-center">
-            {/* ユーザーネームがなければgithubのユーザーネームを表示 */}
+          <div className="text-center">
+            <Image
+              className="rounded-full"
+              src={"/img/avatar.jpg"}
+              alt="アバター"
+              width={90}
+              height={90}
+            />
+            {/* ユーザーネームがなければgithubのユーザーネームを@付きで表示 */}
             <div>
-              @
-              {user_info_data.github_login_name
-                ? user_info_data.github_login_name
-                : user_info_data.name}
+              {qiita_user.github_login_name
+                ? `@${qiita_user.github_login_name}`
+                : qiita_user.name}
             </div>
-            {!user_info_data.github_login_name && "↑ユーザーネーム"}
           </div>
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black ">
           <div className="flex-grow text-center">
             {/*  */}
-            投稿数 : {user_info_data.items_count}
+            投稿数 : {qiita_user.items_count}
           </div>
         </div>
       </div>
-      <div className="block m-2">{user_info_data.description}</div>
+      <div className="block m-2">{qiita_user.description}</div>
     </div>
   );
 };

@@ -41,9 +41,10 @@ type Props = {
       website_url: string;
     };
   };
+  isExistProfile: boolean;
 };
 
-const QiitaComp: React.FC<Props> = ({ qiita }) => {
+const QiitaComp: React.FC<Props> = ({ qiita, isExistProfile }) => {
   return (
     <div className="flex justify-center">
       <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
@@ -54,9 +55,7 @@ const QiitaComp: React.FC<Props> = ({ qiita }) => {
           {/* likeCount(Article) */}
           <div className="flex justify-center items-center">
             <HeartOutlined className="text-2xl" />
-            <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
-              {qiita.likes_count}
-            </a>
+            <span className="ml-1 text-xl text-black">{qiita.likes_count}</span>
             &nbsp;
             {/* commentCount(Article) */}
             <MessageTwoTone twoToneColor="#f97316" className="text-2xl" />
@@ -85,17 +84,18 @@ const QiitaComp: React.FC<Props> = ({ qiita }) => {
         </div>
         <div className="px-14 pt-6 text-lg">
           {/* content(Article) */}
+          {/* うまくCSS表示できない */}
           <div className="markdown">
             <ReactMarkdown>{qiita.body}</ReactMarkdown>
           </div>
         </div>
       </div>
-
+      {/* 下記でReactDOM.hydrate()のWarningが発生 */}
+      {/* {isExistProfile && ( */}
       <div className="w-1/5 mt-8">
-        {/* profile(User) */}
-
-        <QiitaProfileSmall user_info_data={qiita.user} />
+        <QiitaProfileSmall qiita_user={qiita.user} />
       </div>
+      {/* )} */}
     </div>
   );
 };
