@@ -2,14 +2,12 @@ import axios from "axios";
 
 // プロフィール情報取得のAPI
 export const fetchProfile = async (userId: string) => {
-  const res = await axios.get(
-    `http://localhost:9090/userPage?userInfoId=${userId}`
-  );
   // const res = await axios.get(
-  //  "http://localhost:9090/userPage", {
-  // guestId: userId
-  // }
+  //   `http://localhost:9090/userPage?userInfoId=${userId}`
   // );
+  const res = await axios.post("http://localhost:9090/userPage", {
+    guestId: userId,
+  });
   return res.data;
 };
 
