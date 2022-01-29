@@ -2,12 +2,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import ArticleComp from "../components/organisms/ArticleComp";
+import getCookie from "../hooks/cookie/handleCookie";
 
 const ArticleList: React.FC = () => {
   const [data, setData] = useState([]);
+  const guestId = getCookie();
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios(`http://localhost:9090`);
+      const res = await axios.post(`http://localhost:9090`, {
+        guestId: guestId,
+      });
       console.dir(res.data);
       setData(res.data.articleList);
     };
