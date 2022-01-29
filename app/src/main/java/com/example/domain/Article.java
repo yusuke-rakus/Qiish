@@ -15,6 +15,7 @@ public class Article {
 	private Integer likesCount;
 	private List<Comment> comments;
 	private Integer likeStatus;
+	private UserInfo userInfo;
 
 	public Integer getId() {
 		return id;
@@ -96,11 +97,22 @@ public class Article {
 		this.likeStatus = likeStatus;
 	}
 
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
 				+ ", postedDate=" + postedDate + ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList
-				+ ", likesCount=" + likesCount + ", comments=" + comments + ", likeStatus=" + likeStatus + "]";
+				+ ", likesCount=" + likesCount + ", comments=" + comments + ", likeStatus=" + likeStatus + ", userInfo="
+				+ userInfo + "]";
 	}
+
+
 
 }
