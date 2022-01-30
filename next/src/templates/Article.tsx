@@ -30,7 +30,7 @@ const Article: React.FC = () => {
   // カスタムフック使用(編集用記事タグの格納)
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
 
-  // 記事タグのid,skill,imageを取得
+  // タグのid,skill,imageを取得
   let tagsByNum: any = [];
   const [tagsData, setTagsData] = useState<any>();
   useEffect(() => {

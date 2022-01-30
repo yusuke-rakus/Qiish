@@ -103,6 +103,7 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
               />
             </Form.Item>
             <Form.Item
+              name="tags"
               className="hover:bg-gray-100"
               rules={[{ required: true, message: "使用技術が空欄です" }]}
             >
@@ -110,7 +111,6 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                 mode="multiple"
                 placeholder="使用技術"
                 bordered={false}
-                defaultValue={userData.tagsNum}
                 onChange={Fnc.setTagsNum}
               >
                 {/* フロント、バックエンド、その他のそれぞれの表示 */}

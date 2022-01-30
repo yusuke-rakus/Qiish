@@ -1,30 +1,21 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { SelectStateType } from "../../hooks/useInputState";
 
 // FCの型定義
 type Props = {
   userInfo: {
-    id: number;
     userName: string;
-    email: string;
-    engineerType: string;
+    userImage: string;
+    articleCount: any;
+    engineerType: SelectStateType;
     description: string;
-    image: string;
-    follow: number;
-    followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: {
-      id: number;
-      skill: string;
-      image: null;
-    }[];
-    articles: string;
-    articleCount: number;
-    likes: number;
-    comments: number;
   };
+  tagsByNum: {
+    id: number;
+    skill: string;
+    image: number;
+  }[];
   checkLoginUserFlag: boolean;
   usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
@@ -32,6 +23,7 @@ type Props = {
 
 const ProfileLarge: React.FC<Props> = ({
   userInfo,
+  tagsByNum,
   checkLoginUserFlag,
   usrFollowFlag,
   changeUsrFollow,
@@ -41,10 +33,10 @@ const ProfileLarge: React.FC<Props> = ({
       <div className="m-4">
         <div className="flex justify-center items-center">
           {/* image(User) */}
-          {userInfo.image ? (
+          {userInfo.userImage ? (
             <Image
               className="rounded-full"
-              src={userInfo.image}
+              src={userInfo.userImage}
               alt="アバター"
               width={90}
               height={90}
@@ -98,7 +90,7 @@ const ProfileLarge: React.FC<Props> = ({
         <div className="mt-2">
           {/* tags(User) */}
           <div className="flex justify-center flex-wrap">
-            {userInfo.tags.map((tag) => {
+            {tagsByNum.map((tag) => {
               return (
                 <span
                   className="mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
