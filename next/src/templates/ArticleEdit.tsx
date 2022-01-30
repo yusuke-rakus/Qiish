@@ -16,7 +16,7 @@ type Props = {
   editFunc: {
     setTitle: (e: TextEventType) => void;
     setContent: (e: TextEventType) => void;
-    setTags: (value: React.SetStateAction<SelectStateType>) => void;
+    setTagsNum: (value: React.SetStateAction<SelectStateType>) => void;
     onEditArticle: () => void;
   };
   setEditFlag: () => void;
@@ -34,7 +34,7 @@ const ArticleEdit: React.FC<Props> = ({
   const Fnc = {
     editTitle: editFunc.setTitle,
     editContent: editFunc.setContent,
-    editTags: editFunc.setTags,
+    editTags: editFunc.setTagsNum,
     setPreviewFlag,
     onEditArticle: editFunc.onEditArticle,
   };

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="WP1-JnF1_EIwP2eSbvKK" name="README">
-        <mxGraphModel dx="728" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="350" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="ElkovE41W0XgGfoDvlom-0"/>
                 <mxCell id="ElkovE41W0XgGfoDvlom-1" parent="ElkovE41W0XgGfoDvlom-0"/>
@@ -1197,7 +1197,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="moFUfV7C2xKridbpkabz" name="[表示]記事詳細">
-        <mxGraphModel dx="728" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="694" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="70SzFyUOTGR0VDxFww6b-0"/>
                 <mxCell id="70SzFyUOTGR0VDxFww6b-1" parent="70SzFyUOTGR0VDxFww6b-0"/>
@@ -1776,7 +1776,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="SOgRliJS6SRd5wp_ceIE" name="[表示]フォローリスト">
-        <mxGraphModel dx="728" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="694" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="3FfoBSxUO4B2HBZZIFXl-0"/>
                 <mxCell id="3FfoBSxUO4B2HBZZIFXl-1" parent="3FfoBSxUO4B2HBZZIFXl-0"/>
@@ -2094,7 +2094,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="A9zrqZ7aSPeWX8qEjjn0" name="[表示]タグリストAPI">
-        <mxGraphModel dx="928" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="694" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="26F_FR27lzxl-EfThf8H-0"/>
                 <mxCell id="26F_FR27lzxl-EfThf8H-1" parent="26F_FR27lzxl-EfThf8H-0"/>

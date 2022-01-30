@@ -95,12 +95,12 @@ const ArticleDetail: React.FC<Props> = ({
         <div className="px-10">
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
-            {/* idがnullになっているため、keyはskill名で代用 */}
             {articleTags.map((tag: any) => {
+              // console.log(tag.map((item) => console.log(item)));
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
-                  key={tag.skill}
+                  key={tag.id}
                 >
                   {tag.skill}
                 </span>

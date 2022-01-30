@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { ArticleEdit, Comments } from ".";
@@ -6,8 +6,9 @@ import { ArticleDetail } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
 import { deleteArticleById } from "../pages/api/deleteData";
-import getCookie, { setArticleUserId } from "../hooks/cookie/handleCookie";
+import { setArticleUserId } from "../hooks/cookie/handleCookie";
 import { editArticle } from "../pages/api/editData";
+import axios from "axios";
 
 const Article: React.FC = () => {
   const router = useRouter();
@@ -18,31 +19,45 @@ const Article: React.FC = () => {
   // カスタムフック使用(Text)
   const [title, setTitle] = useTextState(data.article.title);
   const [content, setContent] = useTextState(data.article.content);
-  // カスタムフック使用(Select)
-  const [tags, setTags] = useSelectState(() => {
-    const initialTags = [];
+  // 記事タグの格納
+  const initialTags: number[] = [];
+  useEffect(() => {
     for (const tag of data.article.articleTags) {
       initialTags.push(tag.id);
     }
-    return initialTags;
-  });
+  }, [data.article.articleTags, initialTags]);
+  // カスタムフック使用(編集用記事タグの格納)
+  const [tagsNum, setTagsNum] = useSelectState(initialTags);
+
+  // 記事タグのid,skill,imageを取得
+  let tagsByNum: any = [];
+  const [tagsData, setTagsData] = useState<any>();
+  useEffect(() => {
+    const tagsData = async () => {
+      const res = await axios.get("http://localhost:9090/getTag");
+      setTagsData(res.data.tags);
+    };
+    tagsData();
+  }, []);
+  // 選択した記事タグを配列に格納する処理
+  for (let tagNum of tagsNum) {
+    const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id == tagNum);
+    tagsByNum.push(tagsFilterByTagNum[0]);
+  }
 
   const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
   const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
-  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+  // const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+  const [usrFollowFlag, setUsrFollowFlag] = useToggle(data.article.likeStatus);
   const [editFlag, setEditFlag] = useToggle(false);
 
   // cookieに投稿者のidを追加
   setArticleUserId(data.postedUser.id);
 
-  // cookieからuid取得(Number型に変換)
-  const userId = Number(getCookie());
-
   // 現状はuid１がuid1にフォローする処理
   // 永続化のためにcookieにarticlelikeFlagを立てる
   const changeArticleLike = async () => {
     const addedLike = await changeLikeStatus(
-      userId,
       data.article.id,
       likeCount,
       articleLikeFlag
@@ -55,7 +70,7 @@ const Article: React.FC = () => {
   // 現状はuid１がuid2にフォローする処理
   const usrFollowing = async () => {
     // フォローのデータをDBに保存()
-    await changeFollowStatus(usrFollowFlag);
+    await changeFollowStatus(usrFollowFlag, data.postedUser.id);
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setUsrFollowFlag();
   };
@@ -72,7 +87,7 @@ const Article: React.FC = () => {
   // success: 記事が保存されて記事一覧表示  fail: アラート表示
   const onEditArticle = async () => {
     try {
-      const res = await editArticle(data.article.id, title, content, tags);
+      const res = await editArticle(data.article.id, title, content, tagsNum);
       if (res.status === 200) {
         setEditFlag();
       }
@@ -87,14 +102,14 @@ const Article: React.FC = () => {
     content: content,
     postedDate: data.article.postedDate,
   };
-  const editFunc = { setTitle, setContent, setTags, onEditArticle };
+  const editFunc = { setTitle, setContent, setTagsNum, onEditArticle };
 
   return (
     <div className="h-full">
       {editFlag ? (
         <ArticleEdit
           article={article}
-          articleTagsNum={tags}
+          articleTagsNum={tagsNum}
           editFunc={editFunc}
           setEditFlag={setEditFlag}
         />
@@ -102,7 +117,7 @@ const Article: React.FC = () => {
         <React.Fragment>
           <ArticleDetail
             article={article}
-            articleTags={data.article.articleTags}
+            articleTags={tagsByNum}
             postedUser={data.postedUser}
             likeCount={likeCount}
             articleLikeFlag={articleLikeFlag}
