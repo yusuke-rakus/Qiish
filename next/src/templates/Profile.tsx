@@ -6,10 +6,17 @@ import useSWR from "swr";
 import { ProfileEdit } from "./";
 import { useToggle } from "../hooks";
 import { changeFollowStatus } from "../pages/api/addData";
+import { useLoginChecker } from "../hooks/useLoginChecker";
 
 const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(true);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+
+  // ユーザーのプロフィールデータ
+  const { data, error } = useSWR("/profile");
+
+  // プロフィールがログインユーザーかどうか判別
+  const checkLoginUserFlag = useLoginChecker(data.userInfo.id);
 
   // 現状はuid１がuid2にフォローする処理
   const usrFollowing = async () => {
@@ -18,9 +25,6 @@ const Profile: React.FC = () => {
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setUsrFollowFlag();
   };
-
-  // ユーザーのプロフィールデータ
-  const { data, error } = useSWR("/profile");
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -37,16 +41,19 @@ const Profile: React.FC = () => {
             </Link>
             <ProfileLarge
               userInfo={data.userInfo}
+              checkLoginUserFlag={checkLoginUserFlag}
               usrFollowFlag={usrFollowFlag}
               changeUsrFollow={usrFollowing}
             />
-            <div className="flex justify-end">
-              <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
-                <button type="button" onClick={setEditFlag}>
-                  編集
-                </button>
-              </span>
-            </div>
+            {checkLoginUserFlag && (
+              <div className="flex justify-end">
+                <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
+                  <button type="button" onClick={setEditFlag}>
+                    編集
+                  </button>
+                </span>
+              </div>
+            )}
           </div>
         </div>
       ) : (

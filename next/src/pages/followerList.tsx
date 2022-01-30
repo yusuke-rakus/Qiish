@@ -22,7 +22,6 @@ export default FollowerListPage;
 // フォローリスト取得の処理
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const userId = getArticleUserId(ctx);
-  console.log(userId);
 
   const followerList = await fetchFollowerList(userId);
 

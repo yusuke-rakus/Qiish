@@ -25,19 +25,17 @@ type Props = {
     likes: number;
     comments: number;
   };
+  checkLoginUserFlag: boolean;
   usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
 };
 
 const ProfileLarge: React.FC<Props> = ({
   userInfo,
+  checkLoginUserFlag,
   usrFollowFlag,
   changeUsrFollow,
 }) => {
-  const tagStyle =
-    "mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg";
-  const tagsName = ["フロントエンド", "CSS", "tailwindCSS", "初心者"];
-
   return (
     <div className="w-full p-10 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">
@@ -61,20 +59,25 @@ const ProfileLarge: React.FC<Props> = ({
             />
           )}
           {/* userName(User) */}
+
           <div className="pl-10 text-center">
             <div className="text-xl">@{userInfo.userName}</div>
-            {usrFollowFlag ? (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                  フォロー解除
-                </div>
-              </button>
-            ) : (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                  フォロー
-                </div>
-              </button>
+            {!checkLoginUserFlag && (
+              <span>
+                {usrFollowFlag ? (
+                  <button onClick={changeUsrFollow}>
+                    <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                      フォロー解除
+                    </div>
+                  </button>
+                ) : (
+                  <button onClick={changeUsrFollow}>
+                    <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                      フォロー
+                    </div>
+                  </button>
+                )}
+              </span>
             )}
           </div>
         </div>
@@ -83,20 +86,6 @@ const ProfileLarge: React.FC<Props> = ({
             {/* 記事投稿数 */}
             投稿数
             <div>{userInfo.articleCount}</div>
-          </div>
-          <div className="flex-grow text-center">
-            <Link href={"/followList"}>
-              <a className="text-black hover:text-gray-400">
-                フォロー<div>{userInfo.followCount}</div>
-              </a>
-            </Link>
-          </div>
-          <div className="flex-grow text-center ">
-            <Link href={"/followerList"}>
-              <a className="text-black hover:text-gray-400">
-                フォロワー<div>{userInfo.followerCount}</div>
-              </a>
-            </Link>
           </div>
         </div>
         <div className="text-2xl mt-2 flex justify-center items-center">
@@ -111,7 +100,10 @@ const ProfileLarge: React.FC<Props> = ({
           <div className="flex justify-center flex-wrap">
             {userInfo.tags.map((tag) => {
               return (
-                <span className={tagStyle} key={tag.skill}>
+                <span
+                  className="mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
+                  key={tag.skill}
+                >
                   {tag.skill}
                 </span>
               );

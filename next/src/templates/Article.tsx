@@ -9,6 +9,7 @@ import { deleteArticleById } from "../pages/api/deleteData";
 import { setArticleUserId } from "../hooks/cookie/handleCookie";
 import { editArticle } from "../pages/api/editData";
 import axios from "axios";
+import { useLoginChecker } from "../hooks/useLoginChecker";
 
 const Article: React.FC = () => {
   const router = useRouter();
@@ -44,6 +45,9 @@ const Article: React.FC = () => {
     const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id == tagNum);
     tagsByNum.push(tagsFilterByTagNum[0]);
   }
+
+  // 記事投稿者がログインユーザーかどうか判別
+  const checkLoginUserFlag = useLoginChecker(data.postedUser.id);
 
   const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
   const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
@@ -136,6 +140,7 @@ const Article: React.FC = () => {
             likeCount={likeCount}
             articleLikeFlag={articleLikeFlag}
             changeArticleLike={changeArticleLike}
+            checkLoginUserFlag={checkLoginUserFlag}
             usrFollowFlag={usrFollowFlag}
             changeUsrFollow={usrFollowing}
             setEditFlag={setEditFlag}

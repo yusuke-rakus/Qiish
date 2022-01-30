@@ -25,13 +25,14 @@ type Props = {
     likes: number;
     comments: number;
   };
-
+  checkLoginUserFlag: boolean;
   usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
 };
 
 const ProfileSmall: React.FC<Props> = ({
   user,
+  checkLoginUserFlag,
   usrFollowFlag,
   changeUsrFollow,
 }) => {
@@ -66,19 +67,23 @@ const ProfileSmall: React.FC<Props> = ({
           </Link>
           {/* userName(User) */}
           <div className="pl-3 text-center">
-            {/* <div>@{user.userName}</div> */}
-            {usrFollowFlag ? (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                  フォロー解除
-                </div>
-              </button>
-            ) : (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                  フォロー
-                </div>
-              </button>
+            <div>@{user.userName}</div>
+            {!checkLoginUserFlag && (
+              <span>
+                {usrFollowFlag ? (
+                  <button onClick={changeUsrFollow}>
+                    <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                      フォロー解除
+                    </div>
+                  </button>
+                ) : (
+                  <button onClick={changeUsrFollow}>
+                    <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                      フォロー
+                    </div>
+                  </button>
+                )}
+              </span>
             )}
           </div>
         </div>

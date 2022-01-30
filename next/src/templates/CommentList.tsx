@@ -54,7 +54,6 @@ const CommentList: React.FC<Props> = ({ comments }) => {
     setCommentText(e.target.value);
   };
 
-
   return (
     <div className="flex justify-center">
       <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">

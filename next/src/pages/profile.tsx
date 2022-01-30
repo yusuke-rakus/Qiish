@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { Profile } from "../templates";
 import { fetchProfile } from "./api/fetchData";
-import getCookie from "../hooks/cookie/handleCookie";
+import getCookie, { getArticleUserId } from "../hooks/cookie/handleCookie";
 
 type Props = {
   [key: string]: object;
@@ -21,7 +21,7 @@ export default ProfilePage;
 
 // ユーザーIDよりプロフィール情報を取得
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const userId = getCookie(ctx);
+  const userId = getArticleUserId(ctx);
 
   const profile = await fetchProfile(userId);
   return {
