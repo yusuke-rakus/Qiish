@@ -34,3 +34,8 @@ export const setArticleUserId = (userId: number) => {
     maxAge: 24 * 60 * 60,
   });
 };
+
+export const removeArticleUserId = () => {
+  // 削除
+  destroyCookie(null, "articleUserId");
+};

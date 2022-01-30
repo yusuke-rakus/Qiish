@@ -1,52 +1,42 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { SelectStateType } from "../../hooks/useInputState";
 
 // FCの型定義
 type Props = {
   userInfo: {
-    id: number;
     userName: string;
-    email: string;
-    engineerType: string;
+    userImage: string;
+    articleCount: any;
+    engineerType: SelectStateType;
     description: string;
-    image: string;
-    follow: number;
-    followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: {
-      id: number;
-      skill: string;
-      image: null;
-    }[];
-    articles: string;
-    articleCount: number;
-    likes: number;
-    comments: number;
   };
+  tagsByNum: {
+    id: number;
+    skill: string;
+    image: number;
+  }[];
+  checkLoginUserFlag: boolean;
   usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
 };
 
 const ProfileLarge: React.FC<Props> = ({
   userInfo,
+  tagsByNum,
+  checkLoginUserFlag,
   usrFollowFlag,
   changeUsrFollow,
 }) => {
-  const tagStyle =
-    "mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg";
-  const tagsName = ["フロントエンド", "CSS", "tailwindCSS", "初心者"];
-
   return (
     <div className="w-full p-10 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">
         <div className="flex justify-center items-center">
           {/* image(User) */}
-          {userInfo.image ? (
+          {userInfo.userImage ? (
             <Image
               className="rounded-full"
-              src={userInfo.image}
+              src={userInfo.userImage}
               alt="アバター"
               width={90}
               height={90}
@@ -61,20 +51,25 @@ const ProfileLarge: React.FC<Props> = ({
             />
           )}
           {/* userName(User) */}
+
           <div className="pl-10 text-center">
             <div className="text-xl">@{userInfo.userName}</div>
-            {usrFollowFlag ? (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                  フォロー解除
-                </div>
-              </button>
-            ) : (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                  フォロー
-                </div>
-              </button>
+            {!checkLoginUserFlag && (
+              <span>
+                {usrFollowFlag ? (
+                  <button onClick={changeUsrFollow}>
+                    <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                      フォロー解除
+                    </div>
+                  </button>
+                ) : (
+                  <button onClick={changeUsrFollow}>
+                    <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                      フォロー
+                    </div>
+                  </button>
+                )}
+              </span>
             )}
           </div>
         </div>
@@ -83,20 +78,6 @@ const ProfileLarge: React.FC<Props> = ({
             {/* 記事投稿数 */}
             投稿数
             <div>{userInfo.articleCount}</div>
-          </div>
-          <div className="flex-grow text-center">
-            <Link href={"/followList"}>
-              <a className="text-black hover:text-gray-400">
-                フォロー<div>{userInfo.followCount}</div>
-              </a>
-            </Link>
-          </div>
-          <div className="flex-grow text-center ">
-            <Link href={"/followerList"}>
-              <a className="text-black hover:text-gray-400">
-                フォロワー<div>{userInfo.followerCount}</div>
-              </a>
-            </Link>
           </div>
         </div>
         <div className="text-2xl mt-2 flex justify-center items-center">
@@ -109,9 +90,12 @@ const ProfileLarge: React.FC<Props> = ({
         <div className="mt-2">
           {/* tags(User) */}
           <div className="flex justify-center flex-wrap">
-            {userInfo.tags.map((tag) => {
+            {tagsByNum.map((tag) => {
               return (
-                <span className={tagStyle} key={tag.skill}>
+                <span
+                  className="mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
+                  key={tag.skill}
+                >
                   {tag.skill}
                 </span>
               );

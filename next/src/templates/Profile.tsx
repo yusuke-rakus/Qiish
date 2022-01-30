@@ -1,15 +1,62 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
 import { ProfileEdit } from "./";
-import { useToggle } from "../hooks";
+import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus } from "../pages/api/addData";
+import { useLoginChecker } from "../hooks/useLoginChecker";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { editUserInfo } from "../pages/api/editData";
 
 const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(true);
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+  const router = useRouter();
+
+  // ユーザーのプロフィールデータ
+  const { data, error } = useSWR("/profile");
+
+  // プロフィール編集用のステート
+  // カスタムフック使用(Text)
+  const [userName, setUserName] = useTextState(data.userInfo.userName);
+  const [email, setEmail] = useTextState(data.userInfo.email);
+  const [description, setDescription] = useTextState(data.userInfo.description);
+  // カスタムフック使用(Select)
+  const [engineerType, setEngineerType] = useSelectState(
+    data.userInfo.engineerType
+  );
+  // カスタムフック使用(タグを初期化)
+  const initialTags: number[] = [];
+  useEffect(() => {
+    for (const tag of data.userInfo.tags) {
+      initialTags.push(tag.id);
+    }
+  }, [data.userInfo.tags, initialTags]);
+
+  // カスタムフック使用(ユーザータグの格納)
+  const [tagsNum, setTagsNum] = useSelectState(initialTags);
+
+  // タグのid,skill,imageを取得
+  let tagsByNum: any = [];
+  const [tagsData, setTagsData] = useState<any>();
+  useEffect(() => {
+    const tagsData = async () => {
+      const res = await axios.get("http://localhost:9090/getTag");
+      setTagsData(res.data.tags);
+    };
+    tagsData();
+  }, []);
+  // 選択した記事タグを配列に格納する処理
+  for (let tagNum of tagsNum) {
+    const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id == tagNum);
+    tagsByNum.push(tagsFilterByTagNum[0]);
+  }
+
+  // プロフィールがログインユーザーかどうか判別
+  const checkLoginUserFlag = useLoginChecker(data.userInfo.id);
 
   // 現状はuid１がuid2にフォローする処理
   const usrFollowing = async () => {
@@ -19,8 +66,46 @@ const Profile: React.FC = () => {
     setUsrFollowFlag();
   };
 
-  // ユーザーのプロフィールデータ
-  const { data, error } = useSWR("/profile");
+  // ユーザー情報編集の処理
+  const onSubmitEditUser = async () => {
+    try {
+      const res = await editUserInfo(
+        userName,
+        email,
+        description,
+        engineerType,
+        tagsNum
+      );
+
+      if (res.data.status === "success") {
+        alert("ユーザー情報編集に成功しました。プロフィール画面へ戻ります。");
+        router.push("/profile");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // プロフィール表示用のデータ
+  const userInfo = {
+    userName: userName,
+    email: email,
+    userImage: data.userInfo.image,
+    articleCount: data.userInfo.articleCount,
+    engineerType: engineerType,
+    tagsNum: tagsNum,
+    description: description,
+  };
+
+  // プロフィール編集用のメソッド
+  const editFunc = {
+    setUserName,
+    setEmail,
+    setDescription,
+    setEngineerType,
+    setTagsNum,
+    onSubmitEditUser,
+  };
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -36,21 +121,29 @@ const Profile: React.FC = () => {
               </a>
             </Link>
             <ProfileLarge
-              userInfo={data.userInfo}
+              userInfo={userInfo}
+              tagsByNum={tagsByNum}
+              checkLoginUserFlag={checkLoginUserFlag}
               usrFollowFlag={usrFollowFlag}
               changeUsrFollow={usrFollowing}
             />
-            <div className="flex justify-end">
-              <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
-                <button type="button" onClick={setEditFlag}>
-                  編集
-                </button>
-              </span>
-            </div>
+            {checkLoginUserFlag && (
+              <div className="flex justify-end">
+                <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
+                  <button type="button" onClick={setEditFlag}>
+                    編集
+                  </button>
+                </span>
+              </div>
+            )}
           </div>
         </div>
       ) : (
-        <ProfileEdit userInfo={data.userInfo} changeEditFlag={setEditFlag} />
+        <ProfileEdit
+          userInfo={userInfo}
+          editFunc={editFunc}
+          changeEditFlag={setEditFlag}
+        />
       )}
     </div>
   );

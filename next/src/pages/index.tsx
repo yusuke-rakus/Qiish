@@ -1,4 +1,6 @@
 import Router from "next/router";
+import { useEffect } from "react";
+import { removeArticleUserId } from "../hooks/cookie/handleCookie";
 import { Header, ArticleList } from "../templates";
 
 const goToRegisterUser = () => {
@@ -9,6 +11,10 @@ const goToLogin = () => {
 };
 
 const Home: React.FC = () => {
+  // 記事詳細のみCookieにarticleUserIdを保持するため削除
+  useEffect(() => {
+    removeArticleUserId();
+  });
   return (
     <div>
       <button onClick={goToRegisterUser}>会員登録</button>

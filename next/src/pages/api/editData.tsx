@@ -3,6 +3,7 @@ import { SelectStateType } from "../../hooks/useInputState";
 import getCookie from "../../hooks/cookie/handleCookie";
 // ログインユーザーのIdを取得
 const guestId = getCookie();
+const guestIdNum = Number(guestId);
 
 export const editUserInfo = async (
   userName: string,
@@ -12,7 +13,7 @@ export const editUserInfo = async (
   tags: SelectStateType
 ) => {
   const res = await axios.post("http://localhost:9090/user/edit", {
-    userInfoId: guestId,
+    userInfoId: guestIdNum,
     userName: userName,
     image: null,
     email: email,

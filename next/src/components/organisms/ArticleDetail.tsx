@@ -34,6 +34,7 @@ type Props = {
   articleLikeFlag: boolean | number;
   changeArticleLike: () => void;
   usrFollowFlag: boolean | number;
+  checkLoginUserFlag: boolean;
   changeUsrFollow: () => void;
   setEditFlag: () => void;
   onDeleteArticle: () => void;
@@ -47,6 +48,7 @@ const ArticleDetail: React.FC<Props> = ({
   articleLikeFlag,
   changeArticleLike,
   usrFollowFlag,
+  checkLoginUserFlag,
   changeUsrFollow,
   setEditFlag,
   onDeleteArticle,
@@ -87,9 +89,11 @@ const ArticleDetail: React.FC<Props> = ({
             {/* commentCount(Article) */}
             <MessageTwoTone twoToneColor="#f97316" className="text-2xl" />
             <span className="ml-1 text-xl">1</span>
-            <Dropdown overlay={menu}>
-              <MenuOutlined className="ml-1 text-2xl text-black hover:text-orange-500" />
-            </Dropdown>
+            {checkLoginUserFlag && (
+              <Dropdown overlay={menu}>
+                <MenuOutlined className="ml-1 text-2xl text-black hover:text-orange-500" />
+              </Dropdown>
+            )}
           </div>
         </div>
         <div className="px-10">
@@ -126,6 +130,7 @@ const ArticleDetail: React.FC<Props> = ({
         {/* profile(User) */}
         <ProfileSmall
           user={postedUser}
+          checkLoginUserFlag={checkLoginUserFlag}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}
         />
