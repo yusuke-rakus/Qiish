@@ -1,7 +1,9 @@
 import TextArea from "antd/lib/input/TextArea";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Comment } from ".";
+import { CommentForm } from "../components/organisms";
+import { addComment } from "../pages/api/addData";
 
 type Props = {
   comments: {
@@ -33,6 +35,26 @@ type Props = {
 };
 
 const CommentList: React.FC<Props> = ({ comments }) => {
+  const [commentText, setCommentText] = useState("");
+
+  // コメント追加(まだ動的に変更できないので修正が必要)
+  const onAddComment = async () => {
+    const articleId = 1;
+    const res = await addComment(articleId, commentText);
+    if (res.status === "error") {
+      alert("コメントに失敗しました。");
+    } else {
+      setCommentText("");
+    }
+  };
+  // コメントをステートに挿入
+  const addCommentText = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setCommentText(e.target.value);
+  };
+
+
   return (
     <div className="flex justify-center">
       <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">
@@ -41,18 +63,10 @@ const CommentList: React.FC<Props> = ({ comments }) => {
         {comments.map((comment) => {
           return <Comment key={comment.id} commentData={comment} />;
         })}
-        <div className="w-full p-2 text-xl">
-          <TextArea
-            placeholder="この読書の目的は「知ること」ではなく、「行動すること」"
-            autoSize={{ minRows: 3 }}
-            bordered={false}
-          />
-        </div>
-        <div className="flex justify-end px-4 py-2">
-          <button className="p-1 text-white rounded-lg bg-orange-500 hover:bg-orange-500 drop-shadow-2xl">
-            コメント
-          </button>
-        </div>
+        <CommentForm
+          onAddComment={onAddComment}
+          setCommentText={addCommentText}
+        />
       </div>
       <div className="w-1/5 mt-10"></div>
     </div>

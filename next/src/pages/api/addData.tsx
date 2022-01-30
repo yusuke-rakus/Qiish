@@ -3,8 +3,9 @@ import { SelectStateType } from "../../hooks/useInputState";
 import getCookie from "../../hooks/cookie/handleCookie";
 // ログインユーザーのIdを取得
 const guestId = getCookie();
+const guestIdNum = Number(guestId);
 
-// 記事追加機能(userIdを取得する)
+// 記事追加機能
 export const addArticle = async (
   userId: number,
   title: string,
@@ -18,6 +19,16 @@ export const addArticle = async (
     tags: tags,
   });
   return res;
+};
+
+  // コメント投稿機能
+export const addComment = async (articleId: number, comment: string) => {
+  const res = await axios.post("http://localhost:9090/article/comment", {
+    articleId: articleId,
+    userInfoId: guestIdNum,
+    comment: comment,
+  });
+  return res.data;
 };
 
 // いいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
