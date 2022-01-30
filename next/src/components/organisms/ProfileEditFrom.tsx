@@ -11,7 +11,7 @@ type Props = {
     email: string;
     description: string;
     engineerType: SelectStateType;
-    tags: SelectStateType;
+    tagsNum: SelectStateType;
   };
   TAGS: {
     ENGINEER: string[];
@@ -25,7 +25,7 @@ type Props = {
     setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
     setEngineerType: (value: SelectStateType) => void;
     setDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    setTags: (value: SelectStateType) => void;
+    setTagsNum: (value: SelectStateType) => void;
     onSubmitEditUser: (e: React.FormEvent<HTMLFormElement>) => void;
   };
 };
@@ -39,7 +39,7 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
         engineerType: userData.engineerType,
         email: userData.email,
         description: userData.description,
-        tags: userData.tags,
+        tags: userData.tagsNum,
       }}
       onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}
     >
@@ -110,8 +110,8 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                 mode="multiple"
                 placeholder="使用技術"
                 bordered={false}
-                defaultValue={userData.tags}
-                onChange={Fnc.setTags}
+                defaultValue={userData.tagsNum}
+                onChange={Fnc.setTagsNum}
               >
                 {/* フロント、バックエンド、その他のそれぞれの表示 */}
                 {TAGS.SKILL.map((SkillType) => {

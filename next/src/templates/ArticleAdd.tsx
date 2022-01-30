@@ -13,7 +13,7 @@ const ArticleAdd: React.FC = () => {
   const [title, setTitle] = useTextState("");
   const [content, setContent] = useTextState("");
   // カスタムフック使用(Select)
-  const [tags, setTags] = useSelectState([]);
+  const [tags, setTags] = useSelectState(new Array<number>());
   // カスタムフック使用(Toggle)
   const [previewFlag, setPreviewFlag] = useToggle(true);
   const router = useRouter();

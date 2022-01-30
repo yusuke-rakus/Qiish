@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../const/Tags";
@@ -41,13 +41,21 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
   // カスタムフック使用(Select)
   const [engineerType, setEngineerType] = useSelectState(userInfo.engineerType);
   // カスタムフック使用(タグを初期化)
-  const [tags, setTags] = useSelectState(() => {
-    const initialTags = [];
+  // const [tags, setTags] = useSelectState(() => {
+  //   const initialTags = [];
+  //   for (const tag of userInfo.tags) {
+  //     initialTags.push(tag.id);
+  //   }
+  //   return initialTags;
+  // });
+  const initialTags: number[] = [];
+  useEffect(() => {
     for (const tag of userInfo.tags) {
       initialTags.push(tag.id);
     }
-    return initialTags;
-  });
+  }, [userInfo.tags, initialTags]);
+  // カスタムフック使用(編集用記事タグの格納)
+  const [tagsNum, setTagsNum] = useSelectState(initialTags);
 
   // ユーザー情報編集の処理
   const onSubmitEditUser = async () => {
@@ -57,7 +65,7 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
         email,
         description,
         engineerType,
-        tags
+        tagsNum
       );
 
       if (res.data.status === "success") {
@@ -74,10 +82,10 @@ const ProfileEdit: React.FC<Props> = ({ userInfo, changeEditFlag }) => {
     setEngineerType,
     setEmail,
     setDescription,
-    setTags,
+    setTagsNum,
     onSubmitEditUser,
   };
-  const userData = { userName, email, description, engineerType, tags };
+  const userData = { userName, email, description, engineerType, tagsNum };
 
   return (
     <div className="flex justify-center">
