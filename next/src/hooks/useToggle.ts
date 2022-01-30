@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 
-export const useToggle = (initialState: boolean): [boolean, () => void] => {
+export const useToggle = (
+  initialState: boolean | number
+): [boolean | number, () => void] => {
   const [state, setState] = useState(initialState);
 
   // useCallbackを用いて余分なレンダリングをなくす

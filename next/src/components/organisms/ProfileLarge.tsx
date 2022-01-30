@@ -18,14 +18,14 @@ type Props = {
     tags: {
       id: number;
       skill: string;
-      image: number;
+      image: null;
     }[];
     articles: string;
     articleCount: number;
     likes: number;
     comments: number;
   };
-  usrFollowFlag: boolean;
+  usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
 };
 

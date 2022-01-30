@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 // FCの型定義
 type Props = {
   previewContent: string;
-  prevFlag: boolean;
+  prevFlag: boolean | number;
   Fnc: {
     setTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
     setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -16,7 +16,7 @@ type Props = {
   };
   SKILLTAGS: {
     label: string;
-    tags: { id: number; name: string }[];
+    tags: { id: number; skill: string; image: null }[];
   }[];
 };
 
@@ -61,7 +61,7 @@ const ArticleAddFrom: React.FC<Props> = ({
                   {SkillType.tags.map((tags) => {
                     return (
                       <Select.Option key={tags.id} value={tags.id}>
-                        {tags.name}
+                        {tags.skill}
                       </Select.Option>
                     );
                   })}

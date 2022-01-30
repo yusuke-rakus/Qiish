@@ -26,7 +26,7 @@ type Props = {
     comments: number;
   };
 
-  usrFollowFlag: boolean;
+  usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
 };
 

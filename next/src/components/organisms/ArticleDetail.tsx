@@ -31,9 +31,9 @@ type Props = {
     comments: number;
   };
   likeCount: number;
-  articleLikeFlag: boolean;
+  articleLikeFlag: boolean | number;
   changeArticleLike: () => void;
-  usrFollowFlag: boolean;
+  usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
   setEditFlag: () => void;
   onDeleteArticle: () => void;

@@ -10,9 +10,9 @@ type Props = {
     engineer_type: string;
     description: string;
     tags: {
-      user_info_id: number;
-      skill_id: number;
-      skill_name: string;
+      id: number;
+      skill: string;
+      image: null;
     }[];
     articleCount: number;
     articles: number;
@@ -25,7 +25,7 @@ type Props = {
     image: string;
     likes: number;
   };
-  usrFollowFlag: boolean;
+  usrFollowFlag: boolean | number;
   changeUsrFollow: () => void;
 };
 

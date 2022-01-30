@@ -6,7 +6,7 @@ import { SelectStateType, TextEventType } from "../../hooks/useInputState";
 
 // FCの型定義
 type Props = {
-  prevFlag: boolean;
+  prevFlag: boolean | number;
   articleEdit: {
     title: string;
     content: string;
@@ -21,7 +21,7 @@ type Props = {
   };
   SKILLTAGS: {
     label: string;
-    tags: { id: number; name: string }[];
+    tags: { id: number; skill: string; image: null }[];
   }[];
 };
 
@@ -75,7 +75,7 @@ const ArticleEditFrom: React.FC<Props> = ({
                   {SkillType.tags.map((tags) => {
                     return (
                       <Select.Option key={tags.id} value={tags.id}>
-                        {tags.name}
+                        {tags.skill}
                       </Select.Option>
                     );
                   })}

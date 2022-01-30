@@ -14,6 +14,7 @@ type Props = {
     articleTags: {
       id: number;
       skill: string;
+      image: null;
     }[];
   };
 };

@@ -1,8 +1,10 @@
 import axios from "axios";
 import { SelectStateType } from "../../hooks/useInputState";
+import getCookie from "../../hooks/cookie/handleCookie";
+// ログインユーザーのIdを取得
+const guestId = getCookie();
 
 export const editUserInfo = async (
-  userId: number,
   userName: string,
   email: string,
   description: string,
@@ -10,7 +12,7 @@ export const editUserInfo = async (
   tags: SelectStateType
 ) => {
   const res = await axios.post("http://localhost:9090/user/edit", {
-    userInfoId: userId,
+    userInfoId: guestId,
     userName: userName,
     image: null,
     email: email,
@@ -29,11 +31,10 @@ export const editArticle = async (
   tags: SelectStateType
 ) => {
   const res = await axios.post("http://localhost:9090/article/edit", {
-    // タグのidがnullで取得できていない
     articleId: articleId,
     title: title,
     content: content,
-    tags: [1, 7],
+    tags: tags,
   });
   return res;
 };

@@ -17,7 +17,7 @@ type Props = {
     ENGINEER: string[];
     SKILL: {
       label: string;
-      tags: { id: number; name: string }[];
+      tags: { id: number; skill: string; image: null }[];
     }[];
   };
   Fnc: {
@@ -123,7 +123,7 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
                       {SkillType.tags.map((tags) => {
                         return (
                           <Select.Option key={tags.id} value={tags.id}>
-                            {tags.name}
+                            {tags.skill}
                           </Select.Option>
                         );
                       })}

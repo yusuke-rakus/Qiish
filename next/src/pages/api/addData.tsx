@@ -1,5 +1,8 @@
 import axios from "axios";
 import { SelectStateType } from "../../hooks/useInputState";
+import getCookie from "../../hooks/cookie/handleCookie";
+// ログインユーザーのIdを取得
+const guestId = getCookie();
 
 // 記事追加機能(userIdを取得する)
 export const addArticle = async (
@@ -20,21 +23,20 @@ export const addArticle = async (
 // いいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
 // cookieにいいねしたidを保存
 export const changeLikeStatus = async (
-  userId: number,
   articleId: number,
   likeCount: number,
-  articleLikeFlag: boolean
+  articleLikeFlag: boolean | number
 ) => {
   if (!articleLikeFlag) {
     // (userInfoIdを取得する)
     await axios.post("http://localhost:9090/article/like", {
-      userInfoId: userId,
+      userInfoId: guestId,
       articleId: articleId,
     });
     return likeCount + 1;
   } else {
     await axios.post("http://localhost:9090/article/removeLike", {
-      userInfoId: userId,
+      userInfoId: guestId,
       articleId: articleId,
     });
     return likeCount - 1;
@@ -42,18 +44,21 @@ export const changeLikeStatus = async (
 };
 
 // ユーザーフォロー機能
-export const changeFollowStatus = async (followUserId: boolean) => {
-  if (!followUserId) {
+export const changeFollowStatus = async (
+  usrFollowFlag: boolean | number,
+  postedUserId?: number
+) => {
+  if (!usrFollowFlag) {
     // (userInfoIdを取得する)
     const res = await axios.post("http://localhost:9090/user/follow", {
-      userInfoId: 1,
-      followUserId: 2,
+      userInfoId: guestId,
+      followUserId: postedUserId,
     });
     return res;
   } else {
     const res = await axios.post("http://localhost:9090/user/remove", {
-      userInfoId: 1,
-      followUserId: 2,
+      userInfoId: guestId,
+      followUserId: postedUserId,
     });
     return res;
   }
