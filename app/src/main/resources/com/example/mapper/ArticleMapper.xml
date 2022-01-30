@@ -88,6 +88,7 @@
 		<result property="likeStatus" column="like_status"></result>
 		<collection property="comments"
 			ofType="com.example.domain.Comment">
+			<result property="id" column="c_id"></result>
 			<result property="comment" column="c_comment"></result>
 			<result property="commentDate" column="c_comment_date"></result>
 			<result property="likesCount" column="c_likes_count"></result>
@@ -121,7 +122,8 @@
 			a.title AS a_title,
 			a.content AS a_content,
 			a.posted_date AS a_posted_date,
-			c.user_info_id AS c_user_info_id, 
+			c.user_info_id AS c_user_info_id,
+			c.id AS c_id,
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
 			COALESCE((SELECT l.user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
