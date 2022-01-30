@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { ArticleEdit, Comments } from ".";
+import { ArticleEdit, CommentList } from ".";
 import { ArticleDetail } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
@@ -141,7 +141,7 @@ const Article: React.FC = () => {
             setEditFlag={setEditFlag}
             onDeleteArticle={onDeleteArticle}
           />
-          <Comments />
+          <CommentList comments={data.article.comments} />
         </React.Fragment>
       )}
     </div>

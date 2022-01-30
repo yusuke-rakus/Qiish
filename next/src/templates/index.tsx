@@ -4,7 +4,7 @@ export { default as Article } from "./Article";
 export { default as ArticleAdd } from "./ArticleAdd";
 export { default as ArticleEdit } from "./ArticleEdit";
 export { default as ArticleList } from "./ArticleList";
-export { default as Comments } from "./Comments";
+export { default as CommentList } from "./CommentList";
 export { default as FollowList } from "./FollowList";
 export { default as FollowerList } from "./FollowerList";
 export { default as Profile } from "./Profile";

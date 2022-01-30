@@ -2,29 +2,43 @@ import React from "react";
 import Image from "next/image";
 import { HeartOutlined } from "@ant-design/icons";
 import TextArea from "antd/lib/input/TextArea";
+import moment from "moment";
 
 type Props = {
-  user_info_data: {
-    user_info_id: number;
-    first_name: string;
-    last_name: string;
-    user_name: string;
-    email: string;
-    engineer_type: string;
+  commentData: {
+    id: number;
+    articleId: number;
+    userInfoId: number;
     comment: string;
-    skill_tags: {
-      user_info_id: number;
-      skill_id: number;
-      skill_name: string;
-    }[];
+    commentDate: string;
+    userInfo: {
+      id: number;
+      userName: string;
+      email: string;
+      engineerType: string;
+      description: string;
+      image: null;
+      follow: number;
+      followCount: number;
+      follower: number;
+      followerCount: number;
+      tags: null;
+      articles: null;
+      articleCount: null;
+      likes: null;
+      comments: null;
+      followStatus: number;
+    };
+    likesCount: number;
   };
+
   commentLike: number;
   commentLikeFlag: boolean;
   changeCommentLike: () => void;
 };
 
-const CommentComp: React.FC<Props> = ({
-  user_info_data,
+const Comment: React.FC<Props> = ({
+  commentData,
   commentLike,
   commentLikeFlag,
   changeCommentLike,
@@ -46,12 +60,14 @@ const CommentComp: React.FC<Props> = ({
               height={30}
             />
             <div className="flex items-center pl-1">
-              {/* userName(User) */}@{user_info_data.user_name}
+              {/* userName(User) */}@ユーザーネーム
+              {/* userName(User) */}
+              {/* @{user_info_data.user_name} */}
             </div>
           </div>
           {/* content(Comment) */}
-          <div className="pl-2 py-3 pr-6 text-center">
-            プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。
+          <div className="pl-2 py-3 pr-6 text-lg text-center">
+            {commentData.comment}
           </div>
           <div className="flex items-center">
             {/* likeList(Comment) */}
@@ -68,7 +84,10 @@ const CommentComp: React.FC<Props> = ({
               {commentLike}
             </a>
             {/* posted_date(Comment) */}
-            <span className="ml-6">2021-11-1 11:40</span>
+
+            <span className="ml-6">
+              {moment(commentData.commentDate).format("YYYY年M月D日")}
+            </span>
           </div>
         </div>
         <hr />
@@ -83,7 +102,9 @@ const CommentComp: React.FC<Props> = ({
               height={30}
             />
             <div className="flex items-center pl-1">
-              {/* userName(User) */}@{user_info_data.user_name}
+              {/* userName(User) */}@ユーザーネーム2
+              {/* userName(User) */}
+              {/* @{user_info_data.user_name} */}
             </div>
           </div>
         </div>
@@ -106,4 +127,4 @@ const CommentComp: React.FC<Props> = ({
   );
 };
 
-export default CommentComp;
+export default Comment;
