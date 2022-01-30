@@ -82,7 +82,10 @@ public class ArticleController {
 
 	/** 記事編集 */
 	@PostMapping("/edit")
-	public Response ArticleEdit(@RequestBody ArticleEditForm form) {
+	public Response ArticleEdit(@RequestBody @Validated ArticleEditForm form, BindingResult result) {
+		if (result.hasErrors()) {
+			return new Response(result.hasErrors());
+		}
 		return articleService.articleEdit(form);
 	}
 

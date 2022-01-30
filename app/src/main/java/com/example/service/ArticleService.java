@@ -120,7 +120,9 @@ public class ArticleService {
 		try {
 			articleMapper.articleEdit(form);
 			articleMapper.articleTagsDelete(form.getArticleId());
-			articleMapper.articleTagsPost(form.getArticleId(), form.getTags());
+			if (!Objects.isNull(form.getTags())) {
+				articleMapper.articleTagsPost(form.getArticleId(), form.getTags());
+			}
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}

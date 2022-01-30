@@ -9,10 +9,11 @@ public class Article {
 	private Integer userInfoId;
 	private String title;
 	private String content;
+	private Integer likesCount;
 	private Timestamp postedDate;
+	private Timestamp updateDate;
 	private List<Tag> articleTags;
 	private List<UserInfo> lieksUserList;
-	private Integer likesCount;
 	private List<Comment> comments;
 	private Integer likeStatus;
 	private UserInfo userInfo;
@@ -49,12 +50,28 @@ public class Article {
 		this.content = content;
 	}
 
+	public Integer getLikesCount() {
+		return likesCount;
+	}
+
+	public void setLikesCount(Integer likesCount) {
+		this.likesCount = likesCount;
+	}
+
 	public Timestamp getPostedDate() {
 		return postedDate;
 	}
 
 	public void setPostedDate(Timestamp postedDate) {
 		this.postedDate = postedDate;
+	}
+
+	public Timestamp getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Timestamp updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public List<Tag> getArticleTags() {
@@ -71,14 +88,6 @@ public class Article {
 
 	public void setLieksUserList(List<UserInfo> lieksUserList) {
 		this.lieksUserList = lieksUserList;
-	}
-
-	public Integer getLikesCount() {
-		return likesCount;
-	}
-
-	public void setLikesCount(Integer likesCount) {
-		this.likesCount = likesCount;
 	}
 
 	public List<Comment> getComments() {
@@ -108,11 +117,9 @@ public class Article {
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
-				+ ", postedDate=" + postedDate + ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList
-				+ ", likesCount=" + likesCount + ", comments=" + comments + ", likeStatus=" + likeStatus + ", userInfo="
-				+ userInfo + "]";
+				+ ", likesCount=" + likesCount + ", postedDate=" + postedDate + ", updateDate=" + updateDate
+				+ ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList + ", comments=" + comments
+				+ ", likeStatus=" + likeStatus + ", userInfo=" + userInfo + "]";
 	}
-
-
 
 }

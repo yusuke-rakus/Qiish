@@ -24,6 +24,7 @@ CREATE TABLE articles(
     content text NOT NULL,
     posted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     visited_count int NOT NULL DEFAULT 0,
+    update_date datetime NOT NULL CURRENT_TIMESTAMP ON update_date CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     FOREIGN KEY fk_articles_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );

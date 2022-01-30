@@ -2,6 +2,9 @@ package com.example.form;
 
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 /**
  * 記事編集フォーム
  */
@@ -9,7 +12,10 @@ import java.util.List;
 public class ArticleEditForm {
 
 	private Integer articleId;
+	@NotBlank
+	@Size(min = 1, max = 50)
 	private String title;
+	@NotBlank
 	private String content;
 	private List<Integer> tags;
 
