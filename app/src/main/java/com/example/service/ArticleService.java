@@ -139,7 +139,7 @@ public class ArticleService {
 			if (form.getArticleId() != form.getGuestId()) {
 				articleMapper.updateVisitedCount(form.getArticleId());
 			}
-			UserInfo postedUser = userMapper.getPostedUser(form.getArticleId());
+			UserInfo postedUser = userMapper.getPostedUser(form.getArticleId(), form.getGuestId());
 			res.setPostedUser(postedUser);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());

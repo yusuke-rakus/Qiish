@@ -52,12 +52,12 @@ public interface UserMapper {
 	public List<UserInfo> followerList(FollowListForm form);
 
 	/** 投稿ユーザー */
-	public UserInfo getPostedUser(Integer articleId);
-	
+	public UserInfo getPostedUser(@Param("articleId") Integer articleId, @Param("guestId") Integer guestId);
+
 	/** パスワード再設定(ユーザー検索) */
 	public User resetRequest(String email);
-	
+
 	/** パスワード再設定 */
 	public void resetPassword(ResetPasswordForm form);
-	
+
 }

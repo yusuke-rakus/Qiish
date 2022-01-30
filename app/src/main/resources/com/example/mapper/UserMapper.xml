@@ -117,6 +117,7 @@
 		<result property="followCount" column="follow_count"></result>
 		<result property="followerCount" column="follower_count"></result>
 		<result property="articleCount" column="article_count"></result>
+		<result property="followStatus" column="follow_status"></result>
 		<collection property="tags" ofType="com.example.domain.Tag">
 			<result property="id" column="tag_id"></result>
 			<result property="skill" column="u_tags"></result>
@@ -132,9 +133,10 @@
 		u.image AS u_image,
 		t.tag_id,
 		(SELECT skill FROM tags WHERE t.tag_id = tags.id) AS u_tags,
-		(SELECT count(*) FROM follow WHERE u.id = follow.user_info_id) AS follow_count,
-		(SELECT count(*) FROM follow WHERE u.id = follow.follow_user_info_id) AS follower_count,
-		(SELECT count(*) FROM articles WHERE u.id = articles.user_info_id) AS article_count
+		(SELECT COUNT(*) FROM follow WHERE u.id = follow.user_info_id) AS follow_count,
+		(SELECT COUNT(*) FROM follow WHERE u.id = follow.follow_user_info_id) AS follower_count,
+		(SELECT COUNT(*) FROM articles WHERE u.id = articles.user_info_id) AS article_count,
+		COALESCE((SELECT follow_user_info_id = u_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = u_id),0) AS follow_status
 	FROM user_info AS u
 	LEFT OUTER JOIN user_info_tags AS t
 	ON u.id = t.user_info_id
