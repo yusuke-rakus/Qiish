@@ -112,7 +112,7 @@ const Profile: React.FC = () => {
 
   return (
     <div>
-      {!editFlag ? (
+      {editFlag ? (
         <div className="flex justify-center">
           <div className="m-10 w-2/5 h-auto">
             <Link href={"/"}>

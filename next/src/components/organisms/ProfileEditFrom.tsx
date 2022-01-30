@@ -32,7 +32,6 @@ type Props = {
 
 const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
   return (
-    // initialValuesはname属性に対応
     <Form
       initialValues={{
         userName: userData.userName,
@@ -41,7 +40,7 @@ const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
         description: userData.description,
         tags: userData.tagsNum,
       }}
-      onSubmitCapture={(e) => Fnc.onSubmitEditUser(e)}
+      onSubmitCapture={Fnc.onSubmitEditUser}
     >
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
         <div className="m-4">
