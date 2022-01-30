@@ -83,16 +83,30 @@ const Article: React.FC = () => {
       alert("記事を削除できませんでした。");
     }
   };
-  // 通信成功。タグの問題とユーザーIDを解決する。
-  // success: 記事が保存されて記事一覧表示  fail: アラート表示
+  // 記事編集処理
+  // sucess: 記事詳細コンプに切り替え, error: アラートメッセージ表示
   const onEditArticle = async () => {
+    //  バリデーションチェック
+    const alertMsg = "記事編集に失敗しました。入力内容を確認してください。";
+    // タイトルが半角スペースまたは全角スペース、nullのみであったらアラート表示
+    if (title === " " || title === "　" || title === null) {
+      alert(alertMsg);
+      return;
+    }
+    // 記事内容が半角スペースまたは全角スペース、nullのみであったらアラート表示
+    if (content === " " || content === "　" || content === null) {
+      alert(alertMsg);
+      return;
+    }
+
     try {
       const res = await editArticle(data.article.id, title, content, tagsNum);
-      if (res.status === 200) {
+      if (res.data.status === "success") {
+        alert("記事編集に成功しました。記事詳細へ戻ります。");
         setEditFlag();
       }
     } catch (error) {
-      alert("記事編集に失敗しました");
+      alert(alertMsg);
     }
   };
 

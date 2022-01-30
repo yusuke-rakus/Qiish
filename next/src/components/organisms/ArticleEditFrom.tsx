@@ -45,7 +45,13 @@ const ArticleEditFrom: React.FC<Props> = ({
         {/* 送信ようのメソッド用意 */}
         <Form.Item
           name="title"
-          rules={[{ required: true, message: `タイトルが空欄です` }]}
+          rules={[
+            { required: true, message: `タイトルが空欄です` },
+            {
+              max: 50,
+              message: "タイトルは 50 文字以下入力してください",
+            },
+          ]}
         >
           <span className="p-2">
             <Input

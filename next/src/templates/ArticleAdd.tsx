@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ArticleAddFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -16,25 +16,41 @@ const ArticleAdd: React.FC = () => {
   const [tags, setTags] = useSelectState([]);
   // カスタムフック使用(Toggle)
   const [previewFlag, setPreviewFlag] = useToggle(true);
-  const [error, SetError] = useState("");
   const router = useRouter();
   // cookieからuid取得(Number型に変換)
   const userId = Number(getCookie());
 
-  // 通信成功。タグの問題とユーザーIDを解決する。
-  // success: 記事が保存されて記事一覧表示  fail: エラーメッセージ表示(未実装)
+  // 記事投稿処理
+  // sucess: トップページへ遷移, error: アラートメッセージ表示
   const onAddArticle = async () => {
+    //  バリデーションチェック
+    const alertMsg = "記事投稿に失敗しました。入力内容を確認してください。";
+    // タイトルが半角スペースまたは全角スペース、nullのみであったらアラート表示
+    if (title === " " || title === "　" || title === null) {
+      alert(alertMsg);
+      return;
+    }
+    // 記事内容が半角スペースまたは全角スペース、nullのみであったらアラート表示
+    if (content === " " || content === "　" || content === null) {
+      alert(alertMsg);
+      return;
+    }
+
     try {
       const res = await addArticle(userId, title, content, tags);
-      if (res.status === 200) {
+
+      if (res.data.status === "success") {
         alert("記事投稿成功しました。記事一覧へ戻ります。");
         router.push("/");
+      } else {
+        alert(alertMsg);
       }
     } catch (error) {
-      SetError("記事投稿に失敗しました。");
+      alert(alertMsg);
     }
   };
 
+  // 子コンポーネントで利用するメソッド
   const Fnc = {
     setTitle,
     setContent,
