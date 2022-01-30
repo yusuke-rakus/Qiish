@@ -96,6 +96,7 @@
 				<id property="id" column="c_user_info_id"></id>
 				<result property="userName" column="c_user_name"></result>
 				<result property="image" column="c_image"></result>
+				<result property="followStatus" column="c_follow_status"></result>
 			</association>
 		</collection>
 		<collection property="articleTags"
@@ -109,6 +110,7 @@
 			<result property="userName" column="l_user_name"></result>
 			<result property="engineerType" column="l_engineer_type"></result>
 			<result property="description" column="l_description"></result>
+			<result property="followStatus" column="l_follow_status"></result>
 		</collection>
 	</resultMap>
 
@@ -130,9 +132,11 @@
 			(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_name,
 			(SELECT engineer_type FROM user_info WHERE user_info.id = l.user_info_id) AS l_engineer_type,
 			(SELECT description FROM user_info WHERE user_info.id = l.user_info_id) AS l_description,
+			COALESCE((SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id), 0) AS l_follow_status,
 			(SELECT id FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_info_id,
 			(SELECT user_name FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_name,
-			(SELECT image FROM user_info WHERE user_info.id = c.user_info_id) AS c_image
+			(SELECT image FROM user_info WHERE user_info.id = c.user_info_id) AS c_image,
+			COALESCE((SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id), 0) AS c_follow_status
 		FROM articles AS a
 		LEFT OUTER JOIN comments AS c
 		ON a.id = c.article_id
