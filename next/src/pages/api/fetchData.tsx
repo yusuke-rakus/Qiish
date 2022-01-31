@@ -1,8 +1,6 @@
 import axios from "axios";
-import getCookie from "../../hooks/cookie/handleCookie";
-// ログインユーザーのIdを取得
-// const guestId = getCookie();
-// console.log("guestId" + guestId);
+
+const baseUrl = "http://localhost:9090";
 
 // プロフィール情報取得のAPI
 export const fetchProfile = async (userInfoId?: string) => {
@@ -10,14 +8,14 @@ export const fetchProfile = async (userInfoId?: string) => {
   // もし記事投稿者IDがないならログインユーザーのプロフィールを取得
   if (userInfoId) {
     // (userInfoIdを取得する)
-    const res = await axios.post("http://localhost:9090/userPage", {
+    const res = await axios.post(`${baseUrl}/userPage`, {
       userInfoId: userInfoId,
       guestId: "1",
       // guestId: guestId,
     });
     return res.data;
   } else {
-    const res = await axios.post("http://localhost:9090/userPage", {
+    const res = await axios.post(`${baseUrl}/userPage`, {
       userInfoId: "1",
       guestId: "1",
     });
@@ -27,7 +25,7 @@ export const fetchProfile = async (userInfoId?: string) => {
 
 // 記事一覧情報の取得のAPI
 export const fetchArticleList = async () => {
-  const res = await axios.post(`http://localhost:9090`, {
+  const res = await axios.post(`${baseUrl}`, {
     guestId: "1",
   });
   return res.data;
@@ -37,7 +35,7 @@ export const fetchArticleList = async () => {
 export const fetchArticle = async (
   articleId: string | string[] | undefined
 ) => {
-  const res = await axios.post("http://localhost:9090/article", {
+  const res = await axios.post(`${baseUrl}/article`, {
     articleId: articleId,
     guestId: "1",
   });
@@ -45,10 +43,8 @@ export const fetchArticle = async (
   return res.data;
 };
 
-export const fetchCommentOnArticle = async (
-  articleId: string | string[] | undefined
-) => {
-  const res = await axios.post("http://localhost:9090/article/getComment", {
+export const fetchCommentOnArticle = async (articleId: number) => {
+  const res = await axios.post(`${baseUrl}/article/getComment`, {
     articleId: articleId,
     guestId: "1",
   });
@@ -110,7 +106,7 @@ export const fetchFollowList = async (guestId: string, userInfoId?: string) => {
 
   if (userInfoId) {
     console.log("本人以外");
-    const res = await axios.post("http://localhost:9090/user/followList", {
+    const res = await axios.post(`${baseUrl}/user/followList`, {
       userInfoId: userInfoId,
       guestId: guestId,
     });
@@ -119,7 +115,7 @@ export const fetchFollowList = async (guestId: string, userInfoId?: string) => {
     // マイプロフィールから直接フォローリストに遷移する場合
     console.log("本人");
 
-    const res = await axios.post("http://localhost:9090/user/followList", {
+    const res = await axios.post(`${baseUrl}/user/followList`, {
       userInfoId: guestId,
       guestId: guestId,
     });
@@ -134,14 +130,14 @@ export const fetchFollowerList = async (
   // もし記事投稿者ID(userInfoId)があるなら記事投稿者のフォロワーリストを取得
   // もし記事投稿者IDがないならログインユーザーのフォロワーリストを取得
   if (userInfoId) {
-    const res = await axios.post("http://localhost:9090/user/followerList", {
+    const res = await axios.post(`${baseUrl}/user/followerList`, {
       userInfoId: userInfoId,
       guestId: guestId,
     });
     return res.data;
   } else {
     // マイプロフィールから直接フォロワーリストに遷移する場合
-    const res = await axios.post("http://localhost:9090/user/followerList", {
+    const res = await axios.post(`${baseUrl}/user/followerList`, {
       userInfoId: guestId,
       guestId: guestId,
     });

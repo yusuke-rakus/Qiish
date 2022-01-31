@@ -148,7 +148,10 @@ const Article: React.FC = () => {
             setEditFlag={setEditFlag}
             onDeleteArticle={onDeleteArticle}
           />
-          <CommentList comments={data.article.comments} />
+          <CommentList
+            comments={data.article.comments}
+            articleId={data.article.id}
+          />
         </React.Fragment>
       )}
     </div>
