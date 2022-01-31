@@ -23,7 +23,9 @@ const ReissuePassword: React.FC = () => {
         placeholder="E-mail（rakusのメールアドレス)"
         className="m-4 px-6 py-4 w-80 bg-white rounded-sm"
       />
-      <div>※パスワードを忘れた方は、パスワードの再発行をして下さい。</div>
+      <div>
+        ※パスワードを忘れた方は、メールアドレスを入力し新しいパスワードを再設定して下さい。
+      </div>
 
       <button
         onClick={() => {
@@ -33,7 +35,6 @@ const ReissuePassword: React.FC = () => {
       >
         送信
       </button>
-      <div>{reissue}</div>
     </div>
   );
 };

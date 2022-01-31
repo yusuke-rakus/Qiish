@@ -5,6 +5,34 @@ import getCookie from "../../hooks/cookie/handleCookie";
 const guestIdByCookie = getCookie();
 const guestIdNum = Number(guestIdByCookie);
 
+// 会員登録機能
+export const registerUser = async (
+  userName: string,
+  engineerType: string,
+  mailAddress: string,
+  password: string,
+  confirmPassword: string
+) => {
+  const res = await axios.post("http://localhost:9090/user/register", {
+    userName: userName,
+    engineerType: engineerType,
+    email: mailAddress,
+    password: password,
+  });
+
+  //コンソールに入力値を出力（確認出来たら削除する）
+  console.log("ユーザーネーム" + userName);
+  console.log("エンジニアタイプ" + engineerType);
+  console.log("メールアドレス" + mailAddress);
+  console.log("パスワード" + password);
+  console.log("確認用パスワード" + confirmPassword);
+
+  //レスポンスデータを出力（確認出来たら削除する）
+  console.log(res.data.status);
+
+  return res.data.status;
+};
+
 // 記事追加機能
 export const addArticle = async (
   userId: number,
