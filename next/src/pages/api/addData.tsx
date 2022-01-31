@@ -2,8 +2,8 @@ import axios from "axios";
 import { SelectStateType } from "../../hooks/useInputState";
 import getCookie from "../../hooks/cookie/handleCookie";
 // ログインユーザーのIdを取得
-const guestId = getCookie();
-const guestIdNum = Number(guestId);
+const guestIdByCookie = getCookie();
+const guestIdNum = Number(guestIdByCookie);
 
 // 記事追加機能
 export const addArticle = async (
@@ -21,7 +21,7 @@ export const addArticle = async (
   return res;
 };
 
-  // コメント投稿機能
+// コメント投稿機能
 export const addComment = async (articleId: number, comment: string) => {
   const res = await axios.post("http://localhost:9090/article/comment", {
     articleId: articleId,
@@ -41,13 +41,13 @@ export const changeLikeStatus = async (
   if (!articleLikeFlag) {
     // (userInfoIdを取得する)
     await axios.post("http://localhost:9090/article/like", {
-      userInfoId: guestId,
+      userInfoId: guestIdByCookie,
       articleId: articleId,
     });
     return likeCount + 1;
   } else {
     await axios.post("http://localhost:9090/article/removeLike", {
-      userInfoId: guestId,
+      userInfoId: guestIdByCookie,
       articleId: articleId,
     });
     return likeCount - 1;
@@ -62,13 +62,13 @@ export const changeFollowStatus = async (
   if (!usrFollowFlag) {
     // (userInfoIdを取得する)
     const res = await axios.post("http://localhost:9090/user/follow", {
-      userInfoId: guestId,
+      userInfoId: guestIdByCookie,
       followUserId: postedUserId,
     });
     return res;
   } else {
     const res = await axios.post("http://localhost:9090/user/remove", {
-      userInfoId: guestId,
+      userInfoId: guestIdByCookie,
       followUserId: postedUserId,
     });
     return res;

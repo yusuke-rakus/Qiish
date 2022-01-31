@@ -1,4 +1,7 @@
 import axios from "axios";
+import getCookie from "../../hooks/cookie/handleCookie";
+// ログインユーザーのIdを取得
+const guestIdByCookie = getCookie();
 
 const baseUrl = "http://localhost:9090";
 
@@ -10,14 +13,13 @@ export const fetchProfile = async (userInfoId?: string) => {
     // (userInfoIdを取得する)
     const res = await axios.post(`${baseUrl}/userPage`, {
       userInfoId: userInfoId,
-      guestId: "1",
-      // guestId: guestId,
+      guestId: guestIdByCookie,
     });
     return res.data;
   } else {
     const res = await axios.post(`${baseUrl}/userPage`, {
-      userInfoId: "1",
-      guestId: "1",
+      userInfoId: guestIdByCookie,
+      guestId: guestIdByCookie,
     });
     return res.data;
   }
@@ -26,7 +28,7 @@ export const fetchProfile = async (userInfoId?: string) => {
 // 記事一覧情報の取得のAPI
 export const fetchArticleList = async () => {
   const res = await axios.post(`${baseUrl}`, {
-    guestId: "1",
+    guestId: guestIdByCookie,
   });
   return res.data;
 };
@@ -37,7 +39,7 @@ export const fetchArticle = async (
 ) => {
   const res = await axios.post(`${baseUrl}/article`, {
     articleId: articleId,
-    guestId: "1",
+    guestId: guestIdByCookie,
   });
 
   return res.data;
@@ -46,7 +48,7 @@ export const fetchArticle = async (
 export const fetchCommentOnArticle = async (articleId: number) => {
   const res = await axios.post(`${baseUrl}/article/getComment`, {
     articleId: articleId,
-    guestId: "1",
+    guestId: guestIdByCookie,
   });
 
   return res.data;

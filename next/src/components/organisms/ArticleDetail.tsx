@@ -29,9 +29,10 @@ type Props = {
     articleCount: number;
     likes: number;
     comments: number;
+    followStatus: boolean;
   };
-  likeCount: number;
-  articleLikeFlag: boolean | number;
+  likesCount: number;
+  likeStatus: boolean | number;
   changeArticleLike: () => void;
   usrFollowFlag: boolean | number;
   checkLoginUserFlag: boolean;
@@ -44,8 +45,8 @@ const ArticleDetail: React.FC<Props> = ({
   article,
   articleTags,
   postedUser,
-  likeCount,
-  articleLikeFlag,
+  likesCount,
+  likeStatus,
   changeArticleLike,
   usrFollowFlag,
   checkLoginUserFlag,
@@ -74,7 +75,8 @@ const ArticleDetail: React.FC<Props> = ({
           {/* likeCount(Article) */}
           <div className="flex justify-center items-center">
             <button onClick={changeArticleLike}>
-              {articleLikeFlag ? (
+              {/* 本人がいいねした場合、likeStatusが変化しない */}
+              {likeStatus ? (
                 <span className="text-orange-500">
                   <HeartOutlined className="text-2xl" />
                 </span>
@@ -83,7 +85,7 @@ const ArticleDetail: React.FC<Props> = ({
               )}
             </button>
             <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
-              {likeCount ? likeCount : 0}
+              {likesCount}
             </a>
             &nbsp;
             {/* commentCount(Article) */}
@@ -100,7 +102,6 @@ const ArticleDetail: React.FC<Props> = ({
           {/* tags(Article) */}
           <div className="flex justify-center flex-wrap">
             {articleTags.map((tag: any) => {
-              // console.log(tag.map((item) => console.log(item)));
               return (
                 <span
                   className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"

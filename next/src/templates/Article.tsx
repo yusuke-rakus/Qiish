@@ -49,10 +49,9 @@ const Article: React.FC = () => {
   // 記事投稿者がログインユーザーかどうか判別
   const checkLoginUserFlag = useLoginChecker(data.postedUser.id);
 
-  const [likeCount, setlikeCount] = useState(data.article.lieksUserList.length);
-  const [articleLikeFlag, setArticleLikeFlag] = useToggle(false);
-  // const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
-  const [usrFollowFlag, setUsrFollowFlag] = useToggle(data.article.likeStatus);
+  const [likesCount, setlikesCount] = useState(data.article.likesCount);
+  const [likeStatus, setlikeStatus] = useToggle(data.article.likeStatus);
+  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
   const [editFlag, setEditFlag] = useToggle(false);
 
   // cookieに投稿者のidを追加
@@ -60,18 +59,17 @@ const Article: React.FC = () => {
     setArticleUserId(data.postedUser.id);
   }, [data.postedUser.id]);
 
-  // 現状はuid１がuid1にフォローする処理
-  // 永続化のためにcookieにarticlelikeFlagを立てる
+  // いいね数といいね状態を変更
   const changeArticleLike = async () => {
     const addedLike = await changeLikeStatus(
       data.article.id,
-      likeCount,
-      articleLikeFlag
+      likesCount,
+      likeStatus
     );
     // いいねしたら+1、いいねを解除したら-1
-    setlikeCount(addedLike);
+    setlikesCount(addedLike);
     // いいねの真偽値切り替え true:いいね中、false:いいね解除
-    setArticleLikeFlag();
+    setlikeStatus();
   };
   // 現状はuid１がuid2にフォローする処理
   const usrFollowing = async () => {
@@ -139,8 +137,8 @@ const Article: React.FC = () => {
             article={article}
             articleTags={tagsByNum}
             postedUser={data.postedUser}
-            likeCount={likeCount}
-            articleLikeFlag={articleLikeFlag}
+            likesCount={likesCount}
+            likeStatus={likeStatus}
             changeArticleLike={changeArticleLike}
             checkLoginUserFlag={checkLoginUserFlag}
             usrFollowFlag={usrFollowFlag}
