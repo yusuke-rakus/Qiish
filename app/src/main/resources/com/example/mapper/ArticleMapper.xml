@@ -166,7 +166,7 @@
 			a.user_info_id AS a_user_info_id,
 			a.title AS a_title,
 			a.content AS a_content,
-			COALESCE((SELECT COUNT(*) from likes where article_id = a_id), 0) AS likes_count,
+			(SELECT COUNT(*) from likes where article_id = a_id) AS likes_count,
 			a.posted_date AS a_posted_date,
 			a.update_date AS a_update_date,
 			c.user_info_id AS c_user_info_id,
@@ -182,10 +182,13 @@
 			(SELECT user_name FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_name,
 			(SELECT engineer_type FROM user_info WHERE user_info.id = l.user_info_id) AS l_engineer_type,
 			(SELECT description FROM user_info WHERE user_info.id = l.user_info_id) AS l_description,
-			COALESCE((SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id), 0) AS l_follow_status,
 			(SELECT user_name FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_name,
 			(SELECT image FROM user_info WHERE user_info.id = c.user_info_id) AS c_image,
-			(SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id) AS c_follow_status
+			(SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id) AS c_follow_status,
+			CASE
+				WHEN (SELECT id FROM user_info WHERE user_info.id = l.user_info_id) IS NULL THEN NULL
+				ELSE COALESCE((SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id), 0)
+			END AS l_follow_status
 		FROM articles AS a
 		LEFT OUTER JOIN comments AS c
 		ON a.id = c.article_id

@@ -135,7 +135,7 @@ public class ArticleService {
 		try {
 			articleMapper.articleEdit(form);
 			articleMapper.articleTagsDelete(form.getArticleId());
-			if (!Objects.isNull(form.getTags())) {
+			if (!CollectionUtils.isEmpty(form.getTags())) {
 				articleMapper.articleTagsPost(form.getArticleId(), form.getTags());
 			}
 		} catch (Exception e) {
