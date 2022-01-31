@@ -1,8 +1,8 @@
 import Router from "next/router";
-import axios from "axios";
 import { message } from "antd";
 import { ChangeEvent, useState } from "react";
 import getCookie, { settingUserId } from "../hooks/cookie/handleCookie";
+import { loginUser } from "./api/fetchData";
 
 const goToReissue = () => {
   Router.push("/reissuePassword");
@@ -21,25 +21,17 @@ const LoginUser: React.FC = () => {
     setPassword(e.target.value);
 
   // ログイン処理
-  const login = async () => {
-    const res = await axios.post("http://localhost:9090/user/login", {
-      email: mailAddress,
-      password: password,
-    });
+  const Login = async () => {
+    const response = await loginUser(mailAddress, password);
 
     // ユーザーIDをCookieに設定
-    settingUserId(res.data.userId);
-
-    //コンソールに入力値・レスポンスデータを出力（確認出来たら削除する）
-    // console.log(mailAddress);
-    // console.log(password);
-    // console.log(res.data.userId);
+    settingUserId(response.userId);
 
     // ユーザーIDをCookieから取得
     getCookie();
 
     //error(ログイン失敗):エラーメッセージ表示 /success(ログイン成功):ホーム画面に遷移
-    if (res.data.status == "error") {
+    if (response.status == "error") {
       message.info(`ログインに失敗しました`);
     } else {
       message.info(`ログインに成功しました`);
@@ -70,7 +62,7 @@ const LoginUser: React.FC = () => {
       </button>
       <button
         onClick={() => {
-          login();
+          Login();
         }}
         className="px-6 py-4 w-80 bg-orange-400 text-white text-xl text-center rounded-md hover:bg-amber-600"
       >

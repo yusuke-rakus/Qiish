@@ -5,6 +5,15 @@ const guestIdByCookie = getCookie();
 
 const baseUrl = "http://localhost:9090";
 
+// ユーザーログインのAPI
+export const loginUser = async (mailAddress: string, password: string) => {
+  const res = await axios.post("http://localhost:9090/user/login", {
+    email: mailAddress,
+    password: password,
+  });
+  return res.data;
+};
+
 // プロフィール情報取得のAPI
 export const fetchProfile = async (userInfoId?: string) => {
   // もし記事投稿者ID(userInfoId)があるなら記事投稿者のプロフィールを取得
