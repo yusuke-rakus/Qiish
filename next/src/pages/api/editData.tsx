@@ -1,9 +1,8 @@
 import axios from "axios";
 import { SelectStateType } from "../../hooks/useInputState";
 import getCookie from "../../hooks/cookie/handleCookie";
-// ログインユーザーのIdを取得
-const guestId = getCookie();
-const guestIdNum = Number(guestId);
+const guestIdByCookie = getCookie();
+const guestIdNum = Number(guestIdByCookie);
 
 export const editUserInfo = async (
   userName: string,

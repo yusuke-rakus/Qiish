@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { SelectStateType } from "../../hooks/useInputState";
+import Link from "next/link";
 
 // FCの型定義
 type Props = {
@@ -10,6 +11,8 @@ type Props = {
     articleCount: any;
     engineerType: SelectStateType;
     description: string;
+    followCount: boolean;
+    followerCount: boolean;
   };
   tagsByNum: {
     id: number;
@@ -78,6 +81,20 @@ const ProfileLarge: React.FC<Props> = ({
             {/* 記事投稿数 */}
             投稿数
             <div>{userInfo.articleCount}</div>
+          </div>
+          <div className="flex-grow text-center">
+            <Link href={"/followList"}>
+              <a className="text-black hover:text-gray-400">
+                フォロー<div>{userInfo.followCount}</div>
+              </a>
+            </Link>
+          </div>
+          <div className="flex-grow text-center ">
+            <Link href={"/followerList"}>
+              <a className="text-black hover:text-gray-400">
+                フォロワー<div>{userInfo.followerCount}</div>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="text-2xl mt-2 flex justify-center items-center">

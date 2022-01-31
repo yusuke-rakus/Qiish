@@ -7,22 +7,11 @@ const baseUrl = "http://localhost:9090";
 
 // プロフィール情報取得のAPI
 export const fetchProfile = async (userInfoId?: string) => {
-  // もし記事投稿者ID(userInfoId)があるなら記事投稿者のプロフィールを取得
-  // もし記事投稿者IDがないならログインユーザーのプロフィールを取得
-  if (userInfoId) {
-    // (userInfoIdを取得する)
-    const res = await axios.post(`${baseUrl}/userPage`, {
-      userInfoId: userInfoId,
-      guestId: guestIdByCookie,
-    });
-    return res.data;
-  } else {
-    const res = await axios.post(`${baseUrl}/userPage`, {
-      userInfoId: guestIdByCookie,
-      guestId: guestIdByCookie,
-    });
-    return res.data;
-  }
+  const res = await axios.post(`${baseUrl}/userPage`, {
+    userInfoId: userInfoId,
+    guestId: guestIdByCookie,
+  });
+  return res.data;
 };
 
 // 記事一覧情報の取得のAPI
@@ -107,7 +96,6 @@ export const fetchFollowList = async (guestId: string, userInfoId?: string) => {
   // もし記事投稿者IDがないならログインユーザーのフォローリストを取得
 
   if (userInfoId) {
-    console.log("本人以外");
     const res = await axios.post(`${baseUrl}/user/followList`, {
       userInfoId: userInfoId,
       guestId: guestId,
@@ -115,8 +103,6 @@ export const fetchFollowList = async (guestId: string, userInfoId?: string) => {
     return res.data;
   } else {
     // マイプロフィールから直接フォローリストに遷移する場合
-    console.log("本人");
-
     const res = await axios.post(`${baseUrl}/user/followList`, {
       userInfoId: guestId,
       guestId: guestId,

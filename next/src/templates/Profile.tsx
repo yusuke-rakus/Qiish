@@ -95,6 +95,8 @@ const Profile: React.FC = () => {
     engineerType: engineerType,
     tagsNum: tagsNum,
     description: description,
+    followCount: data.userInfo.followCount,
+    followerCount: data.userInfo.followerCount,
   };
 
   // プロフィール編集用のメソッド
