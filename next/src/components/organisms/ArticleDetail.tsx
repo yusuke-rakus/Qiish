@@ -32,7 +32,7 @@ type Props = {
     followStatus: boolean;
   };
   likesCount: number;
-  likeStatus: boolean | number;
+  likeStatus: boolean;
   changeArticleLike: () => void;
   followerCount: number;
   followStatus: boolean;

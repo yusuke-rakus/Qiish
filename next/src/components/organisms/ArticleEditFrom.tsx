@@ -6,7 +6,7 @@ import { SelectStateType, TextEventType } from "../../hooks/useInputState";
 
 // FCの型定義
 type Props = {
-  prevFlag: boolean | number;
+  prevFlag: boolean;
   articleEdit: {
     title: string;
     content: string;

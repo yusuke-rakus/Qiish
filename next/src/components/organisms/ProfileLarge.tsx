@@ -20,7 +20,7 @@ type Props = {
     image: number;
   }[];
   checkLoginUserFlag: boolean;
-  usrFollowFlag: boolean | number;
+  usrFollowFlag: boolean;
   changeUsrFollow: () => void;
 };
 

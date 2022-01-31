@@ -25,7 +25,7 @@ type Props = {
     image: string;
     likes: number;
   };
-  usrFollowFlag: boolean | number;
+  usrFollowFlag: boolean;
   changeUsrFollow: () => void;
 };
 

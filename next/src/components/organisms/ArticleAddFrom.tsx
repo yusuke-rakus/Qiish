@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 // FCの型定義
 type Props = {
   previewContent: string;
-  prevFlag: boolean | number;
+  prevFlag: boolean;
   Fnc: {
     setTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
     setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
