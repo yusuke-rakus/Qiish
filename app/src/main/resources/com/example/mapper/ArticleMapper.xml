@@ -29,15 +29,24 @@
 		 	c.id,
 			c.comment,
 			c.comment_date,
-			COUNT(*) AS likes_count,
-			COALESCE((SELECT user_info_id = 1 FROM comment_likes WHERE comments_id = c.id AND user_info_id = 1), 0) AS like_status,
 			(SELECT id FROM user_info WHERE c.user_info_id = id) AS c_user_info_id,
 			(SELECT user_name FROM user_info WHERE c.user_info_id = id) AS c_user_name,
 			(SELECT image FROM user_info WHERE c.user_info_id = id) AS c_user_image,
-			COALESCE((SELECT follow_user_info_id = c_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = c_user_info_id),0) AS follow_status
+ 			CASE
+				WHEN c.id IS NULL THEN NULL
+				ELSE (SELECT COUNT(*) FROM comment_likes WHERE comments_id = c.id)
+			END AS likes_count,
+			CASE
+				WHEN c.id IS NULL THEN NULL
+				ELSE COALESCE((SELECT user_info_id = 1 FROM comment_likes WHERE comments_id = c.id AND user_info_id = 1), 0)
+			END AS like_status,
+			CASE
+				WHEN c.id IS NULL THEN NULL
+				ELSE COALESCE((SELECT follow_user_info_id = c_user_info_id FROM follow WHERE user_info_id = 1 AND follow_user_info_id = c_user_info_id),0)
+			END AS follow_status
 		FROM comments AS c
 		LEFT OUTER JOIN comment_likes AS cl
-		on c.id = cl.comments_id
+		ON c.id = cl.comments_id
 		WHERE article_id = #{articleId}
 	</select>
 
@@ -164,7 +173,7 @@
 			c.id AS c_id,
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
-			(SELECT COUNT(user_info_id) FROM comment_likes WHERE comments_id = c_id) AS c_likes_count,
+			(SELECT REPLACE(COUNT(*), 0, NULL) FROM comment_likes WHERE comments_id = c_id) AS c_likes_count,
 			(SELECT user_info_id = #{guestId} FROM comment_likes WHERE comments_id = c_id AND user_info_id = #{guestId}) AS c_likes_status,
 			COALESCE((SELECT l.user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
 			(SELECT tags.id FROM tags WHERE at.tag_id = tags.id) AS tag_id,
