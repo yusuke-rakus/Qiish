@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.domain.Article;
+import com.example.domain.Comment;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
@@ -16,6 +17,9 @@ public interface ArticleMapper {
 
 	/** コメント */
 	public void articleComment(ArticleCommentForm form);
+
+	/** コメントリスト取得 */
+	public List<Comment> getComment(@Param("articleId") Integer articleId, @Param("guestId") Integer guestId);
 
 	/** コメントLIKE */
 	public void commentLike(CommentLikeForm form);

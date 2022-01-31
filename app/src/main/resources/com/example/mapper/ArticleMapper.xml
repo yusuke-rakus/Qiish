@@ -11,15 +11,34 @@
 	
 	<!-- コメントリスト取得 -->
 	<resultMap type="com.example.domain.Comment" id="commentList">
+		<id property="id" column="id"></id>
+		<result property="comment" column="comment"></result>
+		<result property="commentDate" column="comment_date"></result>
+		<result property="likesCount" column="likes_count"></result>
+		<result property="likeStatus" column="like_status"></result>
+			<association property="userInfo"
+				javaType="com.example.domain.UserInfo">
+				<id property="id" column="c_user_info_id"></id>
+				<result property="userName" column="c_user_name"></result>
+				<result property="image" column="c_user_image"></result>
+				<result property="followStatus" column="follow_status"></result>
+			</association>
 	</resultMap>
 	<select id="getComment" resultMap="commentList">
 		SELECT
-			id,
-			user_info_id,
-			comment,
-			comment_date
-		FROM comments
-		WHERE article_id = #{articleId};
+		 	c.id,
+			c.comment,
+			c.comment_date,
+			COUNT(*) AS likes_count,
+			COALESCE((SELECT user_info_id = 1 FROM comment_likes WHERE comments_id = c.id AND user_info_id = 1), 0) AS like_status,
+			(SELECT id FROM user_info WHERE c.user_info_id = id) AS c_user_info_id,
+			(SELECT user_name FROM user_info WHERE c.user_info_id = id) AS c_user_name,
+			(SELECT image FROM user_info WHERE c.user_info_id = id) AS c_user_image,
+			COALESCE((SELECT follow_user_info_id = c_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = c_user_info_id),0) AS follow_status
+		FROM comments AS c
+		LEFT OUTER JOIN comment_likes AS cl
+		on c.id = cl.comments_id
+		WHERE article_id = #{articleId}
 	</select>
 
 	<!-- コメントLIKE -->
