@@ -56,7 +56,9 @@ const Article: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(false);
 
   // cookieに投稿者のidを追加
-  setArticleUserId(data.postedUser.id);
+  useEffect(() => {
+    setArticleUserId(data.postedUser.id);
+  }, [data.postedUser.id]);
 
   // 現状はuid１がuid1にフォローする処理
   // 永続化のためにcookieにarticlelikeFlagを立てる

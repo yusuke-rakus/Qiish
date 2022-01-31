@@ -3,6 +3,8 @@ import { parseCookies, setCookie, destroyCookie } from "nookies";
 // cookieからデータを取得
 const getCookie = (ctx?: any) => {
   const cookie = parseCookies(ctx);
+  // console.log(cookie.guestId);
+
   return cookie.guestId;
 };
 export default getCookie;
@@ -15,6 +17,7 @@ export const settingUserId = (userId: number) => {
   setCookie(null, "guestId", String(userId), {
     // 60秒 * 60 秒 * 24 で一日間保存
     maxAge: 24 * 60 * 60,
+    path: "/",
   });
 
   // クッキーに設定したUserIdを削除する処理

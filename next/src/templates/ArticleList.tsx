@@ -12,7 +12,6 @@ const ArticleList: React.FC = () => {
       const res = await axios.post(`http://localhost:9090`, {
         guestId: guestId,
       });
-      console.dir(res.data);
       setData(res.data.articleList);
     };
     fetchData();

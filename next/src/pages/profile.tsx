@@ -22,8 +22,7 @@ export default ProfilePage;
 // ユーザーIDよりプロフィール情報を取得
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   let userId = getArticleUserId(ctx);
-  // Cookieに投稿者ID(articleUserId)がなければログインユーザーIdを利用して本人
-
+  // Cookieに投稿者ID(articleUserId)がなければログインユーザーIdを利用
   if (!userId) {
     userId = getCookie(ctx);
   }

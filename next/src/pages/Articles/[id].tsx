@@ -33,7 +33,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // 記事情報取得のAPI
-  // undefindの可能性があるためparamsをoptionalにした
   const article = await fetchArticle(params?.id);
 
   // revalidate追加でISRを実現
@@ -43,6 +42,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         "/article": article,
       },
     },
-    revalidate: 1,
+    // revalidate: 1,
   };
 };
