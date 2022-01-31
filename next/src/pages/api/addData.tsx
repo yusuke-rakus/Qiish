@@ -20,15 +20,18 @@ export const registerUser = async (
     password: password,
   });
 
-  //コンソールに入力値を出力（確認出来たら削除する）
-  console.log("ユーザーネーム" + userName);
-  console.log("エンジニアタイプ" + engineerType);
-  console.log("メールアドレス" + mailAddress);
-  console.log("パスワード" + password);
-  console.log("確認用パスワード" + confirmPassword);
+  return res.data;
+};
 
-  //レスポンスデータを出力（確認出来たら削除する）
-  console.log(res.data.status);
+// パスワード再設定機能
+export const resetPassword = async (
+  mailAddress: string,
+  newPassword: string
+) => {
+  const res = await axios.post("http://localhost:9090/reset", {
+    email: mailAddress,
+    password: newPassword,
+  });
 
   return res.data.status;
 };

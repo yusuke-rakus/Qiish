@@ -1,10 +1,10 @@
-import Router from "next/router";
-import axios from "axios";
+import { useRouter } from "next/router";
 import { message } from "antd";
 import { ChangeEvent, useState } from "react";
 import { reissuePassword } from "./api/fetchData";
 
 const ReissuePassword: React.FC = () => {
+  const router = useRouter();
   // メールアドレス
   const [mailAddress, setMailAddress] = useState<string>("");
   // テキストボックス入力時に入力内容をStateに設定
@@ -12,7 +12,22 @@ const ReissuePassword: React.FC = () => {
     setMailAddress(e.target.value);
 
   const reissue = async () => {
-    reissuePassword(mailAddress);
+    const result = await reissuePassword(mailAddress);
+    console.log(result);
+
+    //error:エラーメッセージ表示 /success:パスワード再設定画面に遷移
+    if (result.status == "error") {
+      message.info(`このメールアドレスは有効ではありません。`);
+    } else {
+      message.info(
+        `メールアドレスが確認できました。新しいパスワードを設定して下さい。`
+      );
+      // successが返ってきたらresetPasswordにmailAddressの値を渡す
+      router.push({
+        pathname: "/resetPassword",
+        query: { email: mailAddress },
+      });
+    }
   };
 
   return (

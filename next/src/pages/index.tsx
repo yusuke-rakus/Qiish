@@ -4,10 +4,10 @@ import { removeArticleUserId } from "../hooks/cookie/handleCookie";
 import { Header, ArticleList } from "../templates";
 
 const goToRegisterUser = () => {
-  Router.push("/registeruser");
+  Router.push("/registerUser");
 };
 const goToLogin = () => {
-  Router.push("/loginuser");
+  Router.push("/loginUser");
 };
 
 const Home: React.FC = () => {
