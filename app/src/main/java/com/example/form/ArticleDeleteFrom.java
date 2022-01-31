@@ -1,8 +1,12 @@
 package com.example.form;
 
-public class ArticleIdFrom {
+import javax.validation.constraints.NotNull;
 
+public class ArticleDeleteFrom {
+
+	@NotNull
 	private Integer articleId;
+	@NotNull
 	private Integer guestId;
 
 	public Integer getArticleId() {
@@ -23,7 +27,7 @@ public class ArticleIdFrom {
 
 	@Override
 	public String toString() {
-		return "ArticleIdFrom [articleId=" + articleId + ", guestId=" + guestId + "]";
+		return "ArticleDeleteFrom [articleId=" + articleId + ", guestId=" + guestId + "]";
 	}
 
 
