@@ -84,20 +84,20 @@ export const changeLikeStatus = async (
 
 // ユーザーフォロー機能
 export const changeFollowStatus = async (
-  usrFollowFlag: boolean | number,
+  followStatus: boolean,
   postedUserId?: number
 ) => {
-  if (!usrFollowFlag) {
-    // (userInfoIdを取得する)
+  // フォローするならif以下の処理(フォローステータス:0)
+  if (!followStatus) {
     const res = await axios.post("http://localhost:9090/user/follow", {
       userInfoId: guestIdByCookie,
-      followUserId: postedUserId,
+      followUserInfoId: postedUserId,
     });
     return res;
   } else {
     const res = await axios.post("http://localhost:9090/user/remove", {
       userInfoId: guestIdByCookie,
-      followUserId: postedUserId,
+      followUserInfoId: postedUserId,
     });
     return res;
   }

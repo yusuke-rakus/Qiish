@@ -31,7 +31,7 @@ type Props = {
 const Follower: React.FC<Props> = ({ user_data }) => {
   const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
 
-  // 現状はuid１がuid2にフォローする処理
+  // ログインユーザーが本人以外にフォローする処理
   const usrFollowing = async () => {
     // フォローのデータをDBに保存()
     await changeFollowStatus(usrFollowFlag);

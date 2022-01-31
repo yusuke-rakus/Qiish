@@ -10,6 +10,8 @@ import { setArticleUserId } from "../hooks/cookie/handleCookie";
 import { editArticle } from "../pages/api/editData";
 import axios from "axios";
 import { useLoginChecker } from "../hooks/useLoginChecker";
+import { useToggleByNum } from "../hooks/useToggleByNum";
+import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 
 const Article: React.FC = () => {
   const router = useRouter();
@@ -51,7 +53,13 @@ const Article: React.FC = () => {
 
   const [likesCount, setlikesCount] = useState(data.article.likesCount);
   const [likeStatus, setlikeStatus] = useToggle(data.article.likeStatus);
-  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+  const [followerCount, setFollowerCount] = useAddOrSubOne(
+    data.postedUser.followerCount
+  );
+  const [usrFollowFlag, setUsrFollowFlag] = useToggleByNum(
+    data.postedUser.followStatus
+  );
+
   const [editFlag, setEditFlag] = useToggle(false);
 
   // cookieに投稿者のidを追加
@@ -75,6 +83,7 @@ const Article: React.FC = () => {
   const usrFollowing = async () => {
     // フォローのデータをDBに保存()
     await changeFollowStatus(usrFollowFlag, data.postedUser.id);
+    setFollowerCount(usrFollowFlag);
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setUsrFollowFlag();
   };
@@ -139,9 +148,10 @@ const Article: React.FC = () => {
             postedUser={data.postedUser}
             likesCount={likesCount}
             likeStatus={likeStatus}
+            followerCount={followerCount}
+            usrFollowFlag={usrFollowFlag}
             changeArticleLike={changeArticleLike}
             checkLoginUserFlag={checkLoginUserFlag}
-            usrFollowFlag={usrFollowFlag}
             changeUsrFollow={usrFollowing}
             setEditFlag={setEditFlag}
             onDeleteArticle={onDeleteArticle}

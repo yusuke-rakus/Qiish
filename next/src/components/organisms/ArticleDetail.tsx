@@ -34,6 +34,7 @@ type Props = {
   likesCount: number;
   likeStatus: boolean | number;
   changeArticleLike: () => void;
+  followerCount: number;
   usrFollowFlag: boolean | number;
   checkLoginUserFlag: boolean;
   changeUsrFollow: () => void;
@@ -48,6 +49,7 @@ const ArticleDetail: React.FC<Props> = ({
   likesCount,
   likeStatus,
   changeArticleLike,
+  followerCount,
   usrFollowFlag,
   checkLoginUserFlag,
   changeUsrFollow,
@@ -132,6 +134,7 @@ const ArticleDetail: React.FC<Props> = ({
         <ProfileSmall
           user={postedUser}
           checkLoginUserFlag={checkLoginUserFlag}
+          followerCount={followerCount}
           usrFollowFlag={usrFollowFlag}
           changeUsrFollow={changeUsrFollow}
         />

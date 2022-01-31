@@ -24,11 +24,12 @@ export const fetchArticleList = async () => {
 
 // 特定の記事情報取得のAPI
 export const fetchArticle = async (
-  articleId: string | string[] | undefined
+  articleId: string | string[] | undefined,
+  guestId: string
 ) => {
   const res = await axios.post(`${baseUrl}/article`, {
     articleId: articleId,
-    guestId: guestIdByCookie,
+    guestId: guestId,
   });
 
   return res.data;
