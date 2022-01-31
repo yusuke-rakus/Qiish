@@ -3,6 +3,7 @@ package com.example.form;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -10,8 +11,10 @@ import javax.validation.constraints.Size;
  */
 
 public class ArticleEditForm {
-
+	@NotNull
 	private Integer articleId;
+	@NotNull
+	private Integer guestId;
 	@NotBlank
 	@Size(min = 1, max = 50)
 	private String title;
@@ -51,10 +54,20 @@ public class ArticleEditForm {
 		this.tags = tags;
 	}
 
+	public Integer getGuestId() {
+		return guestId;
+	}
+
+	public void setGuestId(Integer guestId) {
+		this.guestId = guestId;
+	}
+
 	@Override
 	public String toString() {
-		return "ArticleEditForm [articleId=" + articleId + ", title=" + title + ", content=" + content + ", tags="
-				+ tags + "]";
+		return "ArticleEditForm [articleId=" + articleId + ", guestId=" + guestId + ", title=" + title + ", content="
+				+ content + ", tags=" + tags + "]";
 	}
+
+
 
 }

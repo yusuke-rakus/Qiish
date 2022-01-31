@@ -117,7 +117,7 @@
 		title=#{title},
 		content=#{content},
 		update_date = CURRENT_TIMESTAMP
-		WHERE id=#{articleId};
+		WHERE id=#{articleId} AND user_info_id=#{guestId};
 	</update>
 
 	<!-- 記事情報取得 -->
