@@ -1,6 +1,8 @@
 import React from "react";
 import { ProfileRectangle } from "../components/organisms";
 import { useToggle } from "../hooks";
+import { useLoginChecker } from "../hooks/useLoginChecker";
+import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeFollowStatus } from "../pages/api/addData";
 
 type Props = {
@@ -25,25 +27,31 @@ type Props = {
     followerCount: number;
     image: string;
     likes: number;
+    followStatus: number;
   };
 };
 
 const Follow: React.FC<Props> = ({ user_data }) => {
-  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
+  const [followStatus, setFollowStatus] = useToggleByNum(
+    user_data.followStatus
+  );
+  // user_dataがログイン本人だったらtrue,本人でなければfalse
+  const loginCheckStatus = useLoginChecker(user_data.id);
 
   // ログインユーザーが本人以外にフォローする処理
   const usrFollowing = async () => {
     // フォローのデータをDBに保存()
-    await changeFollowStatus(usrFollowFlag);
+    await changeFollowStatus(followStatus, user_data.id);
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
-    setUsrFollowFlag();
+    setFollowStatus();
   };
   return (
     <div>
       <ProfileRectangle
         key={user_data.id}
         user_data={user_data}
-        usrFollowFlag={usrFollowFlag}
+        loginCheckStatus={loginCheckStatus}
+        followStatus={followStatus}
         changeUsrFollow={usrFollowing}
       />
     </div>

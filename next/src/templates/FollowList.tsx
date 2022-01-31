@@ -9,7 +9,7 @@ const FollowList: React.FC = () => {
   return (
     <div className="p-3 text-center">
       <div>
-        <div className="text-3xl font-bold">フォロワー一覧</div>
+        <div className="text-3xl font-bold">フォロー一覧</div>
         <div className="flex justify-center items-center ">
           <div className="w-1/3">
             {data.userList.map((user_data: any) => {
