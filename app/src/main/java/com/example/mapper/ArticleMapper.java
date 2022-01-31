@@ -9,6 +9,7 @@ import com.example.domain.Article;
 import com.example.domain.Comment;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
+import com.example.form.ArticleIdFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.CommentLikeForm;
 
@@ -40,7 +41,7 @@ public interface ArticleMapper {
 	public void articleTagsPost(@Param("articleId") Integer articleId, @Param("tagId") List<Integer> tagId);
 
 	/** 記事削除 */
-	public void articleDelete(Integer articleId);
+	public void articleDelete(ArticleIdFrom form);
 
 	/** 記事更新 */
 	public void articleEdit(ArticleEditForm form);

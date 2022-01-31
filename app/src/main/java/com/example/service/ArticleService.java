@@ -16,6 +16,7 @@ import com.example.domain.UserInfo;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleDetailForm;
 import com.example.form.ArticleEditForm;
+import com.example.form.ArticleIdFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
@@ -119,10 +120,10 @@ public class ArticleService {
 	}
 
 	/** 記事削除 */
-	public Response articleDelete(Integer articleId) {
+	public Response articleDelete(ArticleIdFrom form) {
 		Response res = new Response();
 		try {
-			articleMapper.articleDelete(articleId);
+			articleMapper.articleDelete(form);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}

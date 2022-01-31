@@ -84,7 +84,7 @@ public class ArticleController {
 	/** 記事削除 */
 	@PostMapping("/delete")
 	public Response ArticleDelete(@RequestBody ArticleIdFrom form) {
-		return articleService.articleDelete(form.getArticleId());
+		return articleService.articleDelete(form);
 	}
 
 	/** 記事編集 */

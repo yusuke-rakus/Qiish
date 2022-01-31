@@ -101,7 +101,7 @@
 	<!-- 記事削除 -->
 	<delete id="articleDelete" parameterType="Integer">
 		DELETE FROM articles
-		WHERE id=#{articleId};
+		WHERE id=#{articleId} AND user_info_id=#{guestId};
 	</delete>
 
 	<!-- タグ情報削除 -->
