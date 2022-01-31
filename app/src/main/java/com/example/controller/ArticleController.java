@@ -16,6 +16,7 @@ import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
 import com.example.response.ArticleDetailResponse;
+import com.example.response.CommentResponse;
 import com.example.response.Response;
 import com.example.service.ArticleService;
 
@@ -33,6 +34,12 @@ public class ArticleController {
 			return new Response(result.hasErrors());
 		}
 		return articleService.articleComment(form);
+	}
+	
+	/** コメント取得 */
+	@PostMapping("/getComment")
+	public CommentResponse getComment(@RequestBody ArticleDetailForm form) {
+		return articleService.getComment(form);
 	}
 
 	/** コメントにいいね */

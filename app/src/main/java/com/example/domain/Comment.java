@@ -18,6 +18,8 @@ public class Comment {
 
 	private Integer likesCount;
 
+	private Integer likeStatus;
+
 	public Integer getId() {
 		return id;
 	}
@@ -74,10 +76,19 @@ public class Comment {
 		this.likesCount = likesCount;
 	}
 
+	public Integer getLikeStatus() {
+		return likeStatus;
+	}
+
+	public void setLikeStatus(Integer likeStatus) {
+		this.likeStatus = likeStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", articleId=" + articleId + ", userInfoId=" + userInfoId + ", comment=" + comment
-				+ ", commentDate=" + commentDate + ", userInfo=" + userInfo + ", likesCount=" + likesCount + "]";
+				+ ", commentDate=" + commentDate + ", userInfo=" + userInfo + ", likesCount=" + likesCount
+				+ ", likeStatus=" + likeStatus + "]";
 	}
 
 }

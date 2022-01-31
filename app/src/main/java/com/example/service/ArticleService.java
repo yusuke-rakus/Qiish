@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
@@ -10,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.example.common.Status;
 import com.example.domain.Article;
+import com.example.domain.Comment;
 import com.example.domain.UserInfo;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleDetailForm;
@@ -20,6 +22,7 @@ import com.example.form.CommentLikeForm;
 import com.example.mapper.ArticleMapper;
 import com.example.mapper.UserMapper;
 import com.example.response.ArticleDetailResponse;
+import com.example.response.CommentResponse;
 import com.example.response.Response;
 
 @Service
@@ -37,6 +40,18 @@ public class ArticleService {
 		Response res = new Response();
 		try {
 			articleMapper.articleComment(form);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** コメントリスト取得 */
+	public CommentResponse getComment(ArticleDetailForm form) {
+		CommentResponse res = new CommentResponse();
+		try {
+			List<Comment> commentList = articleMapper.getComment(form.getArticleId(), form.getGuestId());
+			res.setCommentList(commentList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}

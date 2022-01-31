@@ -8,6 +8,38 @@
 		INSERT INTO comments(article_id, user_info_id, comment)
 		VALUES(#{articleId}, #{userInfoId}, #{comment});
 	</insert>
+	
+	<!-- コメントリスト取得 -->
+	<resultMap type="com.example.domain.Comment" id="commentList">
+		<id property="id" column="id"></id>
+		<result property="comment" column="comment"></result>
+		<result property="commentDate" column="comment_date"></result>
+		<result property="likesCount" column="likes_count"></result>
+		<result property="likeStatus" column="like_status"></result>
+			<association property="userInfo"
+				javaType="com.example.domain.UserInfo">
+				<id property="id" column="c_user_info_id"></id>
+				<result property="userName" column="c_user_name"></result>
+				<result property="image" column="c_user_image"></result>
+				<result property="followStatus" column="follow_status"></result>
+			</association>
+	</resultMap>
+	<select id="getComment" resultMap="commentList">
+		SELECT
+		 	c.id,
+			c.comment,
+			c.comment_date,
+			COUNT(*) AS likes_count,
+			COALESCE((SELECT user_info_id = 1 FROM comment_likes WHERE comments_id = c.id AND user_info_id = 1), 0) AS like_status,
+			(SELECT id FROM user_info WHERE c.user_info_id = id) AS c_user_info_id,
+			(SELECT user_name FROM user_info WHERE c.user_info_id = id) AS c_user_name,
+			(SELECT image FROM user_info WHERE c.user_info_id = id) AS c_user_image,
+			COALESCE((SELECT follow_user_info_id = c_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = c_user_info_id),0) AS follow_status
+		FROM comments AS c
+		LEFT OUTER JOIN comment_likes AS cl
+		on c.id = cl.comments_id
+		WHERE article_id = #{articleId}
+	</select>
 
 	<!-- コメントLIKE -->
 	<insert id="commentLike"
@@ -91,9 +123,11 @@
 		<collection property="comments"
 			ofType="com.example.domain.Comment">
 			<result property="id" column="c_id"></result>
+			<result property="userInfoId" column="c_user_info_id"></result>
 			<result property="comment" column="c_comment"></result>
 			<result property="commentDate" column="c_comment_date"></result>
 			<result property="likesCount" column="c_likes_count"></result>
+			<result property="likeStatus" column="c_likes_status"></result>
 			<association property="userInfo"
 				javaType="com.example.domain.UserInfo">
 				<id property="id" column="c_user_info_id"></id>
@@ -130,8 +164,9 @@
 			c.id AS c_id,
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
+			(SELECT COUNT(user_info_id) FROM comment_likes WHERE comments_id = c_id) AS c_likes_count,
+			(SELECT user_info_id = #{guestId} FROM comment_likes WHERE comments_id = c_id AND user_info_id = #{guestId}) AS c_likes_status,
 			COALESCE((SELECT l.user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
-			(SELECT COUNT(*) FROM comment_likes WHERE comment_likes.comments_id = c.id) AS c_likes_count,
 			(SELECT tags.id FROM tags WHERE at.tag_id = tags.id) AS tag_id,
 			(SELECT tags.skill FROM tags WHERE at.tag_id = tags.id) AS tag_name,
 			(SELECT id FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
@@ -139,10 +174,9 @@
 			(SELECT engineer_type FROM user_info WHERE user_info.id = l.user_info_id) AS l_engineer_type,
 			(SELECT description FROM user_info WHERE user_info.id = l.user_info_id) AS l_description,
 			COALESCE((SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id), 0) AS l_follow_status,
-			(SELECT id FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_info_id,
 			(SELECT user_name FROM user_info WHERE user_info.id = c.user_info_id) AS c_user_name,
 			(SELECT image FROM user_info WHERE user_info.id = c.user_info_id) AS c_image,
-			COALESCE((SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id), 0) AS c_follow_status
+			(SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id) AS c_follow_status
 		FROM articles AS a
 		LEFT OUTER JOIN comments AS c
 		ON a.id = c.article_id
