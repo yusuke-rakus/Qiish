@@ -26,14 +26,16 @@ type Props = {
     comments: number;
   };
   checkLoginUserFlag: boolean;
-  usrFollowFlag: boolean | number;
+  followerCount: number;
+  followStatus: boolean;
   changeUsrFollow: () => void;
 };
 
 const ProfileSmall: React.FC<Props> = ({
   user,
   checkLoginUserFlag,
-  usrFollowFlag,
+  followerCount,
+  followStatus,
   changeUsrFollow,
 }) => {
   const tagStyle =
@@ -70,7 +72,7 @@ const ProfileSmall: React.FC<Props> = ({
             <div>@{user.userName}</div>
             {!checkLoginUserFlag && (
               <span>
-                {usrFollowFlag ? (
+                {followStatus ? (
                   <button onClick={changeUsrFollow}>
                     <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
                       フォロー解除
@@ -103,7 +105,7 @@ const ProfileSmall: React.FC<Props> = ({
           <div className="flex-grow text-center ">
             <Link href={"/followerList"}>
               <a className="text-black hover:text-gray-400">
-                フォロワー<div>{user.followerCount}</div>
+                フォロワー<div>{followerCount}</div>
               </a>
             </Link>
           </div>

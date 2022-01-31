@@ -56,7 +56,7 @@ const Article: React.FC = () => {
   const [followerCount, setFollowerCount] = useAddOrSubOne(
     data.postedUser.followerCount
   );
-  const [usrFollowFlag, setUsrFollowFlag] = useToggleByNum(
+  const [followStatus, setFollowStatus] = useToggleByNum(
     data.postedUser.followStatus
   );
 
@@ -79,13 +79,14 @@ const Article: React.FC = () => {
     // いいねの真偽値切り替え true:いいね中、false:いいね解除
     setlikeStatus();
   };
-  // 現状はuid１がuid2にフォローする処理
+  // 現状はログインしているユーザーが本人以外のユーザーをフォローする処理
   const usrFollowing = async () => {
-    // フォローのデータをDBに保存()
-    await changeFollowStatus(usrFollowFlag, data.postedUser.id);
-    setFollowerCount(usrFollowFlag);
+    // フォローのデータをDBに保存
+    await changeFollowStatus(followStatus, data.postedUser.id);
+    // フォロー数の増減 true(フォロー解除): -1, false(フォローする): +1
+    setFollowerCount(followStatus);
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
-    setUsrFollowFlag();
+    setFollowStatus();
   };
   const onDeleteArticle = async () => {
     const res = await deleteArticleById(data.article.id);
@@ -149,7 +150,7 @@ const Article: React.FC = () => {
             likesCount={likesCount}
             likeStatus={likeStatus}
             followerCount={followerCount}
-            usrFollowFlag={usrFollowFlag}
+            followStatus={followStatus}
             changeArticleLike={changeArticleLike}
             checkLoginUserFlag={checkLoginUserFlag}
             changeUsrFollow={usrFollowing}

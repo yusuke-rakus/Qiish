@@ -35,7 +35,7 @@ type Props = {
   likeStatus: boolean | number;
   changeArticleLike: () => void;
   followerCount: number;
-  usrFollowFlag: boolean | number;
+  followStatus: boolean;
   checkLoginUserFlag: boolean;
   changeUsrFollow: () => void;
   setEditFlag: () => void;
@@ -50,7 +50,7 @@ const ArticleDetail: React.FC<Props> = ({
   likeStatus,
   changeArticleLike,
   followerCount,
-  usrFollowFlag,
+  followStatus,
   checkLoginUserFlag,
   changeUsrFollow,
   setEditFlag,
@@ -135,7 +135,7 @@ const ArticleDetail: React.FC<Props> = ({
           user={postedUser}
           checkLoginUserFlag={checkLoginUserFlag}
           followerCount={followerCount}
-          usrFollowFlag={usrFollowFlag}
+          followStatus={followStatus}
           changeUsrFollow={changeUsrFollow}
         />
       </div>
