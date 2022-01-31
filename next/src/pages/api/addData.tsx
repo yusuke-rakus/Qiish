@@ -63,22 +63,19 @@ export const addComment = async (articleId: number, comment: string) => {
 // cookieにいいねしたidを保存
 export const changeLikeStatus = async (
   articleId: number,
-  likeCount: number,
-  articleLikeFlag: boolean | number
+  likeStatus: boolean
 ) => {
-  if (!articleLikeFlag) {
+  if (!likeStatus) {
     // (userInfoIdを取得する)
     await axios.post("http://localhost:9090/article/like", {
       userInfoId: guestIdByCookie,
       articleId: articleId,
     });
-    return likeCount + 1;
   } else {
     await axios.post("http://localhost:9090/article/removeLike", {
       userInfoId: guestIdByCookie,
       articleId: articleId,
     });
-    return likeCount - 1;
   }
 };
 

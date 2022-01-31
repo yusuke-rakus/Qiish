@@ -51,8 +51,8 @@ const Article: React.FC = () => {
   // 記事投稿者がログインユーザーかどうか判別
   const checkLoginUserFlag = useLoginChecker(data.postedUser.id);
 
-  const [likesCount, setlikesCount] = useState(data.article.likesCount);
-  const [likeStatus, setlikeStatus] = useToggle(data.article.likeStatus);
+  const [likesCount, setlikesCount] = useAddOrSubOne(data.article.likesCount);
+  const [likeStatus, setlikeStatus] = useToggleByNum(data.article.likeStatus);
   const [followerCount, setFollowerCount] = useAddOrSubOne(
     data.postedUser.followerCount
   );
@@ -69,13 +69,9 @@ const Article: React.FC = () => {
 
   // いいね数といいね状態を変更
   const changeArticleLike = async () => {
-    const addedLike = await changeLikeStatus(
-      data.article.id,
-      likesCount,
-      likeStatus
-    );
+    await changeLikeStatus(data.article.id, likeStatus);
     // いいねしたら+1、いいねを解除したら-1
-    setlikesCount(addedLike);
+    setlikesCount(likeStatus);
     // いいねの真偽値切り替え true:いいね中、false:いいね解除
     setlikeStatus();
   };
