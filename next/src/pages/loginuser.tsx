@@ -1,6 +1,6 @@
 import Router from "next/router";
-import { message } from "antd";
 import { ChangeEvent, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import getCookie, { settingUserId } from "../hooks/cookie/handleCookie";
 import { loginUser } from "./api/fetchData";
 
@@ -32,15 +32,16 @@ const LoginUser: React.FC = () => {
 
     //error(ログイン失敗):エラーメッセージ表示 /success(ログイン成功):ホーム画面に遷移
     if (response.status == "error") {
-      message.info(`ログインに失敗しました`);
+      toast.error(`ログインに失敗しました`);
     } else {
-      message.info(`ログインに成功しました`);
+      toast.success(`ログインに成功しました`);
       Router.push("/");
     }
   };
 
   return (
     <div className="pb-28 h-screen w-screen flex flex-col gap-2 justify-center items-center">
+      <Toaster />
       <div className="mr-56 text-4xl font-semibold text-orange-500">Login</div>
       <input
         type="text"

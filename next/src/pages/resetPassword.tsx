@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
-import { message } from "antd";
 import Router from "next/router";
+import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { resetPassword } from "./api/addData";
 
 const ResetPassword: React.FC = () => {
@@ -15,22 +15,26 @@ const ResetPassword: React.FC = () => {
 
   //　パスワードリセット
   const reset = async () => {
-    if (newPassword.length < 8) {
-      message.info(`パスワードは8文字以上のものを設定して下さい。`);
+    if (newPassword == "") {
+      toast.error(`新しいパスワードを入力して下さい。`);
+      return;
+    } else if (newPassword.length < 8) {
+      toast.error(`パスワードは8文字以上のものを設定して下さい。`);
       return;
     }
     const result = await resetPassword(String(router.query.email), newPassword);
     console.log(result);
     if (result === "error") {
-      message.info(`新しいパスワードの設定に失敗しました。`);
+      toast.error(`新しいパスワードの設定に失敗しました。`);
     } else {
-      message.info(`新しいパスワードの設定が完了しました。`);
+      toast.success(`新しいパスワードの設定が完了しました。`);
       Router.push("/loginUser");
     }
   };
 
   return (
     <div className="h-screen w-screen flex flex-col gap-2 justify-center items-center">
+      <Toaster />
       <div className="m-4 mr-20 text-4xl font-semibold text-orange-500">
         パスワード再設定
       </div>

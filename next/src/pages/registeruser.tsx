@@ -1,6 +1,4 @@
-import axios from "axios";
 import Router from "next/router";
-import { message, Select } from "antd";
 import { ChangeEvent, useState } from "react";
 import { registerUser } from "./api/addData";
 import { useRegisterChecker } from "../hooks/useRegisterChecker";
@@ -66,7 +64,7 @@ const RegisterUser: React.FC = () => {
       confirmPassword
     );
 
-    Router.push("/loginuser");
+    Router.push("/loginUser");
   };
 
   return (
