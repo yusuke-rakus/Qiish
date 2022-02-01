@@ -12,7 +12,6 @@ type Props = {
     engineerType: SelectStateType;
     description: string;
     followCount: boolean;
-    followerCount: boolean;
   };
   tagsByNum: {
     id: number;
@@ -20,7 +19,8 @@ type Props = {
     image: number;
   }[];
   checkLoginUserFlag: boolean;
-  usrFollowFlag: boolean;
+  followerCount: number;
+  followStatus: boolean;
   changeUsrFollow: () => void;
 };
 
@@ -28,7 +28,8 @@ const ProfileLarge: React.FC<Props> = ({
   userInfo,
   tagsByNum,
   checkLoginUserFlag,
-  usrFollowFlag,
+  followerCount,
+  followStatus,
   changeUsrFollow,
 }) => {
   return (
@@ -59,7 +60,7 @@ const ProfileLarge: React.FC<Props> = ({
             <div className="text-xl">@{userInfo.userName}</div>
             {!checkLoginUserFlag && (
               <span>
-                {usrFollowFlag ? (
+                {followStatus ? (
                   <button onClick={changeUsrFollow}>
                     <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
                       フォロー解除
@@ -92,7 +93,7 @@ const ProfileLarge: React.FC<Props> = ({
           <div className="flex-grow text-center ">
             <Link href={"/followerList"}>
               <a className="text-black hover:text-gray-400">
-                フォロワー<div>{userInfo.followerCount}</div>
+                フォロワー<div>{followerCount}</div>
               </a>
             </Link>
           </div>

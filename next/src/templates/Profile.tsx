@@ -10,15 +10,22 @@ import { useLoginChecker } from "../hooks/useLoginChecker";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { editUserInfo } from "../pages/api/editData";
+import { useToggleByNum } from "../hooks/useToggleByNum";
+import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 
 const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(true);
-  const [usrFollowFlag, setUsrFollowFlag] = useToggle(false);
   const router = useRouter();
 
   // ユーザーのプロフィールデータ
   const { data, error } = useSWR("/profile");
 
+  const [followStatus, setFollowStatus] = useToggleByNum(
+    data.userInfo.followStatus
+  );
+  const [followerCount, setFollowerCount] = useAddOrSubOne(
+    data.userInfo.followerCount
+  );
   // プロフィール編集用のステート
   // カスタムフック使用(Text)
   const [userName, setUserName] = useTextState(data.userInfo.userName);
@@ -58,12 +65,13 @@ const Profile: React.FC = () => {
   // プロフィールがログインユーザーかどうか判別
   const checkLoginUserFlag = useLoginChecker(data.userInfo.id);
 
-  // 現状はuid１がuid2にフォローする処理
+  // ログインユーザーが本人以外のユーザーをフォローする機能
   const usrFollowing = async () => {
     // フォローのデータをDBに保存()
-    await changeFollowStatus(usrFollowFlag);
+    await changeFollowStatus(followStatus, data.userInfo.id);
+    setFollowerCount(followStatus);
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
-    setUsrFollowFlag();
+    setFollowStatus();
   };
 
   // ユーザー情報編集の処理
@@ -96,7 +104,6 @@ const Profile: React.FC = () => {
     tagsNum: tagsNum,
     description: description,
     followCount: data.userInfo.followCount,
-    followerCount: data.userInfo.followerCount,
   };
 
   // プロフィール編集用のメソッド
@@ -126,7 +133,8 @@ const Profile: React.FC = () => {
               userInfo={userInfo}
               tagsByNum={tagsByNum}
               checkLoginUserFlag={checkLoginUserFlag}
-              usrFollowFlag={usrFollowFlag}
+              followStatus={followStatus}
+              followerCount={followerCount}
               changeUsrFollow={usrFollowing}
             />
             {checkLoginUserFlag && (

@@ -6,10 +6,10 @@ const guestIdByCookie = getCookie();
 const baseUrl = "http://localhost:9090";
 
 // プロフィール情報取得のAPI
-export const fetchProfile = async (userInfoId?: string) => {
+export const fetchProfile = async (guestId: string, userInfoId?: string) => {
   const res = await axios.post(`${baseUrl}/userPage`, {
     userInfoId: userInfoId,
-    guestId: guestIdByCookie,
+    guestId: guestId,
   });
   return res.data;
 };
