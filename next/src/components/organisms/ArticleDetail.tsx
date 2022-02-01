@@ -40,6 +40,7 @@ type Props = {
   changeUsrFollow: () => void;
   setEditFlag: () => void;
   onDeleteArticle: () => void;
+  setLikeUserModalStatus: () => void;
 };
 
 const ArticleDetail: React.FC<Props> = ({
@@ -55,6 +56,7 @@ const ArticleDetail: React.FC<Props> = ({
   changeUsrFollow,
   setEditFlag,
   onDeleteArticle,
+  setLikeUserModalStatus,
 }) => {
   const menu = (
     <Menu>
@@ -86,9 +88,9 @@ const ArticleDetail: React.FC<Props> = ({
                 <HeartOutlined className="text-2xl" />
               )}
             </button>
-            <a href="#" className="ml-1 text-xl text-black hover:text-gray-400">
-              {likesCount}
-            </a>
+            <span className="ml-1 text-xl text-black hover:text-gray-400">
+              <button onClick={setLikeUserModalStatus}>{likesCount}</button>
+            </span>
             &nbsp;
             {/* commentCount(Article) */}
             <MessageTwoTone twoToneColor="#f97316" className="text-2xl" />

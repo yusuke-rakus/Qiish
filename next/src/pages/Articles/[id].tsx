@@ -1,5 +1,5 @@
 import React from "react";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { Article } from "../../templates";
 import { fetchArticle } from "../api/fetchData";
@@ -36,31 +36,3 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   };
 };
-
-// // build時に必要なpathを取得
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const res = await fetchArticleList();
-//   const paths = res.articleList.map(
-//     (article: any) => `/articles/${String(article.id)}`
-//   );
-
-//   return {
-//     paths,
-//     fallback: "blocking",
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   // 記事情報取得のAPI
-//   const article = await fetchArticle(params.id);
-
-//   // revalidate追加でISRを実現
-//   return {
-//     props: {
-//       fallback: {
-//         "/article": article,
-//       },
-//     },
-//     revalidate: 1,
-//   };
-// };
