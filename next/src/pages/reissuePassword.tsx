@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { message } from "antd";
+import toast, { Toaster } from "react-hot-toast";
 import { ChangeEvent, useState } from "react";
 import { reissuePassword } from "./api/fetchData";
 
@@ -16,10 +16,12 @@ const ReissuePassword: React.FC = () => {
     console.log(result);
 
     //error:エラーメッセージ表示 /success:パスワード再設定画面に遷移
-    if (result.status == "error") {
-      message.info(`このメールアドレスは有効ではありません。`);
+    if (mailAddress == "") {
+      toast.error(`メールアドレスを入力してください。`);
+    } else if (result.status == "error") {
+      toast.error(`このメールアドレスは存在しません。`);
     } else {
-      message.info(
+      toast.success(
         `メールアドレスが確認できました。新しいパスワードを設定して下さい。`
       );
       // successが返ってきたらresetPasswordにmailAddressの値を渡す
@@ -32,6 +34,7 @@ const ReissuePassword: React.FC = () => {
 
   return (
     <div className="h-screen w-screen flex flex-col gap-2 justify-center items-center">
+      <Toaster />
       <input
         type="text"
         onChange={onChangeMailAddress}
