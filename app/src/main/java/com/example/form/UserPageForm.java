@@ -3,6 +3,7 @@ package com.example.form;
 public class UserPageForm {
 
 	private Integer userInfoId;
+	private Integer guestId;
 
 	public Integer getUserInfoId() {
 		return userInfoId;
@@ -12,9 +13,19 @@ public class UserPageForm {
 		this.userInfoId = userInfoId;
 	}
 
+	public Integer getGuestId() {
+		return guestId;
+	}
+
+	public void setGuestId(Integer guestId) {
+		this.guestId = guestId;
+	}
+
 	@Override
 	public String toString() {
-		return "UserPageForm [userInfoId=" + userInfoId + "]";
+		return "UserPageForm [userInfoId=" + userInfoId + ", guestId=" + guestId + "]";
 	}
+
+
 
 }

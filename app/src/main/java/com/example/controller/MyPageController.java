@@ -19,7 +19,7 @@ public class MyPageController {
 
 	@PostMapping("")
 	public MyPageResponse myPage(@RequestBody UserPageForm form) {
-		return myPageService.myPage(form.getUserInfoId());
+		return myPageService.myPage(form);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.common.Status;
 import com.example.domain.UserInfo;
+import com.example.form.UserPageForm;
 import com.example.mapper.MyPageMapper;
 import com.example.response.MyPageResponse;
 
@@ -18,10 +19,10 @@ public class MyPageService {
 	@Autowired
 	private MyPageMapper myPageMapper;
 
-	public MyPageResponse myPage(Integer userInfoId) {
+	public MyPageResponse myPage(UserPageForm form) {
 		MyPageResponse res = new MyPageResponse();
 		try {
-			UserInfo user = myPageMapper.myPage(userInfoId);
+			UserInfo user = myPageMapper.myPage(form);
 			if (Objects.isNull(user)) {
 				throw new NullPointerException();
 			}
