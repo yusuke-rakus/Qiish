@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { ArticleEdit, CommentList } from ".";
+import { ArticleEdit, CommentList, LikeUsersOnArticle } from ".";
 import { ArticleDetail } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
@@ -12,11 +12,17 @@ import axios from "axios";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
+import ModalScreen from "../components/ModalScreen";
+import { Button } from "antd";
 
 const Article: React.FC = () => {
   const router = useRouter();
   // 記事詳細データ取得
   const { data } = useSWR("/article");
+
+  console.dir(data);
+
+  const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
 
   //edit用ステート
   // カスタムフック使用(Text)
@@ -130,6 +136,20 @@ const Article: React.FC = () => {
 
   return (
     <div className="h-full">
+      {likeUserModalStatus && (
+        <div>
+          <div className="fixed inset-0 z-50">
+            <LikeUsersOnArticle lieksUserList={data.article.lieksUserList} />
+            <span className="flex justify-center">
+              <Button onClick={setLikeUserModalStatus}>
+                <span className="hover:text-orange-400">戻る</span>
+              </Button>
+            </span>
+          </div>
+          <ModalScreen />
+        </div>
+      )}
+
       {editFlag ? (
         <ArticleEdit
           article={article}
@@ -152,6 +172,7 @@ const Article: React.FC = () => {
             changeUsrFollow={usrFollowing}
             setEditFlag={setEditFlag}
             onDeleteArticle={onDeleteArticle}
+            setLikeUserModalStatus={setLikeUserModalStatus}
           />
           <CommentList
             comments={data.article.comments}

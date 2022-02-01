@@ -64,7 +64,6 @@ public class UserController {
 	/** フォロー一覧表示 */
 	@PostMapping("/followList")
 	public FollowResponse followList(@RequestBody FollowListForm form) {
-		System.out.println(form);
 		return userService.followList(form);
 	}
 

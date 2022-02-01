@@ -8,6 +8,8 @@ export { default as Comment } from "./Comment";
 export { default as CommentList } from "./CommentList";
 export { default as FollowList } from "./FollowList";
 export { default as FollowerList } from "./FollowerList";
+export { default as LikeUserOnArticle } from "./LikeUserOnArticle";
+export { default as LikeUsersOnArticle } from "./LikeUsersOnArticle";
 export { default as Profile } from "./Profile";
 export { default as ProfileEdit } from "./ProfileEdit";
 export { default as Header } from "./Header";

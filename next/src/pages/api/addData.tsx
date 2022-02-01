@@ -71,12 +71,12 @@ export const changeLikeStatus = async (
   if (!likeStatus) {
     // (userInfoIdを取得する)
     await axios.post("http://localhost:9090/article/like", {
-      userInfoId: guestIdByCookie,
+      userInfoId: guestIdNum,
       articleId: articleId,
     });
   } else {
     await axios.post("http://localhost:9090/article/removeLike", {
-      userInfoId: guestIdByCookie,
+      userInfoId: guestIdNum,
       articleId: articleId,
     });
   }
@@ -90,13 +90,13 @@ export const changeFollowStatus = async (
   // フォローするならif以下の処理(フォローステータス:0)
   if (!followStatus) {
     const res = await axios.post("http://localhost:9090/user/follow", {
-      userInfoId: guestIdByCookie,
+      userInfoId: guestIdNum,
       followUserInfoId: userInfoIdToFollow,
     });
     return res;
   } else {
     const res = await axios.post("http://localhost:9090/user/remove", {
-      userInfoId: guestIdByCookie,
+      userInfoId: guestIdNum,
       followUserInfoId: userInfoIdToFollow,
     });
     return res;
