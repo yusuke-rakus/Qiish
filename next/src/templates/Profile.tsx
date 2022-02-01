@@ -87,7 +87,7 @@ const Profile: React.FC = () => {
 
       if (res.data.status === "success") {
         alert("ユーザー情報編集に成功しました。プロフィール画面へ戻ります。");
-        router.push("/profile");
+        setEditFlag();
       }
     } catch (error) {
       console.log(error);
