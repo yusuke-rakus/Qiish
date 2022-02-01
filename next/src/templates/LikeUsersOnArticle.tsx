@@ -1,6 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import getCookie from "../hooks/cookie/handleCookie";
+import React from "react";
 import LikeUserOnArticle from "./LikeUserOnArticle";
 
 type Props = {

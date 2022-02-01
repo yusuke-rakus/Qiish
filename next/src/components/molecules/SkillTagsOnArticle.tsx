@@ -1,7 +1,6 @@
 import React from "react";
 import { SkillTag } from "../atoms";
-import { TagOutlined, HeartFilled } from "@ant-design/icons";
-import { listenerCount } from "process";
+import { TagOutlined } from "@ant-design/icons";
 
 // FCの型定義
 type Props = {

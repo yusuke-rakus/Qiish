@@ -1,7 +1,5 @@
 import React from "react";
 import { ProfileRectangle } from "../components/organisms";
-import { useToggle } from "../hooks";
-import getCookie from "../hooks/cookie/handleCookie";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeFollowStatus } from "../pages/api/addData";

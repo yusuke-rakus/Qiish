@@ -19,9 +19,6 @@ const Article: React.FC = () => {
   const router = useRouter();
   // 記事詳細データ取得
   const { data } = useSWR("/article");
-
-  console.dir(data);
-
   const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
 
   //edit用ステート
@@ -174,10 +171,7 @@ const Article: React.FC = () => {
             onDeleteArticle={onDeleteArticle}
             setLikeUserModalStatus={setLikeUserModalStatus}
           />
-          <CommentList
-            comments={data.article.comments}
-            articleId={data.article.id}
-          />
+          <CommentList articleId={data.article.id} />
         </React.Fragment>
       )}
     </div>

@@ -2,8 +2,6 @@ import React from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../const/Tags";
-import { editUserInfo } from "../pages/api/editData";
-import { useRouter } from "next/router";
 import { SelectStateType, TextEventType } from "../hooks/useInputState";
 
 type Props = {
