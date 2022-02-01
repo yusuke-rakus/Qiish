@@ -31,6 +31,7 @@ export const editArticle = async (
   tags: SelectStateType
 ) => {
   const res = await axios.post("http://localhost:9090/article/edit", {
+    guestId: guestIdNum,
     articleId: articleId,
     title: title,
     content: content,
