@@ -31,16 +31,18 @@ type Props = {
     likesCount: number;
   };
 
-  likeCount: number;
+  likesCount: number;
   likeStatus: boolean;
   changeCommentLike: () => void;
+  setLikeUserModalStatus: () => void;
 };
 
 const CommentComp: React.FC<Props> = ({
   commentData,
-  likeCount,
+  likesCount,
   likeStatus,
   changeCommentLike,
+  setLikeUserModalStatus,
 }) => {
   return (
     <div>
@@ -76,9 +78,9 @@ const CommentComp: React.FC<Props> = ({
               <HeartOutlined className="text-2xl" />
             )}
           </button>
-          <a href="#" className="ml-1 text-md text-black hover:text-gray-400">
-            {likeCount}
-          </a>
+          <span className="ml-1 text-md text-black hover:text-gray-400">
+            <button onClick={setLikeUserModalStatus}>{likesCount}</button>
+          </span>
           {/* posted_date(Comment) */}
 
           <span className="ml-6">

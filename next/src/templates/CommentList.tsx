@@ -13,6 +13,8 @@ type Props = {
 type CommentProps = {
   id: number;
   articleId: number;
+  likeStatus: number;
+  likesCount: number;
   userInfoId: number;
   comment: string;
   commentDate: string;
@@ -34,7 +36,6 @@ type CommentProps = {
     comments: null;
     followStatus: number;
   };
-  likesCount: number;
 };
 
 const CommentList: React.FC<Props> = ({ articleId }) => {
@@ -51,6 +52,8 @@ const CommentList: React.FC<Props> = ({ articleId }) => {
     return res.data;
   };
   const { data } = useSWR("/article/comment", getcommentList);
+
+  console.log(data);
 
   // コメント追加処理(コメント初期化する)
   const onAddComment = async () => {
