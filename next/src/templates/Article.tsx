@@ -160,6 +160,7 @@ const Article: React.FC = () => {
             article={article}
             articleTags={tagsByNum}
             postedUser={data.postedUser}
+            commentCountOnArticle={data.article.comments.length}
             likesCount={likesCount}
             likeStatus={likeStatus}
             followerCount={followerCount}

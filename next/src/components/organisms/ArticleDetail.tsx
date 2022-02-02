@@ -31,6 +31,7 @@ type Props = {
     comments: number;
     followStatus: boolean;
   };
+  commentCountOnArticle: number;
   likesCount: number;
   likeStatus: boolean;
   changeArticleLike: () => void;
@@ -50,6 +51,7 @@ const ArticleDetail: React.FC<Props> = ({
   likesCount,
   likeStatus,
   changeArticleLike,
+  commentCountOnArticle,
   followerCount,
   followStatus,
   checkLoginUserFlag,
@@ -94,7 +96,7 @@ const ArticleDetail: React.FC<Props> = ({
             &nbsp;
             {/* commentCount(Article) */}
             <MessageTwoTone twoToneColor="#f97316" className="text-2xl" />
-            <span className="ml-1 text-xl">1</span>
+            <span className="ml-1 text-xl">{commentCountOnArticle}</span>
             {checkLoginUserFlag && (
               <Dropdown overlay={menu}>
                 <MenuOutlined className="ml-1 text-2xl text-black hover:text-orange-500" />
