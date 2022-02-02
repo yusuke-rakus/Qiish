@@ -3,26 +3,9 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import { ArticleEditFrom } from "../components/organisms";
 import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useToggle } from "../hooks";
-import { SelectStateType, TextEventType } from "../hooks/useInputState";
+import { ArticleEdit } from "../const/Types";
 
-type Props = {
-  article: {
-    id: any;
-    title: string;
-    content: string;
-    postedDate: any;
-  };
-  articleTagsNum: SelectStateType;
-  editFunc: {
-    setTitle: (e: TextEventType) => void;
-    setContent: (e: TextEventType) => void;
-    setTagsNum: (value: React.SetStateAction<SelectStateType>) => void;
-    onEditArticle: () => void;
-  };
-  setEditFlag: () => void;
-};
-
-const ArticleEdit: React.FC<Props> = ({
+const ArticleEdit: React.FC<ArticleEdit> = ({
   article,
   articleTagsNum,
   editFunc,

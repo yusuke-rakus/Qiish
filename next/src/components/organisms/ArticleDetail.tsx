@@ -4,47 +4,9 @@ import { ProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { Dropdown, Menu } from "antd";
+import { ArticleDetail } from "../../const/Types";
 
-type Props = {
-  article: {
-    id: any;
-    title: string;
-    content: string;
-    postedDate: any;
-  };
-  articleTags: { id: number; skill: string; image: number }[];
-  postedUser: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: string;
-    follow: number;
-    followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: { id: number; skill: string; image?: string }[];
-    articles: number;
-    articleCount: number;
-    likes: number;
-    comments: number;
-    followStatus: boolean;
-  };
-  commentCountOnArticle: number;
-  likesCount: number;
-  likeStatus: boolean;
-  changeArticleLike: () => void;
-  followerCount: number;
-  followStatus: boolean;
-  checkLoginUserFlag: boolean;
-  changeUsrFollow: () => void;
-  setEditFlag: () => void;
-  onDeleteArticle: () => void;
-  setLikeUserModalStatus: () => void;
-};
-
-const ArticleDetail: React.FC<Props> = ({
+const ArticleDetail: React.FC<ArticleDetail> = ({
   article,
   articleTags,
   postedUser,

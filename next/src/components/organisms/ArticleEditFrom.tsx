@@ -2,30 +2,9 @@ import React from "react";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
-import { SelectStateType, TextEventType } from "../../hooks/useInputState";
+import { ArticleEditFrom } from "../../const/Types";
 
-// FCの型定義
-type Props = {
-  prevFlag: boolean;
-  articleEdit: {
-    title: string;
-    content: string;
-    tags: SelectStateType;
-  };
-  Fnc: {
-    editTitle: (e: TextEventType) => void;
-    editContent: (e: TextEventType) => void;
-    editTags: (value: React.SetStateAction<SelectStateType>) => void;
-    setPreviewFlag: () => void;
-    onEditArticle: () => void;
-  };
-  SKILLTAGS: {
-    label: string;
-    tags: { id: number; skill: string; image: null }[];
-  }[];
-};
-
-const ArticleEditFrom: React.FC<Props> = ({
+const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
   prevFlag,
   articleEdit,
   Fnc,

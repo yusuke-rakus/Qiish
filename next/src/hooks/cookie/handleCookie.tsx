@@ -3,7 +3,6 @@ import { parseCookies, setCookie, destroyCookie } from "nookies";
 // cookieからデータを取得
 const getCookie = (ctx?: any) => {
   const cookie = parseCookies(ctx);
-  // console.log(cookie.guestId);
 
   return cookie.guestId;
 };

@@ -1,37 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ProfileSmall } from "../../const/Types";
 
-// FCの型定義
-type Props = {
-  user: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: string;
-    follow: number;
-    followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: {
-      id: number;
-      skill: string;
-      image?: string;
-    }[];
-    articles: number;
-    articleCount: number;
-    likes: number;
-    comments: number;
-  };
-  checkLoginUserFlag: boolean;
-  followerCount: number;
-  followStatus: boolean;
-  changeUsrFollow: () => void;
-};
-
-const ProfileSmall: React.FC<Props> = ({
+const ProfileSmall: React.FC<ProfileSmall> = ({
   user,
   checkLoginUserFlag,
   followerCount,

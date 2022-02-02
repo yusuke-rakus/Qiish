@@ -53,8 +53,6 @@ const CommentList: React.FC<Props> = ({ articleId }) => {
   };
   const { data } = useSWR("/article/comment", getcommentList);
 
-  console.log(data);
-
   // コメント追加処理(コメント初期化する)
   const onAddComment = async () => {
     const res = await addComment(articleId, commentText);

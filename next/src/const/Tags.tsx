@@ -1,4 +1,6 @@
-export const SKILL = [
+import { SkillTags } from "./Types";
+
+export const SKILL: SkillTags = [
   {
     label: "フロント",
     tags: [

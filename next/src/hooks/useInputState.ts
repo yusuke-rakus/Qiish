@@ -1,10 +1,7 @@
 import { SetStateAction, useCallback, useState } from "react";
+import { SelectStateType, TextEventType } from "../const/Types";
 
 // ステートのカスタムフック(インプット、テキストエリア)
-export type TextEventType =
-  | React.ChangeEvent<HTMLInputElement>
-  | React.ChangeEvent<HTMLTextAreaElement>;
-
 export const useTextState = (
   initialState: string
 ): [string, (e: TextEventType) => void] => {
@@ -18,10 +15,6 @@ export const useTextState = (
   }, []);
   return [inputState, changeState];
 };
-
-// ステートのカスタムフック(str or str[]セレクトタグ)
-// タグの初期化時にコールバック関数を使用するため3つ目のtypeがある
-export type SelectStateType = string | number[];
 
 export const useSelectState = (
   initialState: SelectStateType

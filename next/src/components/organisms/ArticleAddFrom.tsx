@@ -2,25 +2,9 @@ import React from "react";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
+import { ArticleAddForm } from "../../const/Types";
 
-// FCの型定義
-type Props = {
-  previewContent: string;
-  prevFlag: boolean;
-  Fnc: {
-    setTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    setTags: (value: number[]) => void;
-    setPreviewFlag: () => void;
-    onAddArticle: () => void;
-  };
-  SKILLTAGS: {
-    label: string;
-    tags: { id: number; skill: string; image: null }[];
-  }[];
-};
-
-const ArticleAddFrom: React.FC<Props> = ({
+const ArticleAddFrom: React.FC<ArticleAddForm> = ({
   previewContent,
   prevFlag,
   Fnc,

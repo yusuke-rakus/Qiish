@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { ArticleEdit, CommentList, LikeUsersOnArticle } from ".";
@@ -17,6 +17,7 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import ModalScreen from "../components/ModalScreen";
 import { Button } from "antd";
+import { ArticleData, tag } from "../const/Types";
 
 const Article: React.FC = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const Article: React.FC = () => {
   const [title, setTitle] = useTextState(data.article.title);
   const [content, setContent] = useTextState(data.article.content);
   // 記事タグの格納
-  const initialTags: number[] = [];
+  const initialTags = new Array<number>();
   const insertTags = () => {
     for (const tag of data.article.articleTags) {
       initialTags.push(tag.id);
@@ -42,8 +43,8 @@ const Article: React.FC = () => {
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
 
   // タグのid,skill,imageを取得
-  let tagsByNum: any = [];
-  const [tagsData, setTagsData] = useState<any>();
+  let tagsByNum: tag[] = [];
+  const [tagsData, setTagsData] = useState<tag[]>([]);
   useEffect(() => {
     const tagsData = async () => {
       const res = await axios.get("http://localhost:9090/getTag");
@@ -53,7 +54,7 @@ const Article: React.FC = () => {
   }, []);
   // 選択した記事タグを配列に格納する処理
   for (let tagNum of tagsNum) {
-    const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id == tagNum);
+    const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id === tagNum);
     tagsByNum.push(tagsFilterByTagNum[0]);
   }
 
@@ -129,7 +130,7 @@ const Article: React.FC = () => {
     }
   };
 
-  const article = {
+  const article: ArticleData = {
     id: data.article.id,
     title: title,
     content: content,
