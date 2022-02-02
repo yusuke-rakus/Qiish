@@ -4,7 +4,10 @@ import useSWR from "swr";
 import { ArticleEdit, CommentList, LikeUsersOnArticle } from ".";
 import { ArticleDetail } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { changeFollowStatus, changeLikeStatus } from "../pages/api/addData";
+import {
+  changeFollowStatus,
+  changeLikeStatusToArticle,
+} from "../pages/api/addData";
 import { deleteArticleById } from "../pages/api/deleteData";
 import { setArticleUserId } from "../hooks/cookie/handleCookie";
 import { editArticle } from "../pages/api/editData";
@@ -75,7 +78,7 @@ const Article: React.FC = () => {
 
   // いいね数といいね状態を変更
   const changeArticleLike = async () => {
-    await changeLikeStatus(data.article.id, likeStatus);
+    await changeLikeStatusToArticle(data.article.id, likeStatus);
     // いいねしたら+1、いいねを解除したら-1
     setlikesCount(likeStatus);
     // いいねの真偽値切り替え true:いいね中、false:いいね解除

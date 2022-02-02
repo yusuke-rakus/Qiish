@@ -31,15 +31,15 @@ type Props = {
     likesCount: number;
   };
 
-  commentLike: number;
-  commentLikeFlag: boolean;
+  likeCount: number;
+  likeStatus: boolean;
   changeCommentLike: () => void;
 };
 
 const CommentComp: React.FC<Props> = ({
   commentData,
-  commentLike,
-  commentLikeFlag,
+  likeCount,
+  likeStatus,
   changeCommentLike,
 }) => {
   return (
@@ -68,7 +68,7 @@ const CommentComp: React.FC<Props> = ({
         <div className="flex items-center">
           {/* likeList(Comment) */}
           <button onClick={changeCommentLike}>
-            {commentLikeFlag ? (
+            {likeStatus ? (
               <span className="text-orange-500">
                 <HeartOutlined className="text-2xl" />
               </span>
@@ -77,7 +77,7 @@ const CommentComp: React.FC<Props> = ({
             )}
           </button>
           <a href="#" className="ml-1 text-md text-black hover:text-gray-400">
-            {commentLike}
+            {likeCount}
           </a>
           {/* posted_date(Comment) */}
 

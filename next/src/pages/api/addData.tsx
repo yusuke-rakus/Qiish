@@ -62,14 +62,12 @@ export const addComment = async (articleId: number, comment: string) => {
   return res.data;
 };
 
-// いいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
-// cookieにいいねしたidを保存
-export const changeLikeStatus = async (
+// 記事いいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
+export const changeLikeStatusToArticle = async (
   articleId: number,
   likeStatus: boolean
 ) => {
   if (!likeStatus) {
-    // (userInfoIdを取得する)
     await axios.post("http://localhost:9090/article/like", {
       userInfoId: guestIdNum,
       articleId: articleId,
@@ -78,6 +76,23 @@ export const changeLikeStatus = async (
     await axios.post("http://localhost:9090/article/removeLike", {
       userInfoId: guestIdNum,
       articleId: articleId,
+    });
+  }
+};
+// コメントいいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
+export const changeLikeStatusToComment = async (
+  commentId: number,
+  likeStatus: boolean
+) => {
+  if (!likeStatus) {
+    await axios.post("http://localhost:9090/article/commentLike", {
+      userInfoId: guestIdNum,
+      commentId: commentId,
+    });
+  } else {
+    await axios.post("http://localhost:9090/article/removeCommentLike", {
+      userInfoId: guestIdNum,
+      commentId: commentId,
     });
   }
 };
