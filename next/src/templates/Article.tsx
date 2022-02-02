@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { ArticleEdit, CommentList, LikeUsersOnArticle } from ".";
@@ -27,11 +27,14 @@ const Article: React.FC = () => {
   const [content, setContent] = useTextState(data.article.content);
   // 記事タグの格納
   const initialTags: number[] = [];
-  useEffect(() => {
+  const insertTags = () => {
     for (const tag of data.article.articleTags) {
       initialTags.push(tag.id);
     }
-  }, [data.article.articleTags, initialTags]);
+  };
+  useEffect(() => {
+    insertTags();
+  });
   // カスタムフック使用(編集用記事タグの格納)
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
 
