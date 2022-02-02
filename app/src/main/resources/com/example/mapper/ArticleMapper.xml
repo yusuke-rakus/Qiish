@@ -176,7 +176,7 @@
 			c.comment_date AS c_comment_date,
 			(SELECT REPLACE(COUNT(*), 0, NULL) FROM comment_likes WHERE comments_id = c_id) AS c_likes_count,
 			(SELECT user_info_id = #{guestId} FROM comment_likes WHERE comments_id = c_id AND user_info_id = #{guestId}) AS c_likes_status,
-			COALESCE((SELECT l.user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
+			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
 			(SELECT tags.id FROM tags WHERE at.tag_id = tags.id) AS tag_id,
 			(SELECT tags.skill FROM tags WHERE at.tag_id = tags.id) AS tag_name,
 			(SELECT id FROM user_info WHERE user_info.id = l.user_info_id) AS l_user_info_id,
