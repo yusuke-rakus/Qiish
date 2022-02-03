@@ -23,7 +23,6 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
         <div className="m-4">
           <div className="flex justify-center items-center">
-            {/* image(User) */}
             <Image
               className="rounded-full"
               src={"/img/avatar.jpg"}
@@ -90,7 +89,6 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
                 bordered={false}
                 onChange={Fnc.setTagsNum}
               >
-                {/* フロント、バックエンド、その他のそれぞれの表示 */}
                 {TAGS.SKILL.map((SkillType) => {
                   return (
                     <Select.OptGroup
@@ -111,7 +109,6 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
             </Form.Item>
           </div>
         </div>
-        {/* comment(User) */}
         <div className="text-xl text-center m-2">
           <span className="block w-full p-2 text-xl rounded-xl hover:bg-gray-100">
             <Form.Item

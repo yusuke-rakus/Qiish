@@ -1,36 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import { ProfileRectangle } from "../../const/Types";
 
-// FCの型定義
-type Props = {
-  user_data: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: string;
-    follow: string;
-    followCount: number;
-    follower: string;
-    followerCount: number;
-    tags: {
-      id: number;
-      skill: string;
-      image: string;
-    }[];
-    articles: string;
-    articleCount: number;
-    likes: string;
-    comments: string;
-    followStatus: number;
-  };
-  followStatus: boolean;
-  changeUsrFollow: () => void;
-  loginCheckStatus: boolean;
-};
-
-const ProfileRectangleOnComment: React.FC<Props> = ({
+const ProfileRectangleOnComment: React.FC<ProfileRectangle> = ({
   user_data,
   changeUsrFollow,
   followStatus,

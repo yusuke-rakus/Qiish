@@ -13,7 +13,6 @@ const ArticleAddFrom: React.FC<ArticleAddForm> = ({
   return (
     <div>
       <Form onSubmitCapture={Fnc.onAddArticle}>
-        {/* 送信ようのメソッド用意 */}
         <Form.Item
           name="title"
           rules={[

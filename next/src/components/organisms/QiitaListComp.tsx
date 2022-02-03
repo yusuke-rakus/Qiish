@@ -47,7 +47,6 @@ const QiitaListComp: React.FC<Props> = ({ qiitaData }) => {
   return (
     <div className="p-5 m-2 h-auto flex flex-col gap-1 bg-white rounded-lg shadow-xl">
       <div className="text-xs text-gray">
-        {/* @{qiitaData.user.name} */}
         {qiitaData.user.github_login_name
           ? `@${qiitaData.user.github_login_name}`
           : qiitaData.user.name}

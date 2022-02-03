@@ -1,35 +1,11 @@
 import React from "react";
 import { ProfileRectangleOnComment } from "../components/organisms";
+import { UserDataType } from "../const/Types";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeFollowStatus } from "../lib/api/addData";
 
-type Props = {
-  user_data: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: string;
-    follow: string;
-    followCount: number;
-    follower: string;
-    followerCount: number;
-    tags: {
-      id: number;
-      skill: string;
-      image: string;
-    }[];
-    articles: string;
-    articleCount: number;
-    likes: string;
-    comments: string;
-    followStatus: number;
-  };
-};
-
-const LikeUserOnComment: React.FC<Props> = ({ user_data }) => {
+const LikeUserOnComment: React.FC<UserDataType> = ({ user_data }) => {
   const [followStatus, setFollowStatus] = useToggleByNum(
     user_data.followStatus
   );
