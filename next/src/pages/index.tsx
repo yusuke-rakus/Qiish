@@ -1,6 +1,6 @@
 import Router from "next/router";
 import { useEffect } from "react";
-import { removeArticleUserId } from "../hooks/cookie/handleCookie";
+import { removeArticleUserId } from "../lib/cookie/handleCookie";
 import { Header, ArticleList } from "../templates";
 
 const goToRegisterUser = () => {

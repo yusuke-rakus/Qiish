@@ -2,8 +2,8 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { FollowList } from "../templates";
-import { fetchFollowList } from "../hooks/api/fetchData";
-import getCookie, { getArticleUserId } from "../hooks/cookie/handleCookie";
+import { fetchFollowList } from "../lib/api/fetchData";
+import getCookie, { getArticleUserId } from "../lib/cookie/handleCookie";
 
 type Props = {
   [key: string]: object;

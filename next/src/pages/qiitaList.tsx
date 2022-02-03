@@ -1,7 +1,7 @@
 import React from "react";
 import { QiitaList } from "../templates";
 import { SWRConfig } from "swr";
-import { fetchQiitaList } from "../hooks/api/fetchData";
+import { fetchQiitaList } from "../lib/api/fetchData";
 
 type Props = {
   [key: string]: object;

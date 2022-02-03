@@ -2,7 +2,7 @@ import React from "react";
 import { ProfileRectangleOnComment } from "../components/organisms";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
-import { changeFollowStatus } from "../hooks/api/addData";
+import { changeFollowStatus } from "../lib/api/addData";
 
 type Props = {
   user_data: {

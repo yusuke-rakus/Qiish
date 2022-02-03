@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 import { ChangeEvent, useState } from "react";
-import { reissuePassword } from "../hooks/api/fetchData";
+import { reissuePassword } from "../lib/api/fetchData";
 
 const ReissuePassword: React.FC = () => {
   const router = useRouter();

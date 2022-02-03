@@ -1,8 +1,8 @@
 import Router from "next/router";
 import { ChangeEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import getCookie, { settingUserId } from "../hooks/cookie/handleCookie";
-import { loginUser } from "../hooks/api/fetchData";
+import getCookie, { settingUserId } from "../lib/cookie/handleCookie";
+import { loginUser } from "../lib/api/fetchData";
 
 const goToReissue = () => {
   Router.push("/reissuePassword");

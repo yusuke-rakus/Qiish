@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import ArticleComp from "../components/organisms/ArticleComp";
-import getCookie from "../hooks/cookie/handleCookie";
+import getCookie from "../lib/cookie/handleCookie";
 
 const ArticleList: React.FC = () => {
   const [data, setData] = useState([]);

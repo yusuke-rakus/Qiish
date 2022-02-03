@@ -4,9 +4,9 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { addArticle } from "../hooks/api/addData";
+import { addArticle } from "../lib/api/addData";
 import { useRouter } from "next/router";
-import getCookie from "../hooks/cookie/handleCookie";
+import getCookie from "../lib/cookie/handleCookie";
 
 const ArticleAdd: React.FC = () => {
   // カスタムフック使用(Text)

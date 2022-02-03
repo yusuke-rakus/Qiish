@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Menu, Dropdown, Drawer, Button, Radio, Space } from "antd";
 import { DrawerProps } from "antd/es/drawer";
 import { RadioChangeEvent } from "antd/es/radio";
-import { fetchSearchedArticle } from "../../hooks/api/fetchData";
+import { fetchSearchedArticle } from "../../lib/api/fetchData";
 
 const HeaderComp: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);

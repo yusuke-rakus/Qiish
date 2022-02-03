@@ -3,7 +3,7 @@ import { ProfileRectangleOnArticle } from "../components/organisms";
 import { UserDataType } from "../const/Types";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
-import { changeFollowStatus } from "../hooks/api/addData";
+import { changeFollowStatus } from "../lib/api/addData";
 
 const LikeUserOnArticle: React.FC<UserDataType> = ({ user_data }) => {
   const [followStatus, setFollowStatus] = useToggleByNum(

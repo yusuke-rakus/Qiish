@@ -1,4 +1,4 @@
-import getCookie from "./cookie/handleCookie";
+import getCookie from "../lib/cookie/handleCookie";
 
 const guestId = Number(getCookie());
 

@@ -7,10 +7,10 @@ import { useSelectState, useTextState, useToggle } from "../hooks";
 import {
   changeFollowStatus,
   changeLikeStatusToArticle,
-} from "../hooks/api/addData";
-import { deleteArticleById } from "../hooks/api/deleteData";
-import { setArticleUserId } from "../hooks/cookie/handleCookie";
-import { editArticle } from "../hooks/api/editData";
+} from "../lib/api/addData";
+import { deleteArticleById } from "../lib/api/deleteData";
+import { setArticleUserId } from "../lib/cookie/handleCookie";
+import { editArticle } from "../lib/api/editData";
 import axios from "axios";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
