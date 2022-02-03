@@ -130,8 +130,7 @@
 		<result property="postedDate" column="a_posted_date"></result>
 		<result property="updateDate" column="a_update_date"></result>
 		<result property="likeStatus" column="like_status"></result>
-		<collection property="comments"
-			ofType="com.example.domain.Comment">
+		<collection property="comments" ofType="com.example.domain.Comment">
 			<result property="id" column="c_id"></result>
 			<result property="userInfoId" column="c_user_info_id"></result>
 			<result property="comment" column="c_comment"></result>
@@ -145,14 +144,19 @@
 				<result property="image" column="c_image"></result>
 				<result property="followStatus" column="c_follow_status"></result>
 			</association>
+			<collection property="commentLikesUserList" ofType="com.example.domain.UserInfo">
+				<result property="id" column="cl_user_info_id"></result>
+				<result property="userName" column="cl_user_name"></result>
+				<result property="engineerType" column="cl_engineer_type"></result>
+				<result property="description" column="cl_description"></result>
+				<result property="followStatus" column="cl_follow_status"></result>
+			</collection>
 		</collection>
-		<collection property="articleTags"
-			ofType="com.example.domain.Tag">
+		<collection property="articleTags" ofType="com.example.domain.Tag">
 			<result property="skill" column="tag_name"></result>
 			<result property="id" column="tag_id"></result>
 		</collection>
-		<collection property="lieksUserList"
-			ofType="com.example.domain.UserInfo">
+		<collection property="lieksUserList" ofType="com.example.domain.UserInfo">
 			<result property="id" column="l_user_info_id"></result>
 			<result property="userName" column="l_user_name"></result>
 			<result property="engineerType" column="l_engineer_type"></result>
@@ -174,6 +178,14 @@
 			c.id AS c_id,
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
+			clu.id AS cl_user_info_id, 
+			clu.user_name AS cl_user_name,
+			clu.engineer_type AS cl_engineer_type,
+			clu.description AS cl_description,
+			CASE
+				WHEN (SELECT id FROM user_info WHERE user_info.id = cl.user_info_id) IS NULL THEN NULL
+				ELSE COALESCE((SELECT follow_user_info_id = cl_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = cl_user_info_id), 0)
+			END AS cl_follow_status,
 			(SELECT REPLACE(COUNT(*), 0, NULL) FROM comment_likes WHERE comments_id = c_id) AS c_likes_count,
 			(SELECT user_info_id = #{guestId} FROM comment_likes WHERE comments_id = c_id AND user_info_id = #{guestId}) AS c_likes_status,
 			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
@@ -189,10 +201,14 @@
 			CASE
 				WHEN (SELECT id FROM user_info WHERE user_info.id = l.user_info_id) IS NULL THEN NULL
 				ELSE COALESCE((SELECT follow_user_info_id = l_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = l_user_info_id), 0)
-			END AS l_follow_status
+			END AS l_follow_status 
 		FROM articles AS a
 		LEFT OUTER JOIN comments AS c
-		ON a.id = c.article_id
+		ON a.id = c.article_id 
+		LEFT OUTER JOIN comment_likes AS cl 
+		ON c.id = cl.comments_id 
+		LEFT OUTER JOIN user_info AS clu 
+		ON cl.user_info_id = clu.id 
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
 		LEFT OUTER JOIN likes AS l
