@@ -33,7 +33,7 @@ const Article: React.FC = () => {
   const [title, setTitle] = useTextState(articleData.article.title);
   const [content, setContent] = useTextState(articleData.article.content);
   // カスタムフック使用(編集用記事タグの格納)
-  let tagsByNum: tag[] = [];
+  let tagsByNum = new Array<tag>();
   const initialTags = new Array<number>();
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
   // 記事タグの格納

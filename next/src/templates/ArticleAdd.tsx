@@ -9,44 +9,49 @@ import { useRouter } from "next/router";
 import getCookie from "../lib/cookie/handleCookie";
 
 const ArticleAdd: React.FC = () => {
-  // カスタムフック使用(Text)
+  // 記事
+  // タイトル
   const [title, setTitle] = useTextState("");
+  // 内容
   const [content, setContent] = useTextState("");
-  // カスタムフック使用(Select)
+  // 技術タグ
   const [tags, setTags] = useSelectState(new Array<number>());
-  // カスタムフック使用(Toggle)
-  const [previewFlag, setPreviewFlag] = useToggle(true);
+
   const router = useRouter();
+  // プレービューフラグ  true: プレビューoff, false: プレビューon
+  const [previewFlag, setPreviewFlag] = useToggle(true);
   // cookieからuid取得(Number型に変換)
   const userId = Number(getCookie());
 
-  // 記事投稿処理
-  // sucess: トップページへ遷移, error: アラートメッセージ表示
+  /**
+   * 記事投稿処理を行う.
+   *
+   * @remarks
+   * sucess: DBへ記事を保存して、トップページへ遷移する.
+   * error: アラートメッセージ表示する.
+   */
   const onAddArticle = async () => {
     //  バリデーションチェック
-    const alertMsg = "記事投稿に失敗しました。入力内容を確認してください。";
-    // タイトルが半角スペースまたは全角スペース、nullのみであったらアラート表示
+    const errorMsg = "記事投稿に失敗しました。入力内容を確認してください。";
     if (title === " " || title === "　" || title === null) {
-      alert(alertMsg);
+      alert(errorMsg);
       return;
     }
-    // 記事内容が半角スペースまたは全角スペース、nullのみであったらアラート表示
     if (content === " " || content === "　" || content === null) {
-      alert(alertMsg);
+      alert(errorMsg);
       return;
     }
 
     try {
       const res = await addArticle(userId, title, content, tags);
-
       if (res.data.status === "success") {
         alert("記事投稿成功しました。記事一覧へ戻ります。");
         router.push("/");
       } else {
-        alert(alertMsg);
+        alert(errorMsg);
       }
     } catch (error) {
-      alert(alertMsg);
+      alert(errorMsg);
     }
   };
 
