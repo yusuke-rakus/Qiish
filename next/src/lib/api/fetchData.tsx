@@ -14,6 +14,31 @@ export const loginUser = async (mailAddress: string, password: string) => {
   return res.data;
 };
 
+// 検索された記事を取得するAPI
+// キーワード二つ目以降は+区切りで付け足していく仕様とする。半角スペースを+に変換する。
+export const fetchSearchedArticle = async (
+  keyword: string,
+  guestId: string
+) => {
+  console.log(keyword);
+  console.log(guestId);
+  const res = await axios.post(`${baseUrl}/search`, {
+    keyword: keyword,
+    guestId: guestId,
+  });
+  console.log(res);
+  return res.data.articleList;
+};
+
+// タグで記事検索
+export const fetchSearchedTag = async (tagId: string, guestId: string) => {
+  const res = await axios.post(`${baseUrl}/searchTag`, {
+    tagId: tagId,
+    guestId: guestId,
+  });
+  return res.data.articleList;
+};
+
 // プロフィール情報取得のAPI
 export const fetchProfile = async (guestId: string, userInfoId?: string) => {
   const res = await axios.post(`${baseUrl}/userPage`, {
@@ -56,16 +81,6 @@ export const fetchCommentOnArticle = async (articleId: number) => {
   });
 
   return res.data;
-};
-
-// 検索された記事を取得するAPI
-// キーワード二つ目以降は+区切りで付け足していく仕様とする。半角スペースを+に変換する。
-export const fetchSearchedArticle = async (keyword: string) => {
-  const res = await axios.get(
-    `http://localhost:3001/search?keyword=${keyword}`
-  );
-  console.log(keyword);
-  console.log(res);
 };
 
 // パスワードを再発行するAPI

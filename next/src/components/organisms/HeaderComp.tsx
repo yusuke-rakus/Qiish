@@ -36,7 +36,6 @@ const HeaderComp: React.FC = () => {
   };
 
   const search = async () => {
-    fetchSearchedArticle(keyword);
     setVisible(false);
   };
 

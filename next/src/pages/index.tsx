@@ -22,9 +22,6 @@ const Home: React.FC = () => {
       <div>
         <Header />
       </div>
-      <div className="mx-80 my-1 text-4xl font-semibold text-orange-500">
-        Articles
-      </div>
       <ArticleList />
     </div>
   );
