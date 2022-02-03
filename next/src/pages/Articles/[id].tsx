@@ -4,12 +4,9 @@ import { SWRConfig } from "swr";
 import { Article } from "../../templates";
 import { fetchArticle, fetchGetTags } from "../../lib/api/fetchData";
 import getCookie from "../../lib/cookie/handleCookie";
+import { SWRPROPS } from "../../const/Types";
 
-type Props = {
-  [key: string]: object;
-};
-
-const ArticlePage: React.FC<Props> = ({ fallback }) => {
+const ArticlePage: React.FC<SWRPROPS> = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
       <Article />

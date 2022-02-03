@@ -4,12 +4,9 @@ import { SWRConfig } from "swr";
 import { Profile } from "../templates";
 import { fetchProfile } from "../lib/api/fetchData";
 import getCookie, { getArticleUserId } from "../lib/cookie/handleCookie";
+import { SWRPROPS } from "../const/Types";
 
-type Props = {
-  [key: string]: object;
-};
-
-const ProfilePage: React.FC<Props> = ({ fallback }) => {
+const ProfilePage: React.FC<SWRPROPS> = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
       <Profile />

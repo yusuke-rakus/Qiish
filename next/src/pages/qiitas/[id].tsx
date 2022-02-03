@@ -3,12 +3,9 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { SWRConfig } from "swr";
 import { Qiita } from "../../templates";
 import { fetchQiita, fetchQiitaList } from "../../lib/api/fetchData";
+import { SWRPROPS } from "../../const/Types";
 
-type Props = {
-  [key: string]: object;
-};
-
-const QiitaPage: React.FC<Props> = ({ fallback }) => {
+const QiitaPage: React.FC<SWRPROPS> = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
       <Qiita />

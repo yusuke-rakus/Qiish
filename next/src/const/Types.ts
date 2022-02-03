@@ -12,6 +12,10 @@ export type SelectStateType = string | number[];
 
 // 汎用性のある型
 // --------------------------------------------
+// PagesのSWRを用いた引数の型
+export type SWRPROPS = {
+  [key: string]: object;
+};
 // タグ(単数)の型
 export type tag = {
   id: number;

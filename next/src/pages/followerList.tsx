@@ -4,12 +4,9 @@ import { SWRConfig } from "swr";
 import { FollowerList } from "../templates";
 import { fetchFollowerList } from "../lib/api/fetchData";
 import getCookie, { getArticleUserId } from "../lib/cookie/handleCookie";
+import { SWRPROPS } from "../const/Types";
 
-type Props = {
-  [key: string]: object;
-};
-
-const FollowerListPage: React.FC<Props> = ({ fallback }) => {
+const FollowerListPage: React.FC<SWRPROPS> = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
       <FollowerList />

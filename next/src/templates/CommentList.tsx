@@ -12,13 +12,14 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   const { mutate } = useSWRConfig();
 
   // コメントデータを取得
+  // 再検証をするには同じファイル内でデータをフェッチする必要がある
   const getcommentList = async () => {
     const res = await fetchcommentList(articleId);
     return res.data;
   };
-  const { data } = useSWR("/article/comment", getcommentList);
+  const { data } = useSWR("/commentList", getcommentList);
 
-  // コメント追加処理(コメント初期化する)
+  // コメント追加処理(コメント初期化)
   const onAddComment = async () => {
     const res = await addComment(articleId, commentText);
     if (res.status === "success") {

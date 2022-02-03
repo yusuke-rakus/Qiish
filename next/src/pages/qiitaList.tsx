@@ -2,12 +2,9 @@ import React from "react";
 import { QiitaList } from "../templates";
 import { SWRConfig } from "swr";
 import { fetchQiitaList } from "../lib/api/fetchData";
+import { SWRPROPS } from "../const/Types";
 
-type Props = {
-  [key: string]: object;
-};
-
-const QiitaListPage: React.FC<Props> = ({ fallback }) => {
+const QiitaListPage: React.FC<SWRPROPS> = ({ fallback }) => {
   return (
     <SWRConfig value={{ fallback }}>
       <QiitaList />
