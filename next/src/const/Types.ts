@@ -28,6 +28,27 @@ type SkillTag = {
 };
 export type SkillTags = SkillTag[];
 
+// ユーザーの型
+export type UserType = {
+  id: number;
+  userName: string;
+  email: string;
+  engineerType: string;
+  description: string;
+  image: string;
+  follow: string;
+  followCount: number;
+  follower: string;
+  followerCount: number;
+  tags: tags;
+  articles: number;
+  articleCount: number;
+  likes: number;
+  comments: string;
+  followStatus: number;
+};
+export type UserDataType = { user_data: UserType };
+
 // --------------------------------------------
 
 // Article関連の型アノテーション
@@ -45,24 +66,7 @@ export type ArticleData = {
 export type ArticleDetail = {
   article: ArticleData;
   articleTags: tag[];
-  postedUser: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: string;
-    follow: number;
-    followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: tag[];
-    articles: number;
-    articleCount: number;
-    likes: number;
-    comments: number;
-    followStatus: boolean;
-  };
+  postedUser: UserType;
   commentCountOnArticle: number;
   likesCount: number;
   likeStatus: boolean;
@@ -128,27 +132,19 @@ export type ArticleEditFrom = {
 
 // プロフィール(小)の方
 export type ProfileSmall = {
-  user: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: string;
-    follow: number;
-    followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: tag[];
-    articles: number;
-    articleCount: number;
-    likes: number;
-    comments: number;
-  };
+  user: UserType;
   checkLoginUserFlag: boolean;
   followerCount: number;
   followStatus: boolean;
   changeUsrFollow: () => void;
+};
+
+// 長方形プロフィールの型
+export type ProfileRectangle = {
+  user_data: UserType;
+  followStatus: boolean;
+  changeUsrFollow: () => void;
+  loginCheckStatus: boolean;
 };
 
 // --------------------------------------------
@@ -159,26 +155,6 @@ export type ProfileSmall = {
 //  Followコンポーネントの型
 export type FollowType = {
   user_data: UserType;
-};
-// Follower,Followユーザーの型
-export type UserType = {
-  id: number;
-  userName: string;
-  email: string;
-  engineer_type: string;
-  description: string;
-  tags: tags;
-  articleCount: number;
-  articles: number;
-  comments: string;
-  engineerType: string;
-  follow: string;
-  followCount: number;
-  follower: string;
-  followerCount: number;
-  image: string;
-  likes: number;
-  followStatus: number;
 };
 
 // --------------------------------------------
@@ -195,24 +171,7 @@ export type Comment = {
     userInfoId: number;
     comment: string;
     commentDate: string;
-    userInfo: {
-      id: number;
-      userName: string;
-      email: string;
-      engineerType: string;
-      description: string;
-      image: null;
-      follow: number;
-      followCount: number;
-      follower: number;
-      followerCount: number;
-      tags: tag[];
-      articles: null;
-      articleCount: null;
-      likes: null;
-      comments: null;
-      followStatus: number;
-    };
+    userInfo: UserType;
   };
 };
 
