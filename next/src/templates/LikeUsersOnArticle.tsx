@@ -1,28 +1,8 @@
 import React from "react";
+import { LikesUserListType } from "../const/Types";
 import LikeUserOnArticle from "./LikeUserOnArticle";
 
-type Props = {
-  lieksUserList: {
-    articleCount: null;
-    articles: null;
-    comments: null;
-    description: string;
-    email: null;
-    engineerType: string;
-    follow: null;
-    followCount: null;
-    followStatus: number;
-    follower: null;
-    followerCount: null;
-    id: number;
-    image: null;
-    likes: null;
-    tags: null;
-    userName: string;
-  }[];
-};
-
-const LikeUsersOnArticle: React.FC<Props> = ({ lieksUserList }) => {
+const LikeUsersOnArticle: React.FC<LikesUserListType> = ({ lieksUserList }) => {
   return (
     <div className="p-3 text-center">
       <div>

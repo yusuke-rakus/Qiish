@@ -52,6 +52,7 @@ export type UserType = {
   followStatus: number;
 };
 export type UserDataType = { user_data: UserType };
+export type LikesUserListType = { lieksUserList: UserType[] };
 
 // --------------------------------------------
 
