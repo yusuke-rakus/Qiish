@@ -8,14 +8,12 @@ import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus } from "../pages/api/addData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { editUserInfo } from "../pages/api/editData";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 
 const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(true);
-  const router = useRouter();
 
   // ユーザーのプロフィールデータ
   const { data, error } = useSWR("/profile");

@@ -2,35 +2,13 @@ import React from "react";
 import Image from "next/image";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { SelectStateType } from "../../hooks/useInputState";
+import { ProfileEditFrom } from "../../const/Types";
 
-// FCの型定義
-type Props = {
-  userData: {
-    userName: string;
-    email: string;
-    description: string;
-    engineerType: SelectStateType;
-    tagsNum: SelectStateType;
-  };
-  TAGS: {
-    ENGINEER: string[];
-    SKILL: {
-      label: string;
-      tags: { id: number; skill: string; image: null }[];
-    }[];
-  };
-  Fnc: {
-    setUserName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    setEngineerType: (value: SelectStateType) => void;
-    setDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    setTagsNum: (value: SelectStateType) => void;
-    onSubmitEditUser: (e: React.FormEvent<HTMLFormElement>) => void;
-  };
-};
-
-const ProfileEditFrom: React.FC<Props> = ({ userData, TAGS, Fnc }) => {
+const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
+  userData,
+  TAGS,
+  Fnc,
+}) => {
   return (
     <Form
       initialValues={{

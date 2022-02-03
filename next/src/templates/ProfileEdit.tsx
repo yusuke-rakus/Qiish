@@ -2,31 +2,11 @@ import React from "react";
 import { ProfileEditFrom } from "../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../const/Tags";
-import { SelectStateType, TextEventType } from "../hooks/useInputState";
+import { ProfileEdit } from "../const/Types";
 
-type Props = {
-  userInfo: {
-    userName: string;
-    email: string;
-    userImage: any;
-    articleCount: any;
-    engineerType: SelectStateType;
-    tagsNum: SelectStateType;
-    description: string;
-  };
-  editFunc: {
-    setUserName: (e: TextEventType) => void;
-    setEmail: (e: TextEventType) => void;
-    setDescription: (e: TextEventType) => void;
-    setEngineerType: (value: React.SetStateAction<SelectStateType>) => void;
-    setTagsNum: (value: React.SetStateAction<SelectStateType>) => void;
-    onSubmitEditUser: () => Promise<void>;
-  };
-  changeEditFlag: () => void;
-};
 const TAGS = { ENGINEER, SKILL };
 
-const ProfileEdit: React.FC<Props> = ({
+const ProfileEdit: React.FC<ProfileEdit> = ({
   userInfo,
   editFunc,
   changeEditFlag,

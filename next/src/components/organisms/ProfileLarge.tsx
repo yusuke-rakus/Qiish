@@ -1,30 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { SelectStateType } from "../../hooks/useInputState";
 import Link from "next/link";
+import { ProfileLarge } from "../../const/Types";
 
-// FCの型定義
-type Props = {
-  userInfo: {
-    userName: string;
-    userImage: string;
-    articleCount: any;
-    engineerType: SelectStateType;
-    description: string;
-    followCount: boolean;
-  };
-  tagsByNum: {
-    id: number;
-    skill: string;
-    image: number;
-  }[];
-  checkLoginUserFlag: boolean;
-  followerCount: number;
-  followStatus: boolean;
-  changeUsrFollow: () => void;
-};
-
-const ProfileLarge: React.FC<Props> = ({
+const ProfileLarge: React.FC<ProfileLarge> = ({
   userInfo,
   tagsByNum,
   checkLoginUserFlag,
