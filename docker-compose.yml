@@ -1,6 +1,5 @@
 version: "3"
 services:
-  # next
   next:
     build: ./next
     platform: linux/amd64
@@ -10,9 +9,7 @@ services:
     volumes:
       - ./next:/usr/src/app/next
     command: "npm run dev"
-  #   ports:
 
-  # spring
   app:
     image: openjdk:11
     container_name: "app"
@@ -26,7 +23,6 @@ services:
       - ./app:/srv:cached
     working_dir: /srv
 
-  # SQL
   sql:
     image: mariadb:10.7
     platform: linux/amd64
