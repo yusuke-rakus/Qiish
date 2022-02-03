@@ -58,6 +58,14 @@ export const fetchCommentOnArticle = async (articleId: number) => {
   return res.data;
 };
 
+export const fetchcommentList = async (articleId: number) => {
+  const res = await axios.post(`http://localhost:9090/article/getComment`, {
+    articleId: articleId,
+    guestId: guestIdByCookie,
+  });
+  return res.data;
+};
+
 // 検索された記事を取得するAPI
 // キーワード二つ目以降は+区切りで付け足していく仕様とする。半角スペースを+に変換する。
 export const fetchSearchedArticle = async (keyword: string) => {

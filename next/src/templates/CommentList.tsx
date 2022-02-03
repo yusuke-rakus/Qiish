@@ -1,24 +1,19 @@
-import axios from "axios";
 import React from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { Comment } from ".";
 import { CommentForm } from "../components/organisms";
 import { CommentType } from "../const/Types";
 import { useTextState } from "../hooks";
-import getCookie from "../lib/cookie/handleCookie";
 import { addComment } from "../lib/api/addData";
+import { fetchcommentList } from "../lib/api/fetchData";
 
 const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   const [commentText, setCommentText] = useTextState("");
   const { mutate } = useSWRConfig();
-  const guestId = getCookie();
 
   // コメントデータを取得
   const getcommentList = async () => {
-    const res = await axios.post(`http://localhost:9090/article/getComment`, {
-      articleId: articleId,
-      guestId: guestId,
-    });
+    const res = await fetchcommentList(articleId);
     return res.data;
   };
   const { data } = useSWR("/article/comment", getcommentList);
