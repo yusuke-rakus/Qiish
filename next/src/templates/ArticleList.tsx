@@ -3,29 +3,38 @@ import { useState } from "react";
 import axios from "axios";
 import ArticleComp from "../components/organisms/ArticleComp";
 import getCookie from "../lib/cookie/handleCookie";
+import { fetchArticleList } from "../lib/api/fetchData";
+import { fetchSearchedTag } from "../lib/api/fetchData";
 
 const ArticleList: React.FC = () => {
-  const [data, setData] = useState([]);
   const guestId = getCookie();
+  const [articleList, setArticleList] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.post(`http://localhost:9090`, {
-        guestId: guestId,
-      });
-      setData(res.data.articleList);
-    };
-    fetchData();
+    (async () => {
+      const data = await fetchArticleList();
+      setArticleList(data.articleList);
+    })();
   }, []);
 
-  // console.dir(data);
+  const onClickTag = async (tagId: number) => {
+    const tagsData = await fetchSearchedTag(String(tagId), guestId);
+    setArticleList(tagsData);
+  };
 
   return (
     <div>
+      <div className="mx-80 my-1 text-4xl font-semibold text-orange-500">
+        Articles
+      </div>
       <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
-        {data &&
-          data.map((articleData: any) => {
+        {articleList &&
+          articleList.map((articleData: any) => {
             return (
-              <ArticleComp key={articleData.id} articleData={articleData} />
+              <ArticleComp
+                key={articleData.id}
+                articleData={articleData}
+                onClickTag={onClickTag}
+              />
             );
           })}
       </div>
