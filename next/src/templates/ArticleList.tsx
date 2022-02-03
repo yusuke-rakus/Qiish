@@ -15,7 +15,7 @@ const ArticleList: React.FC = () => {
       setData(res.data.articleList);
     };
     fetchData();
-  }, []);
+  }, [guestId]);
 
   return (
     <div>
