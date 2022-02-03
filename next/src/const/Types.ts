@@ -130,13 +130,65 @@ export type ArticleEditFrom = {
 // Profile関連の型
 // --------------------------------------------
 
-// プロフィール(小)の方
+// プロフィール(大)の型
+// 編集用のステートを管理しているため、userInfoは親コンポーネントで受け取ってる
+export type ProfileLarge = {
+  userInfo: {
+    userName: string;
+    userImage: string;
+    articleCount: any;
+    engineerType: SelectStateType;
+    description: string;
+    followCount: boolean;
+  };
+  tagsByNum: tags;
+  checkLoginUserFlag: boolean;
+  followerCount: number;
+  followStatus: boolean;
+  changeUsrFollow: () => void;
+};
+
+// プロフィール(小)の型
 export type ProfileSmall = {
   user: UserType;
   checkLoginUserFlag: boolean;
   followerCount: number;
   followStatus: boolean;
   changeUsrFollow: () => void;
+};
+
+// 編集用プロフィールで利用するユーザー情報
+type UserInfoForEdit = {
+  userName: string;
+  email: string;
+  engineerType: SelectStateType;
+  tagsNum: SelectStateType;
+  description: string;
+};
+// 編集用プロフィールで利用するメソッド
+type FuncForEdit = {
+  setUserName: (e: TextEventType) => void;
+  setEmail: (e: TextEventType) => void;
+  setEngineerType: (value: React.SetStateAction<SelectStateType>) => void;
+  setTagsNum: (value: React.SetStateAction<SelectStateType>) => void;
+  setDescription: (e: TextEventType) => void;
+  onSubmitEditUser: () => Promise<void>;
+};
+// 編集用プロフィールの型
+export type ProfileEdit = {
+  userInfo: UserInfoForEdit;
+  editFunc: FuncForEdit;
+  changeEditFlag: () => void;
+};
+
+// 編集用プロフィールのコンポーネント
+export type ProfileEditFrom = {
+  userData: UserInfoForEdit;
+  TAGS: {
+    ENGINEER: string[];
+    SKILL: SkillTags;
+  };
+  Fnc: FuncForEdit;
 };
 
 // 長方形プロフィールの型
@@ -174,6 +226,57 @@ export type Comment = {
     userInfo: UserType;
   };
 };
+
+// Qiita関連の型アノテーション
+// --------------------------------------------
+
+export type QiitaComp = {
+  qiita: {
+    body: string;
+    coediting: boolean;
+    comments_count: number;
+    created_at: string;
+    group: number;
+    id: string;
+    likes_count: number;
+    page_views_count: number;
+    private: boolean;
+    reactions_count: number;
+    rendered_body: string;
+    tags: { name: string; versions: any }[];
+    team_membership: number;
+    title: string;
+    updated_at: string;
+    url: string;
+    user: QiitaUserData;
+  };
+  isExistProfile: boolean;
+};
+
+type QiitaUserData = {
+  description: string;
+  facebook_id: string;
+  followees_count: number;
+  followers_count: number;
+  github_login_name: string;
+  id: string;
+  items_count: number;
+  linkedin_id: string;
+  location: string;
+  name: string;
+  organization: string;
+  permanent_id: number;
+  profile_image_url: string;
+  team_only: boolean;
+  twitter_screen_name: string;
+  website_url: string;
+};
+
+export type QiitaUser = {
+  qiita_user: QiitaUserData;
+};
+
+// --------------------------------------------
 
 // --------------------------------------------
 

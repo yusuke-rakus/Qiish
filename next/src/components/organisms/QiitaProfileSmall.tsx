@@ -1,29 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import { QiitaUser } from "../../const/Types";
 
-// FCの型定義
-type Props = {
-  qiita_user: {
-    description: string;
-    facebook_id: string;
-    followees_count: number;
-    followers_count: number;
-    github_login_name: string;
-    id: string;
-    items_count: number;
-    linkedin_id: string;
-    location: string;
-    name: string;
-    organization: string;
-    permanent_id: number;
-    profile_image_url: string;
-    team_only: boolean;
-    twitter_screen_name: string;
-    website_url: string;
-  };
-};
-
-const QiitaProfileSmall: React.FC<Props> = ({ qiita_user }) => {
+const QiitaProfileSmall: React.FC<QiitaUser> = ({ qiita_user }) => {
   return (
     <div className="w-full p-2 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">
