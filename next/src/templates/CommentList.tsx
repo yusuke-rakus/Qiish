@@ -1,58 +1,12 @@
 import axios from "axios";
-import React, { useCallback, useState } from "react";
+import React from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { Comment } from ".";
 import { CommentForm } from "../components/organisms";
-import { TextEventType } from "../const/Types";
+import { CommentType } from "../const/Types";
 import { useTextState } from "../hooks";
 import getCookie from "../lib/cookie/handleCookie";
 import { addComment } from "../lib/api/addData";
-
-type CommentProps = {
-  id: number;
-  articleId: number;
-  likeStatus: number;
-  likesCount: number;
-  userInfoId: number;
-  comment: string;
-  commentDate: string;
-  commentLikesUserList: {
-    articleCount: number;
-    articles: number;
-    comments: number;
-    description: string;
-    email: string;
-    engineerType: string;
-    follow: string;
-    followCount: number;
-    followStatus: number;
-    follower: string;
-    followerCount: number;
-    id: number;
-    image: string;
-    likes: string;
-    tags: string;
-    userName: string;
-  }[];
-  userInfo: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: null;
-    follow: number;
-    followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: null;
-    articles: null;
-    articleCount: null;
-    likes: null;
-    comments: null;
-    followStatus: number;
-  };
-};
 
 const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   const [commentText, setCommentText] = useTextState("");
@@ -85,8 +39,8 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
         <div className="my-2 text-3xl font-bold text-center">コメント</div>
         <hr />
         {data &&
-          data.commentList.map((comment: CommentProps) => {
-            return <Comment key={comment.id} commentData={comment} />;
+          data.commentList.map((commentData: CommentType) => {
+            return <Comment key={commentData.id} commentData={commentData} />;
           })}
         <CommentForm
           onAddComment={onAddComment}

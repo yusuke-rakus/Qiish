@@ -216,52 +216,51 @@ export type FollowType = {
 // Comment関連の型アノテーション
 // --------------------------------------------
 
-export type Comment = {
-  commentData: {
+// 引数コメントの型
+export type CommentType = {
+  id: number;
+  articleId: number;
+  likeStatus: number;
+  likesCount: number;
+  userInfoId: number;
+  comment: string;
+  commentDate: string;
+  commentLikesUserList: {
+    articleCount: number;
+    articles: number;
+    comments: string;
+    description: string;
+    email: string;
+    engineerType: string;
+    follow: string;
+    followCount: number;
+    followStatus: number;
+    follower: string;
+    followerCount: number;
     id: number;
-    articleId: number;
-    likeStatus: number;
-    likesCount: number;
-    userInfoId: number;
-    comment: string;
-    commentDate: string;
-    commentLikesUserList: {
-      articleCount: number;
-      articles: number;
-      comments: number;
-      description: string;
-      email: string;
-      engineerType: string;
-      follow: string;
-      followCount: number;
-      followStatus: number;
-      follower: string;
-      followerCount: number;
-      id: number;
-      image: string;
-      likes: string;
-      tags: string;
-      userName: string;
-    }[];
-    userInfo: {
-      id: number;
-      userName: string;
-      email: string;
-      engineerType: string;
-      description: string;
-      image: null;
-      follow: number;
-      followCount: number;
-      follower: number;
-      followerCount: number;
-      tags: null;
-      articles: null;
-      articleCount: null;
-      likes: null;
-      comments: null;
-      followStatus: number;
-    };
-  };
+    image: string;
+    likes: number;
+    tags: tags;
+    userName: string;
+  }[];
+  userInfo: UserType;
+};
+
+// コメント情報の型
+export type CommentData = {
+  commentData: CommentType;
+};
+// コメントコンポーネントの型
+export type CommentComp = {
+  commentData: CommentType;
+  likesCount: number;
+  likeStatus: boolean;
+  changeCommentLike: () => void;
+  setLikeUserModalStatus: () => void;
+};
+
+export type CommentLikesUserList = {
+  commentLikesUserList: UserType[];
 };
 
 // Qiita関連の型アノテーション

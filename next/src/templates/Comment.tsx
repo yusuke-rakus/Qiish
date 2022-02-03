@@ -3,13 +3,13 @@ import React from "react";
 import { LikeUsersOnComment } from ".";
 import ModalScreen from "../components/ModalScreen";
 import { CommentComp } from "../components/organisms";
-import { Comment } from "../const/Types";
+import { CommentData } from "../const/Types";
 import { useToggle } from "../hooks";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeLikeStatusToComment } from "../lib/api/addData";
 
-const Comment: React.FC<Comment> = ({ commentData }) => {
+const Comment: React.FC<CommentData> = ({ commentData }) => {
   const [likesCount, setLikeCount] = useAddOrSubOne(commentData.likesCount);
   const [likeStatus, setLikeStatus] = useToggleByNum(commentData.likeStatus);
   const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
