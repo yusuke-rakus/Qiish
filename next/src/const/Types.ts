@@ -202,7 +202,7 @@ export type ProfileEditFrom = {
     ENGINEER: string[];
     SKILL: SkillTags;
   };
-  Fnc: FuncForEdit;
+  editFnc: FuncForEdit;
 };
 
 // --------------------------------------------

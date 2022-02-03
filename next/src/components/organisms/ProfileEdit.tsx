@@ -1,8 +1,8 @@
 import React from "react";
-import { ProfileEditFrom } from "../components/organisms";
+import { ProfileEditFrom } from "../../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import { ENGINEER, SKILL } from "../const/Tags";
-import { ProfileEdit } from "../const/Types";
+import { ENGINEER, SKILL } from "../../const/Tags";
+import { ProfileEdit } from "../../const/Types";
 
 const TAGS = { ENGINEER, SKILL };
 
@@ -11,14 +11,6 @@ const ProfileEdit: React.FC<ProfileEdit> = ({
   editFunc,
   changeEditFlag,
 }) => {
-  const Fnc = {
-    setUserName: editFunc.setUserName,
-    setEngineerType: editFunc.setEngineerType,
-    setEmail: editFunc.setEmail,
-    setDescription: editFunc.setDescription,
-    setTagsNum: editFunc.setTagsNum,
-    onSubmitEditUser: editFunc.onSubmitEditUser,
-  };
   const userData = {
     userName: userInfo.userName,
     email: userInfo.email,
@@ -33,7 +25,7 @@ const ProfileEdit: React.FC<ProfileEdit> = ({
         <button type="button" onClick={changeEditFlag}>
           <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
         </button>
-        <ProfileEditFrom userData={userData} TAGS={TAGS} Fnc={Fnc} />
+        <ProfileEditFrom userData={userData} TAGS={TAGS} editFnc={editFunc} />
       </div>
     </div>
   );
