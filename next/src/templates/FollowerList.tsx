@@ -4,7 +4,7 @@ import Follow from "./Follow";
 import { UserType } from "../const/Types";
 
 const FollowerList: React.FC = () => {
-  // ユーザーのフォロワーデータ
+  // フォロワーリスト取得
   const { data } = useSWR("/followerList");
   return (
     <div className="p-3 text-center">

@@ -4,7 +4,7 @@ import Follow from "./Follow";
 import { UserType } from "../const/Types";
 
 const FollowList: React.FC = () => {
-  // ユーザーのフォローデータ
+  // フォローリスト取得
   const { data } = useSWR("/followList");
 
   return (
