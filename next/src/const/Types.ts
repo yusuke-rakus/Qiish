@@ -84,12 +84,14 @@ export type ArticleDetail = {
 export type ArticleEdit = {
   article: ArticleData;
   articleTagsNum: SelectStateType;
-  editFunc: {
+  editFnc: {
     setTitle: (e: TextEventType) => void;
     setContent: (e: TextEventType) => void;
     setTagsNum: (value: React.SetStateAction<SelectStateType>) => void;
     onEditArticle: () => void;
+    setPreviewEditFlag: () => void;
   };
+  previewEditFlag: boolean;
   setEditFlag: () => void;
 };
 
@@ -115,12 +117,12 @@ export type ArticleEditFrom = {
     content: string;
     tags: SelectStateType;
   };
-  Fnc: {
-    editTitle: (e: TextEventType) => void;
-    editContent: (e: TextEventType) => void;
-    editTags: (value: React.SetStateAction<SelectStateType>) => void;
-    setPreviewFlag: () => void;
+  editFnc: {
+    setTitle: (e: TextEventType) => void;
+    setContent: (e: TextEventType) => void;
+    setTagsNum: (value: React.SetStateAction<SelectStateType>) => void;
     onEditArticle: () => void;
+    setPreviewEditFlag: () => void;
   };
   SKILLTAGS: SkillTags;
 };

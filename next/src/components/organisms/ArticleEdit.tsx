@@ -1,27 +1,16 @@
 import React from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import { ArticleEditFrom } from "../components/organisms";
-import { SKILL as SKILLTAGS } from "../const/Tags";
-import { useToggle } from "../hooks";
-import { ArticleEdit } from "../const/Types";
+import { ArticleEditFrom } from ".";
+import { SKILL as SKILLTAGS } from "../../const/Tags";
+import { ArticleEdit } from "../../const/Types";
 
 const ArticleEdit: React.FC<ArticleEdit> = ({
   article,
   articleTagsNum,
-  editFunc,
+  previewEditFlag,
+  editFnc,
   setEditFlag,
 }) => {
-  // カスタムフック使用(Toggle)
-  const [previewFlag, setPreviewFlag] = useToggle(true);
-
-  const Fnc = {
-    editTitle: editFunc.setTitle,
-    editContent: editFunc.setContent,
-    editTags: editFunc.setTagsNum,
-    setPreviewFlag,
-    onEditArticle: editFunc.onEditArticle,
-  };
-
   const articleEdit = {
     title: article.title,
     content: article.content,
@@ -36,9 +25,9 @@ const ArticleEdit: React.FC<ArticleEdit> = ({
             <LeftCircleOutlined className="hover:text-gray-400 ml-4 mb-2 text-4xl" />
           </button>
           <ArticleEditFrom
-            prevFlag={previewFlag}
+            prevFlag={previewEditFlag}
             articleEdit={articleEdit}
-            Fnc={Fnc}
+            editFnc={editFnc}
             SKILLTAGS={SKILLTAGS}
           />
         </div>

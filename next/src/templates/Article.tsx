@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { ArticleEdit, CommentList, LikeUsersOnArticle } from ".";
-import { ArticleDetail } from "../components/organisms";
+import { CommentList, LikeUsersOnArticle } from ".";
+import { ArticleDetail, ArticleEdit } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import {
   changeFollowStatus,
@@ -65,6 +65,9 @@ const Article: React.FC = () => {
   const [followStatus, setFollowStatus] = useToggleByNum(
     articleData.postedUser.followStatus
   );
+
+  // マークダウンで表示確認するフラグ  true: プレビューoff, false: プレビューon
+  const [previewEditFlag, setPreviewEditFlag] = useToggle(true);
 
   const router = useRouter();
   // cookieに投稿者のidを追加
@@ -136,7 +139,13 @@ const Article: React.FC = () => {
     content: content,
     postedDate: articleData.article.postedDate,
   };
-  const editFunc = { setTitle, setContent, setTagsNum, onEditArticle };
+  const editFnc = {
+    setTitle,
+    setContent,
+    setTagsNum,
+    onEditArticle,
+    setPreviewEditFlag,
+  };
 
   return (
     <div className="h-full">
@@ -160,7 +169,8 @@ const Article: React.FC = () => {
         <ArticleEdit
           article={article}
           articleTagsNum={tagsNum}
-          editFunc={editFunc}
+          previewEditFlag={previewEditFlag}
+          editFnc={editFnc}
           setEditFlag={setEditFlag}
         />
       ) : (

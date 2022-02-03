@@ -87,7 +87,7 @@ export const changeLikeStatusToComment = async (
   likeStatus: boolean
 ) => {
   if (!likeStatus) {
-    await axios.post(`${baseUrl}}/article/commentLike`, {
+    await axios.post(`${baseUrl}/article/commentLike`, {
       userInfoId: guestIdNum,
       commentId: commentId,
     });

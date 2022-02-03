@@ -7,7 +7,7 @@ import { ArticleEditFrom } from "../../const/Types";
 const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
   prevFlag,
   articleEdit,
-  Fnc,
+  editFnc,
   SKILLTAGS,
 }) => {
   return (
@@ -19,7 +19,7 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
           content: articleEdit.content,
           tags: articleEdit.tags,
         }}
-        onSubmitCapture={Fnc.onEditArticle}
+        onSubmitCapture={editFnc.onEditArticle}
       >
         {/* 送信ようのメソッド用意 */}
         <Form.Item
@@ -39,7 +39,7 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
               bordered={false}
               size={"large"}
               defaultValue={articleEdit.title}
-              onChange={Fnc.editTitle}
+              onChange={editFnc.setTitle}
             />
           </span>
         </Form.Item>
@@ -52,7 +52,7 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
             allowClear
             placeholder="使用技術"
             bordered={false}
-            onChange={Fnc.editTags}
+            onChange={editFnc.setTagsNum}
           >
             {SKILLTAGS.map((SkillType) => {
               return (
@@ -80,7 +80,7 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
                   placeholder="マークダウン記法で記述してください"
                   autoSize={{ minRows: 5 }}
                   bordered={false}
-                  onChange={Fnc.editContent}
+                  onChange={editFnc.setContent}
                 />
               </Form.Item>
             </div>
@@ -98,7 +98,7 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
             shape="round"
             size="large"
             htmlType="button"
-            onClick={Fnc.setPreviewFlag}
+            onClick={editFnc.setPreviewEditFlag}
           >
             <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
               プレビューモード

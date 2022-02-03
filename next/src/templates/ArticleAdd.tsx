@@ -18,7 +18,7 @@ const ArticleAdd: React.FC = () => {
   const [tags, setTags] = useSelectState(new Array<number>());
 
   const router = useRouter();
-  // プレービューフラグ  true: プレビューoff, false: プレビューon
+  // マークダウンで表示確認するフラグ  true: プレビューoff, false: プレビューon
   const [previewFlag, setPreviewFlag] = useToggle(true);
   // cookieからuid取得(Number型に変換)
   const userId = Number(getCookie());
@@ -55,7 +55,7 @@ const ArticleAdd: React.FC = () => {
     }
   };
 
-  // 子コンポーネントで利用するメソッド
+  // ArticleAddFromで利用するメソッドのまとまり
   const Fnc = {
     setTitle,
     setContent,
