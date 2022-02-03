@@ -1,8 +1,8 @@
 import React from "react";
-import { LikesUserListType } from "../const/Types";
+import { LikesUserList } from "../const/Types";
 import LikeUserOnArticle from "./LikeUserOnArticle";
 
-const LikeUsersOnArticle: React.FC<LikesUserListType> = ({ lieksUserList }) => {
+const LikeUsersOnArticle: React.FC<LikesUserList> = ({ lieksUserList }) => {
   return (
     <div className="p-3 text-center">
       <div>

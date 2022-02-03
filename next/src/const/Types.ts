@@ -52,7 +52,6 @@ export type UserType = {
   followStatus: number;
 };
 export type UserDataType = { user_data: UserType };
-export type LikesUserListType = { lieksUserList: UserType[] };
 
 // --------------------------------------------
 
@@ -263,6 +262,8 @@ export type CommentComp = {
   changeCommentLike: () => void;
   setLikeUserModalStatus: () => void;
 };
+
+export type LikesUserList = { lieksUserList: UserType[] };
 
 export type CommentLikesUserList = {
   commentLikesUserList: UserType[];
