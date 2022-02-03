@@ -16,6 +16,24 @@ type CommentProps = {
   userInfoId: number;
   comment: string;
   commentDate: string;
+  commentLikesUserList: {
+    articleCount: number;
+    articles: number;
+    comments: number;
+    description: string;
+    email: string;
+    engineerType: string;
+    follow: string;
+    followCount: number;
+    followStatus: number;
+    follower: string;
+    followerCount: number;
+    id: number;
+    image: string;
+    likes: string;
+    tags: string;
+    userName: string;
+  }[];
   userInfo: {
     id: number;
     userName: string;

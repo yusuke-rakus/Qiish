@@ -12,7 +12,6 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
 }) => {
   return (
     <div>
-      {/* initialValuesはname属性に対応 */}
       <Form
         initialValues={{
           title: articleEdit.title,
@@ -21,7 +20,6 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
         }}
         onSubmitCapture={editFnc.onEditArticle}
       >
-        {/* 送信ようのメソッド用意 */}
         <Form.Item
           name="title"
           rules={[

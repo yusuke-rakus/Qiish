@@ -9,8 +9,6 @@ import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeLikeStatusToComment } from "../lib/api/addData";
 
-type Props = {};
-
 const Comment: React.FC<Comment> = ({ commentData }) => {
   const [likesCount, setLikeCount] = useAddOrSubOne(commentData.likesCount);
   const [likeStatus, setLikeStatus] = useToggleByNum(commentData.likeStatus);
@@ -28,7 +26,9 @@ const Comment: React.FC<Comment> = ({ commentData }) => {
       {likeUserModalStatus && (
         <div>
           <div className="fixed inset-0 z-50">
-            <LikeUsersOnComment lieksUserList={commentData.userInfo} />
+            <LikeUsersOnComment
+              commentLikesUserList={commentData.commentLikesUserList}
+            />
             <span className="flex justify-center">
               <Button onClick={setLikeUserModalStatus}>
                 <span className="hover:text-orange-400">戻る</span>

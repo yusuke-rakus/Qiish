@@ -2,34 +2,36 @@ import React from "react";
 import LikeUserOnComment from "./LikeUserOnComment";
 
 type Props = {
-  lieksUserList: {
-    id: number;
-    userName: string;
+  commentLikesUserList: {
+    articleCount: number;
+    articles: number;
+    comments: number;
+    description: string;
     email: string;
     engineerType: string;
-    description: string;
-    image: null;
-    follow: number;
+    follow: string;
     followCount: number;
-    follower: number;
-    followerCount: number;
-    tags: null;
-    articles: null;
-    articleCount: null;
-    likes: null;
-    comments: null;
     followStatus: number;
+    follower: string;
+    followerCount: number;
+    id: number;
+    image: string;
+    likes: string;
+    tags: string;
+    userName: string;
   }[];
 };
 
-const LikeUsersOnComment: React.FC<Props> = ({ lieksUserList }) => {
+const LikeUsersOnComment: React.FC<Props> = ({ commentLikesUserList }) => {
   return (
     <div className="p-3 text-center">
       <div>
-        <div className="text-3xl font-bold text-white">いいねユーザー一覧</div>
+        <div className="text-3xl font-bold text-white">
+          コメントいいねユーザー一覧
+        </div>
         <div className="flex justify-center items-center ">
           <div className="w-1/2">
-            {lieksUserList.map((user_data: any) => {
+            {commentLikesUserList.map((user_data: any) => {
               return (
                 <LikeUserOnComment key={user_data.id} user_data={user_data} />
               );

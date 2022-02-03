@@ -225,7 +225,42 @@ export type Comment = {
     userInfoId: number;
     comment: string;
     commentDate: string;
-    userInfo: UserType;
+    commentLikesUserList: {
+      articleCount: number;
+      articles: number;
+      comments: number;
+      description: string;
+      email: string;
+      engineerType: string;
+      follow: string;
+      followCount: number;
+      followStatus: number;
+      follower: string;
+      followerCount: number;
+      id: number;
+      image: string;
+      likes: string;
+      tags: string;
+      userName: string;
+    }[];
+    userInfo: {
+      id: number;
+      userName: string;
+      email: string;
+      engineerType: string;
+      description: string;
+      image: null;
+      follow: number;
+      followCount: number;
+      follower: number;
+      followerCount: number;
+      tags: null;
+      articles: null;
+      articleCount: null;
+      likes: null;
+      comments: null;
+      followStatus: number;
+    };
   };
 };
 
