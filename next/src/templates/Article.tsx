@@ -11,7 +11,6 @@ import {
 import { deleteArticleById } from "../lib/api/deleteData";
 import { setArticleUserId } from "../lib/cookie/handleCookie";
 import { editArticle } from "../lib/api/editData";
-import axios from "axios";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
@@ -23,9 +22,13 @@ const Article: React.FC = () => {
   // 記事詳細データ取得
   const { data: articleData } = useSWR("/article");
   const { data: fetchedTags } = useSWR("/tagsData");
-  console.log(fetchedTags);
+  const [tagsData, setTagsData] = useState<tags>([]);
 
-  // 記事投稿者がログインユーザーかどうか判別
+  useEffect(() => {
+    setTagsData(fetchedTags.tags);
+  }, [fetchedTags.tags]);
+
+  // 記事投稿者がログインユーザーかどうか判別して真偽値を返す
   const checkLoginUserFlag = useLoginChecker(articleData.postedUser.id);
   const [title, setTitle] = useTextState(articleData.article.title);
   const [content, setContent] = useTextState(articleData.article.content);
@@ -43,15 +46,6 @@ const Article: React.FC = () => {
     insertTags();
   });
 
-  // タグのid,skill,imageを取得
-  const [tagsData, setTagsData] = useState<tags>([]);
-  useEffect(() => {
-    const tagsData = async () => {
-      const res = await axios.get("http://localhost:9090/getTag");
-      setTagsData(res.data.tags);
-    };
-    tagsData();
-  }, []);
   // 選択した記事タグを配列に格納する処理
   for (let tagNum of tagsNum) {
     const tagsFilterByTagNum = tagsData.filter((tag: tag) => tag.id === tagNum);

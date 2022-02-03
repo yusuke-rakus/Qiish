@@ -2,7 +2,7 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { Article } from "../../templates";
-import { fetchArticle } from "../../lib/api/fetchData";
+import { fetchArticle, fetchGetTags } from "../../lib/api/fetchData";
 import getCookie from "../../lib/cookie/handleCookie";
 
 type Props = {
@@ -27,11 +27,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const articleId = ctx.params?.id;
 
   const article = await fetchArticle(articleId, guestId);
+  const tagsData = await fetchGetTags();
 
   return {
     props: {
       fallback: {
         "/article": article,
+        "/tagsData": tagsData,
       },
     },
   };

@@ -23,8 +23,6 @@ const Comment: React.FC<Comment> = ({ commentData }) => {
     // いいねの真偽値切り替え true:いいね中、false:いいね解除
     setLikeStatus();
   };
-  console.dir(commentData);
-
   return (
     <div>
       {likeUserModalStatus && (

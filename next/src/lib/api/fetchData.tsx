@@ -30,6 +30,11 @@ export const fetchArticleList = async () => {
   });
   return res.data;
 };
+// 記事一覧情報の取得のAPI
+export const fetchGetTags = async () => {
+  const res = await axios.get(`${baseUrl}/getTag`);
+  return res.data;
+};
 
 // 特定の記事情報取得のAPI
 export const fetchArticle = async (
