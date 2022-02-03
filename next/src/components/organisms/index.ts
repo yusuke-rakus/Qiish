@@ -6,6 +6,7 @@ export { default as ArticleEdit } from "./ArticleEdit";
 export { default as ArticleComp } from "./ArticleComp";
 export { default as CommentComp } from "./CommentComp";
 export { default as CommentForm } from "./CommentForm";
+export { default as ProfileEdit } from "./ProfileEdit";
 export { default as ProfileEditFrom } from "./ProfileEditFrom";
 export { default as ProfileRectangle } from "../organisms/ProfileRectangle";
 export { default as ProfileRectangleOnArticle } from "../organisms/ProfileRectangleOnArticle";

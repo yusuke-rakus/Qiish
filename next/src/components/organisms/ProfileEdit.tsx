@@ -1,8 +1,8 @@
 import React from "react";
-import { ProfileEditFrom } from "../../components/organisms";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../../const/Tags";
 import { ProfileEdit } from "../../const/Types";
+import { ProfileEditFrom } from ".";
 
 const TAGS = { ENGINEER, SKILL };
 

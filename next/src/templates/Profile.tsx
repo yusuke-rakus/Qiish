@@ -37,7 +37,7 @@ const Profile: React.FC = () => {
     data.userInfo.engineerType
   );
   // カスタムフック使用(タグを初期化)
-  const initialTags: number[] = [];
+  const initialTags = new Array<number>();
   useEffect(() => {
     for (const tag of data.userInfo.tags) {
       initialTags.push(tag.id);
@@ -103,6 +103,7 @@ const Profile: React.FC = () => {
       alert(errorMsg);
       return;
     }
+
     try {
       // DBにユーザー情報を保存
       const res = await editUserInfo(

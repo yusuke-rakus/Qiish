@@ -13,7 +13,6 @@ export { default as LikeUsersOnArticle } from "./LikeUsersOnArticle";
 export { default as LikeUserOnComment } from "./LikeUserOnComment";
 export { default as LikeUsersOnComment } from "./LikeUsersOnComment";
 export { default as Profile } from "./Profile";
-export { default as ProfileEdit } from "./ProfileEdit";
 export { default as Header } from "./Header";
 export { default as Qiita } from "./Qiita";
 export { default as QiitaList } from "./QiitaList";

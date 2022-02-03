@@ -27,7 +27,7 @@ const ArticleAdd: React.FC = () => {
    * 記事投稿処理を行う.
    *
    * @remarks
-   * sucess: DBへ記事を保存して、トップページへ遷移する.
+   * sucess: トップページへ遷移する.
    * error: アラートメッセージ表示する.
    */
   const onAddArticle = async () => {
