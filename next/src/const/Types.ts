@@ -67,7 +67,7 @@ export type ArticleData = {
 };
 
 // 詳細記事の型
-export type ArticleDetail = {
+export type Article = {
   article: ArticleData;
   articleTags: tag[];
   postedUser: UserType;
