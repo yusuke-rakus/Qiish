@@ -8,18 +8,32 @@ import { addComment } from "../lib/api/addData";
 import { fetchcommentList } from "../lib/api/fetchData";
 
 const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
+  // コメント(記事)
   const [commentText, setCommentText] = useTextState("");
+  // SWRで再検証するメソッド
   const { mutate } = useSWRConfig();
 
-  // コメントデータを取得
-  // 再検証をするには同じファイル内でデータをフェッチする必要がある
+  /**
+   * コメントリストデータを取得.
+   *
+   * @param - 記事ID
+   * @returns 記事に紐づくコメントリスト
+   */
   const getcommentList = async () => {
     const res = await fetchcommentList(articleId);
     return res.data;
   };
+  // SWRでコメントデータを取得
   const { data } = useSWR("/commentList", getcommentList);
 
-  // コメント追加処理(コメント初期化)
+  /**
+   * コメント追加処理.
+   *
+   * @remarks success: コメントデータを再検証, false: メッセージをアラート表示
+   *
+   * @param - 記事ID
+   * @param - コメント内容
+   */
   const onAddComment = async () => {
     const res = await addComment(articleId, commentText);
     if (res.status === "success") {

@@ -17,8 +17,6 @@ const ArticleList: React.FC = () => {
     fetchData();
   }, []);
 
-  // console.dir(data);
-
   return (
     <div>
       <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
