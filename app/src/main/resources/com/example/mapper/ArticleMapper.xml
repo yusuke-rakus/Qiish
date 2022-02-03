@@ -16,13 +16,19 @@
 		<result property="commentDate" column="comment_date"></result>
 		<result property="likesCount" column="likes_count"></result>
 		<result property="likeStatus" column="like_status"></result>
-			<association property="userInfo"
-				javaType="com.example.domain.UserInfo">
-				<id property="id" column="c_user_info_id"></id>
-				<result property="userName" column="c_user_name"></result>
-				<result property="image" column="c_user_image"></result>
-				<result property="followStatus" column="follow_status"></result>
-			</association>
+		<association property="userInfo" javaType="com.example.domain.UserInfo">
+			<id property="id" column="c_user_info_id"></id>
+			<result property="userName" column="c_user_name"></result>
+			<result property="image" column="c_user_image"></result>
+			<result property="followStatus" column="follow_status"></result>
+		</association>
+		<collection property="commentLikesUserList" ofType="com.example.domain.UserInfo">
+			<result property="id" column="cl_user_info_id"></result>
+			<result property="userName" column="cl_user_name"></result>
+			<result property="engineerType" column="cl_engineer_type"></result>
+			<result property="description" column="cl_description"></result>
+			<result property="followStatus" column="cl_follow_status"></result>
+		</collection>	
 	</resultMap>
 	<select id="getComment" resultMap="commentList">
 		SELECT
@@ -38,15 +44,25 @@
 			END AS likes_count,
 			CASE
 				WHEN c.id IS NULL THEN NULL
-				ELSE COALESCE((SELECT user_info_id = 1 FROM comment_likes WHERE comments_id = c.id AND user_info_id = 1), 0)
+				ELSE COALESCE((SELECT user_info_id = #{guestId} FROM comment_likes WHERE comments_id = c.id AND user_info_id = #{guestId}), 0)
 			END AS like_status,
 			CASE
 				WHEN c.id IS NULL THEN NULL
-				ELSE COALESCE((SELECT follow_user_info_id = c_user_info_id FROM follow WHERE user_info_id = 1 AND follow_user_info_id = c_user_info_id),0)
-			END AS follow_status
+				ELSE COALESCE((SELECT follow_user_info_id = c_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = c_user_info_id),0)
+			END AS follow_status,
+			clu.id AS cl_user_info_id, 
+			clu.user_name AS cl_user_name,
+			clu.engineer_type AS cl_engineer_type,
+			clu.description AS cl_description,
+			CASE
+				WHEN (SELECT id FROM user_info WHERE user_info.id = cl.user_info_id) IS NULL THEN NULL
+				ELSE COALESCE((SELECT follow_user_info_id = cl_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = cl_user_info_id), 0)
+			END AS cl_follow_status
 		FROM comments AS c
 		LEFT OUTER JOIN comment_likes AS cl
-		ON c.id = cl.comments_id
+		ON c.id = cl.comments_id 
+		LEFT OUTER JOIN user_info AS clu 
+		ON cl.user_info_id = clu.id 
 		WHERE article_id = #{articleId}
 	</select>
 
@@ -144,13 +160,6 @@
 				<result property="image" column="c_image"></result>
 				<result property="followStatus" column="c_follow_status"></result>
 			</association>
-			<collection property="commentLikesUserList" ofType="com.example.domain.UserInfo">
-				<result property="id" column="cl_user_info_id"></result>
-				<result property="userName" column="cl_user_name"></result>
-				<result property="engineerType" column="cl_engineer_type"></result>
-				<result property="description" column="cl_description"></result>
-				<result property="followStatus" column="cl_follow_status"></result>
-			</collection>
 		</collection>
 		<collection property="articleTags" ofType="com.example.domain.Tag">
 			<result property="skill" column="tag_name"></result>
@@ -178,14 +187,6 @@
 			c.id AS c_id,
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
-			clu.id AS cl_user_info_id, 
-			clu.user_name AS cl_user_name,
-			clu.engineer_type AS cl_engineer_type,
-			clu.description AS cl_description,
-			CASE
-				WHEN (SELECT id FROM user_info WHERE user_info.id = cl.user_info_id) IS NULL THEN NULL
-				ELSE COALESCE((SELECT follow_user_info_id = cl_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = cl_user_info_id), 0)
-			END AS cl_follow_status,
 			(SELECT REPLACE(COUNT(*), 0, NULL) FROM comment_likes WHERE comments_id = c_id) AS c_likes_count,
 			(SELECT user_info_id = #{guestId} FROM comment_likes WHERE comments_id = c_id AND user_info_id = #{guestId}) AS c_likes_status,
 			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
@@ -205,10 +206,6 @@
 		FROM articles AS a
 		LEFT OUTER JOIN comments AS c
 		ON a.id = c.article_id 
-		LEFT OUTER JOIN comment_likes AS cl 
-		ON c.id = cl.comments_id 
-		LEFT OUTER JOIN user_info AS clu 
-		ON cl.user_info_id = clu.id 
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
 		LEFT OUTER JOIN likes AS l
