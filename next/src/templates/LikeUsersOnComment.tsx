@@ -3,22 +3,22 @@ import LikeUserOnComment from "./LikeUserOnComment";
 
 type Props = {
   lieksUserList: {
-    articleCount: null;
-    articles: null;
-    comments: null;
-    description: string;
-    email: null;
-    engineerType: string;
-    follow: null;
-    followCount: null;
-    followStatus: number;
-    follower: null;
-    followerCount: null;
     id: number;
-    image: null;
-    likes: null;
-    tags: null;
     userName: string;
+    email: string;
+    engineerType: string;
+    description: string;
+    image: null;
+    follow: number;
+    followCount: number;
+    follower: number;
+    followerCount: number;
+    tags: null;
+    articles: null;
+    articleCount: null;
+    likes: null;
+    comments: null;
+    followStatus: number;
   }[];
 };
 

@@ -18,6 +18,8 @@ export type tag = {
   skill: string;
   image: null;
 };
+// タグ(複数数)の型
+export type tags = tag[];
 
 // constディレクトリにあるスキルタグの型
 type SkillTag = {
@@ -147,6 +149,71 @@ export type ProfileSmall = {
   followerCount: number;
   followStatus: boolean;
   changeUsrFollow: () => void;
+};
+
+// --------------------------------------------
+
+// Follow,Follower関連の型アノテーション
+// --------------------------------------------
+
+//  Followコンポーネントの型
+export type FollowType = {
+  user_data: UserType;
+};
+// Follower,Followユーザーの型
+export type UserType = {
+  id: number;
+  userName: string;
+  email: string;
+  engineer_type: string;
+  description: string;
+  tags: tags;
+  articleCount: number;
+  articles: number;
+  comments: string;
+  engineerType: string;
+  follow: string;
+  followCount: number;
+  follower: string;
+  followerCount: number;
+  image: string;
+  likes: number;
+  followStatus: number;
+};
+
+// --------------------------------------------
+
+// Comment関連の型アノテーション
+// --------------------------------------------
+
+export type Comment = {
+  commentData: {
+    id: number;
+    articleId: number;
+    likeStatus: number;
+    likesCount: number;
+    userInfoId: number;
+    comment: string;
+    commentDate: string;
+    userInfo: {
+      id: number;
+      userName: string;
+      email: string;
+      engineerType: string;
+      description: string;
+      image: null;
+      follow: number;
+      followCount: number;
+      follower: number;
+      followerCount: number;
+      tags: tag[];
+      articles: null;
+      articleCount: null;
+      likes: null;
+      comments: null;
+      followStatus: number;
+    };
+  };
 };
 
 // --------------------------------------------

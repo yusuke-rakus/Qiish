@@ -1,6 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import Follow from "./Follow";
+import { UserType } from "../const/Types";
 
 const FollowList: React.FC = () => {
   // ユーザーのフォローデータ
@@ -12,7 +13,7 @@ const FollowList: React.FC = () => {
         <div className="text-3xl font-bold">フォロー一覧</div>
         <div className="flex justify-center items-center ">
           <div className="w-1/3">
-            {data.userList.map((user_data: any) => {
+            {data.userList.map((user_data: UserType) => {
               return <Follow key={user_data.id} user_data={user_data} />;
             })}
           </div>

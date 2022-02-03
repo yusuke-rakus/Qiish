@@ -3,12 +3,10 @@ import React, { useCallback, useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { Comment } from ".";
 import { CommentForm } from "../components/organisms";
+import { TextEventType } from "../const/Types";
+import { useTextState } from "../hooks";
 import getCookie from "../hooks/cookie/handleCookie";
 import { addComment } from "../pages/api/addData";
-
-type Props = {
-  articleId: number;
-};
 
 type CommentProps = {
   id: number;
@@ -38,8 +36,8 @@ type CommentProps = {
   };
 };
 
-const CommentList: React.FC<Props> = ({ articleId }) => {
-  const [commentText, setCommentText] = useState("");
+const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
+  const [commentText, setCommentText] = useTextState("");
   const { mutate } = useSWRConfig();
   const guestId = getCookie();
 
@@ -62,13 +60,6 @@ const CommentList: React.FC<Props> = ({ articleId }) => {
       alert("コメントに失敗しました。");
     }
   };
-  // コメントをステートに挿入
-  const addCommentText = useCallback(
-    (e: { target: { value: React.SetStateAction<string> } }) => {
-      setCommentText(e.target.value);
-    },
-    []
-  );
 
   return (
     <div className="flex justify-center">
@@ -81,7 +72,7 @@ const CommentList: React.FC<Props> = ({ articleId }) => {
           })}
         <CommentForm
           onAddComment={onAddComment}
-          setCommentText={addCommentText}
+          setCommentText={setCommentText}
         />
       </div>
       <div className="w-1/5 mt-10"></div>

@@ -3,42 +3,15 @@ import React from "react";
 import { LikeUsersOnComment } from ".";
 import ModalScreen from "../components/ModalScreen";
 import { CommentComp } from "../components/organisms";
+import { Comment } from "../const/Types";
 import { useToggle } from "../hooks";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeLikeStatusToComment } from "../pages/api/addData";
 
-type Props = {
-  commentData: {
-    id: number;
-    articleId: number;
-    likeStatus: number;
-    likesCount: number;
-    userInfoId: number;
-    comment: string;
-    commentDate: string;
-    userInfo: {
-      id: number;
-      userName: string;
-      email: string;
-      engineerType: string;
-      description: string;
-      image: null;
-      follow: number;
-      followCount: number;
-      follower: number;
-      followerCount: number;
-      tags: null;
-      articles: null;
-      articleCount: null;
-      likes: null;
-      comments: null;
-      followStatus: number;
-    };
-  };
-};
+type Props = {};
 
-const Comment: React.FC<Props> = ({ commentData }) => {
+const Comment: React.FC<Comment> = ({ commentData }) => {
   const [likesCount, setLikeCount] = useAddOrSubOne(commentData.likesCount);
   const [likeStatus, setLikeStatus] = useToggleByNum(commentData.likeStatus);
   const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
@@ -56,7 +29,7 @@ const Comment: React.FC<Props> = ({ commentData }) => {
     <div>
       {likeUserModalStatus && (
         <div>
-          {/* <div className="fixed inset-0 z-50">
+          <div className="fixed inset-0 z-50">
             <LikeUsersOnComment lieksUserList={commentData.userInfo} />
             <span className="flex justify-center">
               <Button onClick={setLikeUserModalStatus}>
@@ -64,7 +37,7 @@ const Comment: React.FC<Props> = ({ commentData }) => {
               </Button>
             </span>
           </div>
-          <ModalScreen /> */}
+          <ModalScreen />
         </div>
       )}
       <CommentComp
