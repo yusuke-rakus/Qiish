@@ -21,19 +21,21 @@ import { ArticleData, tag, tags } from "../const/Types";
 
 const Article: React.FC = () => {
   // 記事詳細データ取得
-  const { data } = useSWR("/article");
+  const { data: articleData } = useSWR("/article");
+  const { data: fetchedTags } = useSWR("/tagsData");
+  console.log(fetchedTags);
 
   // 記事投稿者がログインユーザーかどうか判別
-  const checkLoginUserFlag = useLoginChecker(data.postedUser.id);
-  const [title, setTitle] = useTextState(data.article.title);
-  const [content, setContent] = useTextState(data.article.content);
+  const checkLoginUserFlag = useLoginChecker(articleData.postedUser.id);
+  const [title, setTitle] = useTextState(articleData.article.title);
+  const [content, setContent] = useTextState(articleData.article.content);
   // カスタムフック使用(編集用記事タグの格納)
   let tagsByNum: tag[] = [];
   const initialTags = new Array<number>();
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
   // 記事タグの格納
   const insertTags = () => {
-    for (const tag of data.article.articleTags) {
+    for (const tag of articleData.article.articleTags) {
       initialTags.push(tag.id);
     }
   };
@@ -57,24 +59,28 @@ const Article: React.FC = () => {
   }
   const [editFlag, setEditFlag] = useToggle(false);
   const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
-  const [likesCount, setlikesCount] = useAddOrSubOne(data.article.likesCount);
-  const [likeStatus, setlikeStatus] = useToggleByNum(data.article.likeStatus);
+  const [likesCount, setlikesCount] = useAddOrSubOne(
+    articleData.article.likesCount
+  );
+  const [likeStatus, setlikeStatus] = useToggleByNum(
+    articleData.article.likeStatus
+  );
   const [followerCount, setFollowerCount] = useAddOrSubOne(
-    data.postedUser.followerCount
+    articleData.postedUser.followerCount
   );
   const [followStatus, setFollowStatus] = useToggleByNum(
-    data.postedUser.followStatus
+    articleData.postedUser.followStatus
   );
 
   const router = useRouter();
   // cookieに投稿者のidを追加
   useEffect(() => {
-    setArticleUserId(data.postedUser.id);
-  }, [data.postedUser.id]);
+    setArticleUserId(articleData.postedUser.id);
+  }, [articleData.postedUser.id]);
 
   // いいね数といいね状態を変更
   const changeArticleLike = async () => {
-    await changeLikeStatusToArticle(data.article.id, likeStatus);
+    await changeLikeStatusToArticle(articleData.article.id, likeStatus);
     // いいねしたら+1、いいねを解除したら-1
     setlikesCount(likeStatus);
     // いいねの真偽値切り替え true:いいね中、false:いいね解除
@@ -83,14 +89,14 @@ const Article: React.FC = () => {
   // 現状はログインしているユーザーが本人以外のユーザーをフォローする処理
   const usrFollowing = async () => {
     // フォローのデータをDBに保存
-    await changeFollowStatus(followStatus, data.postedUser.id);
+    await changeFollowStatus(followStatus, articleData.postedUser.id);
     // フォロー数の増減 true(フォロー解除): -1, false(フォローする): +1
     setFollowerCount(followStatus);
     // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setFollowStatus();
   };
   const onDeleteArticle = async () => {
-    const res = await deleteArticleById(data.article.id);
+    const res = await deleteArticleById(articleData.article.id);
     if (res.status === 200) {
       alert("記事を削除しました。記事一覧に戻ります。");
       router.push("/");
@@ -115,7 +121,12 @@ const Article: React.FC = () => {
     }
 
     try {
-      const res = await editArticle(data.article.id, title, content, tagsNum);
+      const res = await editArticle(
+        articleData.article.id,
+        title,
+        content,
+        tagsNum
+      );
       if (res.data.status === "success") {
         alert("記事編集に成功しました。記事詳細へ戻ります。");
         setEditFlag();
@@ -126,10 +137,10 @@ const Article: React.FC = () => {
   };
 
   const article: ArticleData = {
-    id: data.article.id,
+    id: articleData.article.id,
     title: title,
     content: content,
-    postedDate: data.article.postedDate,
+    postedDate: articleData.article.postedDate,
   };
   const editFunc = { setTitle, setContent, setTagsNum, onEditArticle };
 
@@ -138,7 +149,9 @@ const Article: React.FC = () => {
       {likeUserModalStatus && (
         <div>
           <div className="fixed inset-0 z-50">
-            <LikeUsersOnArticle lieksUserList={data.article.lieksUserList} />
+            <LikeUsersOnArticle
+              lieksUserList={articleData.article.lieksUserList}
+            />
             <span className="flex justify-center">
               <Button onClick={setLikeUserModalStatus}>
                 <span className="hover:text-orange-400">戻る</span>
@@ -161,8 +174,8 @@ const Article: React.FC = () => {
           <ArticleDetail
             article={article}
             articleTags={tagsByNum}
-            postedUser={data.postedUser}
-            commentCountOnArticle={data.article.comments.length}
+            postedUser={articleData.postedUser}
+            commentCountOnArticle={articleData.article.comments.length}
             likesCount={likesCount}
             likeStatus={likeStatus}
             followerCount={followerCount}
@@ -174,7 +187,7 @@ const Article: React.FC = () => {
             onDeleteArticle={onDeleteArticle}
             setLikeUserModalStatus={setLikeUserModalStatus}
           />
-          <CommentList articleId={data.article.id} />
+          <CommentList articleId={articleData.article.id} />
         </React.Fragment>
       )}
     </div>
