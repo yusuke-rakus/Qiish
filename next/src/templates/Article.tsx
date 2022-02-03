@@ -7,30 +7,31 @@ import { useSelectState, useTextState, useToggle } from "../hooks";
 import {
   changeFollowStatus,
   changeLikeStatusToArticle,
-} from "../pages/api/addData";
-import { deleteArticleById } from "../pages/api/deleteData";
+} from "../hooks/api/addData";
+import { deleteArticleById } from "../hooks/api/deleteData";
 import { setArticleUserId } from "../hooks/cookie/handleCookie";
-import { editArticle } from "../pages/api/editData";
+import { editArticle } from "../hooks/api/editData";
 import axios from "axios";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import ModalScreen from "../components/ModalScreen";
 import { Button } from "antd";
-import { ArticleData, tag } from "../const/Types";
+import { ArticleData, tag, tags } from "../const/Types";
 
 const Article: React.FC = () => {
-  const router = useRouter();
   // 記事詳細データ取得
   const { data } = useSWR("/article");
-  const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
 
-  //edit用ステート
-  // カスタムフック使用(Text)
+  // 記事投稿者がログインユーザーかどうか判別
+  const checkLoginUserFlag = useLoginChecker(data.postedUser.id);
   const [title, setTitle] = useTextState(data.article.title);
   const [content, setContent] = useTextState(data.article.content);
-  // 記事タグの格納
+  // カスタムフック使用(編集用記事タグの格納)
+  let tagsByNum: tag[] = [];
   const initialTags = new Array<number>();
+  const [tagsNum, setTagsNum] = useSelectState(initialTags);
+  // 記事タグの格納
   const insertTags = () => {
     for (const tag of data.article.articleTags) {
       initialTags.push(tag.id);
@@ -39,12 +40,9 @@ const Article: React.FC = () => {
   useEffect(() => {
     insertTags();
   });
-  // カスタムフック使用(編集用記事タグの格納)
-  const [tagsNum, setTagsNum] = useSelectState(initialTags);
 
   // タグのid,skill,imageを取得
-  let tagsByNum: tag[] = [];
-  const [tagsData, setTagsData] = useState<tag[]>([]);
+  const [tagsData, setTagsData] = useState<tags>([]);
   useEffect(() => {
     const tagsData = async () => {
       const res = await axios.get("http://localhost:9090/getTag");
@@ -54,13 +52,11 @@ const Article: React.FC = () => {
   }, []);
   // 選択した記事タグを配列に格納する処理
   for (let tagNum of tagsNum) {
-    const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id === tagNum);
+    const tagsFilterByTagNum = tagsData.filter((tag: tag) => tag.id === tagNum);
     tagsByNum.push(tagsFilterByTagNum[0]);
   }
-
-  // 記事投稿者がログインユーザーかどうか判別
-  const checkLoginUserFlag = useLoginChecker(data.postedUser.id);
-
+  const [editFlag, setEditFlag] = useToggle(false);
+  const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
   const [likesCount, setlikesCount] = useAddOrSubOne(data.article.likesCount);
   const [likeStatus, setlikeStatus] = useToggleByNum(data.article.likeStatus);
   const [followerCount, setFollowerCount] = useAddOrSubOne(
@@ -70,8 +66,7 @@ const Article: React.FC = () => {
     data.postedUser.followStatus
   );
 
-  const [editFlag, setEditFlag] = useToggle(false);
-
+  const router = useRouter();
   // cookieに投稿者のidを追加
   useEffect(() => {
     setArticleUserId(data.postedUser.id);

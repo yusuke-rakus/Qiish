@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import React from "react";
-import { TextEventType } from "../../hooks/useInputState";
+import { TextEventType } from "../../const/Types";
 
 type Props = {
   setCommentText: (e: TextEventType) => void;

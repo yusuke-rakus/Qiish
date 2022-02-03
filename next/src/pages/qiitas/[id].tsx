@@ -2,7 +2,7 @@ import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { SWRConfig } from "swr";
 import { Qiita } from "../../templates";
-import { fetchQiita, fetchQiitaList } from "../api/fetchData";
+import { fetchQiita, fetchQiitaList } from "../../hooks/api/fetchData";
 
 type Props = {
   [key: string]: object;

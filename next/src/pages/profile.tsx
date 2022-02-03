@@ -2,7 +2,7 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { Profile } from "../templates";
-import { fetchProfile } from "./api/fetchData";
+import { fetchProfile } from "../hooks/api/fetchData";
 import getCookie, { getArticleUserId } from "../hooks/cookie/handleCookie";
 
 type Props = {

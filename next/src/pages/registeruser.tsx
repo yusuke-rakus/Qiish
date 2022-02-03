@@ -1,6 +1,6 @@
 import Router from "next/router";
 import { ChangeEvent, useState } from "react";
-import { registerUser } from "./api/addData";
+import { registerUser } from "../hooks/api/addData";
 import { useRegisterChecker } from "../hooks/useRegisterChecker";
 
 const RegisterUser: React.FC = () => {

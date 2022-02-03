@@ -1,6 +1,6 @@
 import axios from "axios";
-import { SelectStateType } from "../../hooks/useInputState";
-import getCookie from "../../hooks/cookie/handleCookie";
+import { SelectStateType } from "../../const/Types";
+import getCookie from "../cookie/handleCookie";
 const guestIdByCookie = getCookie();
 const guestIdNum = Number(guestIdByCookie);
 

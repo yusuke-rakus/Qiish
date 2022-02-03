@@ -5,10 +5,10 @@ import { ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
 import { ProfileEdit } from "./";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { changeFollowStatus } from "../pages/api/addData";
+import { changeFollowStatus } from "../hooks/api/addData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import axios from "axios";
-import { editUserInfo } from "../pages/api/editData";
+import { editUserInfo } from "../hooks/api/editData";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 

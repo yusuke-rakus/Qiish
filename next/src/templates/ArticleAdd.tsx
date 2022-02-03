@@ -4,7 +4,7 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { addArticle } from "../pages/api/addData";
+import { addArticle } from "../hooks/api/addData";
 import { useRouter } from "next/router";
 import getCookie from "../hooks/cookie/handleCookie";
 

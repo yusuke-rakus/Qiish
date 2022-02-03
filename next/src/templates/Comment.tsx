@@ -7,7 +7,7 @@ import { Comment } from "../const/Types";
 import { useToggle } from "../hooks";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { useToggleByNum } from "../hooks/useToggleByNum";
-import { changeLikeStatusToComment } from "../pages/api/addData";
+import { changeLikeStatusToComment } from "../hooks/api/addData";
 
 type Props = {};
 

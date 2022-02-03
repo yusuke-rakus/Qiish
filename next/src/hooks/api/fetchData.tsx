@@ -1,5 +1,5 @@
 import axios from "axios";
-import getCookie from "../../hooks/cookie/handleCookie";
+import getCookie from "../cookie/handleCookie";
 // ログインユーザーのIdを取得
 const guestIdByCookie = getCookie();
 

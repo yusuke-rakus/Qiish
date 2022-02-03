@@ -3,7 +3,7 @@ import { ProfileRectangle } from "../components/organisms";
 import { FollowType } from "../const/Types";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
-import { changeFollowStatus } from "../pages/api/addData";
+import { changeFollowStatus } from "../hooks/api/addData";
 
 const Follow: React.FC<FollowType> = ({ user_data }) => {
   const [followStatus, setFollowStatus] = useToggleByNum(

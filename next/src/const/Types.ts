@@ -157,6 +157,14 @@ export type ProfileSmall = {
   changeUsrFollow: () => void;
 };
 
+// 長方形プロフィールの型
+export type ProfileRectangle = {
+  user_data: UserType;
+  followStatus: boolean;
+  changeUsrFollow: () => void;
+  loginCheckStatus: boolean;
+};
+
 // 編集用プロフィールで利用するユーザー情報
 type UserInfoForEdit = {
   userName: string;
@@ -189,14 +197,6 @@ export type ProfileEditFrom = {
     SKILL: SkillTags;
   };
   Fnc: FuncForEdit;
-};
-
-// 長方形プロフィールの型
-export type ProfileRectangle = {
-  user_data: UserType;
-  followStatus: boolean;
-  changeUsrFollow: () => void;
-  loginCheckStatus: boolean;
 };
 
 // --------------------------------------------

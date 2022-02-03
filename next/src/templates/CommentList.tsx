@@ -6,7 +6,7 @@ import { CommentForm } from "../components/organisms";
 import { TextEventType } from "../const/Types";
 import { useTextState } from "../hooks";
 import getCookie from "../hooks/cookie/handleCookie";
-import { addComment } from "../pages/api/addData";
+import { addComment } from "../hooks/api/addData";
 
 type CommentProps = {
   id: number;
