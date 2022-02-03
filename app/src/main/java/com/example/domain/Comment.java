@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Comment {
 
@@ -19,6 +20,8 @@ public class Comment {
 	private Integer likesCount;
 
 	private Integer likeStatus;
+	
+	private List<UserInfo> commentLikesUserList;
 
 	public Integer getId() {
 		return id;
@@ -84,11 +87,18 @@ public class Comment {
 		this.likeStatus = likeStatus;
 	}
 
+	public List<UserInfo> getCommentLikesUserList() {
+		return commentLikesUserList;
+	}
+
+	public void setCommentLikesUserList(List<UserInfo> commentLikesUserList) {
+		this.commentLikesUserList = commentLikesUserList;
+	}
+
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", articleId=" + articleId + ", userInfoId=" + userInfoId + ", comment=" + comment
 				+ ", commentDate=" + commentDate + ", userInfo=" + userInfo + ", likesCount=" + likesCount
-				+ ", likeStatus=" + likeStatus + "]";
+				+ ", likeStatus=" + likeStatus + ", commentLikesUserList=" + commentLikesUserList + "]";
 	}
-
 }
