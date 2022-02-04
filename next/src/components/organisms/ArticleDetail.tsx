@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { Dropdown, Menu } from "antd";
 import { Article } from "../../const/Types";
+import remarkGfm from "remark-gfm";
 
 const ArticleDetail: React.FC<Article> = ({
   article,
@@ -81,7 +82,9 @@ const ArticleDetail: React.FC<Article> = ({
         </div>
         <div className="px-14 pt-6 text-lg">
           <div className="markdown">
-            <ReactMarkdown>{article.content}</ReactMarkdown>
+            <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
+              {article.content}
+            </ReactMarkdown>
           </div>
         </div>
       </div>

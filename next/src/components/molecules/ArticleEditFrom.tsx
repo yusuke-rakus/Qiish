@@ -84,9 +84,9 @@ const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
             </div>
           ) : (
             <div className="w-full p-2 rounded-xl bg-gray-100">
-              <div className="markdown">
-                <ReactMarkdown>{articleEdit.content}</ReactMarkdown>
-              </div>
+              <ReactMarkdown className="markdown">
+                {articleEdit.content}
+              </ReactMarkdown>
             </div>
           )}
         </div>

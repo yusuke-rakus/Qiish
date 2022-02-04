@@ -2,29 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-.markdown ol {
-  @apply list-decimal;
-}
-.markdown ul {
-  @apply list-disc;
-}
-.markdown h4 {
-  @apply text-lg border-b border-black my-5;
-}
-
 .markdown h1 {
-  @apply text-5xl;
+  @apply text-4xl font-bold pb-2 border-b border-gray-400;
 }
 .markdown h2 {
-  @apply text-4xl;
+  @apply text-3xl font-bold pb-2 border-b border-gray-400;
 }
 .markdown h3 {
   @apply text-2xl;
 }
+.markdown h4 {
+  @apply text-xl;
+}
+.markdown p {
+  @apply text-base break-all;
+}
+.markdown pre {
+  @apply bg-slate-200 p-8 text-sm;
+}
+.markdown blockquote {
+  @apply border-l-4 p-3 border-gray-300;
+}
 
-/* .markdown hgroup h2,
-h4,
-h5,
-h6 {
-  @apply text-base;
-} */
+.markdown ol {
+  @apply list-decimal pl-5;
+}
+.markdown ul {
+  @apply list-disc pl-5;
+}
+.markdown code {
+  @apply list-disc p-1 bg-slate-200;
+}
+.markdown hr {
+  @apply p-4;
+}
+.markdown a {
+  @apply text-orange-400 hover:text-orange-600 hover:underline;
+}
+
+.markdown table {
+  @apply border-2;
+}

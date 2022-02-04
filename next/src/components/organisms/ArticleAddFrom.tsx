@@ -3,6 +3,7 @@ import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
 import { ArticleAddForm } from "../../const/Types";
+import remarkGfm from "remark-gfm";
 
 const ArticleAddFrom: React.FC<ArticleAddForm> = ({
   previewContent,
@@ -75,10 +76,10 @@ const ArticleAddFrom: React.FC<ArticleAddForm> = ({
               </Form.Item>
             </div>
           ) : (
-            <div className="w-full p-2 rounded-xl bg-gray-100">
-              <div className="markdown">
-                <ReactMarkdown>{previewContent}</ReactMarkdown>
-              </div>
+            <div className="w-full p-2 rounded-xl">
+              <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
+                {previewContent}
+              </ReactMarkdown>
             </div>
           )}
         </div>

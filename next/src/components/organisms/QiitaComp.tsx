@@ -4,12 +4,13 @@ import { QiitaProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { QiitaComp } from "../../const/Types";
+import remarkGfm from "remark-gfm";
 
 const QiitaComp: React.FC<QiitaComp> = ({ qiita, isExistProfile }) => {
   return (
     <div className="flex justify-center">
       <div className="m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
-        <div className="pb-10 pt-20 px-10 text-2xl font-bold">
+        <div className="text-center pb-10 pt-20 px-10 text-2xl font-bold">
           {qiita.title}
         </div>
         <div className="pb-2">
@@ -38,9 +39,11 @@ const QiitaComp: React.FC<QiitaComp> = ({ qiita, isExistProfile }) => {
         <div className="pt-1 text-slate-500 text-center">
           <span>投稿日: {moment(qiita.created_at).format("YYYY年M月D日")}</span>
         </div>
-        <div className="px-14 pt-6 text-lg">
+        <div className="px-8 pt-6 text-lg">
           <div className="markdown">
-            <ReactMarkdown>{qiita.body}</ReactMarkdown>
+            <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
+              {qiita.body}
+            </ReactMarkdown>
           </div>
         </div>
       </div>

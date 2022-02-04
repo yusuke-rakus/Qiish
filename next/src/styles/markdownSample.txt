@@ -1,0 +1,92 @@
+// Qiish_Markdown記法 サンプル集(qiitaの記事を参考しにてます)
+
+// 見出し
+# h1タグ
+## h2タグ
+### h3タグ
+#### h4タグ
+
+// pre記法
+
+```
+preタグ
+```
+
+// 引用
+> blockquote
+
+// 二重引用
+>> blockquote
+
+// 箇条書きリスト
+- リスト1
+    - ネスト リスト1_1
+        - ネスト リスト1_1_1
+        - ネスト リスト1_1_2
+    - ネスト リスト1_2
+- リスト2
+- リスト3
+
+// 番号付きリスト
+1. 番号付きリスト1
+    1. 番号付きリスト1_1
+    1. 番号付きリスト1_2
+1. 番号付きリスト2
+1. 番号付きリスト3
+
+
+// Code記法
+fugaのインストールは `npm install fuga` です
+
+// 強調(emタグ)
+通常 *イタリック* 通常
+通常 _イタリック_ 通常
+
+// 強調(strongタグ)
+通常 **bold** 通常
+通常 __bold__ 通常
+
+// 強調(emタグ + strongタグ)
+通常 ***bold*** 通常
+通常 ___bold___ 通常
+
+// 水平線
+
+***
+
+___
+
+---
+
+*    *    *
+
+// リンク
+[markdown参考記事](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
+
+
+
+# GFMのサンプル
+[参考](https://github.com/remarkjs/remark-gfm)
+## Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+## Footnote
+
+A note[^1]
+
+[^1]: Big note.
+
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+## Table
+
+| a | b  |  c |  d  |
+| - | :- | -: | :-: |
+
+## Tasklist
+
+* [ ] to do
+* [x] done
