@@ -2,6 +2,7 @@ import axios from "axios";
 import { BASEURL } from "../../const/Urls";
 import getCookie from "../cookie/handleCookie";
 const guestIdByCookie = getCookie();
+const guestIdNum = Number(guestIdByCookie);
 
 /**
  * 記事IDに当てはまる記事情報の削除.
@@ -9,10 +10,17 @@ const guestIdByCookie = getCookie();
  * @param articleId - 記事ID
  * @returns 削除処理のステータス(success・error)
  */
-export const deleteArticleById = async (articleId: number) => {
+export const removeArticleById = async (articleId: number) => {
   const res = await axios.post(`${BASEURL}/article/delete`, {
     articleId: articleId,
     guestId: guestIdByCookie,
   });
   return res;
+};
+
+export const removeLikeStatusToArticle = async (articleId: number) => {
+  await axios.post(`${BASEURL}/article/removeLike`, {
+    userInfoId: guestIdNum,
+    articleId: articleId,
+  });
 };

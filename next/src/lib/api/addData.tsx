@@ -78,21 +78,11 @@ export const addComment = async (articleId: number, comment: string) => {
 };
 
 // 記事いいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
-export const changeLikeStatusToArticle = async (
-  articleId: number,
-  likeStatus: boolean
-) => {
-  if (!likeStatus) {
-    await axios.post(`${BASEURL}/article/like`, {
-      userInfoId: guestIdNum,
-      articleId: articleId,
-    });
-  } else {
-    await axios.post(`${BASEURL}/article/removeLike`, {
-      userInfoId: guestIdNum,
-      articleId: articleId,
-    });
-  }
+export const addLikeStatusToArticle = async (articleId: number) => {
+  await axios.post(`${BASEURL}/article/like`, {
+    userInfoId: guestIdNum,
+    articleId: articleId,
+  });
 };
 // コメントいいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
 export const changeLikeStatusToComment = async (

@@ -4,11 +4,11 @@ import useSWR from "swr";
 import { CommentList, LikeUsersOnArticle } from ".";
 import { ArticleDetail, ArticleEdit } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
+import { changeFollowStatus, addLikeStatusToArticle } from "../lib/api/addData";
 import {
-  changeFollowStatus,
-  changeLikeStatusToArticle,
-} from "../lib/api/addData";
-import { deleteArticleById } from "../lib/api/deleteData";
+  removeArticleById,
+  removeLikeStatusToArticle,
+} from "../lib/api/removeData";
 import { setArticleUserId } from "../lib/cookie/handleCookie";
 import { editArticle } from "../lib/api/editData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
@@ -91,7 +91,6 @@ const Article: React.FC = () => {
    *
    * @remarks APIにいいねを知らせて、ブラウザ側でいいねの状態と数をステートを用いて変更
    * @param articleData.article.id - 記事ID
-   * @param likeStatus - いいね状態
    *
    */
   const [likesCount, setlikesCount] = useAddOrSubOne(
@@ -101,9 +100,13 @@ const Article: React.FC = () => {
   const [likeStatus, setlikeStatus] = useToggleByNum(
     articleData.article.likeStatus
   );
-  // いいねする処理
+  // いいねする処理(いいね中: likeStatus === true, いいねしていない: likeStatus === false)
   const changeArticleLike = async () => {
-    await changeLikeStatusToArticle(articleData.article.id, likeStatus);
+    if (!likeStatus) {
+      await addLikeStatusToArticle(articleData.article.id);
+    } else {
+      await removeLikeStatusToArticle(articleData.article.id);
+    }
     setlikesCount(likeStatus);
     setlikeStatus();
   };
@@ -141,7 +144,7 @@ const Article: React.FC = () => {
    */
   const router = useRouter();
   const onDeleteArticle = async () => {
-    const res = await deleteArticleById(articleData.article.id);
+    const res = await removeArticleById(articleData.article.id);
     if (res.data.status === "success") {
       alert("記事を削除しました。記事一覧に戻ります。");
       router.push("/");
