@@ -9,26 +9,36 @@ import { useRouter } from "next/router";
 import getCookie from "../lib/cookie/handleCookie";
 
 const ArticleAdd: React.FC = () => {
-  // 記事
-  // タイトル
-  const [title, setTitle] = useTextState("");
-  // 内容
-  const [content, setContent] = useTextState("");
-  // 技術タグ
-  const [tags, setTags] = useSelectState(new Array<number>());
-
   const router = useRouter();
-  // マークダウンで表示確認するフラグ  true: プレビューoff, false: プレビューon
-  const [previewFlag, setPreviewFlag] = useToggle(true);
   // cookieからuid取得(Number型に変換)
   const userId = Number(getCookie());
+
+  /**
+   * 記事情報のステート(投稿).
+   *
+   * @remarks
+   * 下記の記事情報をステートで管理して、投稿用データとして利用
+   * タイトル
+   * 内容
+   * 技術タグ
+   */
+  const [title, setTitle] = useTextState("");
+  const [content, setContent] = useTextState("");
+  const [tags, setTags] = useSelectState(new Array<number>());
+
+  // マークダウンで表示確認するフラグ  true: プレビューoff, false: プレビューon
+  const [previewFlag, setPreviewFlag] = useToggle(true);
 
   /**
    * 記事投稿処理を行う.
    *
    * @remarks
-   * sucess: トップページへ遷移する.
-   * error: アラートメッセージ表示する.
+   * sucess: トップページへ遷移
+   * error: アラートメッセージ表示
+   * @param ユーザーID
+   * @param タイトル
+   * @param 内容
+   * @param タグ
    */
   const onAddArticle = async () => {
     //  バリデーションチェック
@@ -55,7 +65,7 @@ const ArticleAdd: React.FC = () => {
     }
   };
 
-  // ArticleAddFromで利用するメソッドのまとまり
+  // 詳細記事投稿用のメソッド
   const Fnc = {
     setTitle,
     setContent,

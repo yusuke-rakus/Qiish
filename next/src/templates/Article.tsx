@@ -19,24 +19,26 @@ import { Button } from "antd";
 import { ArticleData, tag, tags } from "../const/Types";
 
 const Article: React.FC = () => {
+  const router = useRouter();
+
   // 記事詳細データ取得
   const { data: articleData } = useSWR("/article");
+  // タグデータ取得
   const { data: fetchedTags } = useSWR("/tagsData");
-  const [tagsData, setTagsData] = useState<tags>([]);
 
+  /**
+   * DBにあるタグ情報を取得し、ステートで管理.
+   *
+   * @remarks
+   */
+  // フェッチしたタグデータをステートに格納し管理
+  const [tagsData, setTagsData] = useState<tags>([]);
   useEffect(() => {
     setTagsData(fetchedTags.tags);
   }, [fetchedTags.tags]);
-
-  // 記事投稿者がログインユーザーかどうか判別して真偽値を返す
-  const checkLoginUserFlag = useLoginChecker(articleData.postedUser.id);
-  const [title, setTitle] = useTextState(articleData.article.title);
-  const [content, setContent] = useTextState(articleData.article.content);
-  // カスタムフック使用(編集用記事タグの格納)
-  let tagsByNum = new Array<tag>();
+  // 格納したタグデータからタグIDのみを取り出し、Arrayステートに管理
   const initialTags = new Array<number>();
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
-  // 記事タグの格納
   const insertTags = () => {
     for (const tag of articleData.article.articleTags) {
       initialTags.push(tag.id);
@@ -46,72 +48,126 @@ const Article: React.FC = () => {
     insertTags();
   });
 
-  // 選択した記事タグを配列に格納する処理
-  for (let tagNum of tagsNum) {
-    const tagsFilterByTagNum = tagsData.filter((tag: tag) => tag.id === tagNum);
-    tagsByNum.push(tagsFilterByTagNum[0]);
-  }
-  const [editFlag, setEditFlag] = useToggle(false);
-  const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
-  const [likesCount, setlikesCount] = useAddOrSubOne(
-    articleData.article.likesCount
-  );
-  const [likeStatus, setlikeStatus] = useToggleByNum(
-    articleData.article.likeStatus
-  );
-  const [followerCount, setFollowerCount] = useAddOrSubOne(
-    articleData.postedUser.followerCount
-  );
-  const [followStatus, setFollowStatus] = useToggleByNum(
-    articleData.postedUser.followStatus
-  );
-
-  // マークダウンで表示確認するフラグ  true: プレビューoff, false: プレビューon
-  const [previewEditFlag, setPreviewEditFlag] = useToggle(true);
-
-  const router = useRouter();
-  // cookieに投稿者のidを追加
+  /**
+   * Cookieに投稿者のidを追加.
+   *
+   * @param 記事投稿者ID
+   */
   useEffect(() => {
     setArticleUserId(articleData.postedUser.id);
   }, [articleData.postedUser.id]);
 
-  // いいね数といいね状態を変更
+  /**
+   * 記事情報のステート(編集).
+   *
+   * @remarks
+   * 下記の記事情報をステートで管理して、編集用データとして利用
+   * タイトル
+   * 内容
+   * 技術タグ(IDに紐づくデータ)
+   */
+  const [title, setTitle] = useTextState(articleData.article.title);
+  const [content, setContent] = useTextState(articleData.article.content);
+  let tagsByNum = new Array<tag>();
+  // 選択済の記事技術タグIDから技術タグを格納する処理
+  for (let tagNum of tagsNum) {
+    const tagsFilterByTagNum = tagsData.filter((tag: tag) => tag.id === tagNum);
+    tagsByNum.push(tagsFilterByTagNum[0]);
+  }
+
+  /**
+   * 表示フラグ(真偽値)を管理.
+   *
+   * @remarks 表示の切り替えやログイン状態チェック
+   */
+  const checkLoginUserFlag = useLoginChecker(articleData.postedUser.id);
+  const [editFlag, setEditFlag] = useToggle(false);
+  const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
+  const [previewEditFlag, setPreviewEditFlag] = useToggle(true);
+
+  /**
+   * いいねする又はいいねを解除する処理.
+   *
+   * @remarks APIにいいねを知らせて、ブラウザ側でいいねの状態と数をステートを用いて変更
+   * @param 記事ID
+   * @param いいねステータス
+   *
+   */
+  const [likesCount, setlikesCount] = useAddOrSubOne(
+    articleData.article.likesCount
+  );
+  // いいねのステータスを真偽値で管理
+  const [likeStatus, setlikeStatus] = useToggleByNum(
+    articleData.article.likeStatus
+  );
+  // いいねする処理
   const changeArticleLike = async () => {
     await changeLikeStatusToArticle(articleData.article.id, likeStatus);
-    // いいねしたら+1、いいねを解除したら-1
     setlikesCount(likeStatus);
-    // いいねの真偽値切り替え true:いいね中、false:いいね解除
     setlikeStatus();
   };
-  // 現状はログインしているユーザーが本人以外のユーザーをフォローする処理
+
+  /**
+   * フォローする又はフォローを解除する処理.
+   *
+   * @remarks APIにフォローを知らせて、ブラウザ側でフォローの状態と数をステートを用いて変更
+   * @param 記事ID
+   * @param いいねステータス
+   *
+   */
+  // ±1してフォロワー数を管理
+  const [followerCount, setFollowerCount] = useAddOrSubOne(
+    articleData.postedUser.followerCount
+  );
+  // フォローのステータスを真偽値で管理
+  const [followStatus, setFollowStatus] = useToggleByNum(
+    articleData.postedUser.followStatus
+  );
+  // フォローする処理
   const usrFollowing = async () => {
-    // フォローのデータをDBに保存
     await changeFollowStatus(followStatus, articleData.postedUser.id);
-    // フォロー数の増減 true(フォロー解除): -1, false(フォローする): +1
     setFollowerCount(followStatus);
-    // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setFollowStatus();
   };
+
+  /**
+   * 記事削除を行う.
+   *
+   * @remarks
+   * sucess: トップページへ遷移
+   * error: アラートメッセージ表示
+   * @param 記事ID
+   */
   const onDeleteArticle = async () => {
     const res = await deleteArticleById(articleData.article.id);
-    if (res.status === 200) {
+    if (res.data.status === "success") {
       alert("記事を削除しました。記事一覧に戻ります。");
       router.push("/");
     } else {
       alert("記事を削除できませんでした。");
     }
   };
-  // 記事編集処理
-  // sucess: 記事詳細コンプに切り替え, error: アラートメッセージ表示
+
+  /**
+   * 記事編集を行う.
+   *
+   * @remarks
+   * sucess: トップページへ遷移
+   * error: アラートメッセージ表示
+   * @param 記事ID
+   * @param タイトル
+   * @param 内容
+   * @param タグIDの配列
+   * @throws エラーメッセージを表示して処理終了
+   *
+   */
   const onEditArticle = async () => {
-    //  バリデーションチェック
+    //  バリデーションチェック(半角スペースまたは全角スペース、nullのみであったらアラート表示)
     const alertMsg = "記事編集に失敗しました。入力内容を確認してください。";
-    // タイトルが半角スペースまたは全角スペース、nullのみであったらアラート表示
     if (title === " " || title === "　" || title === null) {
       alert(alertMsg);
       return;
     }
-    // 記事内容が半角スペースまたは全角スペース、nullのみであったらアラート表示
     if (content === " " || content === "　" || content === null) {
       alert(alertMsg);
       return;
@@ -133,12 +189,14 @@ const Article: React.FC = () => {
     }
   };
 
+  // 詳細記事表示用のデータ
   const article: ArticleData = {
     id: articleData.article.id,
     title: title,
     content: content,
     postedDate: articleData.article.postedDate,
   };
+  // 詳細記事編集用のメソッド
   const editFnc = {
     setTitle,
     setContent,

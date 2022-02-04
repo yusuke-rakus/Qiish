@@ -10,21 +10,22 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeLikeStatusToComment } from "../lib/api/addData";
 
 const Comment: React.FC<CommentData> = ({ commentData }) => {
-  // いいね数を±1する
-  const [likesCount, setLikeCount] = useAddOrSubOne(commentData.likesCount);
-  // いいねのステータスを真偽値で管理
-  const [likeStatus, setLikeStatus] = useToggleByNum(commentData.likeStatus);
   // モーダル表示を真偽値で管理
   const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
 
   /**
    * いいねする又はいいねを解除する処理.
-   * 
+   *
    * @remarks APIにいいねを知らせて、ブラウザ側でいいねの状態と数をステートを用いて変更
    * @param コメントID
    * @param いいねステータス
    *
    */
+  // ±1していいね数を管理
+  const [likesCount, setLikeCount] = useAddOrSubOne(commentData.likesCount);
+  // いいねのステータスを真偽値で管理
+  const [likeStatus, setLikeStatus] = useToggleByNum(commentData.likeStatus);
+  // いいねする処理
   const changeCommentLike = async () => {
     await changeLikeStatusToComment(commentData.id, likeStatus);
     setLikeCount(likeStatus);
