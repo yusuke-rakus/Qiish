@@ -43,6 +43,9 @@ public class TopPageService {
 			if (articleList.isEmpty()) {
 				throw new NullPointerException();
 			}
+			if (form.getGuestId() != null) {
+				res.setUserInfo(topPageMapper.getUserInfoImage(form.getGuestId()));
+			}
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
@@ -57,6 +60,9 @@ public class TopPageService {
 			List<Article> articleList = topPageMapper.searchWidhTagId(form.getTagId(), form.getGuestId());
 			if (articleList.isEmpty()) {
 				throw new NullPointerException();
+			}
+			if (form.getGuestId() != null) {
+				res.setUserInfo(topPageMapper.getUserInfoImage(form.getGuestId()));
 			}
 			res.setArticleList(articleList);
 		} catch (Exception e) {

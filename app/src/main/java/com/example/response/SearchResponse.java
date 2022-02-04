@@ -3,6 +3,7 @@ package com.example.response;
 import java.util.List;
 
 import com.example.domain.Article;
+import com.example.domain.UserInfo;
 
 /**
  * 検索結果を格納
@@ -10,7 +11,8 @@ import com.example.domain.Article;
 
 public class SearchResponse extends Response {
 
-	List<Article> articleList;
+	private List<Article> articleList;
+	private UserInfo userInfo;
 
 	public List<Article> getArticleList() {
 		return articleList;
@@ -20,9 +22,19 @@ public class SearchResponse extends Response {
 		this.articleList = articleList;
 	}
 
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
 	@Override
 	public String toString() {
-		return "SearchResponse [articleList=" + articleList + "]";
+		return "SearchResponse [articleList=" + articleList + ", userInfo=" + userInfo + "]";
 	}
+
+
 
 }

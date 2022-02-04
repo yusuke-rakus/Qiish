@@ -60,7 +60,7 @@
 		resultType="com.example.domain.UserInfo">
 		SELECT image
 		FROM user_info
-		WHERE id = #{userInfoId};
+		WHERE id = #{guestId};
 	</select>
 
 	<!-- タイトルからキーワード検索 -->
@@ -74,12 +74,15 @@
 			t.skill,
 			t.image AS tag_image,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
-			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status
+			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
+			u.id AS user_info_id, u.user_name, u.image
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
 		LEFT OUTER JOIN tags AS t
-		ON at.tag_id = t.id
+		ON at.tag_id = t.id 
+		LEFT JOIN user_info AS u
+		ON a.user_info_id = u.id 
 		WHERE 1=1
 		<foreach collection="wordList" item="word">
 			AND title LIKE CONCAT('%' ,#{word}, '%')
@@ -98,12 +101,15 @@
 			t.skill,
 			t.image AS tag_image,
 			(SELECT COUNT(*) FROM likes WHERE a.id = article_id) AS likes_count,
-			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status
+			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status,
+			u.id AS user_info_id, u.user_name, u.image
 		FROM articles AS a
 		LEFT OUTER JOIN article_tags AS at
 		ON a.id = at.article_id
 		LEFT OUTER JOIN tags AS t
-		ON at.tag_id = t.id
+		ON at.tag_id = t.id 
+		LEFT JOIN user_info AS u
+		ON a.user_info_id = u.id 
 		WHERE a.id IN ((SELECT article_id FROM article_tags WHERE tag_id = #{tagId}))
 		ORDER BY visited_count DESC;
 	</select>
