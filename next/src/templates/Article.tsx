@@ -67,10 +67,14 @@ const Article: React.FC = () => {
   const [content, setContent] = useTextState(articleData.article.content);
   let tagsByNum = new Array<tag>();
   // 選択済の記事技術タグIDから技術タグを格納する処理
-  for (let tagNum of tagsNum) {
-    const tagsFilterByTagNum = tagsData.filter((tag: tag) => tag.id === tagNum);
-    tagsByNum.push(tagsFilterByTagNum[0]);
-  }
+  useEffect(() => {
+    for (let tagNum of tagsNum) {
+      const tagsFilterByTagNum = tagsData.filter(
+        (tag: tag) => tag.id === tagNum
+      );
+      tagsByNum.push(tagsFilterByTagNum[0]);
+    }
+  });
 
   /**
    * 表示フラグ(真偽値)を管理.
@@ -105,7 +109,7 @@ const Article: React.FC = () => {
   };
 
   /**
-   * フォローする又はフォローを解除する処理.
+   * フォローする又はフォローを解除する.
    *
    * @remarks APIにフォローを知らせて、ブラウザ側でフォローの状態と数をステートを用いて変更
    * @param articleData.postedUser.id - 記事投稿者ID

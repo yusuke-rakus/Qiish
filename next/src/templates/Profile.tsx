@@ -57,11 +57,15 @@ const Profile: React.FC = () => {
     proflieData.userInfo.engineerType
   );
   let tagsByNum = new Array<tag>();
-  // 選択した記事タグを配列に格納する処理
-  for (let tagNum of tagsNum) {
-    const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id == tagNum);
-    tagsByNum.push(tagsFilterByTagNum[0]);
-  }
+  // 選択済の記事技術タグIDから技術タグを格納する処理
+  useEffect(() => {
+    for (let tagNum of tagsNum) {
+      const tagsFilterByTagNum = tagsData.filter(
+        (tag: tag) => tag.id === tagNum
+      );
+      tagsByNum.push(tagsFilterByTagNum[0]);
+    }
+  });
 
   /**
    * 表示フラグ(真偽値)を管理.
@@ -72,7 +76,7 @@ const Profile: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(true);
 
   /**
-   * フォローする又はフォローを解除する処理.
+   * フォローする又はフォローを解除する.
    *
    * @remarks APIにフォローを知らせて、ブラウザ側でフォローの状態と数をステートを用いて変更
    * @param data.userInfo.id - フォローされるユーザーID
@@ -93,7 +97,6 @@ const Profile: React.FC = () => {
     setFollowStatus();
   };
 
-  //
   /**
    * ユーザー情報編集を行う.
    *
