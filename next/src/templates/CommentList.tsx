@@ -21,7 +21,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
    */
   const getcommentList = async () => {
     const res = await fetchcommentList(articleId);
-    return res.data;
+    return res;
   };
   // SWRでコメントデータを取得
   const { data } = useSWR("/commentList", getcommentList);
