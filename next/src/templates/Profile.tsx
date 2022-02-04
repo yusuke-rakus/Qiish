@@ -13,23 +13,27 @@ import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 
 const Profile: React.FC = () => {
   // プロフィールデータ取得
-  const { data, error } = useSWR("/profile");
+  const { data: profleData } = useSWR("/profile");
+  // タグデータ取得
+  const { data: fetchedTags } = useSWR("/tagsData");
 
   // カスタムフック使用(タグを初期化)
   const initialTags = new Array<number>();
   useEffect(() => {
-    for (const tag of data.userInfo.tags) {
+    for (const tag of profleData.userInfo.tags) {
       initialTags.push(tag.id);
     }
-  }, [data.userInfo.tags, initialTags]);
+  }, [profleData.userInfo.tags, initialTags]);
 
   // プロフィール編集用のステート
   // カスタムフック使用(Text)
-  const [userName, setUserName] = useTextState(data.userInfo.userName);
-  const [email, setEmail] = useTextState(data.userInfo.email);
-  const [description, setDescription] = useTextState(data.userInfo.description);
+  const [userName, setUserName] = useTextState(profleData.userInfo.userName);
+  const [email, setEmail] = useTextState(profleData.userInfo.email);
+  const [description, setDescription] = useTextState(
+    profleData.userInfo.description
+  );
   const [engineerType, setEngineerType] = useSelectState(
-    data.userInfo.engineerType
+    profleData.userInfo.engineerType
   );
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
 
@@ -54,7 +58,7 @@ const Profile: React.FC = () => {
    *
    * @remarks 表示の切り替えやログイン状態チェック
    */
-  const checkLoginUserFlag = useLoginChecker(data.userInfo.id);
+  const checkLoginUserFlag = useLoginChecker(profleData.userInfo.id);
   const [editFlag, setEditFlag] = useToggle(true);
 
   /**
@@ -66,15 +70,15 @@ const Profile: React.FC = () => {
    */
   // ±1してフォロワー数を管理
   const [followerCount, setFollowerCount] = useAddOrSubOne(
-    data.userInfo.followerCount
+    profleData.userInfo.followerCount
   );
   // フォローのステータスを真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
-    data.userInfo.followStatus
+    profleData.userInfo.followStatus
   );
   // フォローする処理
   const usrFollowing = async () => {
-    await changeFollowStatus(followStatus, data.userInfo.id);
+    await changeFollowStatus(followStatus, profleData.userInfo.id);
     setFollowerCount(followStatus);
     setFollowStatus();
   };
@@ -133,12 +137,12 @@ const Profile: React.FC = () => {
   const userInfo = {
     userName: userName,
     email: email,
-    userImage: data.userInfo.image,
-    articleCount: data.userInfo.articleCount,
+    userImage: profleData.userInfo.image,
+    articleCount: profleData.userInfo.articleCount,
     engineerType: engineerType,
     tagsNum: tagsNum,
     description: description,
-    followCount: data.userInfo.followCount,
+    followCount: profleData.userInfo.followCount,
   };
 
   // プロフィール編集用のメソッド
@@ -150,9 +154,6 @@ const Profile: React.FC = () => {
     setTagsNum,
     onSubmitEditUser,
   };
-
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
 
   return (
     <div>

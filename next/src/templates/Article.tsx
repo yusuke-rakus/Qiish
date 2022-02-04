@@ -19,8 +19,6 @@ import { Button } from "antd";
 import { ArticleData, tag, tags } from "../const/Types";
 
 const Article: React.FC = () => {
-  const router = useRouter();
-
   // 記事詳細データ取得
   const { data: articleData } = useSWR("/article");
   // タグデータ取得
@@ -136,6 +134,7 @@ const Article: React.FC = () => {
    * error: アラートメッセージ表示
    * @param articleData.article.id - 記事ID
    */
+  const router = useRouter();
   const onDeleteArticle = async () => {
     const res = await deleteArticleById(articleData.article.id);
     if (res.data.status === "success") {

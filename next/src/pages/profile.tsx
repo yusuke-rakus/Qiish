@@ -2,7 +2,7 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { Profile } from "../templates";
-import { fetchProfile } from "../lib/api/fetchData";
+import { fetchGetTags, fetchProfile } from "../lib/api/fetchData";
 import getCookie, { getArticleUserId } from "../lib/cookie/handleCookie";
 import { SWRPROPS } from "../const/Types";
 
@@ -25,6 +25,7 @@ export default ProfilePage;
  * @param ctx - ヘッダーの情報(Cookie情報を取得するため)
  * @returns fallback(keyとデータのオブジェクト)
  *  [プロフィールデータ] key: "/profile": profile
+ *  [タグデータ] key: "/tagsData" data: tagsData
  */
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // ログインユーザーIDと記事投稿者IDの取得
@@ -36,10 +37,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   const profile = await fetchProfile(guestId, userInfoId);
+  const tagsData = await fetchGetTags();
+
   return {
     props: {
       fallback: {
         "/profile": profile,
+        "/tagsData": tagsData,
       },
     },
   };
