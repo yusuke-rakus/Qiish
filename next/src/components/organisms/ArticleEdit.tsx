@@ -1,8 +1,8 @@
 import React from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import { ArticleEditFrom } from ".";
 import { SKILL as SKILLTAGS } from "../../const/Tags";
 import { ArticleEdit } from "../../const/Types";
+import { ArticleEditFrom } from "../molecules";
 
 const ArticleEdit: React.FC<ArticleEdit> = ({
   article,

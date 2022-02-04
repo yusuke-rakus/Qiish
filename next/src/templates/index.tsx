@@ -9,7 +9,7 @@ export { default as CommentList } from "./CommentList";
 export { default as FollowList } from "./FollowList";
 export { default as FollowerList } from "./FollowerList";
 export { default as LikeUsersOnArticle } from "./LikeUsersOnArticle";
-export { default as LikeUserOnComment } from "../components/organisms/LikeUserOnModal";
+export { default as LikeUserOnModal } from "./LikeUserOnModal";
 export { default as LikeUsersOnComment } from "./LikeUsersOnComment";
 export { default as Profile } from "./Profile";
 export { default as Header } from "./Header";

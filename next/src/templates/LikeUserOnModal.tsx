@@ -1,10 +1,10 @@
 import React from "react";
-import { UserDataType } from "../../const/Types";
-import { useLoginChecker } from "../../hooks/useLoginChecker";
-import { useToggleByNum } from "../../hooks/useToggleByNum";
-import { addFollow } from "../../lib/api/addData";
-import { removeFollow } from "../../lib/api/removeData";
-import { ProfileRectangleOnModal } from "../molecules";
+import { ProfileRectangleOnModal } from "../components/organisms";
+import { UserDataType } from "../const/Types";
+import { useLoginChecker } from "../hooks/useLoginChecker";
+import { useToggleByNum } from "../hooks/useToggleByNum";
+import { addFollow } from "../lib/api/addData";
+import { removeFollow } from "../lib/api/removeData";
 
 const LikeUserOnModal: React.FC<UserDataType> = ({ user_data }) => {
   // フォロー状態を真偽値で管理

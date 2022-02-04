@@ -1,6 +1,6 @@
 import React from "react";
 import { CommentLikesUserList } from "../const/Types";
-import LikeUserOnModal from "../components/organisms/LikeUserOnModal";
+import LikeUserOnModal from "./LikeUserOnModal";
 
 const LikeUsersOnComment: React.FC<CommentLikesUserList> = ({
   commentLikesUserList,

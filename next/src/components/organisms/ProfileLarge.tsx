@@ -15,7 +15,6 @@ const ProfileLarge: React.FC<ProfileLarge> = ({
     <div className="w-full p-10 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">
         <div className="flex justify-center items-center">
-          {/* image(User) */}
           {userInfo.userImage ? (
             <Image
               className="rounded-full"
@@ -33,8 +32,6 @@ const ProfileLarge: React.FC<ProfileLarge> = ({
               height={90}
             />
           )}
-          {/* userName(User) */}
-
           <div className="pl-10 text-center">
             <div className="text-xl">@{userInfo.userName}</div>
             {!checkLoginUserFlag && (
@@ -58,7 +55,6 @@ const ProfileLarge: React.FC<ProfileLarge> = ({
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black text-lg">
           <div className="flex-grow text-center">
-            {/* 記事投稿数 */}
             投稿数
             <div>{userInfo.articleCount}</div>
           </div>
