@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import React from "react";
-import { CommentForm, TextEventType } from "../../const/Types";
+import { CommentForm } from "../../const/Types";
 
 const CommentForm: React.FC<CommentForm> = ({
   setCommentText,
