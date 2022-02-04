@@ -1,10 +1,9 @@
 import axios from "axios";
 import { SelectStateType } from "../../const/Types";
+import { BASEURL } from "../../const/Urls";
 import getCookie from "../cookie/handleCookie";
 const guestIdByCookie = getCookie();
 const guestIdNum = Number(guestIdByCookie);
-
-const baseUrl = "http://localhost:9090";
 
 export const editUserInfo = async (
   userName: string,
@@ -13,7 +12,7 @@ export const editUserInfo = async (
   engineerType: SelectStateType,
   tags: SelectStateType
 ) => {
-  const res = await axios.post(`${baseUrl}/user/edit`, {
+  const res = await axios.post(`${BASEURL}/user/edit`, {
     userInfoId: guestIdNum,
     userName: userName,
     image: null,
@@ -32,7 +31,7 @@ export const editArticle = async (
   content: string,
   tags: SelectStateType
 ) => {
-  const res = await axios.post(`${baseUrl}/article/edit"`, {
+  const res = await axios.post(`${BASEURL}/article/edit"`, {
     guestId: guestIdNum,
     articleId: articleId,
     title: title,

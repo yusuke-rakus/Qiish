@@ -1,11 +1,10 @@
 import axios from "axios";
 import getCookie from "../cookie/handleCookie";
 import { SelectStateType } from "../../const/Types";
+import { BASEURL } from "../../const/Urls";
 // ログインユーザーのIdを取得
 const guestIdByCookie = getCookie();
 const guestIdNum = Number(guestIdByCookie);
-
-const baseUrl = "http://localhost:9090";
 
 // 会員登録機能
 export const registerUser = async (
@@ -15,7 +14,7 @@ export const registerUser = async (
   password: string,
   confirmPassword: string
 ) => {
-  const res = await axios.post(`${baseUrl}/user/register`, {
+  const res = await axios.post(`${BASEURL}/user/register`, {
     userName: userName,
     engineerType: engineerType,
     email: mailAddress,
@@ -30,7 +29,7 @@ export const resetPassword = async (
   mailAddress: string,
   newPassword: string
 ) => {
-  const res = await axios.post(`${baseUrl}/reset`, {
+  const res = await axios.post(`${BASEURL}/reset`, {
     email: mailAddress,
     password: newPassword,
   });
@@ -45,7 +44,7 @@ export const addArticle = async (
   content: string,
   tags: SelectStateType
 ) => {
-  const res = await axios.post(`${baseUrl}/article/add`, {
+  const res = await axios.post(`${BASEURL}/article/add`, {
     userInfoId: userId,
     title: title,
     content: content,
@@ -56,7 +55,7 @@ export const addArticle = async (
 
 // コメント投稿機能
 export const addComment = async (articleId: number, comment: string) => {
-  const res = await axios.post(`${baseUrl}/article/comment`, {
+  const res = await axios.post(`${BASEURL}/article/comment`, {
     articleId: articleId,
     userInfoId: guestIdNum,
     comment: comment,
@@ -70,12 +69,12 @@ export const changeLikeStatusToArticle = async (
   likeStatus: boolean
 ) => {
   if (!likeStatus) {
-    await axios.post(`${baseUrl}/article/like`, {
+    await axios.post(`${BASEURL}/article/like`, {
       userInfoId: guestIdNum,
       articleId: articleId,
     });
   } else {
-    await axios.post(`${baseUrl}/article/removeLike`, {
+    await axios.post(`${BASEURL}/article/removeLike`, {
       userInfoId: guestIdNum,
       articleId: articleId,
     });
@@ -87,12 +86,12 @@ export const changeLikeStatusToComment = async (
   likeStatus: boolean
 ) => {
   if (!likeStatus) {
-    await axios.post(`${baseUrl}/article/commentLike`, {
+    await axios.post(`${BASEURL}/article/commentLike`, {
       userInfoId: guestIdNum,
       commentId: commentId,
     });
   } else {
-    await axios.post(`${baseUrl}/article/removeCommentLike`, {
+    await axios.post(`${BASEURL}/article/removeCommentLike`, {
       userInfoId: guestIdNum,
       commentId: commentId,
     });
@@ -106,13 +105,13 @@ export const changeFollowStatus = async (
 ) => {
   // フォローするならif以下の処理(フォローステータス:0)
   if (!followStatus) {
-    const res = await axios.post(`${baseUrl}/user/follow`, {
+    const res = await axios.post(`${BASEURL}/user/follow`, {
       userInfoId: guestIdNum,
       followUserInfoId: userInfoIdToFollow,
     });
     return res;
   } else {
-    const res = await axios.post(`${baseUrl}/user/remove`, {
+    const res = await axios.post(`${BASEURL}/user/remove`, {
       userInfoId: guestIdNum,
       followUserInfoId: userInfoIdToFollow,
     });
