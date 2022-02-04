@@ -28,8 +28,6 @@ const Article: React.FC = () => {
 
   /**
    * DBにあるタグ情報を取得し、ステートで管理.
-   *
-   * @remarks
    */
   // フェッチしたタグデータをステートに格納し管理
   const [tagsData, setTagsData] = useState<tags>([]);
@@ -51,7 +49,7 @@ const Article: React.FC = () => {
   /**
    * Cookieに投稿者のidを追加.
    *
-   * @param 記事投稿者ID
+   * @param articleData.postedUser.id -  記事投稿者ID
    */
   useEffect(() => {
     setArticleUserId(articleData.postedUser.id);
@@ -89,8 +87,8 @@ const Article: React.FC = () => {
    * いいねする又はいいねを解除する処理.
    *
    * @remarks APIにいいねを知らせて、ブラウザ側でいいねの状態と数をステートを用いて変更
-   * @param 記事ID
-   * @param いいねステータス
+   * @param articleData.article.id - 記事ID
+   * @param likeStatus - いいねステータス
    *
    */
   const [likesCount, setlikesCount] = useAddOrSubOne(
@@ -111,8 +109,8 @@ const Article: React.FC = () => {
    * フォローする又はフォローを解除する処理.
    *
    * @remarks APIにフォローを知らせて、ブラウザ側でフォローの状態と数をステートを用いて変更
-   * @param 記事ID
-   * @param いいねステータス
+   * @param articleData.postedUser.id - 記事投稿者ID
+   * @param followStatus - フォロー状態
    *
    */
   // ±1してフォロワー数を管理
@@ -136,7 +134,7 @@ const Article: React.FC = () => {
    * @remarks
    * sucess: トップページへ遷移
    * error: アラートメッセージ表示
-   * @param 記事ID
+   * @param articleData.article.id - 記事ID
    */
   const onDeleteArticle = async () => {
     const res = await deleteArticleById(articleData.article.id);
@@ -154,10 +152,10 @@ const Article: React.FC = () => {
    * @remarks
    * sucess: トップページへ遷移
    * error: アラートメッセージ表示
-   * @param 記事ID
-   * @param タイトル
-   * @param 内容
-   * @param タグIDの配列
+   * @param articleData.article.id - 記事ID
+   * @param title - タイトル
+   * @param content - 内容
+   * @param tagsNum - タグIDの配列
    * @throws エラーメッセージを表示して処理終了
    *
    */

@@ -1,11 +1,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import {
-  ProfileEdit,
-  ProfileEditFrom,
-  ProfileLarge,
-} from "../components/organisms";
+import { ProfileEdit, ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus } from "../lib/api/addData";
@@ -16,26 +12,9 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 
 const Profile: React.FC = () => {
-  const [editFlag, setEditFlag] = useToggle(true);
-
-  // ユーザーのプロフィールデータ
+  // プロフィールデータ取得
   const { data, error } = useSWR("/profile");
 
-  const [followStatus, setFollowStatus] = useToggleByNum(
-    data.userInfo.followStatus
-  );
-  const [followerCount, setFollowerCount] = useAddOrSubOne(
-    data.userInfo.followerCount
-  );
-  // プロフィール編集用のステート
-  // カスタムフック使用(Text)
-  const [userName, setUserName] = useTextState(data.userInfo.userName);
-  const [email, setEmail] = useTextState(data.userInfo.email);
-  const [description, setDescription] = useTextState(data.userInfo.description);
-  // カスタムフック使用(Select)
-  const [engineerType, setEngineerType] = useSelectState(
-    data.userInfo.engineerType
-  );
   // カスタムフック使用(タグを初期化)
   const initialTags = new Array<number>();
   useEffect(() => {
@@ -44,7 +23,14 @@ const Profile: React.FC = () => {
     }
   }, [data.userInfo.tags, initialTags]);
 
-  // カスタムフック使用(ユーザータグの格納)
+  // プロフィール編集用のステート
+  // カスタムフック使用(Text)
+  const [userName, setUserName] = useTextState(data.userInfo.userName);
+  const [email, setEmail] = useTextState(data.userInfo.email);
+  const [description, setDescription] = useTextState(data.userInfo.description);
+  const [engineerType, setEngineerType] = useSelectState(
+    data.userInfo.engineerType
+  );
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
 
   // タグのid,skill,imageを取得
@@ -64,16 +50,29 @@ const Profile: React.FC = () => {
   }
 
   /**
-   * user_dataが本人かどうかチェック.
-   * @remarks true: 本人, false: 本人以外の人
+   * 表示フラグ(真偽値)を管理.
+   *
+   * @remarks 表示の切り替えやログイン状態チェック
    */
   const checkLoginUserFlag = useLoginChecker(data.userInfo.id);
+  const [editFlag, setEditFlag] = useToggle(true);
 
   /**
-   * フォローする処理(本人以外).
-   * @param followStatus - フォローの真偽値
+   * フォローする又はフォローを解除する処理.
+   *
+   * @remarks APIにフォローを知らせて、ブラウザ側でフォローの状態と数をステートを用いて変更
    * @param data.userInfo.id - フォローされるユーザーID
+   * @param followStatus - フォロー状態
    */
+  // ±1してフォロワー数を管理
+  const [followerCount, setFollowerCount] = useAddOrSubOne(
+    data.userInfo.followerCount
+  );
+  // フォローのステータスを真偽値で管理
+  const [followStatus, setFollowStatus] = useToggleByNum(
+    data.userInfo.followStatus
+  );
+  // フォローする処理
   const usrFollowing = async () => {
     await changeFollowStatus(followStatus, data.userInfo.id);
     setFollowerCount(followStatus);
@@ -82,11 +81,18 @@ const Profile: React.FC = () => {
 
   //
   /**
-   * ユーザー情報編集の処理.
+   * ユーザー情報編集を行う.
    *
    * @remarks
-   * sucess: トップページへ遷移する.
-   * error: アラートメッセージ表示する.
+   * sucess: プロフィール画面へ切り替わる
+   * error: アラートメッセージ表示
+   * @param articleData.article.id - 記事ID
+   * @param userName - ユーザーネーム
+   * @param email - メールアドレス
+   * @param description - 自己紹介
+   * @param engineerType - エンジニアタイプ
+   * @param tagsNum - タグIDの配列
+   * @throws エラーメッセージを表示して処理終了
    */
   const onSubmitEditUser = async () => {
     //  バリデーションチェック
