@@ -35,8 +35,10 @@ const ArticleDetail: React.FC<Article> = ({
   );
   return (
     <div className="flex justify-center">
-      <div className="text-center m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
-        <div className="pb-10 pt-20 text-2xl font-bold">{article.title}</div>
+      <div className="m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
+        <div className="text-center pb-10 pt-20 text-2xl font-bold">
+          {article.title}
+        </div>
         <div className="pb-2">
           <div className="flex justify-center items-center">
             <button onClick={changeArticleLike}>
@@ -80,7 +82,7 @@ const ArticleDetail: React.FC<Article> = ({
             投稿日: {moment(article.postedDate).format("YYYY年M月D日")}
           </span>
         </div>
-        <div className="px-14 pt-6 text-lg">
+        <div className="px-8 pt-6 text-lg">
           <div className="markdown">
             <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
               {article.content}
