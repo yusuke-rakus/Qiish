@@ -2,7 +2,7 @@ import axios from "axios";
 import getCookie from "../cookie/handleCookie";
 // ログインユーザーのIdを取得
 const guestIdByCookie = getCookie();
-
+// 汎用性のあるURLを定数化
 const baseUrl = "http://localhost:9090";
 
 // ユーザーログインのAPI
@@ -33,7 +33,13 @@ export const fetchSearchedTag = async (tagId: string, guestId: string) => {
   return res.data.articleList;
 };
 
-// プロフィール情報取得のAPI
+/**
+ * プロフィール情報の取得.
+ *
+ * @param guestId - ログインユーザーID(str)
+ * @param userInfoId - ユーザー情報ID(str)
+ * @returns ユーザープロフィール情報
+ */
 export const fetchProfile = async (guestId: string, userInfoId?: string) => {
   const res = await axios.post(`${baseUrl}/userPage`, {
     userInfoId: userInfoId,
@@ -49,13 +55,24 @@ export const fetchArticleList = async () => {
   });
   return res.data;
 };
-// 記事一覧情報の取得のAPI
+
+/**
+ * タグ情報の取得.
+ *
+ * @returns タグ情報
+ */
 export const fetchGetTags = async () => {
   const res = await axios.get(`${baseUrl}/getTag`);
   return res.data;
 };
 
-// 特定の記事情報取得のAPI
+/**
+ * 特定の記事詳細情報の取得.
+ *
+ * @param articleId - 記事ID(str)
+ * @param guestId - ログインユーザーID(str)
+ * @returns 記事IDに当てはまる記事詳細情報
+ */
 export const fetchArticle = async (
   articleId: string | string[] | undefined,
   guestId: string
@@ -64,21 +81,17 @@ export const fetchArticle = async (
     articleId: articleId,
     guestId: guestId,
   });
-
   return res.data;
 };
 
-export const fetchCommentOnArticle = async (articleId: number) => {
-  const res = await axios.post(`${baseUrl}/article/getComment`, {
-    articleId: articleId,
-    guestId: guestIdByCookie,
-  });
-
-  return res.data;
-};
-
+/**
+ * 特定記事のコメント一覧情報を取得.
+ *
+ * @param articleId - 記事ID(num)
+ * @returns 記事IDに当てはまるコメント一覧情報
+ */
 export const fetchcommentList = async (articleId: number) => {
-  const res = await axios.post(`http://localhost:9090/article/getComment`, {
+  const res = await axios.post(`${baseUrl}/article/getComment`, {
     articleId: articleId,
     guestId: guestIdByCookie,
   });
@@ -93,33 +106,50 @@ export const reissuePassword = async (mailAddress: string) => {
   return res.data;
 };
 
+/**
+ * 最新のQiita記事一覧10件を取得.
+ *
+ * @remarks リクエスト回数:通常(60回/hour), アクセストークンあり(1000回/hour)
+ * @returns 最新のQiita記事一覧10件
+ */
 export const fetchQiitaList = async () => {
   const res = await axios.get("https://qiita.com/api/v2/items?per_page=10", {
     headers: {
       Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
     },
   });
-
   return res.data;
 };
 
-// 特定のQiitaの記事取得
-// 定数.dataとしないとエラーが発生する
+//
+/**
+ * 特定のQiita記事取得.
+ *
+ * @remarks リクエスト回数:通常(60回/hour), アクセストークンあり(1000回/hour)
+ * @param qiitaId - Qiita記事のID
+ * @returns 特定のQiita記事
+ */
 export const fetchQiita = async (qiitaId: string | string[] | undefined) => {
   const res = await axios.get(`https://qiita.com/api/v2/items/${qiitaId}`, {
     headers: {
       Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}`,
     },
   });
-
   return res.data;
 };
 
-// フォローリスト取得の処理
+/**
+ * フォローリスト取得.
+ *
+ * @remarks
+ * - 記事詳細から取得の場合、記事投稿者のフォローリストを取得
+ * - 記事詳細からプロフィールに遷移して取得の場合、記事投稿者のフォローリストを取得
+ * - プロフィールから取得の場合、ログインユーザーのフォローリストを取得
+ * @param guestId - ログインユーザーID(str)
+ * @param userInfoId - 記事投稿者ID(str,オプショナル)
+ * @returns 記事投稿者又はログインユーザーのフォローリスト
+ */
 export const fetchFollowList = async (guestId: string, userInfoId?: string) => {
-  // もし記事投稿者ID(userInfoId)があるなら記事投稿者のフォローリストを取得
-  // もし記事投稿者IDがないならログインユーザーのフォローリストを取得
-
   if (userInfoId) {
     const res = await axios.post(`${baseUrl}/user/followList`, {
       userInfoId: userInfoId,
@@ -127,7 +157,6 @@ export const fetchFollowList = async (guestId: string, userInfoId?: string) => {
     });
     return res.data;
   } else {
-    // マイプロフィールから直接フォローリストに遷移する場合
     const res = await axios.post(`${baseUrl}/user/followList`, {
       userInfoId: guestId,
       guestId: guestId,
@@ -135,7 +164,17 @@ export const fetchFollowList = async (guestId: string, userInfoId?: string) => {
     return res.data;
   }
 };
-// フォロワーリスト取得の処理
+/**
+ * フォロワーリスト取得.
+ *
+ * @remarks
+ * - 記事詳細から取得の場合、記事投稿者のフォロワーリストを取得
+ * - 記事詳細からプロフィールに遷移して取得の場合、記事投稿者のフォロワーリストを取得
+ * - プロフィールから取得の場合、ログインユーザーのフォロワーリストを取得
+ * @param guestId - ログインユーザーID(str)
+ * @param userInfoId - 記事投稿者ID(str,オプショナル)
+ * @returns 記事投稿者又はログインユーザーのフォロワーリスト
+ */
 export const fetchFollowerList = async (
   guestId: string,
   userInfoId?: string
