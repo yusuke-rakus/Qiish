@@ -1,52 +1,62 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ProfileEdit, ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus } from "../lib/api/addData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
-import axios from "axios";
 import { editUserInfo } from "../lib/api/editData";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
+import { tag, tags } from "../const/Types";
 
 const Profile: React.FC = () => {
   // プロフィールデータ取得
-  const { data: profleData } = useSWR("/profile");
+  const { data: proflieData } = useSWR("/profile");
   // タグデータ取得
   const { data: fetchedTags } = useSWR("/tagsData");
 
-  // カスタムフック使用(タグを初期化)
-  const initialTags = new Array<number>();
+  /**
+   * DBにあるタグ情報を取得し、ステートで管理.
+   */
+  // フェッチしたタグデータをステートに格納し管理
+  const [tagsData, setTagsData] = useState<tags>([]);
   useEffect(() => {
-    for (const tag of profleData.userInfo.tags) {
+    setTagsData(fetchedTags.tags);
+  }, [fetchedTags.tags]);
+  const initialTags = new Array<number>();
+  const [tagsNum, setTagsNum] = useSelectState(initialTags);
+  // プロフィールデータにあるtagのidをinitialTagsに格納
+  const insertTags = () => {
+    for (const tag of proflieData.userInfo.tags) {
       initialTags.push(tag.id);
     }
-  }, [profleData.userInfo.tags, initialTags]);
+  };
+  useEffect(() => {
+    insertTags();
+  });
 
-  // プロフィール編集用のステート
-  // カスタムフック使用(Text)
-  const [userName, setUserName] = useTextState(profleData.userInfo.userName);
-  const [email, setEmail] = useTextState(profleData.userInfo.email);
+  /**
+   * プロフィール情報(編集).
+   *
+   * @remarks
+   * 下記の記事情報をステートで管理して、編集用データとして利用
+   * ユーザーネーム
+   * メールアドレス
+   * 自己紹介
+   * エンジニアタイプ
+   * 技術タグ(IDに紐づくデータ)
+   */
+  const [userName, setUserName] = useTextState(proflieData.userInfo.userName);
+  const [email, setEmail] = useTextState(proflieData.userInfo.email);
   const [description, setDescription] = useTextState(
-    profleData.userInfo.description
+    proflieData.userInfo.description
   );
   const [engineerType, setEngineerType] = useSelectState(
-    profleData.userInfo.engineerType
+    proflieData.userInfo.engineerType
   );
-  const [tagsNum, setTagsNum] = useSelectState(initialTags);
-
-  // タグのid,skill,imageを取得
-  let tagsByNum: any = [];
-  const [tagsData, setTagsData] = useState<any>();
-  useEffect(() => {
-    const tagsData = async () => {
-      const res = await axios.get("http://localhost:9090/getTag");
-      setTagsData(res.data.tags);
-    };
-    tagsData();
-  }, []);
+  let tagsByNum = new Array<tag>();
   // 選択した記事タグを配列に格納する処理
   for (let tagNum of tagsNum) {
     const tagsFilterByTagNum = tagsData.filter((tag: any) => tag.id == tagNum);
@@ -58,7 +68,7 @@ const Profile: React.FC = () => {
    *
    * @remarks 表示の切り替えやログイン状態チェック
    */
-  const checkLoginUserFlag = useLoginChecker(profleData.userInfo.id);
+  const checkLoginUserFlag = useLoginChecker(proflieData.userInfo.id);
   const [editFlag, setEditFlag] = useToggle(true);
 
   /**
@@ -70,15 +80,15 @@ const Profile: React.FC = () => {
    */
   // ±1してフォロワー数を管理
   const [followerCount, setFollowerCount] = useAddOrSubOne(
-    profleData.userInfo.followerCount
+    proflieData.userInfo.followerCount
   );
   // フォローのステータスを真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
-    profleData.userInfo.followStatus
+    proflieData.userInfo.followStatus
   );
   // フォローする処理
   const usrFollowing = async () => {
-    await changeFollowStatus(followStatus, profleData.userInfo.id);
+    await changeFollowStatus(followStatus, proflieData.userInfo.id);
     setFollowerCount(followStatus);
     setFollowStatus();
   };
@@ -137,12 +147,12 @@ const Profile: React.FC = () => {
   const userInfo = {
     userName: userName,
     email: email,
-    userImage: profleData.userInfo.image,
-    articleCount: profleData.userInfo.articleCount,
+    userImage: proflieData.userInfo.image,
+    articleCount: proflieData.userInfo.articleCount,
     engineerType: engineerType,
     tagsNum: tagsNum,
     description: description,
-    followCount: profleData.userInfo.followCount,
+    followCount: proflieData.userInfo.followCount,
   };
 
   // プロフィール編集用のメソッド

@@ -35,6 +35,7 @@ const Article: React.FC = () => {
   // 格納したタグデータからタグIDのみを取り出し、Arrayステートに管理
   const initialTags = new Array<number>();
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
+  // プロフィールデータにあるtagのidをinitialTagsに格納
   const insertTags = () => {
     for (const tag of articleData.article.articleTags) {
       initialTags.push(tag.id);
@@ -54,7 +55,7 @@ const Article: React.FC = () => {
   }, [articleData.postedUser.id]);
 
   /**
-   * 記事情報のステート(編集).
+   * 記事情報(編集).
    *
    * @remarks
    * 下記の記事情報をステートで管理して、編集用データとして利用
