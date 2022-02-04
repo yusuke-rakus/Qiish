@@ -1,9 +1,12 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import { ProfileLarge } from "../components/organisms";
+import {
+  ProfileEdit,
+  ProfileEditFrom,
+  ProfileLarge,
+} from "../components/organisms";
 import useSWR from "swr";
-import { ProfileEdit } from "./";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { changeFollowStatus } from "../lib/api/addData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
@@ -34,7 +37,7 @@ const Profile: React.FC = () => {
     data.userInfo.engineerType
   );
   // カスタムフック使用(タグを初期化)
-  const initialTags: number[] = [];
+  const initialTags = new Array<number>();
   useEffect(() => {
     for (const tag of data.userInfo.tags) {
       initialTags.push(tag.id);
@@ -60,21 +63,49 @@ const Profile: React.FC = () => {
     tagsByNum.push(tagsFilterByTagNum[0]);
   }
 
-  // プロフィールがログインユーザーかどうか判別
+  /**
+   * user_dataが本人かどうかチェック.
+   * @remarks true: 本人, false: 本人以外の人
+   */
   const checkLoginUserFlag = useLoginChecker(data.userInfo.id);
 
-  // ログインユーザーが本人以外のユーザーをフォローする機能
+  /**
+   * フォローする処理(本人以外).
+   * @param followStatus - フォローの真偽値
+   * @param data.userInfo.id - フォローされるユーザーID
+   */
   const usrFollowing = async () => {
-    // フォローのデータをDBに保存()
     await changeFollowStatus(followStatus, data.userInfo.id);
     setFollowerCount(followStatus);
-    // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setFollowStatus();
   };
 
-  // ユーザー情報編集の処理
+  //
+  /**
+   * ユーザー情報編集の処理.
+   *
+   * @remarks
+   * sucess: トップページへ遷移する.
+   * error: アラートメッセージ表示する.
+   */
   const onSubmitEditUser = async () => {
+    //  バリデーションチェック
+    const errorMsg = "記事投稿に失敗しました。入力内容を確認してください。";
+    if (userName === " " || userName === "　" || userName === null) {
+      alert(errorMsg);
+      return;
+    }
+    if (email === " " || email === "　" || email === null) {
+      alert(errorMsg);
+      return;
+    }
+    if (description === " " || description === "　" || description === null) {
+      alert(errorMsg);
+      return;
+    }
+
     try {
+      // DBにユーザー情報を保存
       const res = await editUserInfo(
         userName,
         email,
@@ -88,7 +119,7 @@ const Profile: React.FC = () => {
         setEditFlag();
       }
     } catch (error) {
-      console.log(error);
+      alert(errorMsg);
     }
   };
 

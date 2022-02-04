@@ -7,7 +7,7 @@ import { ProfileEditFrom } from "../../const/Types";
 const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
   userData,
   TAGS,
-  Fnc,
+  editFnc,
 }) => {
   return (
     <Form
@@ -18,12 +18,11 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
         description: userData.description,
         tags: userData.tagsNum,
       }}
-      onSubmitCapture={Fnc.onSubmitEditUser}
+      onSubmitCapture={editFnc.onSubmitEditUser}
     >
       <div className="w-full p-8 m-2 bg-white rounded-lg border shadow-md">
         <div className="m-4">
           <div className="flex justify-center items-center">
-            {/* image(User) */}
             <Image
               className="rounded-full"
               src={"/img/avatar.jpg"}
@@ -41,7 +40,7 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
                   placeholder="名前を入力"
                   bordered={false}
                   size={"large"}
-                  onChange={Fnc.setUserName}
+                  onChange={editFnc.setUserName}
                 />
               </Form.Item>
               <Form.Item
@@ -53,7 +52,7 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
                   placeholder="職種"
                   className="w-20"
                   bordered={false}
-                  onChange={Fnc.setEngineerType}
+                  onChange={editFnc.setEngineerType}
                 >
                   {TAGS.ENGINEER.map((engineerType) => {
                     return (
@@ -76,7 +75,7 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
                 placeholder="メールアドレスを入力"
                 bordered={false}
                 size={"large"}
-                onChange={Fnc.setEmail}
+                onChange={editFnc.setEmail}
               />
             </Form.Item>
             <Form.Item
@@ -88,9 +87,8 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
                 mode="multiple"
                 placeholder="使用技術"
                 bordered={false}
-                onChange={Fnc.setTagsNum}
+                onChange={editFnc.setTagsNum}
               >
-                {/* フロント、バックエンド、その他のそれぞれの表示 */}
                 {TAGS.SKILL.map((SkillType) => {
                   return (
                     <Select.OptGroup
@@ -111,7 +109,6 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
             </Form.Item>
           </div>
         </div>
-        {/* comment(User) */}
         <div className="text-xl text-center m-2">
           <span className="block w-full p-2 text-xl rounded-xl hover:bg-gray-100">
             <Form.Item
@@ -122,7 +119,7 @@ const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
                 placeholder="自己紹介文"
                 autoSize={{ minRows: 5 }}
                 bordered={false}
-                onChange={Fnc.setDescription}
+                onChange={editFnc.setDescription}
               />
             </Form.Item>
           </span>

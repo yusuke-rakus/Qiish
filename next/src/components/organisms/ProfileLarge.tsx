@@ -78,14 +78,12 @@ const ProfileLarge: React.FC<ProfileLarge> = ({
           </div>
         </div>
         <div className="text-2xl mt-2 flex justify-center items-center">
-          {/* engineerType(User) */}
           職種:
           <span className="ml-4 px-3 rounded-md text-white bg-orange-500">
             {userInfo.engineerType}
           </span>
         </div>
         <div className="mt-2">
-          {/* tags(User) */}
           <div className="flex justify-center flex-wrap">
             {tagsByNum.map((tag) => {
               return (
@@ -100,7 +98,6 @@ const ProfileLarge: React.FC<ProfileLarge> = ({
           </div>
         </div>
       </div>
-      {/* description(User) */}
       <div className="text-xl text-center m-2">{userInfo.description}</div>
     </div>
   );

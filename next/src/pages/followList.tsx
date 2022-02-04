@@ -16,11 +16,20 @@ const FollowListPage: React.FC<SWRPROPS> = ({ fallback }) => {
 
 export default FollowListPage;
 
-// フォローリスト取得の処理
+/**
+ * フォローユーザーリストの取得.
+ *
+ * @remarks
+ *   SWRを用いて子コンポーネントの中で下記のように取得できる.
+ *   const { data } = useSWR (key)
+ * @param ctx - ヘッダーの情報(Cookie情報を取得するため)
+ * @returns fallback(keyとデータのオブジェクト)
+ *  [フォローしているユーザーデータ] key: "/followList": followList
+ */
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  // ログインユーザーIDと記事投稿者IDの取得
   const guestId = getCookie(ctx);
   let userId = getArticleUserId(ctx);
-
   // Cookieに投稿者ID(articleUserId)がなければログインユーザーIdを利用
   if (!userId) {
     userId = getCookie(ctx);

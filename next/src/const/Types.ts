@@ -202,7 +202,7 @@ export type ProfileEditFrom = {
     ENGINEER: string[];
     SKILL: SkillTags;
   };
-  Fnc: FuncForEdit;
+  editFnc: FuncForEdit;
 };
 
 // --------------------------------------------
@@ -262,6 +262,8 @@ export type CommentComp = {
   changeCommentLike: () => void;
   setLikeUserModalStatus: () => void;
 };
+
+export type LikesUserList = { lieksUserList: UserType[] };
 
 export type CommentLikesUserList = {
   commentLikesUserList: UserType[];

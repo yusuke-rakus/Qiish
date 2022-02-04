@@ -14,6 +14,15 @@ const QiitaListPage: React.FC<SWRPROPS> = ({ fallback }) => {
 
 export default QiitaListPage;
 
+/**
+ * Qiita記事一覧情報の取得.
+ *
+ * @remarks
+ *   SWRを用いて子コンポーネントの中で下記のように取得できる.
+ *   const { data } = useSWR (key)
+ * @returns fallback(keyとデータのオブジェクト)
+ *  [Qiita記事一覧情報] key: "/qiitaList": qiitaList
+ */
 export const getStaticProps = async () => {
   const qiitaList = await fetchQiitaList();
   return {

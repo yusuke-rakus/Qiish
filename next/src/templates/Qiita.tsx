@@ -6,14 +6,16 @@ import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
 
 const Qiita: React.FC = () => {
+  /**
+   * 指定した幅より大きければtrue,小さければfalse
+   */
   const isExistProfile = useMediaQuery({ query: "(min-width: 768px)" });
 
-  // qiita詳細データ
+  // qiita詳細データを取得
   const { data, error } = useSWR(`/qiita`);
 
-  // フォローフラグ切り替え
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...{console.log("loading!!")}</div>;
+  if (!data) return <div>loading...</div>;
 
   return (
     <div className="h-full py-10">

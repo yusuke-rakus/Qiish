@@ -17,7 +17,6 @@ const QiitaProfileSmall: React.FC<QiitaUser> = ({ qiita_user }) => {
               width={90}
               height={90}
             />
-            {/* ユーザーネームがなければgithubのユーザーネームを@付きで表示 */}
             <div>
               {qiita_user.github_login_name
                 ? `@${qiita_user.github_login_name}`
@@ -27,7 +26,6 @@ const QiitaProfileSmall: React.FC<QiitaUser> = ({ qiita_user }) => {
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black ">
           <div className="flex-grow text-center">
-            {/*  */}
             投稿数 : {qiita_user.items_count}
           </div>
         </div>

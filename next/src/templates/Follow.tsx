@@ -14,7 +14,6 @@ const Follow: React.FC<FollowType> = ({ user_data }) => {
     user_data.followStatus
   );
 
-  // user_dataがログイン本人だったらtrue,本人でなければfalse
   /**
    * user_dataが本人かどうかチェック.
    * @remarks true: 本人, false: 本人以外の人
@@ -26,10 +25,8 @@ const Follow: React.FC<FollowType> = ({ user_data }) => {
    * @param followStatus - フォローの真偽値
    * @param user_data.id - フォローされるユーザーID
    */
-  //
   const usrFollowing = async () => {
     await changeFollowStatus(followStatus, user_data.id);
-    // フォローの真偽値切り替え
     setFollowStatus();
   };
 

@@ -1,46 +1,28 @@
 import React from "react";
 import { ProfileRectangleOnComment } from "../components/organisms";
+import { UserDataType } from "../const/Types";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeFollowStatus } from "../lib/api/addData";
 
-type Props = {
-  user_data: {
-    id: number;
-    userName: string;
-    email: string;
-    engineerType: string;
-    description: string;
-    image: string;
-    follow: string;
-    followCount: number;
-    follower: string;
-    followerCount: number;
-    tags: {
-      id: number;
-      skill: string;
-      image: string;
-    }[];
-    articles: string;
-    articleCount: number;
-    likes: string;
-    comments: string;
-    followStatus: number;
-  };
-};
-
-const LikeUserOnComment: React.FC<Props> = ({ user_data }) => {
+const LikeUserOnComment: React.FC<UserDataType> = ({ user_data }) => {
+  // フォローのステータスを真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
     user_data.followStatus
   );
   // user_dataがログイン本人だったらtrue,本人でなければfalse
   const loginCheckStatus = useLoginChecker(user_data.id);
 
-  // ログインユーザーが本人以外にフォローする処理
+  /**
+   * フォローする又はフォローを解除する処理.
+   *
+   * @remarks APIにフォローを知らせて、ブラウザ側でフォロー状態と数をステートを用いて変更
+   * @param ユーザーID
+   * @param フォローステータス
+   *
+   */
   const usrFollowing = async () => {
-    // フォローのデータをDBに保存()
     await changeFollowStatus(followStatus, user_data.id);
-    // フォローの真偽値切り替え true:フォロー中、false:フォロー解除
     setFollowStatus();
   };
 

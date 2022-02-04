@@ -16,8 +16,6 @@ const ProfileSmall: React.FC<ProfileSmall> = ({
     <div className="w-full p-2 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">
         <div className="flex justify-center items-center">
-          {/* image(User) */}
-          {/* 画像がnullならデフォルトの画像を表示 */}
           <Link href={"/profile"}>
             <a>
               {user.image ? (
@@ -39,7 +37,6 @@ const ProfileSmall: React.FC<ProfileSmall> = ({
               )}
             </a>
           </Link>
-          {/* userName(User) */}
           <div className="pl-3 text-center">
             <div>@{user.userName}</div>
             {!checkLoginUserFlag && (
@@ -63,7 +60,6 @@ const ProfileSmall: React.FC<ProfileSmall> = ({
         </div>
         <div className="m-4 flex jusify-around divide-x divide-black ">
           <div className="flex-grow text-center">
-            {/* articleCount */}
             投稿数
             <div>{user.articleCount}</div>
           </div>
@@ -85,12 +81,10 @@ const ProfileSmall: React.FC<ProfileSmall> = ({
         <div className="text-xl mt-2 flex justify-center items-center">
           職種:
           <span className="ml-4 px-3 rounded-md text-white bg-orange-500 ">
-            {/* engineerType(User) */}
             {user.engineerType}
           </span>
         </div>
         <div className="mt-2">
-          {/* tags(User) */}
           <div className="flex flex-wrap">
             {user.tags.map((tags) => {
               return (
@@ -102,7 +96,6 @@ const ProfileSmall: React.FC<ProfileSmall> = ({
           </div>
         </div>
       </div>
-      {/* comment(User) */}
       <div className="block m-2 text-center">{user.description}</div>
     </div>
   );
