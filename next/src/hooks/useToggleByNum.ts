@@ -1,5 +1,12 @@
 import { useCallback, useState } from "react";
 
+/**
+ * 真偽値を反転させるメソッド(引数がnumber型の場合)
+ *
+ * @remarks paramの0か1で真偽値を判別し、initalBoolを真偽値としている
+ * @param initialState 初期値(0か1)
+ * @returns [state: 真偽値, toggle: 真偽値を反転させる処理]
+ */
 export const useToggleByNum = (initialState: number): [boolean, () => void] => {
   // initalStateが0だったらfalse,1だったらtrue
   let initalBool = true;
@@ -10,10 +17,6 @@ export const useToggleByNum = (initialState: number): [boolean, () => void] => {
   }
 
   const [state, setState] = useState(initalBool);
-
-  // useCallbackを用いて余分なレンダリングをなくす
-  // why?・・・より高い再利用性のためにはuseCallbackが必要
-  // ステートに受け取った値をセット(true or false)
   const toggle = useCallback(() => {
     setState((b) => !b);
   }, []);

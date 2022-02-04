@@ -1,11 +1,13 @@
 import { useCallback, useState } from "react";
 
+/**
+ * 真偽値を反転させるメソッド
+ *
+ * @param initialState - 初期値(真偽値)
+ * @returns [state: 真偽値, toggle: 真偽値を反転させる処理]
+ */
 export const useToggle = (initialState: boolean): [boolean, () => void] => {
   const [state, setState] = useState(initialState);
-
-  // useCallbackを用いて余分なレンダリングをなくす
-  // why?・・・より高い再利用性のためにはuseCallbackが必要
-  // ステートに受け取った値をセット(true or false)
   const toggle = useCallback(() => {
     setState((b) => !b);
   }, []);
