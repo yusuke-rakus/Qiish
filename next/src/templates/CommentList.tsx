@@ -16,7 +16,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   /**
    * コメントリストデータを取得.
    *
-   * @param - 記事ID
+   * @param articleId - 記事ID
    * @returns 記事に紐づくコメントリスト
    */
   const getcommentList = async () => {

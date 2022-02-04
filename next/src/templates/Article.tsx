@@ -4,11 +4,8 @@ import useSWR from "swr";
 import { CommentList, LikeUsersOnArticle } from ".";
 import { ArticleDetail, ArticleEdit } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { changeFollowStatus, addLikeStatusToArticle } from "../lib/api/addData";
-import {
-  removeArticleById,
-  removeLikeStatusToArticle,
-} from "../lib/api/removeData";
+import { changeFollowStatus, addLikeToArticle } from "../lib/api/addData";
+import { removeArticleById, removeLikeToArticle } from "../lib/api/removeData";
 import { setArticleUserId } from "../lib/cookie/handleCookie";
 import { editArticle } from "../lib/api/editData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
@@ -93,6 +90,7 @@ const Article: React.FC = () => {
    * @param articleData.article.id - 記事ID
    *
    */
+  // ±1していいね数を管理
   const [likesCount, setlikesCount] = useAddOrSubOne(
     articleData.article.likesCount
   );
@@ -103,9 +101,9 @@ const Article: React.FC = () => {
   // いいねする処理(いいね中: likeStatus === true, いいねしていない: likeStatus === false)
   const changeArticleLike = async () => {
     if (!likeStatus) {
-      await addLikeStatusToArticle(articleData.article.id);
+      await addLikeToArticle(articleData.article.id);
     } else {
-      await removeLikeStatusToArticle(articleData.article.id);
+      await removeLikeToArticle(articleData.article.id);
     }
     setlikesCount(likeStatus);
     setlikeStatus();

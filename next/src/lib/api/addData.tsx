@@ -82,29 +82,23 @@ export const addComment = async (articleId: number, comment: string) => {
  *
  * @param articleId - 記事ID
  */
-export const addLikeStatusToArticle = async (articleId: number) => {
+export const addLikeToArticle = async (articleId: number) => {
   await axios.post(`${BASEURL}/article/like`, {
     userInfoId: guestIdNum,
     articleId: articleId,
   });
 };
 
-// コメントいいね機能(likeフラグがtrueになったら+1カウントを返し、falseなら-1カウントを返す)
-export const changeLikeStatusToComment = async (
-  commentId: number,
-  likeStatus: boolean
-) => {
-  if (!likeStatus) {
-    await axios.post(`${BASEURL}/article/commentLike`, {
-      userInfoId: guestIdNum,
-      commentId: commentId,
-    });
-  } else {
-    await axios.post(`${BASEURL}/article/removeCommentLike`, {
-      userInfoId: guestIdNum,
-      commentId: commentId,
-    });
-  }
+/**
+ * コメントIDに当てはまるコメントにいいねする.
+ *
+ * @param articleId - 記事ID
+ */
+export const addLikeToComment = async (commentId: number) => {
+  await axios.post(`${BASEURL}/article/commentLike`, {
+    userInfoId: guestIdNum,
+    commentId: commentId,
+  });
 };
 
 // ユーザーフォロー機能

@@ -23,9 +23,21 @@ export const removeArticleById = async (articleId: number) => {
  *
  * @param articleId - 記事ID
  */
-export const removeLikeStatusToArticle = async (articleId: number) => {
+export const removeLikeToArticle = async (articleId: number) => {
   await axios.post(`${BASEURL}/article/removeLike`, {
     userInfoId: guestIdNum,
     articleId: articleId,
+  });
+};
+
+/**
+ * コメントIDに当てはまるコメントのいいねを解除する.
+ *
+ * @param articleId - 記事ID
+ */
+export const removeLikeToComment = async (commentId: number) => {
+  await axios.post(`${BASEURL}/article/removeCommentLike`, {
+    userInfoId: guestIdNum,
+    commentId: commentId,
   });
 };
