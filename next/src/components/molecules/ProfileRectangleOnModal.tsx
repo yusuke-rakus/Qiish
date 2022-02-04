@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { ProfileRectangle } from "../../const/Types";
 
-const ProfileRectangleOnComment: React.FC<ProfileRectangle> = ({
+const ProfileRectangleOnModal: React.FC<ProfileRectangle> = ({
   user_data,
   changeUsrFollow,
   followStatus,
@@ -47,4 +47,4 @@ const ProfileRectangleOnComment: React.FC<ProfileRectangle> = ({
   );
 };
 
-export default ProfileRectangleOnComment;
+export default ProfileRectangleOnModal;

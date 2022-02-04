@@ -1,12 +1,12 @@
 import React from "react";
-import { ProfileRectangleOnComment } from "../components/organisms";
-import { UserDataType } from "../const/Types";
-import { useLoginChecker } from "../hooks/useLoginChecker";
-import { useToggleByNum } from "../hooks/useToggleByNum";
-import { addFollow } from "../lib/api/addData";
-import { removeFollow } from "../lib/api/removeData";
+import { UserDataType } from "../../const/Types";
+import { useLoginChecker } from "../../hooks/useLoginChecker";
+import { useToggleByNum } from "../../hooks/useToggleByNum";
+import { addFollow } from "../../lib/api/addData";
+import { removeFollow } from "../../lib/api/removeData";
+import { ProfileRectangleOnModal } from "../molecules";
 
-const LikeUserOnComment: React.FC<UserDataType> = ({ user_data }) => {
+const LikeUserOnModal: React.FC<UserDataType> = ({ user_data }) => {
   // フォロー状態を真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
     user_data.followStatus
@@ -33,7 +33,7 @@ const LikeUserOnComment: React.FC<UserDataType> = ({ user_data }) => {
 
   return (
     <div>
-      <ProfileRectangleOnComment
+      <ProfileRectangleOnModal
         key={user_data.id}
         user_data={user_data}
         loginCheckStatus={loginCheckStatus}
@@ -44,4 +44,4 @@ const LikeUserOnComment: React.FC<UserDataType> = ({ user_data }) => {
   );
 };
 
-export default LikeUserOnComment;
+export default LikeUserOnModal;

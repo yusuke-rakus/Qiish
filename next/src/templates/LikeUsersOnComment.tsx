@@ -1,6 +1,6 @@
 import React from "react";
 import { CommentLikesUserList } from "../const/Types";
-import LikeUserOnComment from "./LikeUserOnComment";
+import LikeUserOnModal from "../components/organisms/LikeUserOnModal";
 
 const LikeUsersOnComment: React.FC<CommentLikesUserList> = ({
   commentLikesUserList,
@@ -15,7 +15,7 @@ const LikeUsersOnComment: React.FC<CommentLikesUserList> = ({
           <div className="w-1/2">
             {commentLikesUserList.map((user_data: any) => {
               return (
-                <LikeUserOnComment key={user_data.id} user_data={user_data} />
+                <LikeUserOnModal key={user_data.id} user_data={user_data} />
               );
             })}
           </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { LikesUserList } from "../const/Types";
-import LikeUserOnArticle from "./LikeUserOnArticle";
+import LikeUserOnModal from "../components/organisms/LikeUserOnModal";
 
 const LikeUsersOnArticle: React.FC<LikesUserList> = ({ lieksUserList }) => {
   return (
@@ -13,7 +13,7 @@ const LikeUsersOnArticle: React.FC<LikesUserList> = ({ lieksUserList }) => {
           <div className="w-1/2">
             {lieksUserList.map((user_data: any) => {
               return (
-                <LikeUserOnArticle key={user_data.id} user_data={user_data} />
+                <LikeUserOnModal key={user_data.id} user_data={user_data} />
               );
             })}
           </div>
