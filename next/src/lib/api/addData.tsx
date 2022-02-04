@@ -37,7 +37,15 @@ export const resetPassword = async (
   return res.data.status;
 };
 
-// 記事追加機能
+/**
+ * 記事投稿.
+ *
+ * @param userId - ログインユーザーID
+ * @param title - タイトル
+ * @param content - 内容
+ * @param tags - タグ
+ * @returns 投稿処理のステータス(success・error)
+ */
 export const addArticle = async (
   userId: number,
   title: string,
@@ -53,7 +61,13 @@ export const addArticle = async (
   return res;
 };
 
-// コメント投稿機能
+/**
+ * 記事IDに当てはまる記事にコメント投稿.
+ *
+ * @param articleId - 記事ID
+ * @param comment - コメント内容
+ * @returns 投稿処理のステータス(success・error)
+ */
 export const addComment = async (articleId: number, comment: string) => {
   const res = await axios.post(`${BASEURL}/article/comment`, {
     articleId: articleId,

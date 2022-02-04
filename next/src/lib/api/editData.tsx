@@ -5,6 +5,16 @@ import getCookie from "../cookie/handleCookie";
 const guestIdByCookie = getCookie();
 const guestIdNum = Number(guestIdByCookie);
 
+/**
+ * プロフィール(ログインユーザー)情報の編集.
+ *
+ * @param userName - ユーザーネーム
+ * @param email - メールアドレス
+ * @param description - 自己紹介
+ * @param engineerType - エンジニアタイプ
+ * @param tags - タグIDの配列
+ * @returns 編集処理のステータス(success・error)
+ */
 export const editUserInfo = async (
   userName: string,
   email: string,
@@ -24,7 +34,15 @@ export const editUserInfo = async (
   return res;
 };
 
-// 記事編集のAPI
+/**
+ * 記事IDに当てはまる記事情報の編集.
+ *
+ * @param articleId - 記事ID
+ * @param title - タイトル
+ * @param content - 内容
+ * @param tags - タグIDの配列
+ * @returns 編集処理のステータス(success・error)
+ */
 export const editArticle = async (
   articleId: number,
   title: string,

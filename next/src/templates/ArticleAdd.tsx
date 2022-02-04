@@ -35,7 +35,7 @@ const ArticleAdd: React.FC = () => {
    * @remarks
    * sucess: トップページへ遷移
    * error: アラートメッセージ表示
-   * @param userId ユーザーID
+   * @param userId ログインユーザーID
    * @param title - タイトル
    * @param content - 内容
    * @param tags - タグ

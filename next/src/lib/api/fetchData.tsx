@@ -178,8 +178,6 @@ export const fetchFollowerList = async (
   guestId: string,
   userInfoId?: string
 ) => {
-  // もし記事投稿者ID(userInfoId)があるなら記事投稿者のフォロワーリストを取得
-  // もし記事投稿者IDがないならログインユーザーのフォロワーリストを取得
   if (userInfoId) {
     const res = await axios.post(`${BASEURL}/user/followerList`, {
       userInfoId: userInfoId,
@@ -187,7 +185,6 @@ export const fetchFollowerList = async (
     });
     return res.data;
   } else {
-    // マイプロフィールから直接フォロワーリストに遷移する場合
     const res = await axios.post(`${BASEURL}/user/followerList`, {
       userInfoId: guestId,
       guestId: guestId,
