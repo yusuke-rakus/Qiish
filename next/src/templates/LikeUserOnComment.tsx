@@ -6,7 +6,7 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeFollowStatus } from "../lib/api/addData";
 
 const LikeUserOnComment: React.FC<UserDataType> = ({ user_data }) => {
-  // フォローのステータスを真偽値で管理
+  // フォロー状態を真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
     user_data.followStatus
   );
@@ -17,8 +17,8 @@ const LikeUserOnComment: React.FC<UserDataType> = ({ user_data }) => {
    * フォローする又はフォローを解除する処理.
    *
    * @remarks APIにフォローを知らせて、ブラウザ側でフォロー状態と数をステートを用いて変更
-   * @param ユーザーID
-   * @param フォローステータス
+   * @param user_data.id - ユーザーID
+   * @param followStatus - フォロー状態
    *
    */
   const usrFollowing = async () => {

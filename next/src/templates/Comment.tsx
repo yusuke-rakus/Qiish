@@ -18,12 +18,12 @@ const Comment: React.FC<CommentData> = ({ commentData }) => {
    *
    * @remarks APIにいいねを知らせて、ブラウザ側でいいねの状態と数をステートを用いて変更
    * @param コメントID
-   * @param いいねステータス
+   * @param いいね状態
    *
    */
   // ±1していいね数を管理
   const [likesCount, setLikeCount] = useAddOrSubOne(commentData.likesCount);
-  // いいねのステータスを真偽値で管理
+  // いいね状態を真偽値で管理
   const [likeStatus, setLikeStatus] = useToggleByNum(commentData.likeStatus);
   // いいねする処理
   const changeCommentLike = async () => {

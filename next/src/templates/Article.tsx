@@ -91,13 +91,13 @@ const Article: React.FC = () => {
    *
    * @remarks APIにいいねを知らせて、ブラウザ側でいいねの状態と数をステートを用いて変更
    * @param articleData.article.id - 記事ID
-   * @param likeStatus - いいねステータス
+   * @param likeStatus - いいね状態
    *
    */
   const [likesCount, setlikesCount] = useAddOrSubOne(
     articleData.article.likesCount
   );
-  // いいねのステータスを真偽値で管理
+  // いいね状態を真偽値で管理
   const [likeStatus, setlikeStatus] = useToggleByNum(
     articleData.article.likeStatus
   );
@@ -120,7 +120,7 @@ const Article: React.FC = () => {
   const [followerCount, setFollowerCount] = useAddOrSubOne(
     articleData.postedUser.followerCount
   );
-  // フォローのステータスを真偽値で管理
+  // フォロー状態を真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
     articleData.postedUser.followStatus
   );

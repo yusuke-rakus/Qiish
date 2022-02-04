@@ -25,6 +25,7 @@ const Profile: React.FC = () => {
   useEffect(() => {
     setTagsData(fetchedTags.tags);
   }, [fetchedTags.tags]);
+  // 格納したタグデータからタグIDのみを取り出し、Arrayステートに管理
   const initialTags = new Array<number>();
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
   // プロフィールデータにあるtagのidをinitialTagsに格納
@@ -86,7 +87,7 @@ const Profile: React.FC = () => {
   const [followerCount, setFollowerCount] = useAddOrSubOne(
     proflieData.userInfo.followerCount
   );
-  // フォローのステータスを真偽値で管理
+  // フォロー状態を真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
     proflieData.userInfo.followStatus
   );

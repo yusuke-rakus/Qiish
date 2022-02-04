@@ -6,10 +6,7 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { changeFollowStatus } from "../lib/api/addData";
 
 const Follow: React.FC<FollowType> = ({ user_data }) => {
-  /**
-   * フォロー状態をtrue,falseで管理.
-   * @remarks true: フォロー中, false: フォローしていない
-   */
+  // フォロー状態を真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
     user_data.followStatus
   );
@@ -22,8 +19,8 @@ const Follow: React.FC<FollowType> = ({ user_data }) => {
 
   /**
    * フォローする処理(本人以外).
-   * @param followStatus - フォローの真偽値
    * @param user_data.id - フォローされるユーザーID
+   * @param followStatus - フォロー状態
    */
   const usrFollowing = async () => {
     await changeFollowStatus(followStatus, user_data.id);
