@@ -1,14 +1,20 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
-import axios from "axios";
+import { useState, ChangeEvent } from "react";
+import { HeaderComp } from "../components/organisms";
 import ArticleComp from "../components/organisms/ArticleComp";
 import getCookie from "../lib/cookie/handleCookie";
 import { fetchArticleList } from "../lib/api/fetchData";
 import { fetchSearchedTag } from "../lib/api/fetchData";
+import { fetchSearchedArticle } from "../lib/api/fetchData";
 
 const ArticleList: React.FC = () => {
   const guestId = getCookie();
   const [articleList, setArticleList] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) =>
+    setKeyword(e.target.value);
+
   useEffect(() => {
     (async () => {
       const data = await fetchArticleList();
@@ -21,8 +27,29 @@ const ArticleList: React.FC = () => {
     setArticleList(tagsData);
   };
 
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
+  const search = async () => {
+    const articleData = await fetchSearchedArticle(keyword, guestId);
+    setArticleList(articleData);
+    setVisible(false);
+  };
+
   return (
     <div>
+      <HeaderComp
+        visible={visible}
+        onChangeKeyword={onChangeKeyword}
+        search={search}
+        showDrawer={showDrawer}
+        onClose={onClose}
+      ></HeaderComp>
       <div className="mx-80 my-1 text-4xl font-semibold text-orange-500">
         Articles
       </div>
@@ -42,49 +69,3 @@ const ArticleList: React.FC = () => {
   );
 };
 export default ArticleList;
-
-// APIでデータが取ってこれれば不要
-// ------------------------------------------
-// デモユーザー
-// const user_info_data = {
-//   user_info_id: 1,
-//   first_name: "太郎",
-//   last_name: "山田",
-//   user_name: "rakus111111",
-//   email: "yama@taro.com",
-//   engineer_type: "",
-//   comment: "",
-// };
-// // デモデータを用意
-// export const articles_demoData = [
-//   {
-//     id: 1,
-//     // user_info_id: 1,
-//     user_info_data: user_info_data,
-//     title: "TailwindCSSのチートシートを公開します。",
-//     content:
-//       "プログラミングをしていると、「あれ、どうだったかな？」とリファレンスを確認する場面が結構出てきます。そんな時に、サクッと確認できるのが「チートシート」です。",
-//     posted_date: "12月7日",
-//     skill_tags: [
-//       { article_id: 1, skill_id: 1, skill_name: "フロントエンド" },
-//       { article_id: 1, skill_id: 2, skill_name: "CSS" },
-//       { article_id: 1, skill_id: 3, skill_name: "tailwindCSS" },
-//       { article_id: 1, skill_id: 4, skill_name: "初心者" },
-//     ],
-//   },
-//   {
-//     id: 2,
-//     // user_info_id: 1,
-//     user_info_data: user_info_data,
-//     title: "Gitコマンドのチートシートを公開します。",
-//     content:
-//       "Gitの準備 git init, 共有するファイルを選択 git add, ファイル名 選択したファイルを記録 git commit -m メッセージ,リモートリポジトリの準備 git remote add リモートリポジトリ名 URL, リモートリポジトリにファイルをアップロード git push origin master, リモートリポジトリのファイルをダウンロード git pull origin master, 変更したファイルを把握 git status,変更内容を把握 git diff,addしたファイルを確認 git status",
-//     posted_date: "1月26日",
-//     skill_tags: [
-//       { article_id: 2, skill_id: 1, skill_name: "フロントエンド" },
-//       { article_id: 2, skill_id: 2, skill_name: "CSS" },
-//       { article_id: 2, skill_id: 3, skill_name: "tailwindCSS" },
-//       { article_id: 2, skill_id: 4, skill_name: "初心者" },
-//     ],
-//   },
-// ];
