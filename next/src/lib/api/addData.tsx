@@ -101,23 +101,14 @@ export const addLikeToComment = async (commentId: number) => {
   });
 };
 
-// ユーザーフォロー機能
-export const changeFollowStatus = async (
-  followStatus: boolean,
-  userInfoIdToFollow?: number
-) => {
-  // フォローするならif以下の処理(フォローステータス:0)
-  if (!followStatus) {
-    const res = await axios.post(`${BASEURL}/user/follow`, {
-      userInfoId: guestIdNum,
-      followUserInfoId: userInfoIdToFollow,
-    });
-    return res;
-  } else {
-    const res = await axios.post(`${BASEURL}/user/remove`, {
-      userInfoId: guestIdNum,
-      followUserInfoId: userInfoIdToFollow,
-    });
-    return res;
-  }
+/**
+ * ユーザー情報IDに当てはまるユーザーをフォローする.
+ *
+ * @param userInfoIdToFollow - ユーザー情報ID
+ */
+export const addFollow = async (userInfoIdToFollow?: number) => {
+  await axios.post(`${BASEURL}/user/follow`, {
+    userInfoId: guestIdNum,
+    followUserInfoId: userInfoIdToFollow,
+  });
 };

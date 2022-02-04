@@ -4,8 +4,12 @@ import useSWR from "swr";
 import { CommentList, LikeUsersOnArticle } from ".";
 import { ArticleDetail, ArticleEdit } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { changeFollowStatus, addLikeToArticle } from "../lib/api/addData";
-import { removeArticleById, removeLikeToArticle } from "../lib/api/removeData";
+import { addLikeToArticle, addFollow } from "../lib/api/addData";
+import {
+  removeArticleById,
+  removeFollow,
+  removeLikeToArticle,
+} from "../lib/api/removeData";
 import { setArticleUserId } from "../lib/cookie/handleCookie";
 import { editArticle } from "../lib/api/editData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
@@ -125,9 +129,13 @@ const Article: React.FC = () => {
   const [followStatus, setFollowStatus] = useToggleByNum(
     articleData.postedUser.followStatus
   );
-  // フォローする処理
+  // フォローする処理(フォロー中: followStatus === true, フォローしていない: followStatus === false)
   const usrFollowing = async () => {
-    await changeFollowStatus(followStatus, articleData.postedUser.id);
+    if (!followStatus) {
+      await addFollow(articleData.postedUser.id);
+    } else {
+      await removeFollow(articleData.postedUser.id);
+    }
     setFollowerCount(followStatus);
     setFollowStatus();
   };

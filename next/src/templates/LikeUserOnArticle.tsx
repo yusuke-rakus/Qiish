@@ -3,7 +3,8 @@ import { ProfileRectangleOnArticle } from "../components/organisms";
 import { UserDataType } from "../const/Types";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
-import { changeFollowStatus } from "../lib/api/addData";
+import { addFollow } from "../lib/api/addData";
+import { removeFollow } from "../lib/api/removeData";
 
 const LikeUserOnArticle: React.FC<UserDataType> = ({ user_data }) => {
   // フォロー状態を真偽値で管理
@@ -18,11 +19,15 @@ const LikeUserOnArticle: React.FC<UserDataType> = ({ user_data }) => {
    *
    * @remarks APIにフォローを知らせて、ブラウザ側でフォロー状態と数をステートを用いて変更
    * @param user_data.id - ユーザーID
-   * @param followStatus - フォロー状態
    *
    */
+  // フォローする処理(フォロー中: followStatus === true, フォローしていない: followStatus === false)
   const usrFollowing = async () => {
-    await changeFollowStatus(followStatus, user_data.id);
+    if (!followStatus) {
+      await addFollow(user_data.id);
+    } else {
+      await removeFollow(user_data.id);
+    }
     setFollowStatus();
   };
 

@@ -4,12 +4,13 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import { ProfileEdit, ProfileLarge } from "../components/organisms";
 import useSWR from "swr";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { changeFollowStatus } from "../lib/api/addData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { editUserInfo } from "../lib/api/editData";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { tag, tags } from "../const/Types";
+import { addFollow } from "../lib/api/addData";
+import { removeFollow } from "../lib/api/removeData";
 
 const Profile: React.FC = () => {
   // プロフィールデータ取得
@@ -91,9 +92,13 @@ const Profile: React.FC = () => {
   const [followStatus, setFollowStatus] = useToggleByNum(
     proflieData.userInfo.followStatus
   );
-  // フォローする処理
+  // フォローする処理(フォロー中: followStatus === true, フォローしていない: followStatus === false)
   const usrFollowing = async () => {
-    await changeFollowStatus(followStatus, proflieData.userInfo.id);
+    if (!followStatus) {
+      await addFollow(proflieData.userInfo.id);
+    } else {
+      await removeFollow(proflieData.userInfo.id);
+    }
     setFollowerCount(followStatus);
     setFollowStatus();
   };

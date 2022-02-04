@@ -41,3 +41,15 @@ export const removeLikeToComment = async (commentId: number) => {
     commentId: commentId,
   });
 };
+
+/**
+ * ユーザー情報IDに当てはまるユーザーのフォローを解除する.
+ *
+ * @param userInfoIdToFollow - ユーザー情報ID
+ */
+export const removeFollow = async (userInfoIdToFollow?: number) => {
+  await axios.post(`${BASEURL}/user/remove`, {
+    userInfoId: guestIdNum,
+    followUserInfoId: userInfoIdToFollow,
+  });
+};

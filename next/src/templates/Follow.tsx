@@ -3,7 +3,8 @@ import { ProfileRectangle } from "../components/organisms";
 import { FollowType } from "../const/Types";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
-import { changeFollowStatus } from "../lib/api/addData";
+import { addFollow } from "../lib/api/addData";
+import { removeFollow } from "../lib/api/removeData";
 
 const Follow: React.FC<FollowType> = ({ user_data }) => {
   // フォロー状態を真偽値で管理
@@ -12,8 +13,10 @@ const Follow: React.FC<FollowType> = ({ user_data }) => {
   );
 
   /**
-   * user_dataが本人かどうかチェック.
-   * @remarks true: 本人, false: 本人以外の人
+   * 表示用のログイン状態(真偽値)を管理.
+   *
+   * @remarks ログイン状態チェック
+   * @param user_data.id - ユーザーID
    */
   const loginCheckStatus = useLoginChecker(user_data.id);
 
@@ -22,8 +25,13 @@ const Follow: React.FC<FollowType> = ({ user_data }) => {
    * @param user_data.id - フォローされるユーザーID
    * @param followStatus - フォロー状態
    */
+  // フォローする処理(フォロー中: followStatus === true, フォローしていない: followStatus === false)
   const usrFollowing = async () => {
-    await changeFollowStatus(followStatus, user_data.id);
+    if (!followStatus) {
+      await addFollow(user_data.id);
+    } else {
+      await removeFollow(user_data.id);
+    }
     setFollowStatus();
   };
 
