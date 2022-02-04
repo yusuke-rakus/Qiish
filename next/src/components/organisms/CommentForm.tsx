@@ -1,14 +1,12 @@
 import { Form } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import React from "react";
-import { TextEventType } from "../../const/Types";
+import { CommentForm, TextEventType } from "../../const/Types";
 
-type Props = {
-  setCommentText: (e: TextEventType) => void;
-  onAddComment: () => void;
-};
-
-const CommentForm: React.FC<Props> = ({ setCommentText, onAddComment }) => {
+const CommentForm: React.FC<CommentForm> = ({
+  setCommentText,
+  onAddComment,
+}) => {
   return (
     <div>
       <Form onSubmitCapture={onAddComment}>

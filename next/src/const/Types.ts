@@ -262,13 +262,16 @@ export type CommentComp = {
   changeCommentLike: () => void;
   setLikeUserModalStatus: () => void;
 };
-
+// いいねしたユーザー情報一覧の方
 export type LikesUserList = { lieksUserList: UserType[] };
-
+// コメントにいいねしたユーザー情報一覧
 export type CommentLikesUserList = {
   commentLikesUserList: UserType[];
 };
-
+export type CommentForm = {
+  setCommentText: (e: TextEventType) => void;
+  onAddComment: () => void;
+};
 // Qiita関連の型アノテーション
 // --------------------------------------------
 
