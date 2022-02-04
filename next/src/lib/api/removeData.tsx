@@ -18,6 +18,11 @@ export const removeArticleById = async (articleId: number) => {
   return res;
 };
 
+/**
+ * 記事IDに当てはまる記事のいいねを解除する.
+ *
+ * @param articleId - 記事ID
+ */
 export const removeLikeStatusToArticle = async (articleId: number) => {
   await axios.post(`${BASEURL}/article/removeLike`, {
     userInfoId: guestIdNum,
