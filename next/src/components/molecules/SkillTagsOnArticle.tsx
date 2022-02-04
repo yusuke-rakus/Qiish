@@ -8,10 +8,11 @@ type Props = {
     id: number;
     skill: string;
   }[];
+  onClickTag: (id: number) => void;
 };
 
 // CSSの変更が加わるので明示的にonArticleとして分離
-const SkillTagsOnArticle: React.FC<Props> = ({ tags }) => {
+const SkillTagsOnArticle: React.FC<Props> = ({ tags, onClickTag }) => {
   return (
     <div className="flex flex-wrap">
       <span className="pr-2 text-xl">
@@ -19,7 +20,7 @@ const SkillTagsOnArticle: React.FC<Props> = ({ tags }) => {
       </span>
 
       {tags.map((tag) => {
-        return <SkillTag key={tag.skill} {...tag} />;
+        return <SkillTag key={tag.skill} {...tag} onClickTag={onClickTag} />;
       })}
     </div>
   );

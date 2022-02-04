@@ -159,37 +159,27 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
-    ('HTML');
+    ('FR');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('CSS');
+    ('Web');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('JavaScript');
+    ('CL');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('jQuery');
+    ('ML');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('React');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('Angular');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('Vue');
+    ('QA');
 
 INSERT INTO
     tags(skill)
@@ -199,52 +189,62 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
-    ('CoffeeScript');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('C');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('C+');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('C#');
-
-INSERT INTO
-    tags(skill)
-VALUES
     ('Java');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('Ruby');
+    ('AWS');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('PHP');
+    ('Docker');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('Phyton');
+    ('Next.js');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('Objective-C');
+    ('React');
 
 INSERT INTO
     tags(skill)
 VALUES
-    ('Perl');
+    ('Nuxt.js');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Vue');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('JavaScript');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('JEST');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('CSS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Nest');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('GraphQL');
 
 INSERT INTO
     tags(skill)
@@ -259,7 +259,7 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
-    ('kotolin');
+    ('MongoDB');
 
 INSERT INTO
     user_info_tags(user_info_id, tag_id)
