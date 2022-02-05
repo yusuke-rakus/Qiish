@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { useAddOrSubOne } from "../../src/hooks";
 import { renderHook, act } from "@testing-library/react-hooks";
 
-describe("useAddOrSubOneメソッドに関する処理", () => {
+describe("useAddOrSubOneメソッドに関する処理のテスト", () => {
   test("useAddOrSubOneが存在するかどうか", () => {
     expect(useAddOrSubOne).toBeDefined();
   });
