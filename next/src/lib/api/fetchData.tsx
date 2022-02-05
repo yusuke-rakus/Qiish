@@ -1,12 +1,13 @@
 import axios from "axios";
 import { BASEURL } from "../../const/Urls";
 import getCookie from "../cookie/handleCookie";
+
 // ログインユーザーのIdを取得
 const guestIdByCookie = getCookie();
 
 // ユーザーログインのAPI
 export const loginUser = async (mailAddress: string, password: string) => {
-  const res = await axios.post("http://localhost:9090/user/login", {
+  const res = await axios.post(`${BASEURL}/user/login`, {
     email: mailAddress,
     password: password,
   });
@@ -15,12 +16,15 @@ export const loginUser = async (mailAddress: string, password: string) => {
 
 // 検索された記事を取得するAPI
 // キーワード二つ目以降は+区切りで付け足していく仕様とする。半角スペースを+に変換する。
-export const fetchSearchedArticle = async (keyword: string) => {
-  const res = await axios.get(
-    `http://localhost:9090/search?keyword=${keyword}`
-  );
-  console.log(keyword);
-  console.log(res);
+export const fetchSearchedArticle = async (
+  keyword: string,
+  guestId: string
+) => {
+  const res = await axios.post(`${BASEURL}/search`, {
+    keyword: [keyword],
+    guestId: guestId,
+  });
+  return res.data.articleList;
 };
 
 // タグで記事絞り込むAPI

@@ -1,44 +1,56 @@
+import Link from "next/link";
 import React, { useState, ChangeEvent } from "react";
 import { SearchOutlined, UserOutlined, DownOutlined } from "@ant-design/icons";
-import Link from "next/link";
-import { Menu, Dropdown, Drawer, Button, Radio, Space } from "antd";
-import { DrawerProps } from "antd/es/drawer";
-import { RadioChangeEvent } from "antd/es/radio";
+import { Menu, Dropdown, Drawer, Space } from "antd";
 import { fetchSearchedArticle } from "../../lib/api/fetchData";
 
-const HeaderComp: React.FC = () => {
-  const [isLogin, setIsLogin] = useState(false);
+// 記事検索の型
+export type search = {
+  visible: boolean;
+  keyword: string;
+  onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
+  search: () => Promise<void>;
+  onClose: () => void;
+  showDrawer: () => void;
+};
+
+const HeaderComp: React.FC<search> = ({
+  visible,
+  keyword,
+  onChangeKeyword,
+  search,
+  onClose,
+  showDrawer,
+}) => {
   const menu = (
     <Menu>
       <Menu.Item key="0">
         <a href={"/profile"}>プロフィール</a>
       </Menu.Item>
       <Menu.Item key="1">
-        <a href={"/resetPassword"}>パスワード変更</a>
-      </Menu.Item>
-      <Menu.Item key="2">
         <a href={"/loginuser"}>ログアウト</a>
       </Menu.Item>
     </Menu>
   );
 
-  const [visible, setVisible] = useState(false);
-  const [keyword, setKeyword] = useState("");
-  const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) =>
-    setKeyword(e.target.value);
+  // const [visible, setVisible] = useState(false);
+  // const [keyword, setKeyword] = useState("");
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
+  // const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) =>
+  //   setKeyword(e.target.value);
 
-  const onClose = () => {
-    setVisible(false);
-  };
+  // const showDrawer = () => {
+  //   setVisible(true);
+  // };
 
-  const search = async () => {
-    fetchSearchedArticle(keyword);
-    setVisible(false);
-  };
+  // const onClose = () => {
+  //   setVisible(false);
+  // };
+
+  // const search = async () => {
+  //   fetchSearchedArticle(keyword);
+  //   setVisible(false);
+  // };
 
   return (
     <React.Fragment>

@@ -26,7 +26,7 @@ export const SKILL: SkillTags = [
       { id: 15, skill: "JEST", image: null },
       { id: 16, skill: "CSS", image: null },
       { id: 17, skill: "Nest", image: null },
-      { id: 18, skill: "GraphCL", image: null },
+      { id: 18, skill: "GraphQL", image: null },
       { id: 19, skill: "MongoDB", image: null },
     ],
   },
