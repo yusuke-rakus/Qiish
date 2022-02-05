@@ -15,7 +15,9 @@ import com.example.form.ArticleDeleteFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
+import com.example.form.GuestArticlesForm;
 import com.example.response.ArticleDetailResponse;
+import com.example.response.ArticleListResponse;
 import com.example.response.CommentResponse;
 import com.example.response.Response;
 import com.example.service.ArticleService;
@@ -35,7 +37,7 @@ public class ArticleController {
 		}
 		return articleService.articleComment(form);
 	}
-	
+
 	/** コメント取得 */
 	@PostMapping("/getComment")
 	public CommentResponse getComment(@RequestBody ArticleDetailForm form) {
@@ -94,6 +96,18 @@ public class ArticleController {
 			return new Response(result.hasErrors());
 		}
 		return articleService.articleEdit(form);
+	}
+
+	/** Like記事一覧取得 */
+	@PostMapping("/likedList")
+	public ArticleListResponse likedArticles(@RequestBody GuestArticlesForm form) {
+		return articleService.likedArticles(form);
+	}
+
+	/** 投稿記事一覧 */
+	@PostMapping("/postedList")
+	public ArticleListResponse postedArticles(@RequestBody GuestArticlesForm form) {
+		return articleService.postedArticles(form);
 	}
 
 }
