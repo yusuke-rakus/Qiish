@@ -71,3 +71,9 @@ src
   役割 :「CSS のコードを記述」
 
 ---
+
+## Jest の設定
+
+Jest の設定は下記の記事と公式を参考
+[フロントエンド(Next.js)のテストについてまとめる](https://qiita.com/suzu1997/items/e4ee2fc1f52fbf505481)
+[VSCode で Jest を用いる際に必要な設定](https://jestjs.io/ja/docs/configuration)
