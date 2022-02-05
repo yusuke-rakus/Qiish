@@ -5,7 +5,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --env=jsdom --verbose"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/.next/",
+      "<rootDir>/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
+    }
   },
   "dependencies": {
     "antd": "^4.18.2",
