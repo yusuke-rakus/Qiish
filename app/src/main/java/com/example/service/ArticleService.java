@@ -20,9 +20,11 @@ import com.example.form.ArticleDeleteFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
+import com.example.form.GuestArticlesForm;
 import com.example.mapper.ArticleMapper;
 import com.example.mapper.UserMapper;
 import com.example.response.ArticleDetailResponse;
+import com.example.response.ArticleListResponse;
 import com.example.response.CommentResponse;
 import com.example.response.Response;
 
@@ -163,6 +165,29 @@ public class ArticleService {
 			res.setStatus(Status.ERROR.getStatus());
 		}
 		return res;
+	}
+
+	/** Like記事一覧取得 */
+	public ArticleListResponse likedArticles(GuestArticlesForm form) {
+		ArticleListResponse res = new ArticleListResponse();
+		try {
+			res.setArticleList(articleMapper.likedArticles(form));
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** 投稿記事一覧 */
+	public ArticleListResponse postedArticles(GuestArticlesForm form) {
+		ArticleListResponse res = new ArticleListResponse();
+		try {
+			res.setArticleList(articleMapper.postedArticles(form));
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+
 	}
 
 }
