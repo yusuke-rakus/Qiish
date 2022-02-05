@@ -12,7 +12,6 @@ import com.example.form.ArticleEditForm;
 import com.example.form.ArticleDeleteFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.CommentLikeForm;
-import com.example.form.GuestArticlesForm;
 
 @Mapper
 public interface ArticleMapper {
@@ -57,9 +56,9 @@ public interface ArticleMapper {
 	public void updateVisitedCount(Integer articleId);
 
 	/** Like記事一覧取得 */
-	public List<Article> likedArticles(GuestArticlesForm form);
+	public List<Article> likedArticles(Integer userInfoId);
 
 	/** 投稿記事一覧 */
-	public List<Article> postedArticles(GuestArticlesForm form);
+	public List<Article> postedArticles(Integer userInfoId);
 
 }

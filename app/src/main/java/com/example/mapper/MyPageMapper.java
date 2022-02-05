@@ -1,12 +1,13 @@
 package com.example.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import com.example.domain.UserInfo;
-import com.example.form.UserPageForm;
 
 @Mapper
 public interface MyPageMapper {
-	
+
 	/** マイページ表示 */
-	public UserInfo myPage(UserPageForm form);
+	public UserInfo myPage(@Param("userInfoId") Integer userInfoId, @Param("guestId") Integer guestId);
 }

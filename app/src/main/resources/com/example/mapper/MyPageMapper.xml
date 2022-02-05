@@ -25,9 +25,14 @@
 	<!-- マイページ表示 -->
 	<select id="myPage" resultMap="userInfo">
 		SELECT DISTINCT
-			u.id AS user_info_id, u.user_name, u.email, 
-			u.engineer_type, u.image, u.description,
-			t.id AS tag_id,t.skill,
+			u.id AS user_info_id,
+			u.user_name,
+			u.email, 
+			u.engineer_type,
+			u.image,
+			u.description,
+			t.id AS tag_id,
+			t.skill,
 			COALESCE((SELECT u.id = follow_user_info_id FROM follow WHERE user_info_id = #{guestId} AND follow_user_info_id = u.id),0) AS follow_status,
 			(SELECT COUNT(follow_user_info_id) FROM follow WHERE user_info_id = u.id) AS follow_count,
 			(SELECT COUNT(user_info_id) FROM follow WHERE follow_user_info_id = u.id) AS follower_count,
