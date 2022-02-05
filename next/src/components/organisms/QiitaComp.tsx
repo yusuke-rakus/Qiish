@@ -3,10 +3,10 @@ import { HeartOutlined, MessageTwoTone } from "@ant-design/icons";
 import { QiitaProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
-import { QiitaComp } from "../../const/Types";
+import { QiitaCompType } from "../../const/Types";
 import remarkGfm from "remark-gfm";
 
-const QiitaComp: React.FC<QiitaComp> = ({ qiita, isExistProfile }) => {
+const QiitaComp: React.FC<QiitaCompType> = ({ qiita, isExistProfile }) => {
   return (
     <div className="flex justify-center">
       <div className="m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">

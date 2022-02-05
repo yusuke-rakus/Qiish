@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { ProfileEditFrom } from "../../const/Types";
+import { ProfileEditFromType } from "../../const/Types";
 
-const ProfileEditFrom: React.FC<ProfileEditFrom> = ({
+const ProfileEditFrom: React.FC<ProfileEditFromType> = ({
   userData,
   TAGS,
   editFnc,

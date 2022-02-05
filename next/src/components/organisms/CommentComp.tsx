@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { HeartOutlined } from "@ant-design/icons";
 import moment from "moment";
-import { CommentComp } from "../../const/Types";
+import { CommentCompType } from "../../const/Types";
 
-const CommentComp: React.FC<CommentComp> = ({
+const CommentComp: React.FC<CommentCompType> = ({
   commentData,
   likesCount,
   likeStatus,

@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ProfileSmall } from "../../const/Types";
+import { ProfileSmallType } from "../../const/Types";
 
-const ProfileSmall: React.FC<ProfileSmall> = ({
+const ProfileSmall: React.FC<ProfileSmallType> = ({
   user,
   checkLoginUserFlag,
   followerCount,

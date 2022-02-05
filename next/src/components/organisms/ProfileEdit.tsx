@@ -1,12 +1,12 @@
 import React from "react";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import { ENGINEER, SKILL } from "../../const/Tags";
-import { ProfileEdit } from "../../const/Types";
+import { ProfileEditType } from "../../const/Types";
 import { ProfileEditFrom } from ".";
 
 const TAGS = { ENGINEER, SKILL };
 
-const ProfileEdit: React.FC<ProfileEdit> = ({
+const ProfileEdit: React.FC<ProfileEditType> = ({
   userInfo,
   editFunc,
   changeEditFlag,

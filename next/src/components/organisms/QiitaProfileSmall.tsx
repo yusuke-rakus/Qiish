@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { QiitaUser } from "../../const/Types";
+import { QiitaProfileSmallType } from "../../const/Types";
 
-const QiitaProfileSmall: React.FC<QiitaUser> = ({ qiita_user }) => {
+const QiitaProfileSmall: React.FC<QiitaProfileSmallType> = ({ qiita_user }) => {
   return (
     <div className="w-full p-2 m-2 bg-white rounded-lg border shadow-md">
       <div className="m-4">

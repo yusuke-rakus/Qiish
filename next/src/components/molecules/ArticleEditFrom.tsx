@@ -2,9 +2,9 @@ import React from "react";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
-import { ArticleEditFrom } from "../../const/Types";
+import { ArticleEditFromType } from "../../const/Types";
 
-const ArticleEditFrom: React.FC<ArticleEditFrom> = ({
+const ArticleEditFrom: React.FC<ArticleEditFromType> = ({
   prevFlag,
   articleEdit,
   editFnc,

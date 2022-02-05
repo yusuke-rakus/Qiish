@@ -2,10 +2,10 @@ import React from "react";
 import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
-import { ArticleAddForm } from "../../const/Types";
+import { ArticleAddFormType } from "../../const/Types";
 import remarkGfm from "remark-gfm";
 
-const ArticleAddFrom: React.FC<ArticleAddForm> = ({
+const ArticleAddFrom: React.FC<ArticleAddFormType> = ({
   previewContent,
   prevFlag,
   Fnc,

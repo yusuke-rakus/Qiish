@@ -4,10 +4,10 @@ import { ProfileSmall } from ".";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { Dropdown, Menu } from "antd";
-import { Article } from "../../const/Types";
+import { ArticleType } from "../../const/Types";
 import remarkGfm from "remark-gfm";
 
-const ArticleDetail: React.FC<Article> = ({
+const ArticleDetail: React.FC<ArticleType> = ({
   article,
   articleTags,
   postedUser,

@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ProfileLarge } from "../../const/Types";
+import { ProfileLargeType } from "../../const/Types";
 
-const ProfileLarge: React.FC<ProfileLarge> = ({
+const ProfileLarge: React.FC<ProfileLargeType> = ({
   userInfo,
   tagsByNum,
   checkLoginUserFlag,

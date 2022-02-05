@@ -67,7 +67,7 @@ export type ArticleData = {
 };
 
 // 詳細記事の型
-export type Article = {
+export type ArticleType = {
   article: ArticleData;
   articleTags: tag[];
   postedUser: UserType;
@@ -85,7 +85,7 @@ export type Article = {
 };
 
 // 編集記事の型
-export type ArticleEdit = {
+export type ArticleEditType = {
   article: ArticleData;
   articleTagsNum: SelectStateType;
   editFnc: {
@@ -100,7 +100,7 @@ export type ArticleEdit = {
 };
 
 // 投稿記事コンポーネントの型
-export type ArticleAddForm = {
+export type ArticleAddFormType = {
   previewContent: string;
   prevFlag: boolean;
   Fnc: {
@@ -114,7 +114,7 @@ export type ArticleAddForm = {
 };
 
 // 編集記事投稿コンポーネントの型
-export type ArticleEditFrom = {
+export type ArticleEditFromType = {
   prevFlag: boolean;
   articleEdit: {
     title: string;
@@ -138,7 +138,7 @@ export type ArticleEditFrom = {
 
 // プロフィール(大)の型
 // 編集用のステートを管理しているため、userInfoは親コンポーネントで受け取ってる
-export type ProfileLarge = {
+export type ProfileLargeType = {
   userInfo: {
     userName: string;
     userImage: string;
@@ -155,7 +155,7 @@ export type ProfileLarge = {
 };
 
 // プロフィール(小)の型
-export type ProfileSmall = {
+export type ProfileSmallType = {
   user: UserType;
   checkLoginUserFlag: boolean;
   followerCount: number;
@@ -164,7 +164,7 @@ export type ProfileSmall = {
 };
 
 // 長方形プロフィールの型
-export type ProfileRectangle = {
+export type ProfileRectangleType = {
   user_data: UserType;
   followStatus: boolean;
   changeUsrFollow: () => void;
@@ -189,14 +189,14 @@ type FuncForEdit = {
   onSubmitEditUser: () => Promise<void>;
 };
 // 編集用プロフィールの型
-export type ProfileEdit = {
+export type ProfileEditType = {
   userInfo: UserInfoForEdit;
   editFunc: FuncForEdit;
   changeEditFlag: () => void;
 };
 
 // 編集用プロフィールのコンポーネント
-export type ProfileEditFrom = {
+export type ProfileEditFromType = {
   userData: UserInfoForEdit;
   TAGS: {
     ENGINEER: string[];
@@ -255,7 +255,7 @@ export type CommentData = {
   commentData: CommentType;
 };
 // コメントコンポーネントの型
-export type CommentComp = {
+export type CommentCompType = {
   commentData: CommentType;
   likesCount: number;
   likeStatus: boolean;
@@ -268,14 +268,53 @@ export type LikesUserList = { lieksUserList: UserType[] };
 export type CommentLikesUserList = {
   commentLikesUserList: UserType[];
 };
-export type CommentForm = {
+export type CommentFormType = {
   setCommentText: (e: TextEventType) => void;
   onAddComment: () => void;
 };
 // Qiita関連の型アノテーション
 // --------------------------------------------
 
-export type QiitaComp = {
+export type QiitaListCompType = {
+  qiitaData: {
+    body: string;
+    coediting: boolean;
+    comments_count: number;
+    created_at: string;
+    group: number;
+    id: string;
+    likes_count: number;
+    page_views_count: number;
+    private: boolean;
+    reactions_count: number;
+    rendered_body: string;
+    tags: { name: string; versions: any }[];
+    team_membership: number;
+    title: string;
+    updated_at: string;
+    url: string;
+    user: {
+      description: string;
+      facebook_id: string;
+      followees_count: number;
+      followers_count: number;
+      github_login_name: string;
+      id: string;
+      items_count: number;
+      linkedin_id: string;
+      location: string;
+      name: string;
+      organization: string;
+      permanent_id: number;
+      profile_image_url: string;
+      team_only: boolean;
+      twitter_screen_name: string;
+      website_url: string;
+    };
+  };
+};
+
+export type QiitaCompType = {
   qiita: {
     body: string;
     coediting: boolean;
@@ -317,7 +356,7 @@ type QiitaUserData = {
   website_url: string;
 };
 
-export type QiitaUser = {
+export type QiitaProfileSmallType = {
   qiita_user: QiitaUserData;
 };
 

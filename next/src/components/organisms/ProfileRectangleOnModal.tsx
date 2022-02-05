@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { ProfileRectangle } from "../../const/Types";
+import { ProfileRectangleType } from "../../const/Types";
 
-const ProfileRectangleOnModal: React.FC<ProfileRectangle> = ({
+const ProfileRectangleOnModal: React.FC<ProfileRectangleType> = ({
   user_data,
   changeUsrFollow,
   followStatus,
