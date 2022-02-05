@@ -1,17 +1,16 @@
 import getCookie from "../lib/cookie/handleCookie";
 
-const guestId = Number(getCookie());
-
 /**
  * paramのユーザーIDがログインしているユーザーかどうかを判定するメソッド
  *
  * @param checkUserId - チェックするユーザーID
  * @returns ログインしているかどうかの真偽値(true: ログインユーザー false: 本人以外のユーザー)
  */
-export const useLoginChecker = (checkUserId: number) => {
+export const useLoginChecker = (checkUserId: number, mockCookieId: number) => {
+  const guestId = Number(getCookie());
   let checkFlag = false;
 
-  if (checkUserId === guestId) {
+  if (checkUserId === guestId || checkUserId === mockCookieId) {
     checkFlag = true;
   } else {
     checkFlag = false;
