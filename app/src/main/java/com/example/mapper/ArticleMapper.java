@@ -55,10 +55,10 @@ public interface ArticleMapper {
 	/** 訪問回数更新 */
 	public void updateVisitedCount(Integer articleId);
 
-	/** Like記事一覧取得 */
-	public List<Article> likedArticles(Integer userInfoId);
-
 	/** 投稿記事一覧 */
-	public List<Article> postedArticles(Integer userInfoId);
+	public List<Article> postedArticles(@Param("userInfoId") Integer userInfoId, @Param("guestId") Integer guestId);
+
+	/** Like記事一覧取得 */
+	public List<Article> likedArticles(@Param("userInfoId") Integer userInfoId, @Param("guestId") Integer guestId);
 
 }

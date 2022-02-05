@@ -171,11 +171,11 @@ public class ArticleService {
 		return res;
 	}
 
-	/** Like記事一覧取得 */
-	public ArticleListResponse likedArticles(GuestArticlesForm form) {
+	/** 投稿記事一覧 */
+	public ArticleListResponse postedArticles(GuestArticlesForm form) {
 		ArticleListResponse res = new ArticleListResponse();
 		try {
-			res.setArticleList(articleMapper.likedArticles(form.getUserInfoId()));
+			res.setArticleList(articleMapper.postedArticles(form.getUserInfoId(), form.getGuestId()));
 			res.setUserInfo(myPageMapper.myPage(form.getUserInfoId(), form.getGuestId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
@@ -183,17 +183,16 @@ public class ArticleService {
 		return res;
 	}
 
-	/** 投稿記事一覧 */
-	public ArticleListResponse postedArticles(GuestArticlesForm form) {
+	/** Like記事一覧取得 */
+	public ArticleListResponse likedArticles(GuestArticlesForm form) {
 		ArticleListResponse res = new ArticleListResponse();
 		try {
-			res.setArticleList(articleMapper.postedArticles(form.getUserInfoId()));
+			res.setArticleList(articleMapper.likedArticles(form.getUserInfoId(), form.getGuestId()));
 			res.setUserInfo(myPageMapper.myPage(form.getUserInfoId(), form.getGuestId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
 		return res;
-
 	}
 
 }
