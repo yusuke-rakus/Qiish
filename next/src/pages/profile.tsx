@@ -2,7 +2,12 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { SWRConfig } from "swr";
 import { Profile } from "../templates";
-import { fetchGetTags, fetchProfile } from "../lib/api/fetchData";
+import {
+  fetchGetTags,
+  fetchLikedArticlesOnProfile,
+  fetchPostedArticlesOnProfile,
+  fetchProfile,
+} from "../lib/api/fetchData";
 import getCookie, { getArticleUserId } from "../lib/cookie/handleCookie";
 import { SWRPROPS } from "../const/Types";
 
@@ -36,14 +41,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     userInfoId = getCookie(ctx);
   }
 
+  // プロフィールページで表示するデータ
   const profile = await fetchProfile(guestId, userInfoId);
   const tagsData = await fetchGetTags();
+  const postedArticles = await fetchPostedArticlesOnProfile();
+  const likedArticles = await fetchLikedArticlesOnProfile();
 
   return {
     props: {
       fallback: {
         "/profile": profile,
         "/tagsData": tagsData,
+        "/postedArticles": postedArticles,
+        "/likedArticles": likedArticles,
       },
     },
   };

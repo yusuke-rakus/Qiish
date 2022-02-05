@@ -101,6 +101,26 @@ export const fetchcommentList = async (articleId: number) => {
   return res.data;
 };
 
+/**
+ * 一覧情報を取得.
+ *
+ * @param articleId - 記事ID(num)
+ * @returns 記事IDに当てはまるコメント一覧情報
+ */
+export const fetchPostedArticlesOnProfile = async () => {
+  const res = await axios.post(`${BASEURL}/postedArticles`, {
+    guestId: guestIdByCookie,
+  });
+  res.data;
+};
+
+export const fetchLikedArticlesOnProfile = async () => {
+  const res = await axios.post(`${BASEURL}/likedArticles`, {
+    guestId: guestIdByCookie,
+  });
+  res.data;
+};
+
 // パスワードを再発行するAPI
 export const reissuePassword = async (mailAddress: string) => {
   const res = await axios.post(`${BASEURL}/resetRequest`, {
