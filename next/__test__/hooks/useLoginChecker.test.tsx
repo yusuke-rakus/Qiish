@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { useLoginChecker } from "../../src/hooks";
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-hooks";
 
 test("ログインチェッカーが存在するかどうか", () => {
   expect(useLoginChecker).toBeDefined();

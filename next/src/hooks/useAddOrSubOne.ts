@@ -13,8 +13,11 @@ export const useAddOrSubOne = (
 
   const calcAddOrSubOne = useCallback((bool: boolean) => {
     if (!bool) {
+      console.log("プラス");
+
       setNumState((N) => N + 1);
     } else {
+      console.log("マイナス");
       setNumState((N) => N - 1);
     }
   }, []);
