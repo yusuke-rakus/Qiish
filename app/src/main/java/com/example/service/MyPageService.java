@@ -22,7 +22,7 @@ public class MyPageService {
 	public MyPageResponse myPage(UserPageForm form) {
 		MyPageResponse res = new MyPageResponse();
 		try {
-			UserInfo user = myPageMapper.myPage(form);
+			UserInfo user = myPageMapper.myPage(form.getGuestId(), form.getUserInfoId());
 			if (Objects.isNull(user)) {
 				throw new NullPointerException();
 			}

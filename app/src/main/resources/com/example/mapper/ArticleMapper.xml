@@ -253,7 +253,7 @@
 			t.skill, 
 			t.image AS tag_image,
 			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count,
-			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status, 
+			COALESCE((SELECT user_info_id = #{userInfoId} FROM likes WHERE article_id = a.id AND user_info_id = #{userInfoId}), 0) AS like_status, 
 			u.id AS user_info_id, u.user_name, u.image
 		FROM articles AS a
 		LEFT JOIN article_tags AS at 
@@ -262,7 +262,8 @@
 		ON at.tag_id = t.id 
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
-		WHERE a.user_info_id = #{guestId}; 
+		WHERE a.user_info_id = #{userInfoId}
+		ORDER BY a.id DESC; 
 	</select>
 	
 	<!-- LIKE記事一覧取得 -->
@@ -276,7 +277,7 @@
 			t.skill, 
 			t.image AS tag_image,
 			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count,
-			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status, 
+			COALESCE((SELECT user_info_id = #{userInfoId} FROM likes WHERE article_id = a.id AND user_info_id = #{userInfoId}), 0) AS like_status, 
 			u.id AS user_info_id, u.user_name, u.image
 		FROM articles AS a
 		LEFT JOIN article_tags AS at 
@@ -285,7 +286,8 @@
 		ON at.tag_id = t.id 
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
-		WHERE a.id IN(SELECT article_id FROM likes WHERE user_info_id = #{guestId});
+		WHERE a.id IN(SELECT article_id FROM likes WHERE user_info_id = #{userInfoId})
+		ORDER BY a.id DESC;
 	</select>
 
 </mapper>

@@ -14,14 +14,15 @@ import com.example.domain.Article;
 import com.example.domain.Comment;
 import com.example.domain.UserInfo;
 import com.example.form.ArticleCommentForm;
+import com.example.form.ArticleDeleteFrom;
 import com.example.form.ArticleDetailForm;
 import com.example.form.ArticleEditForm;
-import com.example.form.ArticleDeleteFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
 import com.example.form.CommentLikeForm;
 import com.example.form.GuestArticlesForm;
 import com.example.mapper.ArticleMapper;
+import com.example.mapper.MyPageMapper;
 import com.example.mapper.UserMapper;
 import com.example.response.ArticleDetailResponse;
 import com.example.response.ArticleListResponse;
@@ -34,6 +35,9 @@ public class ArticleService {
 
 	@Autowired
 	private ArticleMapper articleMapper;
+
+	@Autowired
+	private MyPageMapper myPageMapper;
 
 	@Autowired
 	private UserMapper userMapper;
@@ -171,7 +175,8 @@ public class ArticleService {
 	public ArticleListResponse likedArticles(GuestArticlesForm form) {
 		ArticleListResponse res = new ArticleListResponse();
 		try {
-			res.setArticleList(articleMapper.likedArticles(form));
+			res.setArticleList(articleMapper.likedArticles(form.getUserInfoId()));
+			res.setUserInfo(myPageMapper.myPage(form.getUserInfoId(), form.getGuestId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -182,7 +187,8 @@ public class ArticleService {
 	public ArticleListResponse postedArticles(GuestArticlesForm form) {
 		ArticleListResponse res = new ArticleListResponse();
 		try {
-			res.setArticleList(articleMapper.postedArticles(form));
+			res.setArticleList(articleMapper.postedArticles(form.getUserInfoId()));
+			res.setUserInfo(myPageMapper.myPage(form.getUserInfoId(), form.getGuestId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
