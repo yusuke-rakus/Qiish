@@ -1,4 +1,5 @@
 import React from "react";
+import MediaQuery from "react-responsive";
 import useSWR, { useSWRConfig } from "swr";
 import { Comment } from ".";
 import { CommentForm } from "../components/organisms";
@@ -57,7 +58,9 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
           setCommentText={setCommentText}
         />
       </div>
-      <div className="w-1/5 mt-10"></div>
+      <MediaQuery query="(min-width: 768px)">
+        <div className="w-1/5 mt-10"></div>
+      </MediaQuery>
     </div>
   );
 };

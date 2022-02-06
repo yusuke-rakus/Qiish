@@ -250,7 +250,8 @@ const Article: React.FC = () => {
           setEditFlag={setEditFlag}
         />
       ) : (
-        <React.Fragment>
+        // <React.Fragment>
+        <div className="grid grid-flow-row">
           <Link href={"/"}>
             <a className="text-gray-400 hover:text-slate-600">
               <LeftCircleOutlined className="w-1/3 ml-4 mt-6 text-4xl" />
@@ -273,7 +274,8 @@ const Article: React.FC = () => {
             setLikeUserModalStatus={setLikeUserModalStatus}
           />
           <CommentList articleId={articleData.article.id} />
-        </React.Fragment>
+        </div>
+        // </React.Fragment>
       )}
     </div>
   );

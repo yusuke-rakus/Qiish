@@ -11,10 +11,10 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
   changeUsrFollow,
 }) => {
   const tagStyle =
-    "mx-1 mb-1 p-1 bg-orange-500  text-white text-center font-sans text-xs shadow-md rounded-lg";
+    "mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg";
   return (
-    <div className="w-full p-2 m-2 bg-white rounded-lg border shadow-md">
-      <div className="m-4">
+    <div className="w-full p-2 bg-white rounded-lg border shadow-md">
+      <div className="m-2">
         <div className="flex justify-center items-center">
           <Link href={"/profile"}>
             <a>
@@ -39,38 +39,21 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
           </Link>
           <div className="pl-3 text-center">
             <div>@{user.userName}</div>
-            {!checkLoginUserFlag && (
-              <span>
-                {followStatus ? (
-                  <button onClick={changeUsrFollow}>
-                    <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                      フォロー解除
-                    </div>
-                  </button>
-                ) : (
-                  <button onClick={changeUsrFollow}>
-                    <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
-                      フォロー
-                    </div>
-                  </button>
-                )}
-              </span>
-            )}
           </div>
         </div>
-        <div className="m-4 flex jusify-around divide-x divide-black ">
-          <div className="flex-grow text-center">
+        <div className="flex divide-x divide-black w-full">
+          <div className="flex-grow text-xs lg:text-base text-center">
             投稿数
             <div>{user.articleCount}</div>
           </div>
-          <div className="flex-grow text-center">
+          <div className="flex-grow text-xs lg:text-base text-center">
             <Link href={"/followList"}>
               <a className="text-black hover:text-gray-400">
                 フォロー<div>{user.followCount}</div>
               </a>
             </Link>
           </div>
-          <div className="flex-grow text-center ">
+          <div className="flex-grow text-xs lg:text-base text-center">
             <Link href={"/followerList"}>
               <a className="text-black hover:text-gray-400">
                 フォロワー<div>{followerCount}</div>
@@ -85,7 +68,7 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
           </span>
         </div>
         <div className="mt-2">
-          <div className="flex flex-wrap">
+          <div className="flex justify-center flex-wrap">
             {user.tags.map((tags) => {
               return (
                 <span className={tagStyle} key={tags.skill}>
@@ -96,7 +79,26 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
           </div>
         </div>
       </div>
-      <div className="block m-2 text-center">{user.description}</div>
+      <div className="block mx-2 p-2">{user.description}</div>
+      <div className="text-center">
+        {!checkLoginUserFlag && (
+          <span>
+            {followStatus ? (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー解除
+                </div>
+              </button>
+            ) : (
+              <button onClick={changeUsrFollow}>
+                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-orange-500 hover:bg-orange-300">
+                  フォロー
+                </div>
+              </button>
+            )}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
