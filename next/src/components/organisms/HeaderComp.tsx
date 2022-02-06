@@ -7,7 +7,7 @@ import { fetchSearchedArticle } from "../../lib/api/fetchData";
 // 記事検索の型
 export type search = {
   visible: boolean;
-  keyword: string;
+  keyword?: string;
   onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
   search: () => Promise<void>;
   onClose: () => void;
