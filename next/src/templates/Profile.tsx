@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { LeftCircleOutlined } from "@ant-design/icons";
-import { ProfileEdit, ProfileLarge } from "../components/organisms";
+import {
+  ArticleComp,
+  ProfileEdit,
+  ProfileLarge,
+} from "../components/organisms";
 import useSWR from "swr";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { useLoginChecker } from "../hooks/useLoginChecker";
@@ -11,6 +15,9 @@ import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { tag, tags } from "../const/Types";
 import { addFollow } from "../lib/api/addData";
 import { removeFollow } from "../lib/api/removeData";
+import { Tabs } from "antd";
+
+const { TabPane } = Tabs;
 
 const Profile: React.FC = () => {
   // プロフィールデータ取得
@@ -178,6 +185,12 @@ const Profile: React.FC = () => {
     onSubmitEditUser,
   };
 
+  const onClickTag = (tagId: number) => {
+    // const tagsData = await fetchSearchedTag(String(tagId), guestId);
+    // setArticleList(tagsData);
+    console.log();
+  };
+
   return (
     <div>
       {editFlag ? (
@@ -216,18 +229,39 @@ const Profile: React.FC = () => {
       )}
       {/* <ArticleList /> */}
       {/* <ArticleComp /> */}
-      {/* <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
-        {postedArticles &&
-          postedArticles.articleList.map((articleData: any) => {
-            return (
-              <ArticleComp
-                key={articleData.id}
-                articleData={articleData}
-                onClickTag={onClickTag}
-              />
-            );
-          })}
-      </div> */}
+      <div className="flex justify-center bg-orange-100">
+        {/* <div className=" grid grid-cols-2 gap-2 bg-orange-100"> */}
+        <div className="w-1/3">
+          <Tabs className="text-orange-500" defaultActiveKey="1">
+            <TabPane tab="投稿した記事" key="1">
+              {postedArticles &&
+                postedArticles.articleList.map((articleData: any) => {
+                  return (
+                    <div key={articleData.id}>
+                      <ArticleComp
+                        articleData={articleData}
+                        onClickTag={onClickTag}
+                      />
+                    </div>
+                  );
+                })}
+            </TabPane>
+            <TabPane tab="いいねした記事" key="2">
+              {likedArticles &&
+                likedArticles.articleList.map((articleData: any) => {
+                  return (
+                    <div key={articleData.id}>
+                      <ArticleComp
+                        articleData={articleData}
+                        onClickTag={onClickTag}
+                      />
+                    </div>
+                  );
+                })}
+            </TabPane>
+          </Tabs>
+        </div>
+      </div>
     </div>
   );
 };

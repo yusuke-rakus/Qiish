@@ -18,7 +18,7 @@ const Follow: React.FC<FollowType> = ({ user_data }) => {
    * @remarks ログイン状態チェック
    * @param user_data.id - ユーザーID
    */
-  const loginCheckStatus = useLoginChecker(user_data.id);
+  const checkLoginUserFlag = useLoginChecker(user_data.id);
 
   /**
    * フォローする処理(本人以外).
@@ -40,7 +40,7 @@ const Follow: React.FC<FollowType> = ({ user_data }) => {
       <ProfileRectangle
         key={user_data.id}
         user_data={user_data}
-        loginCheckStatus={loginCheckStatus}
+        checkLoginUserFlag={checkLoginUserFlag}
         followStatus={followStatus}
         changeUsrFollow={usrFollowing}
       />
