@@ -214,6 +214,20 @@ const Profile: React.FC = () => {
           changeEditFlag={setEditFlag}
         />
       )}
+      {/* <ArticleList /> */}
+      {/* <ArticleComp /> */}
+      {/* <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
+        {postedArticles &&
+          postedArticles.articleList.map((articleData: any) => {
+            return (
+              <ArticleComp
+                key={articleData.id}
+                articleData={articleData}
+                onClickTag={onClickTag}
+              />
+            );
+          })}
+      </div> */}
     </div>
   );
 };

@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { CommentList } from ".";
-import {
-  ArticleDetail,
-  ArticleEdit,
-  LikeUserModal,
-} from "../components/organisms";
+import { CommentList, LikeUserListModal } from ".";
+import { ArticleDetail, ArticleEdit } from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { addLikeToArticle, addFollow } from "../lib/api/addData";
 import {
@@ -121,10 +117,10 @@ const Article: React.FC = () => {
   const changeArticleLike = async () => {
     if (!likeStatus) {
       const res = await addLikeToArticle(articleData.article.id);
-      setLiksUserList(res);
+      // setLiksUserList(res);
     } else {
       const res = await removeLikeToArticle(articleData.article.id);
-      setLiksUserList(res);
+      // setLiksUserList(res);
     }
     setlikesCount(likeStatus);
     setlikeStatus();
@@ -235,8 +231,9 @@ const Article: React.FC = () => {
 
   return (
     <div className="h-full">
-      <LikeUserModal
+      <LikeUserListModal
         lieksUserList={liksUserList}
+        checkLoginUserFlag={checkLoginUserFlag}
         likeUserModalStatus={likeUserModalStatus}
         setLikeUserModalStatus={setLikeUserModalStatus}
       />
@@ -272,7 +269,10 @@ const Article: React.FC = () => {
             onDeleteArticle={onDeleteArticle}
             setLikeUserModalStatus={setLikeUserModalStatus}
           />
-          <CommentList articleId={articleData.article.id} />
+          <CommentList
+            articleId={articleData.article.id}
+            checkLoginUserFlag={checkLoginUserFlag}
+          />
         </div>
       )}
     </div>

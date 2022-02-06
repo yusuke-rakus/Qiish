@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { CommentComp, LikeUserModal } from "../components/organisms";
+import { LikeUserListModal } from ".";
+import { CommentComp } from "../components/organisms";
 import { CommentData } from "../const/Types";
 import { useToggle } from "../hooks";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
@@ -7,7 +8,10 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { addLikeToComment } from "../lib/api/addData";
 import { removeLikeToComment } from "../lib/api/removeData";
 
-const Comment: React.FC<CommentData> = ({ commentData }) => {
+const Comment: React.FC<CommentData> = ({
+  commentData,
+  checkLoginUserFlag,
+}) => {
   /**
    * いいねしたユーザーをステートで管理して、データを動的に変更する.
    *
@@ -46,8 +50,9 @@ const Comment: React.FC<CommentData> = ({ commentData }) => {
 
   return (
     <div>
-      <LikeUserModal
+      <LikeUserListModal
         lieksUserList={liksUserList}
+        checkLoginUserFlag={checkLoginUserFlag}
         likeUserModalStatus={likeUserModalStatus}
         setLikeUserModalStatus={setLikeUserModalStatus}
       />
