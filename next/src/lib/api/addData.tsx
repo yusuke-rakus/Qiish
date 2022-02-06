@@ -83,10 +83,11 @@ export const addComment = async (articleId: number, comment: string) => {
  * @param articleId - 記事ID
  */
 export const addLikeToArticle = async (articleId: number) => {
-  await axios.post(`${BASEURL}/article/like`, {
+  const res = await axios.post(`${BASEURL}/article/like`, {
     userInfoId: guestIdNum,
     articleId: articleId,
   });
+  return res.data;
 };
 
 /**
@@ -95,10 +96,11 @@ export const addLikeToArticle = async (articleId: number) => {
  * @param articleId - 記事ID
  */
 export const addLikeToComment = async (commentId: number) => {
-  await axios.post(`${BASEURL}/article/commentLike`, {
+  const res = await axios.post(`${BASEURL}/article/commentLike`, {
     userInfoId: guestIdNum,
     commentId: commentId,
   });
+  return res.data;
 };
 
 /**

@@ -86,8 +86,18 @@ const Article: React.FC = () => {
    */
   const checkLoginUserFlag = useLoginChecker(articleData.postedUser.id);
   const [editFlag, setEditFlag] = useToggle(false);
-  const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
   const [previewEditFlag, setPreviewEditFlag] = useToggle(true);
+
+  /**
+   * いいねしたユーザーをステートで管理して、データを動的に変更する.
+   *
+   * @remarks addLikeToArticleメソッドのレスポンスを受け取り、liksUserListを更新する
+   */
+  const [liksUserList, setLiksUserList] = useState(
+    articleData.article.lieksUserList
+  );
+  // いいねユーザーモーダル表示を真偽値で管理
+  const [likeUserModalStatus, setLikeUserModalStatus] = useToggle(false);
 
   /**
    * いいねする又はいいねを解除する処理.
@@ -105,11 +115,14 @@ const Article: React.FC = () => {
     articleData.article.likeStatus
   );
   // いいねする処理(いいね中: likeStatus === true, いいねしていない: likeStatus === false)
+  // いいねしたユーザー情報を取得し、動的に変更
   const changeArticleLike = async () => {
     if (!likeStatus) {
-      await addLikeToArticle(articleData.article.id);
+      const res = await addLikeToArticle(articleData.article.id);
+      setLiksUserList(res);
     } else {
-      await removeLikeToArticle(articleData.article.id);
+      const res = await removeLikeToArticle(articleData.article.id);
+      setLiksUserList(res);
     }
     setlikesCount(likeStatus);
     setlikeStatus();
@@ -221,7 +234,7 @@ const Article: React.FC = () => {
   return (
     <div className="h-full">
       <LikeUserModal
-        lieksUserList={articleData.article.lieksUserList}
+        lieksUserList={liksUserList}
         likeUserModalStatus={likeUserModalStatus}
         setLikeUserModalStatus={setLikeUserModalStatus}
       />

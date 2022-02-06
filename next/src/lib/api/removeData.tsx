@@ -24,10 +24,11 @@ export const removeArticleById = async (articleId: number) => {
  * @param articleId - 記事ID
  */
 export const removeLikeToArticle = async (articleId: number) => {
-  await axios.post(`${BASEURL}/article/removeLike`, {
+  const res = await axios.post(`${BASEURL}/article/removeLike`, {
     userInfoId: guestIdNum,
     articleId: articleId,
   });
+  return res.data;
 };
 
 /**
@@ -36,10 +37,11 @@ export const removeLikeToArticle = async (articleId: number) => {
  * @param articleId - 記事ID
  */
 export const removeLikeToComment = async (commentId: number) => {
-  await axios.post(`${BASEURL}/article/removeCommentLike`, {
+  const res = await axios.post(`${BASEURL}/article/removeCommentLike`, {
     userInfoId: guestIdNum,
     commentId: commentId,
   });
+  return res.data;
 };
 
 /**
