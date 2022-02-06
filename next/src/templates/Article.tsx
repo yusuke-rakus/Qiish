@@ -250,7 +250,6 @@ const Article: React.FC = () => {
           setEditFlag={setEditFlag}
         />
       ) : (
-        // <React.Fragment>
         <div className="grid grid-flow-row">
           <Link href={"/"}>
             <a className="text-gray-400 hover:text-slate-600">
@@ -275,7 +274,6 @@ const Article: React.FC = () => {
           />
           <CommentList articleId={articleData.article.id} />
         </div>
-        // </React.Fragment>
       )}
     </div>
   );

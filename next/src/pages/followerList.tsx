@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   let userId = getArticleUserId(ctx);
   // Cookieに投稿者IDがなければログインユーザーIDを利用
   if (!userId) {
-    userId = getCookie(ctx);
+    userId = guestId;
   }
 
   const followerList = await fetchFollowerList(guestId, userId);

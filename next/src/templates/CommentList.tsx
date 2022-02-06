@@ -59,7 +59,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
         />
       </div>
       <MediaQuery query="(min-width: 768px)">
-        <div className="w-1/5 mt-10"></div>
+        <div className="w-1/4 mt-10"></div>
       </MediaQuery>
     </div>
   );

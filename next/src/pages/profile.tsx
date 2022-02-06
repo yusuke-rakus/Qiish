@@ -38,9 +38,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   let userInfoId = getArticleUserId(ctx);
   // Cookieに投稿者ID(articleUserId)がなければログインユーザーIdを利用
   if (!userInfoId) {
-    userInfoId = getCookie(ctx);
+    userInfoId = guestId;
   }
-
   // プロフィールページで表示するデータ
   const profile = await fetchProfile(guestId, userInfoId);
   const tagsData = await fetchGetTags();
