@@ -47,13 +47,13 @@ public class ArticleController {
 
 	/** コメントにいいね */
 	@PostMapping("/commentLike")
-	public Response commentLike(@RequestBody CommentLikeForm form) {
+	public LikedResponse commentLike(@RequestBody CommentLikeForm form) {
 		return articleService.commentLike(form);
 	}
 
 	/** コメントいいね解除 */
 	@PostMapping("/removeCommentLike")
-	public Response removeCommentLike(@RequestBody CommentLikeForm form) {
+	public LikedResponse removeCommentLike(@RequestBody CommentLikeForm form) {
 		return articleService.removeCommentLike(form);
 	}
 
