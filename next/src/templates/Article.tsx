@@ -20,6 +20,8 @@ import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { ArticleData, tag, tags } from "../const/Types";
+import Link from "next/link";
+import { LeftCircleOutlined } from "@ant-design/icons";
 
 const Article: React.FC = () => {
   // 記事詳細データ取得
@@ -249,6 +251,11 @@ const Article: React.FC = () => {
         />
       ) : (
         <React.Fragment>
+          <Link href={"/"}>
+            <a className="text-gray-400 hover:text-slate-600">
+              <LeftCircleOutlined className="w-1/3 ml-4 mt-6 text-4xl" />
+            </a>
+          </Link>
           <ArticleDetail
             article={article}
             articleTags={tagsByNum}
