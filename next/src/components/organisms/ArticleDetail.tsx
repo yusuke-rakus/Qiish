@@ -6,6 +6,7 @@ import moment from "moment";
 import { Dropdown, Menu } from "antd";
 import { ArticleType } from "../../const/Types";
 import remarkGfm from "remark-gfm";
+import MediaQuery from "react-responsive";
 
 const ArticleDetail: React.FC<ArticleType> = ({
   article,
@@ -91,15 +92,17 @@ const ArticleDetail: React.FC<ArticleType> = ({
         </div>
       </div>
 
-      <div className="w-1/5 mt-8">
-        <ProfileSmall
-          user={postedUser}
-          checkLoginUserFlag={checkLoginUserFlag}
-          followerCount={followerCount}
-          followStatus={followStatus}
-          changeUsrFollow={changeUsrFollow}
-        />
-      </div>
+      <MediaQuery query="(min-width: 768px)">
+        <div className="w-1/4 mt-8">
+          <ProfileSmall
+            user={postedUser}
+            checkLoginUserFlag={checkLoginUserFlag}
+            followerCount={followerCount}
+            followStatus={followStatus}
+            changeUsrFollow={changeUsrFollow}
+          />
+        </div>
+      </MediaQuery>
     </div>
   );
 };
