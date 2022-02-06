@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { CommentList, LikeUsersOnArticle } from ".";
-import { ArticleDetail, ArticleEdit } from "../components/organisms";
+import { CommentList } from ".";
+import {
+  ArticleDetail,
+  ArticleEdit,
+  LikeUserModal,
+} from "../components/organisms";
 import { useSelectState, useTextState, useToggle } from "../hooks";
 import { addLikeToArticle, addFollow } from "../lib/api/addData";
 import {
@@ -15,8 +19,6 @@ import { editArticle } from "../lib/api/editData";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
-import ModalScreen from "../components/ModalScreen";
-import { Button } from "antd";
 import { ArticleData, tag, tags } from "../const/Types";
 
 const Article: React.FC = () => {
@@ -218,21 +220,11 @@ const Article: React.FC = () => {
 
   return (
     <div className="h-full">
-      {likeUserModalStatus && (
-        <div>
-          <div className="fixed inset-0 z-50">
-            <LikeUsersOnArticle
-              lieksUserList={articleData.article.lieksUserList}
-            />
-            <span className="flex justify-center">
-              <Button onClick={setLikeUserModalStatus}>
-                <span className="hover:text-orange-400">戻る</span>
-              </Button>
-            </span>
-          </div>
-          <ModalScreen />
-        </div>
-      )}
+      <LikeUserModal
+        lieksUserList={articleData.article.lieksUserList}
+        likeUserModalStatus={likeUserModalStatus}
+        setLikeUserModalStatus={setLikeUserModalStatus}
+      />
 
       {editFlag ? (
         <ArticleEdit

@@ -1,8 +1,5 @@
-import { Button } from "antd";
 import React from "react";
-import { LikeUsersOnComment } from ".";
-import ModalScreen from "../components/ModalScreen";
-import { CommentComp } from "../components/organisms";
+import { CommentComp, LikeUserModal } from "../components/organisms";
 import { CommentData } from "../const/Types";
 import { useToggle } from "../hooks";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
@@ -38,21 +35,11 @@ const Comment: React.FC<CommentData> = ({ commentData }) => {
 
   return (
     <div>
-      {likeUserModalStatus && (
-        <div>
-          <div className="fixed inset-0 z-50">
-            <LikeUsersOnComment
-              commentLikesUserList={commentData.commentLikesUserList}
-            />
-            <span className="flex justify-center">
-              <Button onClick={setLikeUserModalStatus}>
-                <span className="hover:text-orange-400">戻る</span>
-              </Button>
-            </span>
-          </div>
-          <ModalScreen />
-        </div>
-      )}
+      <LikeUserModal
+        lieksUserList={commentData.commentLikesUserList}
+        likeUserModalStatus={likeUserModalStatus}
+        setLikeUserModalStatus={setLikeUserModalStatus}
+      />
       <CommentComp
         commentData={commentData}
         likesCount={likesCount}

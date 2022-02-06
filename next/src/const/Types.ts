@@ -131,6 +131,13 @@ export type ArticleEditFromType = {
   SKILLTAGS: SkillTags;
 };
 
+// 記事にいいねしたユーザー一覧のモーダル表示の型
+export type LikeUserModalType = {
+  lieksUserList: UserType[];
+  likeUserModalStatus: boolean;
+  setLikeUserModalStatus: () => void;
+};
+
 // --------------------------------------------
 
 // Profile関連の型
