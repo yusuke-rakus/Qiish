@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.example.domain.Article;
 import com.example.domain.Comment;
+import com.example.domain.UserInfo;
 import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleDeleteFrom;
@@ -51,6 +52,13 @@ public interface ArticleMapper {
 
 	/** 記事詳細 */
 	public Article articleDetail(@Param("articleId") Integer articleId, @Param("guestId") Integer guestId);
+
+	/** いいねユーザーリスト */
+	public List<UserInfo> likesUserList(@Param("articleId") Integer articleId, @Param("userInfoId") Integer userInfoId);
+
+	/** コメントいいねユーザーリスト */
+	public List<UserInfo> commentLikesUserList(@Param("commentId") Integer commentId,
+			@Param("userInfoId") Integer userInfoId);
 
 	/** 訪問回数更新 */
 	public void updateVisitedCount(Integer articleId);

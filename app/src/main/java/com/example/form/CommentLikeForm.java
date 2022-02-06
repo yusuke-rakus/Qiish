@@ -25,9 +25,4 @@ public class CommentLikeForm {
 		this.commentId = commentId;
 	}
 
-	@Override
-	public String toString() {
-		return "CommentLikeForm [userInfoId=" + userInfoId + ", commentId=" + commentId + "]";
-	}
-
 }

@@ -19,6 +19,7 @@ import com.example.form.GuestArticlesForm;
 import com.example.response.ArticleDetailResponse;
 import com.example.response.ArticleListResponse;
 import com.example.response.CommentResponse;
+import com.example.response.LikedResponse;
 import com.example.response.Response;
 import com.example.service.ArticleService;
 
@@ -58,13 +59,13 @@ public class ArticleController {
 
 	/** 記事お気に入り */
 	@PostMapping("/like")
-	public Response articleLike(@RequestBody ArticleLikeForm form) {
+	public LikedResponse articleLike(@RequestBody ArticleLikeForm form) {
 		return articleService.articleLike(form);
 	}
 
 	/** 記事お気に入り解除 */
 	@PostMapping("/removeLike")
-	public Response articleRemoveLike(@RequestBody ArticleLikeForm form) {
+	public LikedResponse articleRemoveLike(@RequestBody ArticleLikeForm form) {
 		return articleService.articleRemoveLike(form);
 	}
 

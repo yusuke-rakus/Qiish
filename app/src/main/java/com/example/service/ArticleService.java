@@ -27,6 +27,7 @@ import com.example.mapper.UserMapper;
 import com.example.response.ArticleDetailResponse;
 import com.example.response.ArticleListResponse;
 import com.example.response.CommentResponse;
+import com.example.response.LikedResponse;
 import com.example.response.Response;
 
 @Service
@@ -66,10 +67,11 @@ public class ArticleService {
 	}
 
 	/** コメントLIKE */
-	public Response commentLike(CommentLikeForm form) {
-		Response res = new Response();
+	public LikedResponse commentLike(CommentLikeForm form) {
+		LikedResponse res = new LikedResponse();
 		try {
 			articleMapper.commentLike(form);
+			res.setLikesUserList(articleMapper.commentLikesUserList(form.getCommentId(), form.getUserInfoId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -77,10 +79,11 @@ public class ArticleService {
 	}
 
 	/** コメントLIKE解除 */
-	public Response removeCommentLike(CommentLikeForm form) {
-		Response res = new Response();
+	public LikedResponse removeCommentLike(CommentLikeForm form) {
+		LikedResponse res = new LikedResponse();
 		try {
 			articleMapper.removeCommentLike(form);
+			res.setLikesUserList(articleMapper.commentLikesUserList(form.getCommentId(), form.getUserInfoId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -88,10 +91,11 @@ public class ArticleService {
 	}
 
 	/** LIKE */
-	public Response articleLike(ArticleLikeForm form) {
-		Response res = new Response();
+	public LikedResponse articleLike(ArticleLikeForm form) {
+		LikedResponse res = new LikedResponse();
 		try {
 			articleMapper.articleLike(form);
+			res.setLikesUserList(articleMapper.likesUserList(form.getArticleId(), form.getUserInfoId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -99,10 +103,11 @@ public class ArticleService {
 	}
 
 	/** LIKE解除 */
-	public Response articleRemoveLike(ArticleLikeForm form) {
-		Response res = new Response();
+	public LikedResponse articleRemoveLike(ArticleLikeForm form) {
+		LikedResponse res = new LikedResponse();
 		try {
 			articleMapper.articleRemoveLike(form);
+			res.setLikesUserList(articleMapper.likesUserList(form.getArticleId(), form.getUserInfoId()));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}

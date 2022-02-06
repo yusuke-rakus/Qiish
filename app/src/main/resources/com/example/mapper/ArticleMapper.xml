@@ -213,6 +213,35 @@
 		WHERE a.id = #{articleId};
 	</select>
 	
+	<!-- LIKEユーザーリスト -->
+	<select id="likesUserList" resultType="com.example.domain.UserInfo">
+		SELECT
+			u.id,
+			user_name,
+			engineer_type,
+			description,
+			COALESCE((SELECT follow_user_info_id = u.id FROM follow WHERE user_info_id = #{userInfoId} AND follow_user_info_id = u.id), 0) AS follow_status
+		FROM user_info AS u
+		LEFT OUTER JOIN likes AS l
+		ON u.id = l.user_info_id
+		WHERE l.article_id = #{articleId};
+	</select>
+	
+	<!-- コメントLIKEユーザーリスト -->
+	<select id="commentLikesUserList" resultType="com.example.domain.UserInfo">
+		SELECT
+			u.id,
+			user_name,
+			engineer_type,
+			description,
+			COALESCE((SELECT follow_user_info_id = u.id FROM follow WHERE user_info_id = #{userInfoId} AND follow_user_info_id = u.id), 0) AS follow_status
+		FROM user_info AS u
+		LEFT OUTER JOIN comment_likes AS l
+		ON u.id = l.user_info_id
+		WHERE l.comments_id = #{commentId};
+	</select>
+	
+	<!-- 訪問回数更新 -->
 	<update id="updateVisitedCount">
 		UPDATE articles 
 		SET visited_count = visited_count + 1 

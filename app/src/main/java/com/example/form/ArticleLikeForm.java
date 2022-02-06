@@ -25,9 +25,4 @@ public class ArticleLikeForm {
 		this.articleId = articleId;
 	}
 
-	@Override
-	public String toString() {
-		return "ArticleLikeForm [userInfoId=" + userInfoId + ", articleId=" + articleId + "]";
-	}
-
 }
