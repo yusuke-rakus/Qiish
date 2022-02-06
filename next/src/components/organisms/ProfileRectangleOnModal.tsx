@@ -6,7 +6,7 @@ const ProfileRectangleOnModal: React.FC<ProfileRectangleType> = ({
   user_data,
   changeUsrFollow,
   followStatus,
-  loginCheckStatus,
+  checkLoginUserFlag,
 }) => {
   return (
     <div className="flex justify-rounded items-center w-full m-2 pl-10 p-2 bg-white rounded-lg border shadow-md">
@@ -26,7 +26,7 @@ const ProfileRectangleOnModal: React.FC<ProfileRectangleType> = ({
           </div>
         </div>
       </div>
-      {!loginCheckStatus && (
+      {!checkLoginUserFlag && (
         <div className="mt-2 ml-4">
           {followStatus ? (
             <button onClick={changeUsrFollow}>

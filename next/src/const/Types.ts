@@ -51,7 +51,10 @@ export type UserType = {
   comments: string;
   followStatus: number;
 };
-export type UserDataType = { user_data: UserType };
+export type UserDataType = {
+  user_data: UserType;
+  checkLoginUserFlag: boolean;
+};
 
 // --------------------------------------------
 
@@ -134,6 +137,7 @@ export type ArticleEditFromType = {
 // 記事にいいねしたユーザー一覧のモーダル表示の型
 export type LikeUserModalType = {
   lieksUserList: UserType[];
+  checkLoginUserFlag: boolean;
   likeUserModalStatus: boolean;
   setLikeUserModalStatus: () => void;
 };
@@ -175,7 +179,7 @@ export type ProfileRectangleType = {
   user_data: UserType;
   followStatus: boolean;
   changeUsrFollow: () => void;
-  loginCheckStatus: boolean;
+  checkLoginUserFlag: boolean;
 };
 
 // 編集用プロフィールで利用するユーザー情報
@@ -260,6 +264,7 @@ export type CommentType = {
 // コメント情報の型
 export type CommentData = {
   commentData: CommentType;
+  checkLoginUserFlag: boolean;
 };
 // コメントコンポーネントの型
 export type CommentCompType = {
@@ -270,7 +275,12 @@ export type CommentCompType = {
   setLikeUserModalStatus: () => void;
 };
 // いいねしたユーザー情報一覧の方
-export type LikesUserList = { lieksUserList: UserType[] };
+export type LikesUserList = {
+  lieksUserList: UserType[];
+  checkLoginUserFlag: boolean;
+  followStatus: boolean;
+  usrFollowing: () => void;
+};
 // コメントにいいねしたユーザー情報一覧
 export type CommentLikesUserList = {
   commentLikesUserList: UserType[];
