@@ -13,7 +13,6 @@ const LikeUser: React.FC<UserDataType> = ({
   const [followStatus, setFollowStatus] = useToggleByNum(
     user_data.followStatus
   );
-  console.log("user_data.followStatus" + user_data.followStatus);
 
   // user_dataがログイン本人だったらtrue,本人でなければfalse
   const loginCheckStatus = useLoginChecker(user_data.id);

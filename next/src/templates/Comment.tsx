@@ -39,10 +39,10 @@ const Comment: React.FC<CommentData> = ({
   const changeCommentLike = async () => {
     if (!likeStatus) {
       const res = await addLikeToComment(commentData.id);
-      setLiksUserList(res);
+      setLiksUserList(res.likesUserList);
     } else {
       const res = await removeLikeToComment(commentData.id);
-      setLiksUserList(res);
+      setLiksUserList(res.likesUserList);
     }
     setLikeCount(likeStatus);
     setLikeStatus();
