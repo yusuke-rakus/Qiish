@@ -117,10 +117,10 @@ const Article: React.FC = () => {
   const changeArticleLike = async () => {
     if (!likeStatus) {
       const res = await addLikeToArticle(articleData.article.id);
-      // setLiksUserList(res);
+      setLiksUserList(res.likesUserList);
     } else {
       const res = await removeLikeToArticle(articleData.article.id);
-      // setLiksUserList(res);
+      setLiksUserList(res.likesUserList);
     }
     setlikesCount(likeStatus);
     setlikeStatus();
