@@ -44,8 +44,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // プロフィールページで表示するデータ
   const profile = await fetchProfile(guestId, userInfoId);
   const tagsData = await fetchGetTags();
-  const postedArticles = await fetchPostedArticlesOnProfile();
-  const likedArticles = await fetchLikedArticlesOnProfile();
+  const postedArticles = await fetchPostedArticlesOnProfile(
+    guestId,
+    userInfoId
+  );
+  const likedArticles = await fetchLikedArticlesOnProfile(guestId, userInfoId);
 
   return {
     props: {

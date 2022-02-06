@@ -17,6 +17,10 @@ const Profile: React.FC = () => {
   const { data: proflieData } = useSWR("/profile");
   // タグデータ取得
   const { data: fetchedTags } = useSWR("/tagsData");
+  // // 投稿記事データ取得
+  const { data: postedArticles } = useSWR("/postedArticles");
+  // // いいねした記事データ取得
+  const { data: likedArticles } = useSWR("/likedArticles");
 
   /**
    * DBにあるタグ情報を取得し、ステートで管理.

@@ -43,7 +43,7 @@ export const fetchSearchedTag = async (tagId: string, guestId: string) => {
  * @param userInfoId - ユーザー情報ID(str)
  * @returns ユーザープロフィール情報
  */
-export const fetchProfile = async (guestId: string, userInfoId?: string) => {
+export const fetchProfile = async (guestId: string, userInfoId: string) => {
   const res = await axios.post(`${BASEURL}/userPage`, {
     userInfoId: userInfoId,
     guestId: guestId,
@@ -107,18 +107,26 @@ export const fetchcommentList = async (articleId: number) => {
  * @param articleId - 記事ID(num)
  * @returns 記事IDに当てはまるコメント一覧情報
  */
-export const fetchPostedArticlesOnProfile = async () => {
-  const res = await axios.post(`${BASEURL}/postedArticles`, {
-    guestId: guestIdByCookie,
+export const fetchPostedArticlesOnProfile = async (
+  guestId: string,
+  userInfoId: string
+) => {
+  const res = await axios.post(`${BASEURL}/article/postedList`, {
+    userInfoId: userInfoId,
+    guestId: guestId,
   });
-  res.data;
+  return res.data;
 };
 
-export const fetchLikedArticlesOnProfile = async () => {
-  const res = await axios.post(`${BASEURL}/likedArticles`, {
-    guestId: guestIdByCookie,
+export const fetchLikedArticlesOnProfile = async (
+  guestId: string,
+  userInfoId: string
+) => {
+  const res = await axios.post(`${BASEURL}/article/likedList`, {
+    userInfoId: userInfoId,
+    guestId: guestId,
   });
-  res.data;
+  return res.data;
 };
 
 // パスワードを再発行するAPI
