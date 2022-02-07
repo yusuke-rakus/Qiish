@@ -66,16 +66,17 @@ const Article: React.FC = () => {
    */
   const [title, setTitle] = useTextState(articleData.article.title);
   const [content, setContent] = useTextState(articleData.article.content);
-  let tagsByNum = new Array<tag>();
+  const tagsByNum = new Array<tag>();
   // 選択済の記事技術タグIDから技術タグを格納する処理
-  useEffect(() => {
+  const insertTagsByNum = () => {
     for (let tagNum of tagsNum) {
       const tagsFilterByTagNum = tagsData.filter(
         (tag: tag) => tag.id === tagNum
       );
       tagsByNum.push(tagsFilterByTagNum[0]);
     }
-  });
+  };
+  insertTagsByNum();
 
   /**
    * 表示フラグ(真偽値)を管理.
@@ -228,6 +229,7 @@ const Article: React.FC = () => {
     onEditArticle,
     setPreviewEditFlag,
   };
+  // console.dir(tagsByNum);
 
   return (
     <div className="h-full">
