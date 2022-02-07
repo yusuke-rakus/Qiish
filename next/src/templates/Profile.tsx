@@ -227,7 +227,7 @@ const Profile: React.FC = () => {
         />
       )}
       <div className="flex justify-center bg-orange-100">
-        <div className="w-1/3">
+        <div className="w-2/5">
           <Tabs className="text-orange-500" defaultActiveKey="1">
             <TabPane tab="投稿した記事" key="1">
               {postedArticles &&
