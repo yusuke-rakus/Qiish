@@ -33,10 +33,10 @@ public interface UserMapper {
 	/** ログイン情報の編集 */
 	public void userEdit(UserEditForm form);
 
-	/** ユーザータグの編集 */
+	/** ユーザータグの編集（追加） */
 	public void userInfoTagsEdit(@Param("userId") Integer userId, @Param("tagsList") List<Integer> tag);
 
-	/** ユーザータグの編集 */
+	/** ユーザータグの編集（削除） */
 	public void deleteTags(Integer userId);
 
 	/** フォロー */
