@@ -104,12 +104,13 @@
 
 	<!-- 記事投稿（タグ情報を保存） -->
 	<insert id="articleTagsPost">
-		INSERT INTO article_tags(article_id, tag_id)
+		INSERT INTO article_tags(article_id, tag_id, tag_order)
 		VALUES
-		<foreach collection="tagId" item="tagId" separator=",">
+		<foreach collection="tagId" item="tagId" separator="," index="i">
 			(
 			#{articleId},
-			#{tagId}
+			#{tagId},
+			#{i}+1
 			)
 		</foreach>
 	</insert>
@@ -210,7 +211,8 @@
 		ON a.id = at.article_id
 		LEFT OUTER JOIN likes AS l
 		ON a.id = l.article_id
-		WHERE a.id = #{articleId};
+		WHERE a.id = #{articleId}
+		ORDER BY at.tag_order;
 	</select>
 	
 	<!-- LIKEユーザーリスト -->
@@ -292,7 +294,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
 		WHERE a.user_info_id = #{userInfoId}
-		ORDER BY a.id DESC; 
+		ORDER BY a.id DESC, at.tag_order; 
 	</select>
 	
 	<!-- LIKE記事一覧取得 -->
@@ -316,7 +318,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
 		WHERE a.id IN(SELECT article_id FROM likes WHERE user_info_id = #{userInfoId})
-		ORDER BY a.id DESC;
+		ORDER BY a.id DESC, at.tag_order;
 	</select>
 
 </mapper>

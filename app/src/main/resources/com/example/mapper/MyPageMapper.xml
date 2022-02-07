@@ -42,7 +42,8 @@
 		ON ut.user_info_id = u.id 
 		LEFT JOIN tags AS t 
 		ON t.id = ut.tag_id 
-		WHERE u.id = #{userInfoId};
+		WHERE u.id = #{userInfoId}
+		ORDER BY ut.tag_order;
 	</select>
 	
 </mapper>

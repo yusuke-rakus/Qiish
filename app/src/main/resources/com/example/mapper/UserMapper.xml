@@ -46,10 +46,10 @@
 
 	<!-- ユーザータグの編集 -->
 	<insert id="userInfoTagsEdit">
-		INSERT INTO user_info_tags(user_info_id, tag_id)
+		INSERT INTO user_info_tags(user_info_id, tag_id, tag_order)
 		VALUES
-		<foreach collection="tagsList" item="tagId" separator=",">
-			(#{userId}, #{tagId})
+		<foreach collection="tagsList" item="tagId" separator="," index="i">
+			(#{userId}, #{tagId}, #{i}+1)
 		</foreach>
 	</insert>
 
