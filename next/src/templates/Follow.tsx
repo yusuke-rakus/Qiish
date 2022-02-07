@@ -36,15 +36,13 @@ const Follow: React.FC<UserDataListType> = ({ user_data }) => {
   };
 
   return (
-    <div>
-      <ProfileRectangle
-        key={user_data.id}
-        user_data={user_data}
-        checkLoginUserFlag={checkLoginUserFlag}
-        followStatus={followStatus}
-        changeUsrFollow={usrFollowing}
-      />
-    </div>
+    <ProfileRectangle
+      key={user_data.id}
+      user_data={user_data}
+      checkLoginUserFlag={checkLoginUserFlag}
+      followStatus={followStatus}
+      changeUsrFollow={usrFollowing}
+    />
   );
 };
 
