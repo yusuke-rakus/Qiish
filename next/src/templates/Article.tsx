@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { CommentList, LikeUserListModal } from ".";
@@ -18,14 +18,13 @@ import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { ArticleData, tag, tags } from "../const/Types";
 import Link from "next/link";
 import { LeftCircleOutlined } from "@ant-design/icons";
+import toast, { Toaster } from "react-hot-toast";
 
 const Article: React.FC = () => {
   // 記事詳細データ取得
   const { data: articleData } = useSWR("/article");
   // タグデータ取得
   const { data: fetchedTags } = useSWR("/tagsData");
-
-  console.dir(articleData);
 
   /**
    * DBにあるタグ情報を取得し、ステートで管理.
@@ -168,10 +167,10 @@ const Article: React.FC = () => {
   const onDeleteArticle = async () => {
     const res = await removeArticleById(articleData.article.id);
     if (res.data.status === "success") {
-      alert("記事を削除しました。記事一覧に戻ります。");
+      toast.success("記事削除しました!", { icon: "👍" });
       router.push("/");
     } else {
-      alert("記事を削除できませんでした。");
+      toast.error("記事削除できませんでした...", { icon: "👎" });
     }
   };
 
@@ -190,13 +189,12 @@ const Article: React.FC = () => {
    */
   const onEditArticle = async () => {
     //  バリデーションチェック(半角スペースまたは全角スペース、nullのみであったらアラート表示)
-    const alertMsg = "記事編集に失敗しました。入力内容を確認してください。";
     if (title === " " || title === "　" || title === null) {
-      alert(alertMsg);
+      toast.error("記事編集できませんでした...", { icon: "👎" });
       return;
     }
     if (content === " " || content === "　" || content === null) {
-      alert(alertMsg);
+      toast.error("記事編集できませんでした...", { icon: "👎" });
       return;
     }
 
@@ -208,11 +206,11 @@ const Article: React.FC = () => {
         tagsNum
       );
       if (res.data.status === "success") {
-        alert("記事編集に成功しました。記事詳細へ戻ります。");
+        toast.success("記事編集しました!", { icon: "👍" });
         setEditFlag();
       }
     } catch (error) {
-      alert(alertMsg);
+      toast.error("記事編集できませんでした...", { icon: "👎" });
     }
   };
 
@@ -231,7 +229,6 @@ const Article: React.FC = () => {
     onEditArticle,
     setPreviewEditFlag,
   };
-  // console.dir(tagsByNum);
 
   return (
     <div className="h-full">
@@ -275,6 +272,7 @@ const Article: React.FC = () => {
           <CommentList articleId={articleData.article.id} />
         </div>
       )}
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };

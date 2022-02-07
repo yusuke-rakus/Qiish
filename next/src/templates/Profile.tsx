@@ -16,6 +16,7 @@ import { tag, tags } from "../const/Types";
 import { addFollow } from "../lib/api/addData";
 import { removeFollow } from "../lib/api/removeData";
 import { Tabs } from "antd";
+import toast, { Toaster } from "react-hot-toast";
 
 const { TabPane } = Tabs;
 
@@ -131,17 +132,16 @@ const Profile: React.FC = () => {
    */
   const onSubmitEditUser = async () => {
     //  バリデーションチェック
-    const errorMsg = "記事投稿に失敗しました。入力内容を確認してください。";
     if (userName === " " || userName === "　" || userName === null) {
-      alert(errorMsg);
+      toast.error("プロフィール編集できませんでした...", { icon: "👎" });
       return;
     }
     if (email === " " || email === "　" || email === null) {
-      alert(errorMsg);
+      toast.error("プロフィール編集できませんでした...", { icon: "👎" });
       return;
     }
     if (description === " " || description === "　" || description === null) {
-      alert(errorMsg);
+      toast.error("プロフィール編集できませんでした...", { icon: "👎" });
       return;
     }
 
@@ -156,11 +156,11 @@ const Profile: React.FC = () => {
       );
 
       if (res.data.status === "success") {
-        alert("ユーザー情報編集に成功しました。プロフィール画面へ戻ります。");
+        toast.success("プロフィール編集しました!", { icon: "👍" });
         setEditFlag();
       }
     } catch (error) {
-      alert(errorMsg);
+      toast.error("プロフィール編集できませんでした...", { icon: "👎" });
     }
   };
 
@@ -186,9 +186,7 @@ const Profile: React.FC = () => {
     onSubmitEditUser,
   };
 
-  const onClickTag = (tagId: number) => {
-    console.log();
-  };
+  const onClickTag = (tagId: number) => {};
 
   return (
     <div>
@@ -258,6 +256,7 @@ const Profile: React.FC = () => {
           </Tabs>
         </div>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
