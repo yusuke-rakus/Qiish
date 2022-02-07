@@ -63,8 +63,8 @@ public class UserService {
 			userMapper.userInfoEdit(form);
 			userMapper.userEdit(form);
 			userMapper.deleteTags(form.getUserInfoId());
-			if (!CollectionUtils.isEmpty(form.getTag())) {
-				userMapper.userInfoTagsEdit(form.getUserInfoId(), form.getTag());
+			if (!CollectionUtils.isEmpty(form.getTags())) {
+				userMapper.userInfoTagsEdit(form.getUserInfoId(), form.getTags());
 			}
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());

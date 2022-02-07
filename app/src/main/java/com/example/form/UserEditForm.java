@@ -23,7 +23,7 @@ public class UserEditForm {
 	@NotBlank
 	private String engineerType;
 	private String description;
-	private List<Integer> tag;
+	private List<Integer> tags;
 
 	public Integer getUserInfoId() {
 		return userInfoId;
@@ -73,18 +73,20 @@ public class UserEditForm {
 		this.description = description;
 	}
 
-	public List<Integer> getTag() {
-		return tag;
+	public List<Integer> getTags() {
+		return tags;
 	}
 
-	public void setTag(List<Integer> tag) {
-		this.tag = tag;
+	public void setTags(List<Integer> tags) {
+		this.tags = tags;
 	}
 
 	@Override
 	public String toString() {
 		return "UserEditForm [userInfoId=" + userInfoId + ", userName=" + userName + ", image=" + image + ", email="
-				+ email + ", engineerType=" + engineerType + ", description=" + description + ", tag=" + tag + "]";
+				+ email + ", engineerType=" + engineerType + ", description=" + description + ", tags=" + tags + "]";
 	}
+
+
 
 }
