@@ -213,11 +213,6 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
-    ('PHP');
-
-INSERT INTO
-    tags(skill)
-VALUES
     ('Phyton');
 
 INSERT INTO
@@ -244,6 +239,206 @@ INSERT INTO
     tags(skill)
 VALUES
     ('kotolin');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('AWS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Unity');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Linux');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Ubuntu');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('WordPress');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('PostgreSQL');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Flutter');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Excel');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Xcode');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Windows');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Laravel');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('PHP');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Mac');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('iOS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('MySQL');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('MariaDB');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('MongoDB');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('GitHub');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('EC2');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('CentOS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Docker');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Heroku');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('TensorFlow');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('GCP');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('pandas');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('JSON');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('nuxt.js');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('next.js');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('numpy');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Dart');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('eclipse');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Flask');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Django');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Bootstrap');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('VScode');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Firebase');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('Tailwind CSS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('S3');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('AngularJS');
+
+INSERT INTO
+    tags(skill)
+VALUES
+    ('API');
 
 INSERT INTO
     user_info_tags(user_info_id, tag_id, tag_order)
