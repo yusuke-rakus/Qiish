@@ -24,11 +24,7 @@ const LikeUserListModal: React.FC<LikeUserModalType> = ({
                   <div className="w-1/2">
                     {lieksUserList.map((user_data: UserType) => {
                       return (
-                        <LikeUser
-                          key={user_data.id}
-                          user_data={user_data}
-                          checkLoginUserFlag={checkLoginUserFlag}
-                        />
+                        <LikeUser key={user_data.id} user_data={user_data} />
                       );
                     })}
                   </div>

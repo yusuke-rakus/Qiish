@@ -7,7 +7,7 @@ const QiitaList: React.FC<any> = () => {
   const { data, error } = useSWR("/qiitaList");
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data && !error) return <div>loading...</div>;
   return (
     <div>
       <div className="pt-10 text-4xl font-bold text-center">

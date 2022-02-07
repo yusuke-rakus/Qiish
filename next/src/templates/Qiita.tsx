@@ -15,7 +15,7 @@ const Qiita: React.FC = () => {
   const { data, error } = useSWR(`/qiita`);
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data && !error) return <div>loading...</div>;
 
   return (
     <div className="h-full py-10">

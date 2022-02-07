@@ -59,6 +59,10 @@ export type UserDataType = {
   checkLoginUserFlag: boolean;
 };
 
+export type UserDataListType = {
+  user_data: UserType;
+};
+
 // --------------------------------------------
 
 // Article関連の型アノテーション
@@ -223,11 +227,6 @@ export type ProfileEditFromType = {
 
 // Follow,Follower関連の型アノテーション
 // --------------------------------------------
-
-//  Followコンポーネントの型
-export type FollowType = {
-  user_data: UserType;
-};
 
 // --------------------------------------------
 

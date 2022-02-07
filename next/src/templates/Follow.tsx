@@ -1,12 +1,12 @@
 import React from "react";
 import { ProfileRectangle } from "../components/organisms";
-import { FollowType } from "../const/Types";
+import { UserDataListType } from "../const/Types";
 import { useLoginChecker } from "../hooks/useLoginChecker";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { addFollow } from "../lib/api/addData";
 import { removeFollow } from "../lib/api/removeData";
 
-const Follow: React.FC<FollowType> = ({ user_data }) => {
+const Follow: React.FC<UserDataListType> = ({ user_data }) => {
   // フォロー状態を真偽値で管理
   const [followStatus, setFollowStatus] = useToggleByNum(
     user_data.followStatus
