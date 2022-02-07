@@ -237,7 +237,6 @@ const Article: React.FC = () => {
     <div className="h-full">
       <LikeUserListModal
         lieksUserList={liksUserList}
-        checkLoginUserFlag={checkLoginUserFlag}
         likeUserModalStatus={likeUserModalStatus}
         setLikeUserModalStatus={setLikeUserModalStatus}
       />
@@ -273,10 +272,7 @@ const Article: React.FC = () => {
             onDeleteArticle={onDeleteArticle}
             setLikeUserModalStatus={setLikeUserModalStatus}
           />
-          <CommentList
-            articleId={articleData.article.id}
-            checkLoginUserFlag={checkLoginUserFlag}
-          />
+          <CommentList articleId={articleData.article.id} />
         </div>
       )}
     </div>

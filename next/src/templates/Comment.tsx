@@ -8,10 +8,7 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { addLikeToComment } from "../lib/api/addData";
 import { removeLikeToComment } from "../lib/api/removeData";
 
-const Comment: React.FC<CommentData> = ({
-  commentData,
-  checkLoginUserFlag,
-}) => {
+const Comment: React.FC<CommentData> = ({ commentData }) => {
   /**
    * いいねしたユーザーをステートで管理して、データを動的に変更する.
    *
@@ -52,7 +49,6 @@ const Comment: React.FC<CommentData> = ({
     <div>
       <LikeUserListModal
         lieksUserList={liksUserList}
-        checkLoginUserFlag={checkLoginUserFlag}
         likeUserModalStatus={likeUserModalStatus}
         setLikeUserModalStatus={setLikeUserModalStatus}
       />

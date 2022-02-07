@@ -6,7 +6,6 @@ import { LikeUser } from ".";
 
 const LikeUserListModal: React.FC<LikeUserModalType> = ({
   lieksUserList,
-  checkLoginUserFlag,
   likeUserModalStatus,
   setLikeUserModalStatus,
 }) => {

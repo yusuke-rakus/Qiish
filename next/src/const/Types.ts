@@ -144,7 +144,6 @@ export type ArticleEditFromType = {
 // 記事にいいねしたユーザー一覧のモーダル表示の型
 export type LikeUserModalType = {
   lieksUserList: UserListType;
-  checkLoginUserFlag: boolean;
   likeUserModalStatus: boolean;
   setLikeUserModalStatus: () => void;
 };
@@ -266,7 +265,6 @@ export type CommentType = {
 // コメント情報の型
 export type CommentData = {
   commentData: CommentType;
-  checkLoginUserFlag: boolean;
 };
 // コメントコンポーネントの型
 export type CommentCompType = {

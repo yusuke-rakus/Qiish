@@ -8,10 +8,7 @@ import { useTextState } from "../hooks";
 import { addComment } from "../lib/api/addData";
 import { fetchcommentList } from "../lib/api/fetchData";
 
-const CommentList: React.FC<{
-  articleId: number;
-  checkLoginUserFlag: boolean;
-}> = ({ articleId, checkLoginUserFlag }) => {
+const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   // コメント(記事)
   const [commentText, setCommentText] = useTextState("");
   // SWRで再検証するメソッド
@@ -54,13 +51,7 @@ const CommentList: React.FC<{
         <hr />
         {data &&
           data.commentList.map((commentData: CommentType) => {
-            return (
-              <Comment
-                key={commentData.id}
-                commentData={commentData}
-                checkLoginUserFlag={checkLoginUserFlag}
-              />
-            );
+            return <Comment key={commentData.id} commentData={commentData} />;
           })}
         <CommentForm
           onAddComment={onAddComment}
