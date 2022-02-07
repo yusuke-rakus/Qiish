@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { CommentList, LikeUserListModal } from ".";
@@ -24,6 +24,8 @@ const Article: React.FC = () => {
   const { data: articleData } = useSWR("/article");
   // タグデータ取得
   const { data: fetchedTags } = useSWR("/tagsData");
+
+  console.dir(articleData);
 
   /**
    * DBにあるタグ情報を取得し、ステートで管理.

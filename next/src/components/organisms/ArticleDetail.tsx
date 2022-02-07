@@ -57,6 +57,7 @@ const ArticleDetail: React.FC<ArticleType> = ({
             &nbsp;
             <MessageTwoTone twoToneColor="#f97316" className="text-2xl" />
             <span className="ml-1 text-xl">{commentCountOnArticle}</span>
+            {/* warning出る */}
             {checkLoginUserFlag && (
               <Dropdown overlay={menu}>
                 <MenuOutlined className="ml-1 text-2xl text-black hover:text-orange-500" />

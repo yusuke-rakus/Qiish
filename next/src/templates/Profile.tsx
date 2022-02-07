@@ -71,14 +71,15 @@ const Profile: React.FC = () => {
   );
   let tagsByNum = new Array<tag>();
   // 選択済の記事技術タグIDから技術タグを格納する処理
-  useEffect(() => {
+  const insertTagsByNum = () => {
     for (let tagNum of tagsNum) {
       const tagsFilterByTagNum = tagsData.filter(
         (tag: tag) => tag.id === tagNum
       );
       tagsByNum.push(tagsFilterByTagNum[0]);
     }
-  });
+  };
+  insertTagsByNum();
 
   /**
    * 表示フラグ(真偽値)を管理.
