@@ -7,6 +7,7 @@ import { useSelectState, useTextState, useToggle } from "../hooks";
 import { addArticle } from "../lib/api/addData";
 import { useRouter } from "next/router";
 import getCookie from "../lib/cookie/handleCookie";
+import toast, { Toaster } from "react-hot-toast";
 
 const ArticleAdd: React.FC = () => {
   const router = useRouter();
@@ -42,26 +43,25 @@ const ArticleAdd: React.FC = () => {
    */
   const onAddArticle = async () => {
     //  バリデーションチェック
-    const errorMsg = "記事投稿に失敗しました。入力内容を確認してください。";
     if (title === " " || title === "　" || title === null) {
-      alert(errorMsg);
+      toast.error("記事投稿できませんでした...", { icon: "👎" });
       return;
     }
     if (content === " " || content === "　" || content === null) {
-      alert(errorMsg);
+      toast.error("記事投稿できませんでした...", { icon: "👎" });
       return;
     }
 
     try {
       const res = await addArticle(userId, title, content, tags);
       if (res.data.status === "success") {
-        alert("記事投稿成功しました。記事一覧へ戻ります。");
+        toast.success("記事投稿しました!", { icon: "👍" });
         router.push("/");
       } else {
-        alert(errorMsg);
+        toast.error("記事投稿できませんでした...", { icon: "👎" });
       }
     } catch (error) {
-      alert(errorMsg);
+      toast.error("記事投稿できませんでした...", { icon: "👎" });
     }
   };
 
@@ -91,6 +91,7 @@ const ArticleAdd: React.FC = () => {
           />
         </div>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };

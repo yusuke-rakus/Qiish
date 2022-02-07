@@ -11,10 +11,11 @@ type Props = {
 
 // CSSの変更が加わるので明示的にonProfileとして分離
 const SkillTagsOnProfile: React.FC<Props> = ({ tags }) => {
+  const onClickTag = () => {};
   return (
     <div className="m-1 flex flex-wrap">
       {tags.map((tag) => {
-        return <SkillTag key={tag.id} {...tag} />;
+        return <SkillTag key={tag.id} {...tag} onClickTag={onClickTag} />;
       })}
     </div>
   );
