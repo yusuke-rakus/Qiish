@@ -80,6 +80,7 @@ CREATE TABLE tags(
 CREATE TABLE user_info_tags(
     user_info_id int NOT NULL,
     tag_id int NOT NULL,
+    tag_order NOT NULL
     FOREIGN KEY fk_tags_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
     FOREIGN KEY fk_user_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE,
     UNIQUE (user_info_id, tag_id)
@@ -88,6 +89,7 @@ CREATE TABLE user_info_tags(
 CREATE TABLE article_tags(
     article_id int NOT NULL,
     tag_id int NOT NULL,
+    tag_order NOT NULL
     FOREIGN KEY fk_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE,
     FOREIGN KEY fk_article_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE,
     UNIQUE (article_id, tag_id)
@@ -244,24 +246,24 @@ VALUES
     ('kotolin');
 
 INSERT INTO
-    user_info_tags(user_info_id, tag_id)
+    user_info_tags(user_info_id, tag_id, tag_order)
 VALUES
-    (1, 1);
+    (1, 1, 1);
 
 INSERT INTO
-    user_info_tags(user_info_id, tag_id)
+    user_info_tags(user_info_id, tag_id, tag_order)
 VALUES
-    (1, 2);
+    (1, 2, 2);
 
 INSERT INTO
-    user_info_tags(user_info_id, tag_id)
+    user_info_tags(user_info_id, tag_id, tag_order)
 VALUES
-    (2, 2);
+    (2, 2, 1);
 
 INSERT INTO
-    user_info_tags(user_info_id, tag_id)
+    user_info_tags(user_info_id, tag_id, tag_order)
 VALUES
-    (3, 3);
+    (3, 3, 1);
 
 INSERT INTO
     follow(user_info_id, follow_user_info_id)
@@ -288,19 +290,19 @@ VALUES
     );
 
 INSERT INTO
-    article_tags(article_id, tag_id)
+    article_tags(article_id, tag_id, tag_order)
 VALUES
-    (1, 1);
+    (1, 1, 1);
 
 INSERT INTO
-    article_tags(article_id, tag_id)
+    article_tags(article_id, tag_id, tag_order)
 VALUES
-    (1, 3);
+    (1, 3, 2);
 
 INSERT INTO
-    article_tags(article_id, tag_id)
+    article_tags(article_id, tag_id, tag_order)
 VALUES
-    (2, 2);
+    (2, 2, 1);
 
 INSERT INTO
     likes(user_info_id, article_id)
