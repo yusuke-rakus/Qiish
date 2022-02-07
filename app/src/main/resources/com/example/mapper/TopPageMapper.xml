@@ -45,7 +45,7 @@
 		ON at.tag_id = t.id 
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id 
-		ORDER BY visited_count DESC;
+		ORDER BY visited_count DESC, at.tag_order;
 	</select>
 
 	<!-- タグ一覧取得 -->
@@ -87,7 +87,7 @@
 		<foreach collection="wordList" item="word">
 			AND title LIKE CONCAT('%' ,#{word}, '%')
 		</foreach>
-		ORDER BY visited_count DESC;
+		ORDER BY visited_count DESC, at.tag_order;
 	</select>
 
 	<!-- タグ検索 -->
@@ -111,7 +111,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id 
 		WHERE a.id IN ((SELECT article_id FROM article_tags WHERE tag_id = #{tagId}))
-		ORDER BY visited_count DESC;
+		ORDER BY visited_count DESC, at.tag_order;
 	</select>
  
 </mapper>
