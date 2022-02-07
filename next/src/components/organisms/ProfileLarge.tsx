@@ -53,19 +53,19 @@ const ProfileLarge: React.FC<ProfileLargeType> = ({
             )}
           </div>
         </div>
-        <div className="m-4 flex jusify-around divide-x divide-black text-lg">
-          <div className="flex-grow text-center">
+        <div className="m-4 flex jusify-around divide-x divide-black text-sm sm:text-base lg:text-lg">
+          <div className="flex-grow sm:px-1 md:p-2 text-center">
             投稿数
             <div>{userInfo.articleCount}</div>
           </div>
-          <div className="flex-grow text-center">
+          <div className="flex-grow sm:px-1 md:p-2 text-center">
             <Link href={"/followList"}>
               <a className="text-black hover:text-gray-400">
                 フォロー<div>{userInfo.followCount}</div>
               </a>
             </Link>
           </div>
-          <div className="flex-grow text-center ">
+          <div className="flex-grow sm:px-1 md:p-2 text-center ">
             <Link href={"/followerList"}>
               <a className="text-black hover:text-gray-400">
                 フォロワー<div>{followerCount}</div>

@@ -187,8 +187,6 @@ const Profile: React.FC = () => {
   };
 
   const onClickTag = (tagId: number) => {
-    // const tagsData = await fetchSearchedTag(String(tagId), guestId);
-    // setArticleList(tagsData);
     console.log();
   };
 
@@ -196,7 +194,7 @@ const Profile: React.FC = () => {
     <div>
       {editFlag ? (
         <div className="flex justify-center">
-          <div className="m-10 w-2/5 h-auto">
+          <div className="m-10 lg:w-2/5 h-auto">
             <Link href={"/"}>
               <a className="text-gray-400 hover:text-slate-600">
                 <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
@@ -228,10 +226,7 @@ const Profile: React.FC = () => {
           changeEditFlag={setEditFlag}
         />
       )}
-      {/* <ArticleList /> */}
-      {/* <ArticleComp /> */}
       <div className="flex justify-center bg-orange-100">
-        {/* <div className=" grid grid-cols-2 gap-2 bg-orange-100"> */}
         <div className="w-1/3">
           <Tabs className="text-orange-500" defaultActiveKey="1">
             <TabPane tab="投稿した記事" key="1">
