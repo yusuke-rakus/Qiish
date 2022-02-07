@@ -49,10 +49,18 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
       <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">
         <div className="my-2 text-3xl font-bold text-center">コメント</div>
         <hr />
-        {data &&
+        {data ? (
           data.commentList.map((commentData: CommentType) => {
             return <Comment key={commentData.id} commentData={commentData} />;
-          })}
+          })
+        ) : (
+          <div>
+            <div className="my-5 flex justify-center">
+              <div className="animate-spin h-8 w-8 bg-orange-400 rounded-xl"></div>
+            </div>
+            <hr />
+          </div>
+        )}
         <CommentForm
           onAddComment={onAddComment}
           setCommentText={setCommentText}

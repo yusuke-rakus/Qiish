@@ -4,10 +4,8 @@ import useSWR from "swr";
 
 const QiitaList: React.FC<any> = () => {
   // Qiitaの記事取得
-  const { data, error } = useSWR("/qiitaList");
+  const { data } = useSWR("/qiitaList");
 
-  if (error) return <div>failed to load</div>;
-  if (!data && !error) return <div>loading...</div>;
   return (
     <div>
       <div className="pt-10 text-4xl font-bold text-center">

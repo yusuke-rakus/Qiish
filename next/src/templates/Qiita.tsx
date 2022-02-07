@@ -12,10 +12,7 @@ const Qiita: React.FC = () => {
   const isExistProfile = useMediaQuery({ query: "(min-width: 768px)" });
 
   // qiita詳細データを取得
-  const { data, error } = useSWR(`/qiita`);
-
-  if (error) return <div>failed to load</div>;
-  if (!data && !error) return <div>loading...</div>;
+  const { data } = useSWR(`/qiita`);
 
   return (
     <div className="h-full py-10">
