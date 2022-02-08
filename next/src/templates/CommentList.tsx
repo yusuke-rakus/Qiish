@@ -38,7 +38,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   const onAddComment = async () => {
     const res = await addComment(articleId, commentText);
     if (res.status === "success") {
-      mutate("/article/comment");
+      mutate("/commentList");
     } else {
       alert("コメントに失敗しました。");
     }
