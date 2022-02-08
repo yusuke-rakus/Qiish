@@ -8,6 +8,7 @@ export { default as CommentForm } from "./CommentForm";
 export { default as ProfileEdit } from "./ProfileEdit";
 export { default as ProfileEditFrom } from "./ProfileEditFrom";
 export { default as ProfileRectangle } from "./ProfileRectangle";
+export { default as ProfileRectangleOnModal } from "./ProfileRectangleOnModal";
 export { default as ProfileLarge } from "./ProfileLarge";
 export { default as ProfileSmall } from "./ProfileSmall";
 export { default as QiitaComp } from "./QiitaComp";

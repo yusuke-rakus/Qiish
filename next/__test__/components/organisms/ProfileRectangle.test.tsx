@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { ProfileRectangleOnModal } from "../../../src/components/organisms";
+import { ProfileRectangle } from "../../../src/components/organisms";
 import { ProfileRectangleType } from "../../../src/const/Types";
 
-describe("長方形のプロフィール(モーダル用)をテスト", () => {
+describe("長方形のプロフィールをテスト", () => {
   // ダミーのpropsを定義
   const mockCallback = jest.fn();
   let dummyProps: ProfileRectangleType = {
@@ -37,7 +37,7 @@ describe("長方形のプロフィール(モーダル用)をテスト", () => {
   };
 
   it("ユーザー情報が表示されていること", () => {
-    render(<ProfileRectangleOnModal {...dummyProps} />);
+    render(<ProfileRectangle {...dummyProps} />);
     expect(
       screen.getByText("@" + dummyProps.user_data.userName)
     ).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("長方形のプロフィール(モーダル用)をテスト", () => {
   });
 
   it("フォローボタンが表示されること", () => {
-    render(<ProfileRectangleOnModal {...dummyProps} />);
+    render(<ProfileRectangle {...dummyProps} />);
     expect(screen.getByRole("button").textContent).toBe("フォロー");
   });
 });

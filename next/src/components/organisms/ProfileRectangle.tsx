@@ -38,7 +38,10 @@ const ProfileRectangle: React.FC<ProfileRectangleType> = ({
             </button>
           ) : (
             <button onClick={changeUsrFollow}>
-              <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+              <div
+                data-testid="followTest"
+                className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300"
+              >
                 フォロー
               </div>
             </button>
