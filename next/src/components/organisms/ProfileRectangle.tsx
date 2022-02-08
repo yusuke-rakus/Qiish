@@ -22,7 +22,9 @@ const ProfileRectangle: React.FC<ProfileRectangleType> = ({
           <div>@{user_data.userName}</div>
           <div className="mt-2 text-lg">
             職種<span className="mx-1">:</span>
-            <span className="px-3 rounded-md text-white bg-orange-500">FR</span>
+            <span className="px-3 rounded-md text-white bg-orange-500">
+              {user_data.engineerType}
+            </span>
           </div>
         </div>
       </div>
