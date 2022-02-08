@@ -10,7 +10,7 @@ type Props = {
 };
 
 // CSSの変更が加わるので明示的にonArticleとして分離
-const SkillTagsOnArticle: React.FC<Props> = ({ tags }) => {
+const SkillTagsOnQiita: React.FC<Props> = ({ tags }) => {
   return (
     <div className="m-1 flex flex-wrap">
       {tags.map((tag) => {
@@ -20,4 +20,4 @@ const SkillTagsOnArticle: React.FC<Props> = ({ tags }) => {
   );
 };
 
-export default SkillTagsOnArticle;
+export default SkillTagsOnQiita;
