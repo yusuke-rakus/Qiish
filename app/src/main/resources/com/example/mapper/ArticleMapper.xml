@@ -153,6 +153,7 @@
 		<result property="postedDate" column="a_posted_date"></result>
 		<result property="updateDate" column="a_update_date"></result>
 		<result property="likeStatus" column="like_status"></result>
+		<result property="visitedCount" column="visited_count"  />
 		<collection property="comments" ofType="com.example.domain.Comment">
 			<result property="id" column="c_id"></result>
 			<result property="userInfoId" column="c_user_info_id"></result>
@@ -191,6 +192,7 @@
 			a.posted_date AS a_posted_date,
 			a.update_date AS a_update_date,
 			c.user_info_id AS c_user_info_id,
+			a.visited_count,
 			c.id AS c_id,
 			c.comment AS c_comment,
 			c.comment_date AS c_comment_date,
