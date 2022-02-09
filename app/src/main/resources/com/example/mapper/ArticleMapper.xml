@@ -65,6 +65,12 @@
 		ON cl.user_info_id = clu.id 
 		WHERE article_id = #{articleId}
 	</select>
+	
+	<!-- コメント削除 -->
+	<delete id="commentDelete" parameterType="com.example.form.CommentDeleteForm">
+		DELETE FROM comments 
+		WHERE user_info_id=#{guestId} AND id=#{commentId};
+	</delete>
 
 	<!-- コメントLIKE -->
 	<insert id="commentLike"
