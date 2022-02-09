@@ -5,7 +5,7 @@ import { SkillTagsOnQiita } from "../molecules";
 import { QiitaListCompType } from "../../const/Types";
 
 const QiitaListComp: React.FC<QiitaListCompType> = ({ qiitaData }) => {
-  const formatDate = moment(qiitaData.created_at).format("YYYY年MM月DD日");
+  const formatDate = moment(qiitaData.created_at).format("YYYY年M月D日");
   return (
     <div className="p-5 m-2 h-auto flex flex-col gap-1 bg-white rounded-lg shadow-xl">
       <div className="text-xs text-gray">

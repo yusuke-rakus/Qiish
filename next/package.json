@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --env=jsdom --verbose"
+    "t": "jest --env=jsdom --verbose"
   },
   "dependencies": {
     "antd": "^4.18.2",
