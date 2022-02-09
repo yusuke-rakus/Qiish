@@ -43,6 +43,7 @@ CREATE TABLE articles(
     posted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     visited_count int NOT NULL DEFAULT 0,
     update_date datetime,
+    article_status boolean NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY fk_articles_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
@@ -489,17 +490,23 @@ VALUES
     (1, 3);
 
 INSERT INTO
-    articles(user_info_id, title, content)
+    articles(user_info_id, title, content, article_status)
 VALUES
-    (1, 'About HTML', 'HTML is mark up language');
+    (
+        1,
+        'About HTML',
+        'HTML is mark up language',
+        TRUE
+    );
 
 INSERT INTO
-    articles(user_info_id, title, content)
+    articles(user_info_id, title, content, article_status)
 VALUES
     (
         2,
         'About Python',
-        'Python used for Machine Larning'
+        'Python used for Machine Larning',
+        TRUE
     );
 
 INSERT INTO

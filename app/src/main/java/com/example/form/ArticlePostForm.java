@@ -16,6 +16,7 @@ public class ArticlePostForm {
 	private String title;
 	@NotBlank
 	private String content;
+	private boolean articleStatus;
 	private List<Integer> tags;
 
 	public Integer getUserInfoId() {
@@ -42,6 +43,14 @@ public class ArticlePostForm {
 		this.content = content;
 	}
 
+	public boolean isArticleStatus() {
+		return articleStatus;
+	}
+
+	public void setArticleStatus(boolean articleStatus) {
+		this.articleStatus = articleStatus;
+	}
+
 	public List<Integer> getTags() {
 		return tags;
 	}
@@ -52,7 +61,8 @@ public class ArticlePostForm {
 
 	@Override
 	public String toString() {
-		return "ArticlePostForm [userInfoId=" + userInfoId + ", title=" + title + ", content=" + content + ", tags="
-				+ tags + "]";
+		return "ArticlePostForm [userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
+				+ ", articleStatus=" + articleStatus + ", tags=" + tags + "]";
 	}
+
 }
