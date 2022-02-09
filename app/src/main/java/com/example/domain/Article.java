@@ -17,6 +17,7 @@ public class Article {
 	private List<Comment> comments;
 	private Integer likeStatus;
 	private UserInfo userInfo;
+	private Integer visitedCount;
 
 	public Integer getId() {
 		return id;
@@ -114,12 +115,22 @@ public class Article {
 		this.userInfo = userInfo;
 	}
 
+	public Integer getVisitedCount() {
+		return visitedCount;
+	}
+
+	public void setVisitedCount(Integer visitedCount) {
+		this.visitedCount = visitedCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
 				+ ", likesCount=" + likesCount + ", postedDate=" + postedDate + ", updateDate=" + updateDate
 				+ ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList + ", comments=" + comments
-				+ ", likeStatus=" + likeStatus + ", userInfo=" + userInfo + "]";
+				+ ", likeStatus=" + likeStatus + ", userInfo=" + userInfo + ", visitedCount=" + visitedCount + "]";
 	}
+
+
 
 }
