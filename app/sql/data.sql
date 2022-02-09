@@ -510,6 +510,11 @@ VALUES
     );
 
 INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'This is Title', '# About Content', FALSE);
+
+INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (1, 1, 1);
