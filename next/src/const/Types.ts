@@ -74,6 +74,8 @@ export type ArticleData = {
   title: string;
   content: string;
   postedDate: string;
+  updateDate: string;
+  visitedCount: number;
 };
 
 // 詳細記事の型

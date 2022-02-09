@@ -80,9 +80,10 @@ const ArticleDetail: React.FC<ArticleType> = ({
           </div>
         </div>
         <div className="pt-1 text-slate-500 text-center">
-          <span>
-            投稿日: {moment(article.postedDate).format("YYYY年M月D日")}
-          </span>
+          <span>投稿: {moment(article.postedDate).format("YYYY年M月D日")}</span>
+          &nbsp;
+          <span>更新: {moment(article.updateDate).format("YYYY年M月D日")}</span>
+          <div>{article.visitedCount} views</div>
         </div>
         <div className="px-8 pt-6 text-lg">
           <div className="markdown">
