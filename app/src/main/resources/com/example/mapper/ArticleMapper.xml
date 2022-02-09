@@ -328,5 +328,26 @@
 		WHERE a.id IN(SELECT article_id FROM likes WHERE user_info_id = #{userInfoId})
 		ORDER BY a.id DESC, at.tag_order;
 	</select>
+	
+	<!-- 保存記事一覧 -->
+	<select id="savedArticles" resultMap="articleList">
+		SELECT
+			a.id AS article_id,
+			a.title,
+			a.content,
+			t.id AS tag_id,
+			t.skill,
+			t.image AS tag_image
+		FROM articles AS a
+		LEFT JOIN article_tags AS at 
+		ON at.article_id = a.id
+		LEFT JOIN tags AS t 
+		ON at.tag_id = t.id 
+		LEFT JOIN user_info AS u
+		ON a.user_info_id = u.id
+		WHERE a.user_info_id = #{guestId}
+		AND article_status = false
+		ORDER BY a.id DESC, at.tag_order;
+	</select>
 
 </mapper>

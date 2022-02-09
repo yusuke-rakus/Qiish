@@ -29,7 +29,7 @@ public interface ArticleMapper {
 
 	/** コメントLIKE解除 */
 	public void removeCommentLike(CommentLikeForm form);
-	
+
 	public void commentDelete(CommentDeleteForm form);
 
 	/** LIKE */
@@ -71,5 +71,8 @@ public interface ArticleMapper {
 
 	/** Like記事一覧取得 */
 	public List<Article> likedArticles(@Param("userInfoId") Integer userInfoId, @Param("guestId") Integer guestId);
+
+	/** 保存記事一覧 */
+	public List<Article> savedArticles(Integer guestId);
 
 }

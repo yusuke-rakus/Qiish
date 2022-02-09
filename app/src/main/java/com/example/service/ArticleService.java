@@ -54,7 +54,7 @@ public class ArticleService {
 		}
 		return res;
 	}
-	
+
 	/** コメント削除 */
 	public Response commentDelete(CommentDeleteForm form) {
 		Response res = new Response();
@@ -206,6 +206,18 @@ public class ArticleService {
 		try {
 			res.setArticleList(articleMapper.likedArticles(form.getUserInfoId(), form.getGuestId()));
 			res.setUserInfo(myPageMapper.myPage(form.getUserInfoId(), form.getGuestId()));
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** 保存記事一覧 */
+	public ArticleListResponse savedArticles(GuestArticlesForm form) {
+		ArticleListResponse res = new ArticleListResponse();
+		try {
+			res.setArticleList(articleMapper.savedArticles(form.getGuestId()));
+			res.setUserInfo(myPageMapper.myPage(form.getGuestId(), null));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}

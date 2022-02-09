@@ -39,7 +39,7 @@ public class ArticleController {
 		}
 		return articleService.articleComment(form);
 	}
-	
+
 	@PostMapping("/commentDelete")
 	public Response commentDelete(@RequestBody CommentDeleteForm form) {
 		return articleService.commentDelete(form);
@@ -123,6 +123,12 @@ public class ArticleController {
 	@PostMapping("/postedList")
 	public ArticleListResponse postedArticles(@RequestBody GuestArticlesForm form) {
 		return articleService.postedArticles(form);
+	}
+
+	/** 保存記事取得 */
+	@PostMapping("/savedList")
+	public ArticleListResponse savedArticles(@RequestBody GuestArticlesForm form) {
+		return articleService.savedArticles(form);
 	}
 
 }
