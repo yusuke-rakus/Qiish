@@ -12,6 +12,7 @@ import com.example.form.ArticleCommentForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleDeleteFrom;
 import com.example.form.ArticleLikeForm;
+import com.example.form.CommentDeleteForm;
 import com.example.form.CommentLikeForm;
 
 @Mapper
@@ -28,6 +29,8 @@ public interface ArticleMapper {
 
 	/** コメントLIKE解除 */
 	public void removeCommentLike(CommentLikeForm form);
+	
+	public void commentDelete(CommentDeleteForm form);
 
 	/** LIKE */
 	public void articleLike(ArticleLikeForm form);
