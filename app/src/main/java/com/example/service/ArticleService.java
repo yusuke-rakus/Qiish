@@ -19,6 +19,7 @@ import com.example.form.ArticleDetailForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
+import com.example.form.CommentDeleteForm;
 import com.example.form.CommentLikeForm;
 import com.example.form.GuestArticlesForm;
 import com.example.mapper.ArticleMapper;
@@ -48,6 +49,17 @@ public class ArticleService {
 		Response res = new Response();
 		try {
 			articleMapper.articleComment(form);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+	
+	/** コメント削除 */
+	public Response commentDelete(CommentDeleteForm form) {
+		Response res = new Response();
+		try {
+			articleMapper.commentDelete(form);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}

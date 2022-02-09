@@ -14,6 +14,7 @@ import com.example.form.ArticleEditForm;
 import com.example.form.ArticleDeleteFrom;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
+import com.example.form.CommentDeleteForm;
 import com.example.form.CommentLikeForm;
 import com.example.form.GuestArticlesForm;
 import com.example.response.ArticleDetailResponse;
@@ -37,6 +38,11 @@ public class ArticleController {
 			return new Response(result.hasErrors());
 		}
 		return articleService.articleComment(form);
+	}
+	
+	@PostMapping("/commentDelete")
+	public Response commentDelete(@RequestBody CommentDeleteForm form) {
+		return articleService.commentDelete(form);
 	}
 
 	/** コメント取得 */
