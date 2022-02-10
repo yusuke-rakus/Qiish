@@ -5,9 +5,10 @@ import { setupServer } from "msw/node";
 import { getServerSideProps } from "../../src/pages/followerList";
 import { fetchUserQiish, fetchUserZenn } from "../.mock/data";
 import { ctxData } from "../.mock/data";
+import { BASEURL } from "../../src/const/Urls";
 
 const server = setupServer(
-  rest.post("http://localhost:9090/user/followerList", (req, res, ctx) => {
+  rest.post(`${BASEURL}/user/followerList`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json([fetchUserQiish, fetchUserZenn]));
   })
 );
