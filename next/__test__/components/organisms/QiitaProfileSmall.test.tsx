@@ -2,27 +2,11 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { QiitaProfileSmall } from "../../../src/components/organisms";
 import { QiitaProfileSmallType } from "../../../src/const/Types";
+import { qiitaUser } from "../../.mock/data";
 
 describe("Qiita記事詳細コンポーネントのテスト", () => {
   let dummyProps: QiitaProfileSmallType = {
-    qiita_user: {
-      description: "hello",
-      facebook_id: "",
-      followees_count: 0,
-      followers_count: 0,
-      github_login_name: "qiish",
-      id: "",
-      items_count: 0,
-      linkedin_id: "",
-      location: "",
-      name: "qiish",
-      organization: "",
-      permanent_id: 0,
-      profile_image_url: "",
-      team_only: false,
-      twitter_screen_name: "",
-      website_url: "",
-    },
+    qiita_user: qiitaUser,
   };
 
   it("Qiita記事詳細の投稿者情報が表示されること", () => {

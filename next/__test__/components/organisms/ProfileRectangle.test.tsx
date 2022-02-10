@@ -2,38 +2,14 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { ProfileRectangle } from "../../../src/components/organisms";
 import { ProfileRectangleType } from "../../../src/const/Types";
+import { ProfileRectangleMock } from "../../.mock/data";
 
 describe("長方形のプロフィールをテスト", () => {
   // ダミーのpropsを定義
   const mockCallback = jest.fn();
   let dummyProps: ProfileRectangleType = {
-    user_data: {
-      id: 1,
-      userName: "qiish",
-      email: "sample@qiish.com",
-      engineerType: "WEB",
-      description: "hello",
-      image: "",
-      follow: "",
-      followCount: 1,
-      follower: "",
-      followerCount: 1,
-      tags: [
-        {
-          id: 1,
-          skill: "FR",
-          image: null,
-        },
-      ],
-      articles: 0,
-      articleCount: 0,
-      likes: 0,
-      comments: "",
-      followStatus: 0,
-    },
-    followStatus: false,
+    ...ProfileRectangleMock,
     changeUsrFollow: mockCallback,
-    checkLoginUserFlag: false,
   };
 
   it("ユーザー情報が表示されていること", () => {

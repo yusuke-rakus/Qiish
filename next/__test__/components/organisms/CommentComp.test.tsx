@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { CommentCompType } from "../../../src/const/Types";
 import { CommentComp } from "../../../src/components/organisms";
-import { commentData } from "../../.mock/data";
+import { commentDataMock } from "../../.mock/data";
 import moment from "moment";
 
 describe("コメントコンポーネントのテスト", () => {
@@ -10,10 +10,7 @@ describe("コメントコンポーネントのテスト", () => {
   const mockChangeCommentLike = jest.fn();
   const mockSetLikeUserModalStatus = jest.fn();
   let dummyProps: CommentCompType = {
-    commentData: commentData,
-    likesCount: 0,
-    likeStatus: false,
-    checkLoginUserFlag: false,
+    ...commentDataMock,
     onDeleteComment: mockOnDeleteComment,
     changeCommentLike: mockChangeCommentLike,
     setLikeUserModalStatus: mockSetLikeUserModalStatus,

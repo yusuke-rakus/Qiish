@@ -1,4 +1,4 @@
-export const commentData = {
+const commentData = {
   id: 1,
   articleId: 1,
   likeStatus: 1,
@@ -56,4 +56,11 @@ export const commentData = {
     comments: "",
     followStatus: 0,
   },
+};
+
+export const commentDataMock = {
+  commentData: commentData,
+  likesCount: 0,
+  likeStatus: false,
+  checkLoginUserFlag: false,
 };
