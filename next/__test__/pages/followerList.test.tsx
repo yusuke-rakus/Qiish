@@ -22,8 +22,8 @@ afterAll(() => server.close());
 
 describe("フォロワーリストデータをテスト", () => {
   it("フォロワーリストのデータが取得されること", async () => {
-    const response = await getServerSideProps(ctxData);
-    expect(response).toStrictEqual({
+    const res = await getServerSideProps(ctxData);
+    expect(res).toStrictEqual({
       props: { fallback: { "/followerList": [fetchUserQiish, fetchUserZenn] } },
     });
   });

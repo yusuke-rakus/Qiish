@@ -102,10 +102,11 @@ export const fetchcommentList = async (articleId: number) => {
 };
 
 /**
- * 一覧情報を取得.
+ * プロフィールに表示する投稿記事一覧情報を取得.
  *
- * @param articleId - 記事ID(num)
- * @returns 記事IDに当てはまるコメント一覧情報
+ * @param userInfoId - ユーザー情報ID(str)
+ * @param guestId - ログインユーザーID(str)
+ * @returns ユーザー情報IDに当てはまる投稿記事一覧情報
  */
 export const fetchPostedArticlesOnProfile = async (
   guestId: string,
@@ -118,6 +119,13 @@ export const fetchPostedArticlesOnProfile = async (
   return res.data;
 };
 
+/**
+ * プロフィールに表示するいいね記事一覧情報を取得.
+ *
+ * @param userInfoId - ユーザー情報ID(str)
+ * @param guestId - ログインユーザーID(str)
+ * @returns ユーザー情報IDに当てはまるいいね記事一覧情報
+ */
 export const fetchLikedArticlesOnProfile = async (
   guestId: string,
   userInfoId: string

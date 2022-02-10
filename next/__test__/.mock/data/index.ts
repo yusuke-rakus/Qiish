@@ -1,3 +1,4 @@
+export { tagsData, articleDataMock } from "./articleData";
 export { commentDataMock } from "./commentData";
 export { ctxData } from "./contextData";
 export {
