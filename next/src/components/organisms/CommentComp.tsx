@@ -8,6 +8,7 @@ const CommentComp: React.FC<CommentCompType> = ({
   commentData,
   likesCount,
   likeStatus,
+  checkLoginUserFlag,
   onDeleteComment,
   changeCommentLike,
   setLikeUserModalStatus,
@@ -46,9 +47,11 @@ const CommentComp: React.FC<CommentCompType> = ({
           <span className="mx-6">
             {moment(commentData.commentDate).format("YYYY年M月D日")}
           </span>
-          <button onClick={() => onDeleteComment(commentData.id)}>
-            <DeleteOutlined className="text-2xl" />
-          </button>
+          {checkLoginUserFlag && (
+            <button onClick={() => onDeleteComment(commentData.id)}>
+              <DeleteOutlined className="text-2xl" />
+            </button>
+          )}
         </div>
       </div>
       <hr />

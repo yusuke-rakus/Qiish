@@ -274,6 +274,7 @@ export type CommentCompType = {
   commentData: CommentType;
   likesCount: number;
   likeStatus: boolean;
+  checkLoginUserFlag: boolean;
   onDeleteComment: (commentId: number) => void;
   changeCommentLike: () => void;
   setLikeUserModalStatus: () => void;

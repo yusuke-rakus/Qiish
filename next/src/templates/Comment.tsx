@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { LikeUserListModal } from ".";
 import { CommentComp } from "../components/organisms";
 import { CommentData } from "../const/Types";
-import { useToggle } from "../hooks";
+import { useLoginChecker, useToggle } from "../hooks";
 import { useAddOrSubOne } from "../hooks/useAddOrSubOne";
 import { useToggleByNum } from "../hooks/useToggleByNum";
 import { addLikeToComment } from "../lib/api/addData";
 import { removeLikeToComment } from "../lib/api/removeData";
 
 const Comment: React.FC<CommentData> = ({ commentData, onDeleteComment }) => {
+  // ログインユーザーがコメントしたユーザーかどうか判定
+  const checkLoginUserFlag = useLoginChecker(commentData.userInfo.id);
+
   /**
    * いいねしたユーザーをステートで管理して、データを動的に変更する.
    *
@@ -56,6 +59,7 @@ const Comment: React.FC<CommentData> = ({ commentData, onDeleteComment }) => {
         commentData={commentData}
         likesCount={likesCount}
         likeStatus={likeStatus}
+        checkLoginUserFlag={checkLoginUserFlag}
         onDeleteComment={onDeleteComment}
         changeCommentLike={changeCommentLike}
         setLikeUserModalStatus={setLikeUserModalStatus}

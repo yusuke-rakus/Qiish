@@ -4,7 +4,7 @@ import useSWR, { useSWRConfig } from "swr";
 import { Comment } from ".";
 import { CommentForm } from "../components/organisms";
 import { CommentType } from "../const/Types";
-import { useTextState } from "../hooks";
+import { useLoginChecker, useTextState } from "../hooks";
 import { addComment } from "../lib/api/addData";
 import { fetchcommentList } from "../lib/api/fetchData";
 import { deleteCommnetById } from "../lib/api/removeData";
@@ -28,7 +28,6 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   };
   // SWRでコメントデータを取得
   const { data: commentData } = useSWR("/commentList", getcommentList);
-
   /**
    * コメント追加処理.
    *
