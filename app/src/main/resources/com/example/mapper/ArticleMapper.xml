@@ -349,5 +349,12 @@
 		AND article_status = false
 		ORDER BY a.id DESC, at.tag_order;
 	</select>
+	
+	<!-- 投稿者確認（記事投稿者と一致を確認） -->
+	<select id="checkGuest" resultType="com.example.domain.Article">
+		SELECT *
+		FROM articles 
+		WHERE id = #{articleId} AND user_info_id =#{guestId};
+	</select>
 
 </mapper>

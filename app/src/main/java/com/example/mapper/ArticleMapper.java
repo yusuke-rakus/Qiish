@@ -74,5 +74,8 @@ public interface ArticleMapper {
 
 	/** 保存記事一覧 */
 	public List<Article> savedArticles(Integer guestId);
+	
+	/** 投稿者確認（記事投稿者と一致を確認） */
+	public Article checkGuest(@Param("articleId") Integer articleId, @Param("guestId") Integer guestId);
 
 }

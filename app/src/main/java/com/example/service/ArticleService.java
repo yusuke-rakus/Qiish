@@ -157,6 +157,12 @@ public class ArticleService {
 	public Response articleEdit(ArticleEditForm form) {
 		Response res = new Response();
 		try {
+			Article article =  articleMapper.checkGuest(form.getArticleId(), form.getGuestId());
+			//暫定でちょっとカッコ悪い実装（投稿者と編集者の確認）
+			if(Objects.isNull(article)) {
+				res.setStatus(Status.ERROR.getStatus());
+				return res;
+			}
 			articleMapper.articleEdit(form);
 			articleMapper.articleTagsDelete(form.getArticleId());
 			if (!CollectionUtils.isEmpty(form.getTags())) {
