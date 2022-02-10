@@ -139,7 +139,8 @@
 		UPDATE articles SET
 		title=#{title},
 		content=#{content},
-		update_date = CURRENT_TIMESTAMP
+		update_date = CURRENT_TIMESTAMP,
+		article_status = TRUE
 		WHERE id=#{articleId} AND user_info_id=#{guestId};
 	</update>
 
@@ -302,6 +303,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
 		WHERE a.user_info_id = #{userInfoId}
+		AND article_status = TRUE
 		ORDER BY a.id DESC, at.tag_order; 
 	</select>
 	
@@ -326,6 +328,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
 		WHERE a.id IN(SELECT article_id FROM likes WHERE user_info_id = #{userInfoId})
+		AND article_status = TRUE
 		ORDER BY a.id DESC, at.tag_order;
 	</select>
 	

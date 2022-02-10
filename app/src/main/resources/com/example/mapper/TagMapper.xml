@@ -16,20 +16,26 @@
 	
 	<!-- Tagの投稿数を集計（月間・年間・全て） -->
 	<select id="getTagsCount" resultMap="tagMap">
-		select 
-		t.skill, t.image, count(at.tag_id) as tag_count  
-		from articles a left join article_tags at on a.id = at.article_id 
-		left join  tags t on t.id = at.tag_id 
+		SELECT
+			t.id,
+			t.skill,
+			t.image,
+			COUNT(at.tag_id) AS tag_count
+		FROM articles a
+		INNER JOIN article_tags at
+		ON a.id = at.article_id
+		INNER JOIN tags t
+		ON t.id = at.tag_id
 		<choose>
 			<when test='value == "MONTH"'>
-				where a.posted_date > date_sub(CURDATE(), interval 30 day )
+				WHERE a.posted_date > date_sub(CURDATE(), INTERVAL 30 day)
 			</when> 
 			<when test='value == "YEAR"'>
-				where a.posted_date > date_sub(CURDATE(), interval 365 day )
+				WHERE a.posted_date > date_sub(CURDATE(), INTERVAL 365 day)
 			</when> 
 		</choose>
-		group by t.skill order by count(at.tag_id) desc limit 20;
+		GROUP BY t.skill 
+		ORDER BY COUNT(at.tag_id) DESC LIMIT 20;
 	</select>
-	
 
 </mapper>

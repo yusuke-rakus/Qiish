@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import java.util.ArrayList;
 
 import com.example.common.Status;
 import com.example.mapper.TagMapper;
@@ -34,21 +33,20 @@ public class TagService {
 
 	/**
 	 * タグの投稿集計をループ処理で行う
+	 * 
 	 * @return
 	 */
 	public TagCountListResponse getTagCount() {
-		TagCountListResponse tagResCountList = new TagCountListResponse();
-		List<List<Tag>> tagList = new ArrayList<>();
+		TagCountListResponse res = new TagCountListResponse();
 		try {
 			for (String day : DAYKEYWORD) {
 				List<Tag> tag = tagMapper.getTagsCount(day);
-				tagList.add(tag);
+				res.setList(tag);
 			}
-			tagResCountList.setTagCountList(tagList);
 		} catch (Exception e) {
-			tagResCountList.setStatus(Status.ERROR.getStatus());
+			res.setStatus(Status.ERROR.getStatus());
 		}
-		return tagResCountList;
+		return res;
 	}
 
 }
