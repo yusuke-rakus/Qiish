@@ -1,0 +1,21 @@
+export const profileDataMock = {
+  status: "success",
+  userInfo: {
+    id: 2,
+    userName: "zenn",
+    email: "sample@zenn.com",
+    engineerType: "FR",
+    description: "Hej!",
+    image: null,
+    follow: null,
+    followCount: 0,
+    follower: null,
+    followerCount: 1,
+    tags: [{ id: 2, skill: "Web", image: null }],
+    articles: null,
+    articleCount: 1,
+    likes: null,
+    comments: null,
+    followStatus: 0,
+  },
+};

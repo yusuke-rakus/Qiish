@@ -20,8 +20,8 @@ afterEach(() => {
 });
 afterAll(() => server.close());
 
-describe("フォロワーリストデータをテスト", () => {
-  it("フォロワーリストのデータが取得されること", async () => {
+describe("フォロワーリストページをテスト", () => {
+  it("フォロワーリストが取得されること", async () => {
     const res = await getServerSideProps(ctxData);
     expect(res).toStrictEqual({
       props: { fallback: { "/followerList": [fetchUserQiish, fetchUserZenn] } },
