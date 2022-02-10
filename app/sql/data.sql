@@ -143,6 +143,25 @@ INSERT INTO
     )
 VALUES
     ('qiita', 'sample@qiita.com', 'CL', 'hei');
+INSERT INTO
+    user_info(
+        user_name,
+        email,
+        engineer_type,
+        description
+    )
+VALUES
+    ('No4', 'no4@qiita.com', 'FR', 'www');
+    
+INSERT INTO
+    user_info(
+        user_name,
+        email,
+        engineer_type,
+        description
+    )
+VALUES
+    ('No5', 'no5@qiita.com', 'WEB', 'wow');
 
 INSERT INTO
     user(user_info_id, email, password)
@@ -158,6 +177,16 @@ INSERT INTO
     user(user_info_id, email, password)
 VALUES
     (3, 'sample@qiita.com', 'qiita');
+    
+INSERT INTO
+    user(user_info_id, email, password)
+VALUES
+    (4, 'no4@qiita.com', 'test');
+    
+INSERT INTO
+    user(user_info_id, email, password)
+VALUES
+    (5, 'no5@qiita.com', 'test1');
 
 INSERT INTO
     tags(skill)
@@ -513,6 +542,273 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'This is Title', '# About Content', FALSE);
+    
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        '4つ目',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'No5', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'python python',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, '7', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'kimestunoyaiba',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'tanjiro', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'nezuko',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'zenitsu', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        3,
+        'ikosuke',
+        'Ruby used for creating WebSite',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (3, 'akaza', "//  # h1 ## h2 ### h3 #### h4", FALSE);
+    
+INSERT INTO
+    articles(user_info_id, visited_count, title, content, article_status)
+VALUES
+    (3, 99, 'markdountest', "// Qiish_Markdown
+
+// midashi
+
+# h1
+## h2
+### h3
+#### h4
+
+// pre
+
+```
+pre
+```
+
+// inyo
+
+> blockquote
+
+// nizyuinyo
+
+>> blockquote
+
+// 箇条書きリスト
+
+- list1
+    - nest list1_1
+        - nest list1_1_1
+        - nest nest1_1_2
+    - list list1_2
+- list2
+- list3
+
+// bangotukilist
+
+1. bangotukilist1
+    1. bangotukilist1_1
+    1. bangotukilist1_2
+1. bangotukilist2
+1. bangotukilist3
+
+
+// Code
+
+fuga install is `npm install fuga`
+
+// em tag
+
+normal *italic* normal
+normal _italic_ normal
+
+// strong(strongtag)
+
+normal **bold** normal
+normal __bold__ normal
+
+// strong(emtag + strongtag)
+
+normal ***bold*** normal
+normal ___bold___ 通常normal
+
+// horizonline
+
+***
+
+___
+
+---
+
+*    *    *
+
+// link
+[markdown sankoukiji](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
+
+
+
+# GFM sample
+(https://github.com/remarkjs/remark-gfm)
+## Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+## Footnote
+
+A note[^1]
+
+[^1]: Big note.
+
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+## Table
+
+| a | b  |  c |  d  |
+| - | :- | -: | :-: |
+| e | f  |  g |  h  |
+
+## Tasklist
+
+* [ ] to do
+* [x] done", FALSE);
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'muzan', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'kokusjibo',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'doma', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'hantengu',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'gyokko', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'daki',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'genya', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'kanawo',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'giyu', '# About Content', FALSE);
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'About Python',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'sinobu', '# About Content', FALSE);
+    
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (
+        2,
+        'rengoku',
+        'Python used for Machine Larning',
+        TRUE
+    );
+
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'uzui', '# test', FALSE);
 
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
@@ -528,6 +824,106 @@ INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (2, 2, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (3, 3, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (4, 4, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (5, 6, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (6, 2, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (7, 24, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (8, 26, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (9, 25, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (10, 42, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (11, 52, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (12, 27, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (13, 29, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (14, 32, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (15, 2, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (16, 32, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (17, 32, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (18, 24, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (19, 24, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (20, 24, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (21, 24, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (22, 24, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (23, 26, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (24, 22, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (25, 21, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (26, 2, 1);
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (27, 7, 1);
 
 INSERT INTO
     likes(user_info_id, article_id)
