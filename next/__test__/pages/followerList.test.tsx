@@ -3,8 +3,8 @@ import { cleanup } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { getServerSideProps } from "../../src/pages/followerList";
-import { fetchUserQiish, fetchUserZenn } from "../.mock/data/userData";
-import { ctxData } from "../.mock/data/contextData";
+import { fetchUserQiish, fetchUserZenn } from "../.mock/data";
+import { ctxData } from "../.mock/data";
 
 const server = setupServer(
   rest.post("http://localhost:9090/user/followerList", (req, res, ctx) => {
