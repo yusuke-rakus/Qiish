@@ -267,12 +267,14 @@ export type CommentType = {
 // コメント情報の型
 export type CommentData = {
   commentData: CommentType;
+  onDeleteComment: (commentId: number) => void;
 };
 // コメントコンポーネントの型
 export type CommentCompType = {
   commentData: CommentType;
   likesCount: number;
   likeStatus: boolean;
+  onDeleteComment: (commentId: number) => void;
   changeCommentLike: () => void;
   setLikeUserModalStatus: () => void;
 };

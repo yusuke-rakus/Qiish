@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartOutlined, DeleteOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { CommentCompType } from "../../const/Types";
 
@@ -8,6 +8,7 @@ const CommentComp: React.FC<CommentCompType> = ({
   commentData,
   likesCount,
   likeStatus,
+  onDeleteComment,
   changeCommentLike,
   setLikeUserModalStatus,
 }) => {
@@ -42,9 +43,12 @@ const CommentComp: React.FC<CommentCompType> = ({
           <span className="ml-1 text-md text-black hover:text-gray-400">
             <button onClick={setLikeUserModalStatus}>{likesCount}</button>
           </span>
-          <span className="ml-6">
+          <span className="mx-6">
             {moment(commentData.commentDate).format("YYYY年M月D日")}
           </span>
+          <button onClick={() => onDeleteComment(commentData.id)}>
+            <DeleteOutlined className="text-2xl" />
+          </button>
         </div>
       </div>
       <hr />

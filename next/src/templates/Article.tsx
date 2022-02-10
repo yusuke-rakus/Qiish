@@ -26,8 +26,6 @@ const Article: React.FC = () => {
   // タグデータ取得
   const { data: fetchedTags } = useSWR("/tagsData");
 
-  console.log(articleData);
-
   /**
    * DBにあるタグ情報を取得し、ステートで管理.
    */

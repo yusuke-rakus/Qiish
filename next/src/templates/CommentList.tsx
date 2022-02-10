@@ -7,6 +7,7 @@ import { CommentType } from "../const/Types";
 import { useTextState } from "../hooks";
 import { addComment } from "../lib/api/addData";
 import { fetchcommentList } from "../lib/api/fetchData";
+import { deleteCommnetById } from "../lib/api/removeData";
 
 const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   // コメント(記事)
@@ -44,6 +45,24 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
     }
   };
 
+  /**
+   * コメント削除を行う.
+   *
+   * @remarks
+   * sucess: コメントデータ再検証
+   * error: アラートメッセージ表示
+   * @param commentId - コメントID
+   */
+  const onDeleteComment = async (commentId: number) => {
+    const res = await deleteCommnetById(commentId);
+    if (res.status == "success") {
+      mutate("/commentList");
+    } else {
+      alert("コメント削除に失敗しました。");
+    }
+  };
+  console.log(data);
+
   return (
     <div className="flex justify-center">
       <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">
@@ -51,7 +70,13 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
         <hr />
         {data ? (
           data.commentList.map((commentData: CommentType) => {
-            return <Comment key={commentData.id} commentData={commentData} />;
+            return (
+              <Comment
+                key={commentData.id}
+                commentData={commentData}
+                onDeleteComment={onDeleteComment}
+              />
+            );
           })
         ) : (
           <div>

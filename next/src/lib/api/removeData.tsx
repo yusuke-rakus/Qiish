@@ -19,6 +19,20 @@ export const removeArticleById = async (articleId: number) => {
 };
 
 /**
+ * コメントIDに当てはまるコメント情報の削除.
+ *
+ * @param commentId - コメントID
+ * @returns 削除処理のステータス(success・error)
+ */
+export const deleteCommnetById = async (commentId: number) => {
+  const res = await axios.post(`${BASEURL}/article/commentDelete`, {
+    commentId: commentId,
+    guestId: guestIdNum,
+  });
+  return res.data;
+};
+
+/**
  * 記事IDに当てはまる記事のいいねを解除する.
  *
  * @param articleId - 記事ID

@@ -8,7 +8,7 @@ import { useToggleByNum } from "../hooks/useToggleByNum";
 import { addLikeToComment } from "../lib/api/addData";
 import { removeLikeToComment } from "../lib/api/removeData";
 
-const Comment: React.FC<CommentData> = ({ commentData }) => {
+const Comment: React.FC<CommentData> = ({ commentData, onDeleteComment }) => {
   /**
    * いいねしたユーザーをステートで管理して、データを動的に変更する.
    *
@@ -56,6 +56,7 @@ const Comment: React.FC<CommentData> = ({ commentData }) => {
         commentData={commentData}
         likesCount={likesCount}
         likeStatus={likeStatus}
+        onDeleteComment={onDeleteComment}
         changeCommentLike={changeCommentLike}
         setLikeUserModalStatus={setLikeUserModalStatus}
       />
