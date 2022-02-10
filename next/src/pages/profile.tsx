@@ -48,7 +48,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     userInfoId
   );
   const likedArticles = await fetchLikedArticlesOnProfile(guestId, userInfoId);
-
   return {
     props: {
       fallback: {
