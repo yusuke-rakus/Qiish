@@ -22,8 +22,8 @@ afterEach(() => {
 });
 afterAll(() => server.close());
 
-describe("記事詳細データをテスト", () => {
-  it("記事詳細データが取得されること", async () => {
+describe("記事詳細ページをテスト", () => {
+  it("詳細記事、タグが取得されること", async () => {
     const res = await getServerSideProps(ctxData);
     expect(res).toStrictEqual({
       props: {
