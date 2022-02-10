@@ -5,6 +5,7 @@ import { CommentComp } from "../../../src/components/organisms";
 import moment from "moment";
 
 describe("コメントコンポーネントのテスト", () => {
+  const mockOnDeleteComment = jest.fn();
   const mockChangeCommentLike = jest.fn();
   const mockSetLikeUserModalStatus = jest.fn();
   let dummyProps: CommentCompType = {
@@ -69,6 +70,8 @@ describe("コメントコンポーネントのテスト", () => {
     },
     likesCount: 0,
     likeStatus: false,
+    checkLoginUserFlag: false,
+    onDeleteComment: mockOnDeleteComment,
     changeCommentLike: mockChangeCommentLike,
     setLikeUserModalStatus: mockSetLikeUserModalStatus,
   };

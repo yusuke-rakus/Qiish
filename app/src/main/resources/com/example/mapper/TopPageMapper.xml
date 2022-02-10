@@ -21,6 +21,7 @@
 		<result column="posted_date" property="postedDate" />
 		<result column="likes_count" property="likesCount" />
 		<result column="like_status" property="likeStatus" />
+		<result column="visited_count" property="visitedCount" />
 		<association property="userInfo" resultMap="userInfo" />
 		<collection property="articleTags" resultMap="tag" />
 	</resultMap>
@@ -32,6 +33,7 @@
 			a.title,
 			a.content,
 			a.posted_date,
+			a.visited_count,
 			t.id AS tag_id, 
 			t.skill, 
 			t.image AS tag_image,

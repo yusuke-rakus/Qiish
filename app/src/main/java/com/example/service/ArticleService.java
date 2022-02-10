@@ -19,6 +19,7 @@ import com.example.form.ArticleDetailForm;
 import com.example.form.ArticleEditForm;
 import com.example.form.ArticleLikeForm;
 import com.example.form.ArticlePostForm;
+import com.example.form.CommentDeleteForm;
 import com.example.form.CommentLikeForm;
 import com.example.form.GuestArticlesForm;
 import com.example.mapper.ArticleMapper;
@@ -48,6 +49,17 @@ public class ArticleService {
 		Response res = new Response();
 		try {
 			articleMapper.articleComment(form);
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** コメント削除 */
+	public Response commentDelete(CommentDeleteForm form) {
+		Response res = new Response();
+		try {
+			articleMapper.commentDelete(form);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}
@@ -194,6 +206,18 @@ public class ArticleService {
 		try {
 			res.setArticleList(articleMapper.likedArticles(form.getUserInfoId(), form.getGuestId()));
 			res.setUserInfo(myPageMapper.myPage(form.getUserInfoId(), form.getGuestId()));
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
+	/** 保存記事一覧 */
+	public ArticleListResponse savedArticles(GuestArticlesForm form) {
+		ArticleListResponse res = new ArticleListResponse();
+		try {
+			res.setArticleList(articleMapper.savedArticles(form.getGuestId()));
+			res.setUserInfo(myPageMapper.myPage(form.getGuestId(), null));
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
 		}

@@ -1,7 +1,7 @@
 import React from "react";
 import { HeartOutlined, MessageTwoTone, MenuOutlined } from "@ant-design/icons";
 import { ProfileSmall } from ".";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { Dropdown, Menu } from "antd";
 import { ArticleType } from "../../const/Types";
@@ -80,15 +80,20 @@ const ArticleDetail: React.FC<ArticleType> = ({
           </div>
         </div>
         <div className="pt-1 text-slate-500 text-center">
-          <span>
-            投稿日: {moment(article.postedDate).format("YYYY年M月D日")}
-          </span>
+          <span>投稿: {moment(article.postedDate).format("YYYY年M月D日")}</span>
+          &nbsp;
+          {article.updateDate && (
+            <span>
+              更新: {moment(article.updateDate).format("YYYY年M月D日")}
+            </span>
+          )}
+          <div>{article.visitedCount} views</div>
         </div>
         <div className="px-8 pt-6 text-lg">
           <div className="markdown">
-            <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
+            {/* <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
               {article.content}
-            </ReactMarkdown>
+            </ReactMarkdown> */}
           </div>
         </div>
       </div>

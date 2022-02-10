@@ -220,6 +220,8 @@ const Article: React.FC = () => {
     title: title,
     content: content,
     postedDate: articleData.article.postedDate,
+    updateDate: articleData.article.updateDate,
+    visitedCount: articleData.article.visitedCount,
   };
   // 詳細記事編集用のメソッド
   const editFnc = {

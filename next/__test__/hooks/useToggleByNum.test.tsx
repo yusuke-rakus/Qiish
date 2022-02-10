@@ -19,6 +19,7 @@ describe("useToggleByNumに関する処理のテスト", () => {
     //Boolean反転後, ステートをチェック
     expect(result.current[0]).toEqual(false);
   });
+
   test("Booleanの初期値(false)を反転させる処理", () => {
     const { result } = renderHook(() => useToggleByNum(0));
 

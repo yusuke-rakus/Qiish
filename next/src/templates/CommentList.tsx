@@ -4,9 +4,11 @@ import useSWR, { useSWRConfig } from "swr";
 import { Comment } from ".";
 import { CommentForm } from "../components/organisms";
 import { CommentType } from "../const/Types";
-import { useTextState } from "../hooks";
+import { useLoginChecker, useTextState } from "../hooks";
 import { addComment } from "../lib/api/addData";
 import { fetchcommentList } from "../lib/api/fetchData";
+import { deleteCommnetById } from "../lib/api/removeData";
+import toast, { Toaster } from "react-hot-toast";
 
 const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   // コメント(記事)
@@ -25,8 +27,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
     return res;
   };
   // SWRでコメントデータを取得
-  const { data } = useSWR("/commentList", getcommentList);
-
+  const { data: commentData } = useSWR("/commentList", getcommentList);
   /**
    * コメント追加処理.
    *
@@ -38,9 +39,28 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   const onAddComment = async () => {
     const res = await addComment(articleId, commentText);
     if (res.status === "success") {
+      toast.success("コメントしました!", { icon: "👍" });
       mutate("/commentList");
     } else {
-      alert("コメントに失敗しました。");
+      toast.error("コメントに失敗しました。...", { icon: "👎" });
+    }
+  };
+
+  /**
+   * コメント削除を行う.
+   *
+   * @remarks
+   * sucess: コメントデータ再検証
+   * error: アラートメッセージ表示
+   * @param commentId - コメントID
+   */
+  const onDeleteComment = async (commentId: number) => {
+    const res = await deleteCommnetById(commentId);
+    if (res.status == "success") {
+      toast.success("コメント削除しました!", { icon: "👍" });
+      mutate("/commentList");
+    } else {
+      toast.error("コメント削除に失敗しました。...", { icon: "👎" });
     }
   };
 
@@ -49,9 +69,15 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
       <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">
         <div className="my-2 text-3xl font-bold text-center">コメント</div>
         <hr />
-        {data ? (
-          data.commentList.map((commentData: CommentType) => {
-            return <Comment key={commentData.id} commentData={commentData} />;
+        {commentData ? (
+          commentData.commentList.map((commentData: CommentType) => {
+            return (
+              <Comment
+                key={commentData.id}
+                commentData={commentData}
+                onDeleteComment={onDeleteComment}
+              />
+            );
           })
         ) : (
           <div>
@@ -69,6 +95,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
       <MediaQuery query="(min-width: 768px)">
         <div className="w-1/4 mt-10"></div>
       </MediaQuery>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
