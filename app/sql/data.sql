@@ -809,6 +809,35 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'uzui', '# test', FALSE);
+    
+INSERT INTO
+    articles(user_info_id, title, content, article_status)
+VALUES
+    (1, 'HTML', '# HTML TEST', FALSE),
+    (1, 'CSS', '# CSS TEST', TRUE),
+    (1, 'JS', '# JS LOVE', FALSE),
+    (1, 'JQuery', '# JQuery TEST', TRUE),
+    (1, 'React', '# React LOVE', TRUE),
+    (2, 'Angular', '# Angular LOVE', FALSE),
+    (2, 'Vue', '# Vue LOVE', TRUE),
+    (2, 'TypeScript', '# TypeScript', TRUE),
+    (2, 'CoffeeScript', '# CoffeeScript', False),
+    (2, 'C', '# C LOVE', False),
+    (3, 'C+', '# C+ t', TRUE),
+    (3, 'C#', '# C# good', TRUE),
+    (3, 'Java', '# Java love', TRUE),
+    (3, 'Ruby', '# Ruby GoodBye', TRUE),
+    (3, 'Phyton', '# Phyton yeah', False),
+    (4, 'Objective-C', '# Objective-C', TRUE),
+    (4, 'Perl', '# Perl', False),
+    (4, 'Node.js', '# Node.js', TRUE),
+    (4, 'Swift', '# Swift', False),
+    (4, 'kotolin', '# kotolin', TRUE),
+    (5, 'AWS', '# AWS yeah', False),
+    (5, 'Unity', '# Unity', TRUE),
+    (5, 'Linux', '# Linux', False),
+    (5, 'Ubuntu', '# Ubuntu', TRUE),
+    (5, 'WordPress', '# WordPress', False);
 
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
@@ -924,6 +953,35 @@ INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (27, 7, 1);
+
+INSERT INTO
+    article_tags(article_id, tag_id, tag_order)
+VALUES
+    (28, 1, 1),
+    (29, 2, 1),
+    (30, 3, 1),
+    (31, 4, 1),
+    (32, 5, 1),
+    (33, 6, 1),
+    (34, 7, 1),
+    (35, 8, 1),
+    (36, 9, 1),
+    (37, 10, 1),
+    (38, 11, 1),
+    (39, 12, 1),
+    (40, 13, 1),
+    (41, 14, 1),
+    (42, 15, 1),
+    (43, 16, 1),
+    (44, 17, 1),
+    (45, 18, 1),
+    (46, 19, 1),
+    (47, 20, 1),
+    (48, 21, 1),
+    (49, 22, 1),
+    (50, 23, 1),
+    (51, 24, 1),
+    (52, 25, 1);
 
 INSERT INTO
     likes(user_info_id, article_id)
