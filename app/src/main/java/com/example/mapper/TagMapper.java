@@ -11,4 +11,7 @@ public interface TagMapper {
 
 	/** タグ情報取得 */
 	public List<Tag> getTags();
+	
+	/** タグの投稿数を集計して取得*/
+	public List<Tag> getTagsCount(String value);
 }

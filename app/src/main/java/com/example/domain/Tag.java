@@ -5,6 +5,7 @@ public class Tag {
 	private Integer id;
 	private String skill;
 	private String image;
+	private Integer tagCount;
 
 	public Integer getId() {
 		return id;
@@ -30,10 +31,20 @@ public class Tag {
 		this.image = image;
 	}
 
+	public Integer getTagCount() {
+		return tagCount;
+	}
+
+	public void setTagCount(Integer tagCount) {
+		this.tagCount = tagCount;
+	}
+
 	@Override
 	public String toString() {
-		return "Tag [id=" + id + ", skill=" + skill + ", image=" + image + "]";
+		return "Tag [id=" + id + ", skill=" + skill + ", image=" + image + ", tagCount=" + tagCount + "]";
 	}
+
+	
 
 
 

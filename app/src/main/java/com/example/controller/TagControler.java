@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.response.TagResponse;
+import com.example.response.TagCountListResponse;
 import com.example.service.TagService;
 
 @RestController
@@ -18,5 +19,10 @@ public class TagControler {
 	@GetMapping("")
 	public TagResponse getTags() {
 		return service.getTags();
+	}
+	
+	@GetMapping("/tagCount")
+	public TagCountListResponse getTagCount() {
+		return service.getTagCount();
 	}
 }
