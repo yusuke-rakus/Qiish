@@ -13,18 +13,12 @@ const server = setupServer(
   })
 );
 
-beforeAll(() => {
-  server.listen();
-});
-
+beforeAll(() => server.listen());
 afterEach(() => {
   server.resetHandlers();
   cleanup();
 });
-
-afterAll(() => {
-  server.close();
-});
+afterAll(() => server.close());
 
 describe("フォローリストデータをテスト", () => {
   it("フォローリストのデータが取得されること", async () => {
