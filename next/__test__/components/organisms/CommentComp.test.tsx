@@ -6,14 +6,13 @@ import { commentDataMock } from "../../.mock/data";
 import moment from "moment";
 
 describe("コメントコンポーネントのテスト", () => {
-  const mockOnDeleteComment = jest.fn();
-  const mockChangeCommentLike = jest.fn();
-  const mockSetLikeUserModalStatus = jest.fn();
+  const mockCallback = jest.fn();
+
   let dummyProps: CommentCompType = {
     ...commentDataMock,
-    onDeleteComment: mockOnDeleteComment,
-    changeCommentLike: mockChangeCommentLike,
-    setLikeUserModalStatus: mockSetLikeUserModalStatus,
+    onDeleteComment: mockCallback,
+    changeCommentLike: mockCallback,
+    setLikeUserModalStatus: mockCallback,
   };
   it("コメントページのデータが表示されること", () => {
     render(<CommentComp {...dummyProps} />);
