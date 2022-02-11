@@ -125,6 +125,7 @@ INSERT INTO
     )
 VALUES
     ('qiita', 'sample@qiita.com', 'CL', 'hei');
+
 INSERT INTO
     user_info(
         user_name,
@@ -134,7 +135,7 @@ INSERT INTO
     )
 VALUES
     ('No4', 'no4@qiita.com', 'FR', 'www');
-    
+
 INSERT INTO
     user_info(
         user_name,
@@ -524,7 +525,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'This is Title', '# About Content', FALSE);
-    
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -539,6 +540,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'No5', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -553,6 +555,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, '7', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -567,6 +570,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'tanjiro', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -581,6 +585,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'zenitsu', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -594,12 +599,27 @@ VALUES
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
-    (3, 'akaza', "//  # h1 ## h2 ### h3 #### h4", FALSE);
-    
+    (
+        3,
+        'akaza',
+        "//  # h1 ## h2 ### h3 #### h4",
+        FALSE
+    );
+
 INSERT INTO
-    articles(user_info_id, visited_count, title, content, article_status)
+    articles(
+        user_info_id,
+        visited_count,
+        title,
+        content,
+        article_status
+    )
 VALUES
-    (3, 99, 'markdountest', "// Qiish_Markdown
+    (
+        3,
+        99,
+        'markdountest',
+        "// Qiish_Markdown
 
 // midashi
 
@@ -700,12 +720,15 @@ A note[^1]
 ## Tasklist
 
 * [ ] to do
-* [x] done", FALSE);
+* [x] done",
+        FALSE
+    );
 
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'muzan', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -720,6 +743,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'doma', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -734,6 +758,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'gyokko', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -748,6 +773,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'genya', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -762,6 +788,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'giyu', '# About Content', FALSE);
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -776,7 +803,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'sinobu', '# About Content', FALSE);
-    
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -791,7 +818,7 @@ INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
     (1, 'uzui', '# test', FALSE);
-    
+
 INSERT INTO
     articles(user_info_id, title, content, article_status)
 VALUES
@@ -820,7 +847,7 @@ VALUES
     (5, 'Linux', '# Linux', False),
     (5, 'Ubuntu', '# Ubuntu', TRUE),
     (5, 'WordPress', '# WordPress', False);
-    
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
@@ -835,106 +862,132 @@ INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (2, 2, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (3, 3, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (4, 4, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (5, 6, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (6, 2, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (7, 24, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (8, 26, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (9, 25, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (10, 42, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (11, 52, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (12, 27, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (13, 29, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (14, 32, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (15, 2, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (16, 32, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (17, 32, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (18, 24, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (19, 24, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (20, 24, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (21, 24, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (22, 24, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (23, 26, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (24, 22, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (25, 21, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (26, 2, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
     (27, 7, 1);
+
 INSERT INTO
     article_tags(article_id, tag_id, tag_order)
 VALUES
