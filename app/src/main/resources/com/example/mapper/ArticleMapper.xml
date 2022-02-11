@@ -369,7 +369,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
 		WHERE a.user_info_id = #{guestId}
-		AND article_status = false
+		AND article_status = FALSE
 		ORDER BY a.id DESC, at.tag_order;
 	</select>
 	

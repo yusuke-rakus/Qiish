@@ -46,7 +46,8 @@
 		LEFT JOIN tags AS t 
 		ON at.tag_id = t.id 
 		LEFT JOIN user_info AS u
-		ON a.user_info_id = u.id 
+		ON a.user_info_id = u.id
+		WHERE article_status = TRUE
 		ORDER BY visited_count DESC, at.tag_order;
 	</select>
 
@@ -89,6 +90,7 @@
 		<foreach collection="wordList" item="word">
 			AND title LIKE CONCAT('%' ,#{word}, '%')
 		</foreach>
+		AND article_status = TRUE
 		ORDER BY visited_count DESC, at.tag_order;
 	</select>
 
@@ -113,6 +115,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id 
 		WHERE a.id IN ((SELECT article_id FROM article_tags WHERE tag_id = #{tagId}))
+		AND article_status = TRUE
 		ORDER BY visited_count DESC, at.tag_order;
 	</select>
  
