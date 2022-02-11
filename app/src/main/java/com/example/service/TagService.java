@@ -1,16 +1,16 @@
 package com.example.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.common.Status;
-import com.example.mapper.TagMapper;
-import com.example.response.TagResponse;
-import com.example.response.TagCountListResponse;
 import com.example.domain.Tag;
+import com.example.mapper.TagMapper;
+import com.example.response.TagCountListResponse;
+import com.example.response.TagResponse;
 
 @Service
 @Transactional

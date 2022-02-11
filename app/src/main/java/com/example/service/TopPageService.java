@@ -10,6 +10,7 @@ import com.example.common.Status;
 import com.example.domain.Article;
 import com.example.form.TopPageForm;
 import com.example.mapper.TopPageMapper;
+import com.example.response.KeywordRankResponse;
 import com.example.response.SearchResponse;
 import com.example.response.TopPageResponse;
 
@@ -39,6 +40,7 @@ public class TopPageService {
 	public SearchResponse searchKeyword(TopPageForm form) {
 		SearchResponse res = new SearchResponse();
 		try {
+			topPageMapper.saveKeywords(form.getKeyword());
 			List<Article> articleList = topPageMapper.searchKeywordFromTitle(form.getKeyword(), form.getGuestId());
 			if (articleList.isEmpty()) {
 				throw new NullPointerException();
@@ -49,6 +51,7 @@ public class TopPageService {
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
+			e.printStackTrace();
 		}
 		return res;
 	}
@@ -70,4 +73,16 @@ public class TopPageService {
 		}
 		return res;
 	}
+
+	/** 検索キーワードランキング */
+	public KeywordRankResponse getKeywordRankList() {
+		KeywordRankResponse res = new KeywordRankResponse();
+		try {
+			res.setKeywordList(topPageMapper.getKeywordRankList());
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+		}
+		return res;
+	}
+
 }

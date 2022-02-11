@@ -18,6 +18,8 @@ DROP TABLE IF EXISTS articles;
 
 DROP TABLE IF EXISTS user_info;
 
+DROP TABLE IF EXISTS searched_keywords;
+
 CREATE TABLE user_info(
     id int NOT NULL AUTO_INCREMENT,
     user_name varchar(18) NOT NULL,
@@ -112,6 +114,12 @@ CREATE TABLE article_tags(
     FOREIGN KEY fk_article_id(article_id) REFERENCES articles(id) ON DELETE CASCADE,
     FOREIGN KEY fk_article_tag_id(tag_id) REFERENCES tags(id) ON DELETE CASCADE,
     UNIQUE (article_id, tag_id)
+);
+
+CREATE TABLE searched_keywords(
+    id int NOT NULL AUTO_INCREMENT,
+    keyword text NOT NULL,
+    PRIMARY KEY(id)
 );
 
 INSERT INTO

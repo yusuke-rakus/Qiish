@@ -28,4 +28,10 @@ public interface TopPageMapper {
 	/** タグ検索 */
 	public List<Article> searchWidhTagId(@Param("tagId") Integer tagId, @Param("guestId") Integer guestId);
 
+	/** 検索ワードの保存 */
+	public void saveKeywords(@Param("wordList") List<String> wordList);
+
+	/** 検索キーワードランキング */
+	public List<String> getKeywordRankList();
+
 }

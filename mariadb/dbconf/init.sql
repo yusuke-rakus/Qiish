@@ -96,6 +96,12 @@ CREATE TABLE article_tags(
     UNIQUE (article_id, tag_id)
 );
 
+CREATE TABLE searched_keywords(
+    id int NOT NULL AUTO_INCREMENT,
+    keyword text NOT NULL,
+    PRIMARY KEY(id)
+);
+
 INSERT INTO
     user_info(
         user_name,

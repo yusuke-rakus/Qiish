@@ -1,12 +1,14 @@
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.form.TopPageForm;
+import com.example.response.KeywordRankResponse;
 import com.example.response.SearchResponse;
 import com.example.response.TopPageResponse;
 import com.example.service.TopPageService;
@@ -33,5 +35,11 @@ public class TopPageController {
 	@PostMapping("/searchTag")
 	public SearchResponse searchTag(@RequestBody TopPageForm form) {
 		return topPageService.searchTagId(form);
+	}
+
+	/** 検索キーワードランキング取得 */
+	@GetMapping("/getKeywordRankList")
+	public KeywordRankResponse getKeywordRankList() {
+		return topPageService.getKeywordRankList();
 	}
 }

@@ -118,5 +118,24 @@
 		AND article_status = TRUE
 		ORDER BY visited_count DESC, at.tag_order;
 	</select>
+	
+	<!-- 検索キーワードの保存 -->
+	<insert id="saveKeywords" parameterType="java.util.List">
+		INSERT INTO searched_keywords(keyword)
+		VALUES
+			<foreach collection="wordList" item="word" separator=",">
+				(#{word})
+			</foreach>
+	</insert>
+	
+	<!-- 検索キーワードランキング -->
+	<select id="getKeywordRankList" resultType="java.lang.String">
+		SELECT keyword
+		FROM searched_keywords 
+		GROUP BY keyword
+		ORDER BY COUNT(keyword) 
+		DESC
+		LIMIT 20;
+	</select>
  
 </mapper>
