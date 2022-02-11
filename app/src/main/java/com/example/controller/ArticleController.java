@@ -81,15 +81,13 @@ public class ArticleController {
 		if (result.hasErrors()) {
 			return new Response(result.hasErrors());
 		}
-		form.setArticleStatus(true);
 		return articleService.ArticlePost(form);
 	}
 
 	/** 記事保存 */
 	@PostMapping("/save")
 	public Response ArticleSave(@RequestBody ArticlePostForm form, BindingResult result) {
-		form.setArticleStatus(false);
-		return articleService.ArticlePost(form);
+		return articleService.ArticleSave(form);
 	}
 
 	/** 記事情報取得 */

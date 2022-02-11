@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
@@ -132,9 +133,54 @@ public class ArticleService {
 		Article article = new Article();
 		BeanUtils.copyProperties(form, article);
 		try {
-			articleMapper.articlePost(article);
-			if (!CollectionUtils.isEmpty(form.getTags())) {
-				articleMapper.articleTagsPost(article.getId(), form.getTags());
+			if (Objects.isNull(form.getArticleId())) {
+				// 新規投稿
+				article.setArticleStatus(true);
+				articleMapper.articlePost(article);
+				if (!CollectionUtils.isEmpty(form.getTags())) {
+					articleMapper.articleTagsPost(article.getId(), form.getTags());
+				}
+			} else {
+				// 保存済み記事の投稿
+				article.setArticleStatus(true);
+				article.setId(form.getArticleId());
+				article.setPostedDate(new Timestamp(System.currentTimeMillis()));
+				articleMapper.articleUpdate(article);
+				articleMapper.articleTagsDelete(form.getArticleId());
+				if (!CollectionUtils.isEmpty(form.getTags())) {
+					articleMapper.articleTagsPost(article.getId(), form.getTags());
+				}
+			}
+		} catch (Exception e) {
+			res.setStatus(Status.ERROR.getStatus());
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	/** 記事保存 */
+	public Response ArticleSave(ArticlePostForm form) {
+		Response res = new Response();
+		Article article = new Article();
+		BeanUtils.copyProperties(form, article);
+		try {
+			if (Objects.isNull(form.getArticleId())) {
+				// 新規記事の保存
+				article.setArticleStatus(false);
+				articleMapper.articlePost(article);
+				if (!CollectionUtils.isEmpty(form.getTags())) {
+					articleMapper.articleTagsPost(article.getId(), form.getTags());
+				}
+			} else {
+				// 保存済み記事を保存
+				article.setArticleStatus(false);
+				article.setId(form.getArticleId());
+				article.setPostedDate(new Timestamp(System.currentTimeMillis()));
+				articleMapper.articleUpdate(article);
+				articleMapper.articleTagsDelete(form.getArticleId());
+				if (!CollectionUtils.isEmpty(form.getTags())) {
+					articleMapper.articleTagsPost(article.getId(), form.getTags());
+				}
 			}
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
@@ -157,9 +203,9 @@ public class ArticleService {
 	public Response articleEdit(ArticleEditForm form) {
 		Response res = new Response();
 		try {
-			Article article =  articleMapper.checkGuest(form.getArticleId(), form.getGuestId());
-			//暫定でちょっとカッコ悪い実装（投稿者と編集者の確認）
-			if(Objects.isNull(article)) {
+			Article article = articleMapper.checkGuest(form.getArticleId(), form.getGuestId());
+			// 暫定でちょっとカッコ悪い実装（投稿者と編集者の確認）
+			if (Objects.isNull(article)) {
 				res.setStatus(Status.ERROR.getStatus());
 				return res;
 			}

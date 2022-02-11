@@ -30,6 +30,7 @@ public interface ArticleMapper {
 	/** コメントLIKE解除 */
 	public void removeCommentLike(CommentLikeForm form);
 
+	/** コメントの削除 */
 	public void commentDelete(CommentDeleteForm form);
 
 	/** LIKE */
@@ -49,6 +50,9 @@ public interface ArticleMapper {
 
 	/** 記事更新 */
 	public void articleEdit(ArticleEditForm form);
+
+	/** 保存済み記事の操作 */
+	public void articleUpdate(Article article);
 
 	/** 記事更新（タグ情報削除） */
 	public void articleTagsDelete(Integer articleId);
@@ -74,7 +78,7 @@ public interface ArticleMapper {
 
 	/** 保存記事一覧 */
 	public List<Article> savedArticles(Integer guestId);
-	
+
 	/** 投稿者確認（記事投稿者と一致を確認） */
 	public Article checkGuest(@Param("articleId") Integer articleId, @Param("guestId") Integer guestId);
 

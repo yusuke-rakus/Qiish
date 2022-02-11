@@ -18,6 +18,7 @@ public class Article {
 	private Integer likeStatus;
 	private UserInfo userInfo;
 	private Integer visitedCount;
+	private boolean articleStatus;
 
 	public Integer getId() {
 		return id;
@@ -123,14 +124,21 @@ public class Article {
 		this.visitedCount = visitedCount;
 	}
 
+	public boolean isArticleStatus() {
+		return articleStatus;
+	}
+
+	public void setArticleStatus(boolean articleStatus) {
+		this.articleStatus = articleStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
 				+ ", likesCount=" + likesCount + ", postedDate=" + postedDate + ", updateDate=" + updateDate
 				+ ", articleTags=" + articleTags + ", lieksUserList=" + lieksUserList + ", comments=" + comments
-				+ ", likeStatus=" + likeStatus + ", userInfo=" + userInfo + ", visitedCount=" + visitedCount + "]";
+				+ ", likeStatus=" + likeStatus + ", userInfo=" + userInfo + ", visitedCount=" + visitedCount
+				+ ", articleStatus=" + articleStatus + "]";
 	}
-
-
 
 }

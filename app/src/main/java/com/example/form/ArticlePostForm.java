@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 
 public class ArticlePostForm {
 
+	private Integer articleId;
 	private Integer userInfoId;
 	@NotBlank
 	@Size(min = 1, max = 50)
@@ -18,6 +19,14 @@ public class ArticlePostForm {
 	private String content;
 	private boolean articleStatus;
 	private List<Integer> tags;
+
+	public Integer getArticleId() {
+		return articleId;
+	}
+
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
+	}
 
 	public Integer getUserInfoId() {
 		return userInfoId;
@@ -61,8 +70,8 @@ public class ArticlePostForm {
 
 	@Override
 	public String toString() {
-		return "ArticlePostForm [userInfoId=" + userInfoId + ", title=" + title + ", content=" + content
-				+ ", articleStatus=" + articleStatus + ", tags=" + tags + "]";
+		return "ArticlePostForm [articleId=" + articleId + ", userInfoId=" + userInfoId + ", title=" + title
+				+ ", content=" + content + ", articleStatus=" + articleStatus + ", tags=" + tags + "]";
 	}
 
 }

@@ -104,8 +104,18 @@
 	<insert id="articlePost"
 		parameterType="com.example.domain.Article" useGeneratedKeys="true"
 		keyProperty="id">
-		INSERT INTO articles(user_info_id, title, content)
-		VALUES(#{userInfoId}, #{title}, #{content});
+		INSERT INTO articles(
+			user_info_id,
+			title,
+			content,
+			article_status
+			)
+		VALUES(
+			#{userInfoId},
+			#{title},
+			#{content},
+			#{articleStatus}
+			);
 	</insert>
 
 	<!-- 記事投稿（タグ情報を保存） -->
@@ -139,9 +149,19 @@
 		UPDATE articles SET
 		title=#{title},
 		content=#{content},
-		update_date = CURRENT_TIMESTAMP,
-		article_status = TRUE
+		update_date=CURRENT_TIMESTAMP,
 		WHERE id=#{articleId} AND user_info_id=#{guestId};
+	</update>
+	
+	<!-- 保存済み記事の操作 -->
+	<update id="articleUpdate">
+		UPDATE articles SET
+			title=#{title},
+			content=#{content},
+			posted_date=#{postedDate},
+			article_status=#{articleStatus}
+		WHERE id=#{id}
+		AND user_info_id=#{userInfoId};
 	</update>
 
 	<!-- 記事情報取得 -->
