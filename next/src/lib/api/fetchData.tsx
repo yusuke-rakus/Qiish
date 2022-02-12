@@ -232,3 +232,15 @@ export const fetchFollowerList = async (
     return res.data;
   }
 };
+
+/**
+ * 下書きした記事一覧情報を取得.
+ *
+ * @returns 下書き記事一覧
+ */
+export const fetchSavedArticleList = async () => {
+  const res = await axios.post("http://localhost:9090/article/savedList", {
+    guestId: 1,
+  });
+  return res.data;
+};

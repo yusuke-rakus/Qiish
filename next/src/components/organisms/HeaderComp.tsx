@@ -28,6 +28,9 @@ const HeaderComp: React.FC<search> = ({
         <a href={"/profile"}>プロフィール</a>
       </Menu.Item>
       <Menu.Item key="1">
+        <a href={"/articleSaved"}>下書き記事</a>
+      </Menu.Item>
+      <Menu.Item key="2">
         <a href={"/loginuser"}>ログアウト</a>
       </Menu.Item>
     </Menu>
