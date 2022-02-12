@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="WP1-JnF1_EIwP2eSbvKK" name="README">
-        <mxGraphModel dx="968" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1358" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="ElkovE41W0XgGfoDvlom-0"/>
                 <mxCell id="ElkovE41W0XgGfoDvlom-1" parent="ElkovE41W0XgGfoDvlom-0"/>
@@ -179,7 +179,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="p2hwpRRqz8-OGHNSi74P" name="[表示]トップページ">
-        <mxGraphModel dx="691" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1358" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="JAmQJZyRGygg9EW4BDSu-0"/>
                 <mxCell id="JAmQJZyRGygg9EW4BDSu-1" parent="JAmQJZyRGygg9EW4BDSu-0"/>
@@ -542,7 +542,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="pQ-sh9YgSUtihFBL_Fqr" name="[表示]検索記事一覧">
-        <mxGraphModel dx="691" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1358" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="Sdkh5vG0gpe2m3wbEi2U-0"/>
                 <mxCell id="Sdkh5vG0gpe2m3wbEi2U-1" parent="Sdkh5vG0gpe2m3wbEi2U-0"/>
@@ -1194,7 +1194,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="J67MGqME6S1IuEcwFLMF" name="[表示]いいね記事一覧">
-        <mxGraphModel dx="691" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1358" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="PHvXC510vgYUYnJvjDq3-0"/>
                 <mxCell id="PHvXC510vgYUYnJvjDq3-1" parent="PHvXC510vgYUYnJvjDq3-0"/>
@@ -1661,7 +1661,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="XP35gwcVVLDKOSYoFFRG" name="[表示]投稿記事一覧">
-        <mxGraphModel dx="968" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1358" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="AELYb_AaW65H5UzVPvkx-0"/>
                 <mxCell id="AELYb_AaW65H5UzVPvkx-1" parent="AELYb_AaW65H5UzVPvkx-0"/>
@@ -2141,7 +2141,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="5LrtZjqVj77rRv-pt0_F" name="[表示]保存記事一覧">
-        <mxGraphModel dx="968" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1358" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="CtokjgFYLZ2rFoUOW6Rt-0"/>
                 <mxCell id="CtokjgFYLZ2rFoUOW6Rt-1" parent="CtokjgFYLZ2rFoUOW6Rt-0"/>
@@ -2191,7 +2191,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="rznhAhPcNipAJ60iqP0v-11" value="articleList" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="rznhAhPcNipAJ60iqP0v-0" vertex="1">
-                    <mxGeometry x="15" y="220" width="185" height="160" as="geometry"/>
+                    <mxGeometry x="15" y="190" width="185" height="190" as="geometry"/>
                 </mxCell>
                 <mxCell id="rznhAhPcNipAJ60iqP0v-12" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="rznhAhPcNipAJ60iqP0v-11" vertex="1">
                     <mxGeometry y="30" width="185" height="30" as="geometry"/>
@@ -2206,8 +2206,21 @@
                         <mxRectangle width="135" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="rznhAhPcNipAJ60iqP0v-15" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="rznhAhPcNipAJ60iqP0v-11" vertex="1">
+                <mxCell id="sX_Z_V52-fo2Eft0pKI4-0" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="rznhAhPcNipAJ60iqP0v-11">
                     <mxGeometry y="60" width="185" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="sX_Z_V52-fo2Eft0pKI4-1" value="Integer" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" vertex="1" parent="sX_Z_V52-fo2Eft0pKI4-0">
+                    <mxGeometry width="50" height="30" as="geometry">
+                        <mxRectangle width="50" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="sX_Z_V52-fo2Eft0pKI4-2" value="userInfoId" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" vertex="1" parent="sX_Z_V52-fo2Eft0pKI4-0">
+                    <mxGeometry x="50" width="135" height="30" as="geometry">
+                        <mxRectangle width="135" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="rznhAhPcNipAJ60iqP0v-15" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="rznhAhPcNipAJ60iqP0v-11" vertex="1">
+                    <mxGeometry y="90" width="185" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="rznhAhPcNipAJ60iqP0v-16" value="String" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="rznhAhPcNipAJ60iqP0v-15" vertex="1">
                     <mxGeometry width="50" height="30" as="geometry">
@@ -2220,7 +2233,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="rznhAhPcNipAJ60iqP0v-18" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="rznhAhPcNipAJ60iqP0v-11" vertex="1">
-                    <mxGeometry y="90" width="185" height="30" as="geometry"/>
+                    <mxGeometry y="120" width="185" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="rznhAhPcNipAJ60iqP0v-19" value="String" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="rznhAhPcNipAJ60iqP0v-18" vertex="1">
                     <mxGeometry width="50" height="30" as="geometry">
@@ -2233,7 +2246,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="rznhAhPcNipAJ60iqP0v-27" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="rznhAhPcNipAJ60iqP0v-11" vertex="1">
-                    <mxGeometry y="120" width="185" height="30" as="geometry"/>
+                    <mxGeometry y="150" width="185" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="rznhAhPcNipAJ60iqP0v-28" value="List" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="rznhAhPcNipAJ60iqP0v-27" vertex="1">
                     <mxGeometry width="50" height="30" as="geometry">
@@ -2521,7 +2534,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="sTVx_ROLLDjyMhgWbwnP" name="[表示]マイページ">
-        <mxGraphModel dx="968" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1358" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="uvy06QCPFyvQL97-JlDt-0"/>
                 <mxCell id="uvy06QCPFyvQL97-JlDt-1" parent="uvy06QCPFyvQL97-JlDt-0"/>

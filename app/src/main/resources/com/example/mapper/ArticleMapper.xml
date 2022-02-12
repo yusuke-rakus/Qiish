@@ -293,6 +293,7 @@
 
 	<resultMap type="com.example.domain.Article" id="articleList">
 		<id column="article_id" property="id" />
+		<result column="user_info_id" property="userInfoId" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
 		<result column="posted_date" property="postedDate" />
@@ -356,6 +357,7 @@
 	<select id="savedArticles" resultMap="articleList">
 		SELECT
 			a.id AS article_id,
+			a.user_info_id,
 			a.title,
 			a.content,
 			t.id AS tag_id,
