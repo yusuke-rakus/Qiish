@@ -51,7 +51,6 @@ public class TopPageService {
 			res.setArticleList(articleList);
 		} catch (Exception e) {
 			res.setStatus(Status.ERROR.getStatus());
-			e.printStackTrace();
 		}
 		return res;
 	}
