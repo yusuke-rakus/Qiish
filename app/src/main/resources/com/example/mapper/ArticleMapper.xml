@@ -149,7 +149,7 @@
 		UPDATE articles SET
 		title=#{title},
 		content=#{content},
-		update_date=CURRENT_TIMESTAMP,
+		update_date=CURRENT_TIMESTAMP
 		WHERE id=#{articleId} AND user_info_id=#{guestId};
 	</update>
 	
