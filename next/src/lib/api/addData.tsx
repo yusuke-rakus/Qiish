@@ -62,6 +62,29 @@ export const addArticle = async (
 };
 
 /**
+ * 下書き記事保存.
+ *
+ * @param userId - ログインユーザーID
+ * @param title - タイトル
+ * @param content - 内容
+ * @param tags - タグ
+ * @returns 投稿処理のステータス(success・error)
+ */
+export const saveArticle = async (
+  title: string,
+  content: string,
+  tags: SelectStateType
+) => {
+  const res = await axios.post(`${BASEURL}/article/save`, {
+    userInfoId: guestIdNum,
+    title: title,
+    content: content,
+    tags: tags,
+  });
+  return res;
+};
+
+/**
  * 記事IDに当てはまる記事にコメント投稿.
  *
  * @param articleId - 記事ID

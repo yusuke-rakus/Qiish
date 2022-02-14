@@ -73,9 +73,9 @@ export type ArticleData = {
   id: number;
   title: string;
   content: string;
-  postedDate: string;
-  updateDate: string;
-  visitedCount: number;
+  postedDate?: string;
+  updateDate?: string;
+  visitedCount?: number;
 };
 
 // 詳細記事の型
@@ -110,6 +110,20 @@ export type ArticleEditType = {
   previewEditFlag: boolean;
   setEditFlag: () => void;
 };
+// 下書き記事の型
+export type ArticleSaveType = {
+  article: ArticleData;
+  articleTagsNum: SelectStateType;
+  saveFnc: {
+    onChangeTitle: (e: any) => void;
+    onChangeContent: (e: any) => void;
+    setTagsNum: React.Dispatch<React.SetStateAction<number[]>>;
+    onSaveArticle: () => void;
+    setPreviewEditFlag: () => void;
+  };
+  previewEditFlag: boolean;
+  setEditFlag: () => void;
+};
 
 // 投稿記事コンポーネントの型
 export type ArticleAddFormType = {
@@ -138,6 +152,23 @@ export type ArticleEditFromType = {
     setContent: (e: TextEventType) => void;
     setTagsNum: (value: React.SetStateAction<SelectStateType>) => void;
     onEditArticle: () => void;
+    setPreviewEditFlag: () => void;
+  };
+  SKILLTAGS: SkillTags;
+};
+// 下書き記事コンポーネントの型
+export type ArticleSaveFromType = {
+  prevFlag: boolean;
+  articleSave: {
+    title: string;
+    content: string;
+    tags: SelectStateType;
+  };
+  saveFnc: {
+    onChangeTitle: (e: any) => void;
+    onChangeContent: (e: any) => void;
+    setTagsNum: React.Dispatch<React.SetStateAction<number[]>>;
+    onSaveArticle: () => void;
     setPreviewEditFlag: () => void;
   };
   SKILLTAGS: SkillTags;

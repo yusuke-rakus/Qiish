@@ -238,9 +238,9 @@ export const fetchFollowerList = async (
  *
  * @returns 下書き記事一覧
  */
-export const fetchSavedArticleList = async () => {
-  const res = await axios.post("http://localhost:9090/article/savedList", {
-    guestId: 1,
+export const fetchSavedArticleList = async (guestId: number) => {
+  const res = await axios.post(`${BASEURL}/article/savedList`, {
+    guestId: guestId,
   });
   return res.data;
 };

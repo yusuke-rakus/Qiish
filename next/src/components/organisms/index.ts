@@ -2,6 +2,7 @@
 export { default as ArticleAddFrom } from "./ArticleAddFrom";
 export { default as ArticleDetail } from "./ArticleDetail";
 export { default as ArticleEdit } from "./ArticleEdit";
+export { default as ArticleSave } from "./ArticleSave";
 export { default as ArticleComp } from "./ArticleComp";
 export { default as CommentComp } from "./CommentComp";
 export { default as CommentForm } from "./CommentForm";
