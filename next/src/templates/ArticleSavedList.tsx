@@ -1,10 +1,9 @@
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import useSWR from "swr";
-import { SkillTagsOnArticle } from "../components/molecules";
 import { fetchSavedArticleList } from "../lib/api/fetchData";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { TagOutlined } from "@ant-design/icons";
 
 const ArticleSavedList: React.FC = () => {
   const { data: articleSavedList } = useSWR(
@@ -12,7 +11,14 @@ const ArticleSavedList: React.FC = () => {
     fetchSavedArticleList
   );
 
-  const onClickTag = async (tagId: number) => {};
+  const [article, setArticle] = useState(articleSavedList.articleList[0]);
+
+  const selectArticle = (title: string) => {
+    const foundArticle = articleSavedList.articleList.find(
+      (articleData: any) => articleData.title === title
+    );
+    setArticle(foundArticle);
+  };
 
   return (
     <div>
@@ -27,25 +33,41 @@ const ArticleSavedList: React.FC = () => {
               return (
                 <div
                   key={articleData.id}
-                  className="p-5 m-2 flex flex-col gap-1 bg-white rounded shadow "
+                  className="px-5 py-3 m-2 bg-white rounded hover:bg-slate-50"
                 >
-                  <Link href={`/articles/${articleData.id}`}>
-                    <a className="m-1 text-black hover:text-gray-400 text-xl font-bold no-underline hover:underline">
+                  <button
+                    className="w-full"
+                    onClick={() => selectArticle(articleData.title)}
+                  >
+                    <span className="text-black text-xl font-bold">
                       {articleData.title}
-                    </a>
-                  </Link>
+                    </span>
+                    <div className="flex flex-wrap">
+                      <span className="pr-2 text-xl">
+                        <TagOutlined />
+                      </span>
 
-                  <SkillTagsOnArticle
-                    tags={articleData.articleTags}
-                    onClickTag={onClickTag}
-                  />
+                      {articleData.articleTags.map((tag: any) => {
+                        return (
+                          <div
+                            key={tag.skill}
+                            className={
+                              "m-1 px-3 py-1 bg-orange-400 text-white font-sans text-xs rounded-sm no-underline "
+                            }
+                          >
+                            {tag.skill}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </button>
                 </div>
               );
             })}
         </div>
         <div className="markdown pt-10 pl-10">
           <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
-            {/* {articleData.content} */}# test
+            {article.content}
           </ReactMarkdown>
         </div>
       </div>
