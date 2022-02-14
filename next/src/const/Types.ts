@@ -135,8 +135,9 @@ export type ArticleAddFormType = {
     setTags: (value: number[]) => void;
     setPreviewFlag: () => void;
     setSaveStatus: () => void;
-    onAddArticle: () => void;
+    addOrSave: () => void;
   };
+  saveStatus: boolean;
   SKILLTAGS: SkillTags;
 };
 

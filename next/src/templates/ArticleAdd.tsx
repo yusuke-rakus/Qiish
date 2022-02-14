@@ -23,7 +23,7 @@ const ArticleAdd: React.FC = () => {
   const [title, setTitle] = useTextState("");
   const [content, setContent] = useTextState("");
   const [tags, setTags] = useSelectState(new Array<number>());
-  // const [saveStatus, setSaveStatus] = useToggle(true);
+  const [saveStatus, setSaveStatus] = useToggle(true);
 
   // マークダウンで表示確認するフラグ  true: プレビューoff, false: プレビューon
   const [previewFlag, setPreviewFlag] = useToggle(true);
@@ -106,12 +106,20 @@ const ArticleAdd: React.FC = () => {
 
       if (res.data.status === "success") {
         toast.success("下書き保存しました!", { icon: "👍" });
-        router.push("/");
+        router.push("/articleSaved");
       } else {
         eventSaveError();
       }
     } catch (error) {
       eventSaveError();
+    }
+  };
+
+  const addOrSave = () => {
+    if (saveStatus) {
+      onAddArticle();
+    } else {
+      onSaveArticle();
     }
   };
 
@@ -121,8 +129,8 @@ const ArticleAdd: React.FC = () => {
     setContent,
     setTags,
     setPreviewFlag,
-    // setSaveStatus,
-    onAddArticle,
+    setSaveStatus,
+    addOrSave,
   };
 
   return (
@@ -138,6 +146,7 @@ const ArticleAdd: React.FC = () => {
             previewContent={content}
             prevFlag={previewFlag}
             Fnc={Fnc}
+            saveStatus={saveStatus}
             SKILLTAGS={SKILLTAGS}
           />
         </div>

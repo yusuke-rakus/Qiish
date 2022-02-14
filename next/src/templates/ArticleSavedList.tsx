@@ -113,13 +113,13 @@ const ArticleSavedList: React.FC = () => {
     }
   };
 
-  // 詳細記事表示用のデータ
+  // 下書き記事表示用のデータ
   const article: ArticleData = {
     id: articleId,
     title: title,
     content: content,
   };
-  // 詳細記事編集用のメソッド
+  // 下書き記事編集用のメソッド
   const saveFnc = {
     onChangeTitle,
     onChangeContent,
