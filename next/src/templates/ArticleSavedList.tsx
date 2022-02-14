@@ -14,6 +14,7 @@ import { ArticleSave } from "../components/organisms";
 import { editArticle } from "../lib/api/editData";
 import { useRouter } from "next/router";
 import { removeArticleById } from "../lib/api/removeData";
+import { addArticle } from "../lib/api/addData";
 
 const ArticleSavedList: React.FC = () => {
   // 下書き記事一覧情報取得
@@ -60,6 +61,7 @@ const ArticleSavedList: React.FC = () => {
    */
   const [editFlag, setEditFlag] = useToggle(false);
   const [previewEditFlag, setPreviewEditFlag] = useToggle(true);
+  const [saveStatus, setSaveStatus] = useToggle(true);
 
   // 投稿イベントが失敗したらトースターを表示させる処理
   const eventAddError = () => {
@@ -87,6 +89,42 @@ const ArticleSavedList: React.FC = () => {
     setArticleId(foundArticle.id);
     setTitle(foundArticle.title);
     setContent(foundArticle.content);
+  };
+
+  /**
+   * 記事投稿処理を行う.
+   *
+   * @remarks
+   * sucess: トップページへ遷移
+   * error: アラートメッセージ表示
+   * @param title - タイトル
+   * @param content - 内容
+   * @param tagsNum - タグIDの配列
+   */
+  const onAddArticle = async () => {
+    //  バリデーションチェック
+    if (title === " " || title === "　" || title === null) {
+      eventAddError();
+      return;
+    }
+    if (content === " " || content === "　" || content === null) {
+      eventAddError();
+      return;
+    }
+
+    try {
+      const res = await addArticle(title, content, tagsNum);
+      console.log(res);
+
+      if (res.data.status === "success") {
+        toast.success("記事投稿しました!", { icon: "👍" });
+        router.push("/");
+      } else {
+        eventAddError();
+      }
+    } catch (error) {
+      eventAddError();
+    }
   };
 
   /**
@@ -146,6 +184,15 @@ const ArticleSavedList: React.FC = () => {
     }
   };
 
+  // ステートによって投稿か下書き保存かをする処理
+  const addOrSave = () => {
+    if (saveStatus) {
+      onAddArticle();
+    } else {
+      onEditSavedArticle();
+    }
+  };
+
   // 下書き記事表示用のデータ
   const article: ArticleData = {
     id: articleId,
@@ -157,7 +204,8 @@ const ArticleSavedList: React.FC = () => {
     onChangeTitle,
     onChangeContent,
     setTagsNum,
-    onEditSavedArticle,
+    addOrSave,
+    setSaveStatus,
     setPreviewEditFlag,
   };
 
@@ -173,6 +221,7 @@ const ArticleSavedList: React.FC = () => {
             articleTagsNum={tagsNum}
             previewEditFlag={previewEditFlag}
             saveFnc={saveFnc}
+            saveStatus={saveStatus}
             setEditFlag={setEditFlag}
           />
         </div>

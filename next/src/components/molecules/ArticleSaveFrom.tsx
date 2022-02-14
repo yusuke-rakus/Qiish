@@ -3,11 +3,13 @@ import { Select, Form, Input, Button } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import ReactMarkdown from "react-markdown";
 import { ArticleSaveFromType } from "../../const/Types";
+import { SwapOutlined } from "@ant-design/icons";
 
 const ArticleEditFrom: React.FC<ArticleSaveFromType> = ({
   prevFlag,
   articleSave,
   saveFnc,
+  saveStatus,
   SKILLTAGS,
 }) => {
   return (
@@ -18,7 +20,7 @@ const ArticleEditFrom: React.FC<ArticleSaveFromType> = ({
           content: articleSave.content,
           tags: articleSave.tags,
         }}
-        onSubmitCapture={saveFnc.onEditSavedArticle}
+        onSubmitCapture={saveFnc.addOrSave}
       >
         <Form.Item
           name="title"
@@ -109,7 +111,18 @@ const ArticleEditFrom: React.FC<ArticleSaveFromType> = ({
             htmlType="submit"
           >
             <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
-              保存
+              {saveStatus ? "投稿" : "下書き投稿"}
+            </span>
+          </Button>
+          <Button
+            className="drop-shadow-2xl"
+            size="large"
+            shape="round"
+            htmlType="button"
+            onClick={saveFnc.setSaveStatus}
+          >
+            <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
+              <SwapOutlined />
             </span>
           </Button>
         </div>

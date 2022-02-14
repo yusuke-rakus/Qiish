@@ -9,6 +9,7 @@ const ArticleSave: React.FC<ArticleSaveType> = ({
   articleTagsNum,
   previewEditFlag,
   saveFnc,
+  saveStatus,
   setEditFlag,
 }) => {
   const articleSave = {
@@ -28,6 +29,7 @@ const ArticleSave: React.FC<ArticleSaveType> = ({
             prevFlag={previewEditFlag}
             articleSave={articleSave}
             saveFnc={saveFnc}
+            saveStatus={saveStatus}
             SKILLTAGS={SKILLTAGS}
           />
         </div>

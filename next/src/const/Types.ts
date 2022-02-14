@@ -118,9 +118,11 @@ export type ArticleSaveType = {
     onChangeTitle: (e: any) => void;
     onChangeContent: (e: any) => void;
     setTagsNum: React.Dispatch<React.SetStateAction<number[]>>;
-    onEditSavedArticle: () => void;
+    addOrSave: () => void;
+    setSaveStatus: () => void;
     setPreviewEditFlag: () => void;
   };
+  saveStatus: boolean;
   previewEditFlag: boolean;
   setEditFlag: () => void;
 };
@@ -170,9 +172,11 @@ export type ArticleSaveFromType = {
     onChangeTitle: (e: any) => void;
     onChangeContent: (e: any) => void;
     setTagsNum: React.Dispatch<React.SetStateAction<number[]>>;
-    onEditSavedArticle: () => void;
+    addOrSave: () => void;
+    setSaveStatus: () => void;
     setPreviewEditFlag: () => void;
   };
+  saveStatus: boolean;
   SKILLTAGS: SkillTags;
 };
 

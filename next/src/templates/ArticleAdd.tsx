@@ -57,14 +57,9 @@ const ArticleAdd: React.FC = () => {
       eventAddError();
       return;
     }
-    if (saveStatus) {
-      onSaveArticle();
-      return;
-    }
 
     try {
       const res = await addArticle(title, content, tags);
-      console.log(res);
 
       if (res.data.status === "success") {
         toast.success("記事投稿しました!", { icon: "👍" });
@@ -115,6 +110,7 @@ const ArticleAdd: React.FC = () => {
     }
   };
 
+  // ステートによって投稿か下書き保存かをする処理
   const addOrSave = () => {
     if (saveStatus) {
       onAddArticle();
