@@ -16,10 +16,13 @@ import { useRouter } from "next/router";
 import { removeArticleById } from "../lib/api/removeData";
 
 const ArticleSavedList: React.FC = () => {
+  // 下書き記事一覧情報取得
   const { data: articleSavedList } = useSWR("/articleSavedList");
 
+  /**
+   *  tagのidをtagsNumに格納
+   */
   const [tagsNum, setTagsNum] = useState(new Array<number>());
-  // プロフィールデータにあるtagのidをinitialTagsに格納
   const insertTags = (articleTags: tags) => {
     let initTags = [];
     for (const tag of articleTags) {
@@ -28,6 +31,16 @@ const ArticleSavedList: React.FC = () => {
     setTagsNum(initTags);
   };
 
+  /**
+   * 下書き記事一覧情報(編集).
+   *
+   * @remarks
+   * 下記の記事情報をステートで管理して、編集用データとして利用
+   * ID
+   * タイトル
+   * 内容
+   * 技術タグ(IDに紐づくデータ)
+   */
   const [articleId, setArticleId] = useState(
     articleSavedList.articleList[0].id
   );
@@ -42,14 +55,21 @@ const ArticleSavedList: React.FC = () => {
     setContent(e.target.value);
   };
 
+  /**
+   * 表示フラグ(真偽値)を管理.
+   */
   const [editFlag, setEditFlag] = useToggle(false);
   const [previewEditFlag, setPreviewEditFlag] = useToggle(true);
 
+  /**
+   * 記事を選択したら記事の内容が表示されて、ステートにデータをセットする.
+   *
+   * @param title - 記事のタイトル
+   */
   const selectArticle = (title: string) => {
     const foundArticle = articleSavedList.articleList.find(
       (articleData: any) => articleData.title === title
     );
-
     insertTags(foundArticle.articleTags);
     setArticleId(foundArticle.id);
     setTitle(foundArticle.title);
@@ -57,7 +77,7 @@ const ArticleSavedList: React.FC = () => {
   };
 
   /**
-   * 下書き記事保存を行う.
+   * 下書き記事編集を行う.
    *
    * @remarks
    * sucess: トップページへ遷移
@@ -69,7 +89,7 @@ const ArticleSavedList: React.FC = () => {
    * @throws エラーメッセージを表示して処理終了
    *
    */
-  const onSaveArticle = async () => {
+  const onEditSavedArticle = async () => {
     //  バリデーションチェック(半角スペースまたは全角スペース、nullのみであったらアラート表示)
     if (title === " " || title === "　" || title === null) {
       toast.error("下書き保存できませんでした...", { icon: "👎" });
@@ -124,7 +144,7 @@ const ArticleSavedList: React.FC = () => {
     onChangeTitle,
     onChangeContent,
     setTagsNum,
-    onSaveArticle,
+    onEditSavedArticle,
     setPreviewEditFlag,
   };
 

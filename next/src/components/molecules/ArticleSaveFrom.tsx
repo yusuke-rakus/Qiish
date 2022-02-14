@@ -18,7 +18,7 @@ const ArticleEditFrom: React.FC<ArticleSaveFromType> = ({
           content: articleSave.content,
           tags: articleSave.tags,
         }}
-        onSubmitCapture={saveFnc.onSaveArticle}
+        onSubmitCapture={saveFnc.onEditSavedArticle}
       >
         <Form.Item
           name="title"

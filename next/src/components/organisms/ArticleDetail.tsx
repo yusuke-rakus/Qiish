@@ -1,10 +1,10 @@
 import React from "react";
 import { HeartOutlined, MessageTwoTone, MenuOutlined } from "@ant-design/icons";
 import { ProfileSmall } from ".";
-// import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { Dropdown, Menu } from "antd";
 import { ArticleType } from "../../const/Types";
+import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import MediaQuery from "react-responsive";
 
@@ -91,9 +91,9 @@ const ArticleDetail: React.FC<ArticleType> = ({
         </div>
         <div className="px-8 pt-6 text-lg">
           <div className="markdown">
-            {/* <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
               {article.content}
-            </ReactMarkdown> */}
+            </ReactMarkdown>
           </div>
         </div>
       </div>

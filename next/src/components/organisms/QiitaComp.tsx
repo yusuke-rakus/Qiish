@@ -1,7 +1,7 @@
 import React from "react";
 import { HeartOutlined, MessageTwoTone } from "@ant-design/icons";
 import { QiitaProfileSmall } from ".";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { QiitaCompType } from "../../const/Types";
 import remarkGfm from "remark-gfm";
@@ -41,9 +41,9 @@ const QiitaComp: React.FC<QiitaCompType> = ({ qiita, isExistProfile }) => {
         </div>
         <div className="px-8 pt-6 text-lg">
           <div className="markdown">
-            <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
+            {/* <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
               {qiita.body}
-            </ReactMarkdown>
+            </ReactMarkdown> */}
           </div>
         </div>
       </div>
