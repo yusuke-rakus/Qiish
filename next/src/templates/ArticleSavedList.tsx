@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import useSWR from "swr";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { TagOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import {
+  TagOutlined,
+  PlusCircleOutlined,
+  RestOutlined,
+} from "@ant-design/icons";
 import { useToggle } from "../hooks";
 import { ArticleData, tags } from "../const/Types";
 import toast, { Toaster } from "react-hot-toast";
-import { saveArticle } from "../lib/api/addData";
 import { ArticleSave } from "../components/organisms";
+import { editArticle } from "../lib/api/editData";
+import { useRouter } from "next/router";
+import { removeArticleById } from "../lib/api/removeData";
 
 const ArticleSavedList: React.FC = () => {
   const { data: articleSavedList } = useSWR("/articleSavedList");
@@ -75,7 +81,7 @@ const ArticleSavedList: React.FC = () => {
     }
 
     try {
-      const res = await saveArticle(title, content, tagsNum);
+      const res = await editArticle(articleId, title, content, tagsNum);
 
       if (res.data.status === "success") {
         toast.success("下書き保存しました!", { icon: "👍" });
@@ -85,6 +91,25 @@ const ArticleSavedList: React.FC = () => {
       }
     } catch (error) {
       toast.error("下書き保存できませんでした...", { icon: "👎" });
+    }
+  };
+
+  /**
+   * 下書き記事の削除を行う.
+   *
+   * @remarks
+   * sucess: トップページへ遷移
+   * error: アラートメッセージ表示
+   * @param articleId - 下書き記事ID
+   */
+  const router = useRouter();
+  const onDeleteArticle = async () => {
+    const res = await removeArticleById(articleId);
+    if (res.data.status === "success") {
+      toast.success("記事削除しました!", { icon: "👍" });
+      router.push("/articleSaved");
+    } else {
+      toast.error("記事削除できませんでした...", { icon: "👎" });
     }
   };
 
@@ -165,9 +190,15 @@ const ArticleSavedList: React.FC = () => {
           </div>
           <button
             onClick={setEditFlag}
-            className="text-7xl fixed right-10 bottom-10 shadow-lg rounded-full text-orange-400 hover:text-orange-200"
+            className="text-6xl fixed right-10 bottom-24 shadow-lg rounded-full text-orange-400 hover:text-orange-200"
           >
             <PlusCircleOutlined />
+          </button>
+          <button
+            onClick={onDeleteArticle}
+            className="text-5xl fixed right-10 bottom-10 shadow-lg rounded-full text-orange-400 hover:text-orange-200"
+          >
+            <RestOutlined />
           </button>
         </div>
       )}

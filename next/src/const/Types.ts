@@ -134,6 +134,7 @@ export type ArticleAddFormType = {
     setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     setTags: (value: number[]) => void;
     setPreviewFlag: () => void;
+    setSaveStatus: () => void;
     onAddArticle: () => void;
   };
   SKILLTAGS: SkillTags;

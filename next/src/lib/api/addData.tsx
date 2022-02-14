@@ -47,13 +47,12 @@ export const resetPassword = async (
  * @returns 投稿処理のステータス(success・error)
  */
 export const addArticle = async (
-  userId: number,
   title: string,
   content: string,
   tags: SelectStateType
 ) => {
   const res = await axios.post(`${BASEURL}/article/add`, {
-    userInfoId: userId,
+    userInfoId: guestIdNum,
     title: title,
     content: content,
     tags: tags,
