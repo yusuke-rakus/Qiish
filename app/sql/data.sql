@@ -295,7 +295,7 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
-    ('kotolin');
+    ('kotlin');
 
 INSERT INTO
     tags(skill)
