@@ -151,7 +151,7 @@ const ArticleSavedList: React.FC = () => {
                 return (
                   <div
                     key={articleData.id}
-                    className="px-5 py-3 m-2 bg-white rounded hover:bg-slate-50"
+                    className="flex px-5 py-3 m-2 bg-white rounded hover:bg-slate-50"
                   >
                     <button
                       className="w-full"
@@ -179,6 +179,11 @@ const ArticleSavedList: React.FC = () => {
                         })}
                       </div>
                     </button>
+                    {articleData.id === articleId && (
+                      <span className="p-2 h-8 w-16 text-xs bg-orange-300 rounded-2xl">
+                        選択中
+                      </span>
+                    )}
                   </div>
                 );
               })}
