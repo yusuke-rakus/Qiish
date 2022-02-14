@@ -4,15 +4,12 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { addArticle } from "../lib/api/addData";
+import { addArticle, saveArticle } from "../lib/api/addData";
 import { useRouter } from "next/router";
-import getCookie from "../lib/cookie/handleCookie";
 import toast, { Toaster } from "react-hot-toast";
 
 const ArticleAdd: React.FC = () => {
   const router = useRouter();
-  // cookieからuid取得(Number型に変換)
-  const userId = Number(getCookie());
 
   /**
    * 記事情報のステート(投稿).
@@ -26,9 +23,19 @@ const ArticleAdd: React.FC = () => {
   const [title, setTitle] = useTextState("");
   const [content, setContent] = useTextState("");
   const [tags, setTags] = useSelectState(new Array<number>());
+  // const [saveStatus, setSaveStatus] = useToggle(true);
 
   // マークダウンで表示確認するフラグ  true: プレビューoff, false: プレビューon
   const [previewFlag, setPreviewFlag] = useToggle(true);
+
+  // 投稿イベントが失敗したらトースターを表示させる処理
+  const eventAddError = () => {
+    toast.error("記事投稿できませんでした...", { icon: "👎" });
+  };
+  // 保存イベントが失敗したらトースターを表示させる処理
+  const eventSaveError = () => {
+    toast.error("下書き保存できませんでした...", { icon: "👎" });
+  };
 
   /**
    * 記事投稿処理を行う.
@@ -36,7 +43,6 @@ const ArticleAdd: React.FC = () => {
    * @remarks
    * sucess: トップページへ遷移
    * error: アラートメッセージ表示
-   * @param userId ログインユーザーID
    * @param title - タイトル
    * @param content - 内容
    * @param tags - タグ
@@ -44,24 +50,68 @@ const ArticleAdd: React.FC = () => {
   const onAddArticle = async () => {
     //  バリデーションチェック
     if (title === " " || title === "　" || title === null) {
-      toast.error("記事投稿できませんでした...", { icon: "👎" });
+      eventAddError();
       return;
     }
     if (content === " " || content === "　" || content === null) {
-      toast.error("記事投稿できませんでした...", { icon: "👎" });
+      eventAddError();
+      return;
+    }
+    if (saveStatus) {
+      onSaveArticle();
       return;
     }
 
     try {
-      const res = await addArticle(userId, title, content, tags);
+      const res = await addArticle(title, content, tags);
+      console.log(res);
+
       if (res.data.status === "success") {
         toast.success("記事投稿しました!", { icon: "👍" });
         router.push("/");
       } else {
-        toast.error("記事投稿できませんでした...", { icon: "👎" });
+        eventAddError();
       }
     } catch (error) {
-      toast.error("記事投稿できませんでした...", { icon: "👎" });
+      eventAddError();
+    }
+  };
+
+  /**
+   * 下書き記事保存を行う.
+   *
+   * @remarks
+   * sucess: トップページへ遷移
+   * error: アラートメッセージ表示
+   * @param articleData.article.id - 記事ID
+   * @param title - タイトル
+   * @param content - 内容
+   * @param tagsNum - タグIDの配列
+   * @throws エラーメッセージを表示して処理終了
+   *
+   */
+  const onSaveArticle = async () => {
+    //  バリデーションチェック(半角スペースまたは全角スペース、nullのみであったらアラート表示)
+    if (title === " " || title === "　" || title === null) {
+      eventSaveError();
+      return;
+    }
+    if (content === " " || content === "　" || content === null) {
+      eventSaveError();
+      return;
+    }
+
+    try {
+      const res = await saveArticle(title, content, tags);
+
+      if (res.data.status === "success") {
+        toast.success("下書き保存しました!", { icon: "👍" });
+        router.push("/");
+      } else {
+        eventSaveError();
+      }
+    } catch (error) {
+      eventSaveError();
     }
   };
 
@@ -71,6 +121,7 @@ const ArticleAdd: React.FC = () => {
     setContent,
     setTags,
     setPreviewFlag,
+    // setSaveStatus,
     onAddArticle,
   };
 
