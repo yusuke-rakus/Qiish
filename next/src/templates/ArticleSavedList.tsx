@@ -61,6 +61,19 @@ const ArticleSavedList: React.FC = () => {
   const [editFlag, setEditFlag] = useToggle(false);
   const [previewEditFlag, setPreviewEditFlag] = useToggle(true);
 
+  // 投稿イベントが失敗したらトースターを表示させる処理
+  const eventAddError = () => {
+    toast.error("記事投稿できませんでした...", { icon: "👎" });
+  };
+  // 保存イベントが失敗したらトースターを表示させる処理
+  const eventSaveError = () => {
+    toast.error("下書き保存できませんでした...", { icon: "👎" });
+  };
+  // 保存イベントが失敗したらトースターを表示させる処理
+  const eventDeleteError = () => {
+    toast.error("下書き削除できませんでした...", { icon: "👎" });
+  };
+
   /**
    * 記事を選択したら記事の内容が表示されて、ステートにデータをセットする.
    *
@@ -92,11 +105,11 @@ const ArticleSavedList: React.FC = () => {
   const onEditSavedArticle = async () => {
     //  バリデーションチェック(半角スペースまたは全角スペース、nullのみであったらアラート表示)
     if (title === " " || title === "　" || title === null) {
-      toast.error("下書き保存できませんでした...", { icon: "👎" });
+      eventSaveError();
       return;
     }
     if (content === " " || content === "　" || content === null) {
-      toast.error("下書き保存できませんでした...", { icon: "👎" });
+      eventSaveError();
       return;
     }
 
@@ -107,10 +120,10 @@ const ArticleSavedList: React.FC = () => {
         toast.success("下書き保存しました!", { icon: "👍" });
         setEditFlag();
       } else {
-        toast.error("下書き保存できませんでした...", { icon: "👎" });
+        eventSaveError();
       }
     } catch (error) {
-      toast.error("下書き保存できませんでした...", { icon: "👎" });
+      eventSaveError();
     }
   };
 
@@ -129,7 +142,7 @@ const ArticleSavedList: React.FC = () => {
       toast.success("記事削除しました!", { icon: "👍" });
       router.push("/articleSaved");
     } else {
-      toast.error("記事削除できませんでした...", { icon: "👎" });
+      eventDeleteError();
     }
   };
 
@@ -200,7 +213,7 @@ const ArticleSavedList: React.FC = () => {
                       </div>
                     </button>
                     {articleData.id === articleId && (
-                      <span className="p-2 h-8 w-16 text-xs bg-orange-300 rounded-2xl">
+                      <span className="text-center p-2 h-8 w-16 text-xs text-white bg-orange-400 rounded-2xl">
                         選択中
                       </span>
                     )}
