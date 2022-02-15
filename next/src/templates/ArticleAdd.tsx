@@ -4,7 +4,7 @@ import { LeftCircleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { SKILL as SKILLTAGS } from "../const/Tags";
 import { useSelectState, useTextState, useToggle } from "../hooks";
-import { addArticle, saveArticle } from "../lib/api/addData";
+import { addArticleOnArticle, saveArticle } from "../lib/api/addData";
 import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -59,7 +59,7 @@ const ArticleAdd: React.FC = () => {
     }
 
     try {
-      const res = await addArticle(title, content, tags);
+      const res = await addArticleOnArticle(title, content, tags);
 
       if (res.data.status === "success") {
         toast.success("記事投稿しました!", { icon: "👍" });

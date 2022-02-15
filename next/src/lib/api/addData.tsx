@@ -46,12 +46,39 @@ export const resetPassword = async (
  * @param tags - タグ
  * @returns 投稿処理のステータス(success・error)
  */
-export const addArticle = async (
+export const addArticleOnArticle = async (
   title: string,
   content: string,
   tags: SelectStateType
 ) => {
   const res = await axios.post(`${BASEURL}/article/add`, {
+    articleId: null,
+    userInfoId: guestIdNum,
+    title: title,
+    content: content,
+    tags: tags,
+  });
+  return res;
+};
+
+//
+/**
+ * 下書き記事から記事投稿.
+ *
+ * @param articleId - 下書き記事ID
+ * @param title - タイトル
+ * @param content - 内容
+ * @param tags - タグ
+ * @returns
+ */
+export const addArticleFromSave = async (
+  articleId: string,
+  title: string,
+  content: string,
+  tags: SelectStateType
+) => {
+  const res = await axios.post(`${BASEURL}/article/add`, {
+    articleId: articleId,
     userInfoId: guestIdNum,
     title: title,
     content: content,
