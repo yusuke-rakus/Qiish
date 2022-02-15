@@ -17,8 +17,8 @@ describe("プロフィール技術タグのテスト", () => {
     ],
   };
   it("プロフィール技術タグが表示すること", () => {
-    // render(<SkillTagsOnProfile {...dummyProps} />);
-    // expect(screen.getByRole("button", { name: "Java" })).toBeInTheDocument();
-    // expect(screen.getByRole("button", { name: "Python" })).toBeInTheDocument();
+    render(<SkillTagsOnProfile {...dummyProps} />);
+    expect(screen.getByRole("button", { name: "Java" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Python" })).toBeInTheDocument();
   });
 });

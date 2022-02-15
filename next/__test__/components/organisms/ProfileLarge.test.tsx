@@ -11,17 +11,17 @@ describe("プロフィール(大)のテスト", () => {
     changeUsrFollow: mockCallback,
   };
   it("ユーザー情報が表示されていること", () => {
-    // render(<ProfileLarge {...dummyProps} />);
+    render(<ProfileLarge {...dummyProps} />);
+    expect(
+      screen.getByText("@" + dummyProps.userInfo.userName)
+    ).toBeInTheDocument();
+    // SelectStateTypeの方のため、エラー発生(string|number[]の型からstringを取得しようとするから厄介)
     // expect(
-    //   screen.getByText("@" + dummyProps.userInfo.userName)
+    //   screen.getByText(dummyProps.userInfo.engineerType)
     // ).toBeInTheDocument();
-    // // SelectStateTypeの方のため、エラー発生(string|number[]の型からstringを取得しようとするから厄介)
-    // // expect(
-    // //   screen.getByText(dummyProps.userInfo.engineerType)
-    // // ).toBeInTheDocument();
-    // expect(
-    //   screen.getByText(dummyProps.userInfo.description)
-    // ).toBeInTheDocument();
-    // expect(screen.getByText(dummyProps.tagsByNum[0].skill)).toBeInTheDocument();
+    expect(
+      screen.getByText(dummyProps.userInfo.description)
+    ).toBeInTheDocument();
+    expect(screen.getByText(dummyProps.tagsByNum[0].skill)).toBeInTheDocument();
   });
 });

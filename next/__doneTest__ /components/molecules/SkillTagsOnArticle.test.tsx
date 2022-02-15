@@ -26,13 +26,13 @@ describe("記事技術タグのテスト", () => {
     onClickTag: mockCallback,
   };
   it("記事技術タグが表示されてボタンがクリックできること", () => {
-    // render(<SkillTagsOnArticle {...dummyProps} />);
-    // expect(screen.getAllByRole("button")).toHaveLength(2);
-    // let button = screen.getByRole("button", { name: "React" });
-    // expect(button).toBeInTheDocument();
-    // expect(fireEvent.click(button)).toBe(true);
-    // button = screen.getByRole("button", { name: "Next" });
-    // expect(button).toBeInTheDocument();
-    // expect(fireEvent.click(button)).toBe(true);
+    render(<SkillTagsOnArticle {...dummyProps} />);
+    expect(screen.getAllByRole("button")).toHaveLength(2);
+    let button = screen.getByRole("button", { name: "React" });
+    expect(button).toBeInTheDocument();
+    expect(fireEvent.click(button)).toBe(true);
+    button = screen.getByRole("button", { name: "Next" });
+    expect(button).toBeInTheDocument();
+    expect(fireEvent.click(button)).toBe(true);
   });
 });
