@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
@@ -14,7 +14,9 @@ import { ArticleSave } from "../components/organisms";
 import { editArticle } from "../lib/api/editData";
 import { useRouter } from "next/router";
 import { removeArticleById } from "../lib/api/removeData";
-import { addArticle } from "../lib/api/addData";
+import { addArticleFromSave } from "../lib/api/addData";
+import { fetchSavedArticleList } from "../lib/api/fetchData";
+import getCookie from "../lib/cookie/handleCookie";
 
 const ArticleSavedList: React.FC = () => {
   // 下書き記事一覧情報取得
@@ -113,8 +115,7 @@ const ArticleSavedList: React.FC = () => {
     }
 
     try {
-      const res = await addArticle(title, content, tagsNum);
-      console.log(res);
+      const res = await addArticleFromSave(articleId, title, content, tagsNum);
 
       if (res.data.status === "success") {
         toast.success("記事投稿しました!", { icon: "👍" });
@@ -140,6 +141,9 @@ const ArticleSavedList: React.FC = () => {
    * @throws エラーメッセージを表示して処理終了
    *
    */
+  // ログインユーザーIDと記事IDをCookieから取得
+  const guestId = getCookie();
+  const guestIdNum = Number(guestId);
   const onEditSavedArticle = async () => {
     //  バリデーションチェック(半角スペースまたは全角スペース、nullのみであったらアラート表示)
     if (title === " " || title === "　" || title === null) {
@@ -155,6 +159,7 @@ const ArticleSavedList: React.FC = () => {
       const res = await editArticle(articleId, title, content, tagsNum);
 
       if (res.data.status === "success") {
+        mutate("/articleSavedList", fetchSavedArticleList(guestIdNum));
         toast.success("下書き保存しました!", { icon: "👍" });
         setEditFlag();
       } else {
