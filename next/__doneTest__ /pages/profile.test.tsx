@@ -37,16 +37,16 @@ afterAll(() => server.close());
 describe("プロフィールページをテスト", () => {
   it("プロフィール、タグ、投稿記事、いいね記事が取得されること", async () => {
     // moduleがES6によるエラー
-    // const res = await getServerSideProps(ctxData);
-    // expect(res).toStrictEqual({
-    //   props: {
-    //     fallback: {
-    //       "/profile": [profileDataMock],
-    //       "/tagsData": [tagsData],
-    //       "/postedArticles": [postedArticles],
-    //       "/likedArticles": [likedArticles],
-    //     },
-    //   },
-    // });
+    const res = await getServerSideProps(ctxData);
+    expect(res).toStrictEqual({
+      props: {
+        fallback: {
+          "/profile": [profileDataMock],
+          "/tagsData": [tagsData],
+          "/postedArticles": [postedArticles],
+          "/likedArticles": [likedArticles],
+        },
+      },
+    });
   });
 });

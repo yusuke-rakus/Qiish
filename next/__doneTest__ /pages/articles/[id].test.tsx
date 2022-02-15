@@ -4,7 +4,11 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { BASEURL } from "../../../src/const/Urls";
 import { getServerSideProps } from "../../../src/pages/articles/[id]";
-import { articleDataMock, ctxData, tagsData } from "../../.mock/data";
+import {
+  articleDataMock,
+  ctxData,
+  tagsData,
+} from "../../../__test__/.mock/data";
 
 const server = setupServer(
   rest.post(`${BASEURL}/article`, (req, res, ctx) => {
@@ -24,11 +28,11 @@ afterAll(() => server.close());
 
 describe("記事詳細ページをテスト", () => {
   it("詳細記事、タグが取得されること", async () => {
-    // const res = await getServerSideProps(ctxData);
-    // expect(res).toStrictEqual({
-    //   props: {
-    //     fallback: { "/article": [articleDataMock], "/tagsData": [tagsData] },
-    //   },
-    // });
+    const res = await getServerSideProps(ctxData);
+    expect(res).toStrictEqual({
+      props: {
+        fallback: { "/article": [articleDataMock], "/tagsData": [tagsData] },
+      },
+    });
   });
 });

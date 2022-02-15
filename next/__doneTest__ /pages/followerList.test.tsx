@@ -3,8 +3,8 @@ import { cleanup } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { getServerSideProps } from "../../src/pages/followerList";
-import { fetchUserQiish, fetchUserZenn } from "../.mock/data";
-import { ctxData } from "../.mock/data";
+import { fetchUserQiish, fetchUserZenn } from "../../__test__/.mock/data";
+import { ctxData } from "../../__test__/.mock/data";
 import { BASEURL } from "../../src/const/Urls";
 
 const server = setupServer(
@@ -22,9 +22,9 @@ afterAll(() => server.close());
 
 describe("フォロワーリストページをテスト", () => {
   it("フォロワーリストが取得されること", async () => {
-    // const res = await getServerSideProps(ctxData);
-    // expect(res).toStrictEqual({
-    //   props: { fallback: { "/followerList": [fetchUserQiish, fetchUserZenn] } },
-    // });
+    const res = await getServerSideProps(ctxData);
+    expect(res).toStrictEqual({
+      props: { fallback: { "/followerList": [fetchUserQiish, fetchUserZenn] } },
+    });
   });
 });

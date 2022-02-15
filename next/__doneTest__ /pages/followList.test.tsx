@@ -22,9 +22,9 @@ afterAll(() => server.close());
 
 describe("フォローリストページをテスト", () => {
   it("フォローリストが取得されること", async () => {
-    // const res = await getServerSideProps(ctxData);
-    // expect(res).toStrictEqual({
-    //   props: { fallback: { "/followList": [fetchUserQiish, fetchUserZenn] } },
-    // });
+    const res = await getServerSideProps(ctxData);
+    expect(res).toStrictEqual({
+      props: { fallback: { "/followList": [fetchUserQiish, fetchUserZenn] } },
+    });
   });
 });
