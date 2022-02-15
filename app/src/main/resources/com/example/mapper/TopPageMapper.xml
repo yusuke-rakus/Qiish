@@ -48,7 +48,7 @@
 		LEFT JOIN user_info AS u
 		ON a.user_info_id = u.id
 		WHERE article_status = TRUE
-		ORDER BY visited_count DESC, at.tag_order;
+		ORDER BY visited_count DESC, posted_date DESC, at.tag_order;
 	</select>
 
 	<!-- タグ一覧取得 -->
@@ -90,7 +90,7 @@
 		<foreach collection="wordList" item="word">
 			AND title LIKE CONCAT('%' ,#{word}, '%')
 		</foreach>
-		ORDER BY visited_count DESC, at.tag_order;
+		ORDER BY visited_count DESC, posted_date DESC, at.tag_order;
 	</select>
 
 	<!-- タグ検索 -->
@@ -115,7 +115,7 @@
 		ON a.user_info_id = u.id 
 		WHERE a.id IN ((SELECT article_id FROM article_tags WHERE tag_id = #{tagId}))
 		AND article_status = TRUE
-		ORDER BY visited_count DESC, at.tag_order;
+		ORDER BY visited_count DESC, posted_date DESC, at.tag_order;
 	</select>
 	
 	<!-- 検索キーワードの保存 -->
