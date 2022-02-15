@@ -53,6 +53,10 @@
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
     },
-    "verbose": true
+    "verbose": true,
+    "testMatch": [
+      "**/__test__/**/*.test.tsx",
+      "**/__test__/**/*.test.ts"
+    ]
   }
 }
