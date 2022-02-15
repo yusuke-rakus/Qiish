@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { QiitaComp } from "../../../src/components/organisms";
 import { QiitaCompType } from "../../../src/const/Types";
 import moment from "moment";
-import { qiitaData } from "../../.mock/data";
+import { qiitaData } from "../../../__test__/.mock/data";
 
 describe("Qiitaの詳細記事をテスト", () => {
   let dummyProps: QiitaCompType = {

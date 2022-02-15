@@ -16,9 +16,9 @@ describe("プロフィール(大)のテスト", () => {
       screen.getByText("@" + dummyProps.userInfo.userName)
     ).toBeInTheDocument();
     // SelectStateTypeの方のため、エラー発生(string|number[]の型からstringを取得しようとするから厄介)
-    // expect(
-    //   screen.getByText(dummyProps.userInfo.engineerType)
-    // ).toBeInTheDocument();
+    expect(
+      screen.getByText(dummyProps.userInfo.engineerType)
+    ).toBeInTheDocument();
     expect(
       screen.getByText(dummyProps.userInfo.description)
     ).toBeInTheDocument();

@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { ProfileRectangle } from "../../../src/components/organisms";
 import { ProfileRectangleType } from "../../../src/const/Types";
-import { ProfileRectangleMock } from "../../.mock/data";
+import { ProfileRectangleMock } from "../../../__test__/.mock/data";
 
 describe("長方形のプロフィールをテスト", () => {
   // ダミーのpropsを定義
@@ -21,14 +21,16 @@ describe("長方形のプロフィールをテスト", () => {
       screen.getByText(dummyProps.user_data.engineerType)
     ).toBeInTheDocument();
     expect(dummyProps.followStatus).toBeFalsy();
-    // ボタンをクリックしてbool切り替えしたい(未着手)
-    // fireEvent.click(screen.getByText("フォロー"));
-    // screen.debug();
-    // expect(dummyProps.followStatus).toBeTruthy();
   });
 
   it("フォローボタンが表示されること", () => {
     render(<ProfileRectangle {...dummyProps} />);
     expect(screen.getByRole("button").textContent).toBe("フォロー");
+  });
+  it("ボタンがクリックできること", () => {
+    render(<ProfileRectangle {...dummyProps} />);
+    let button = screen.getByRole("button", { name: "フォロー" });
+    expect(button).toBeInTheDocument();
+    expect(fireEvent.click(button)).toBe(true);
   });
 });

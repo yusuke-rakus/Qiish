@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { ProfileSmallType } from "../../../src/const/Types";
 import { ProfileSmall } from "../../../src/components/organisms";
-import { profileSmallDataMock } from "../../.mock/data/userData";
+import { profileSmallDataMock } from "../../../__test__/.mock/data";
 
 describe("プロフィール(小)のテスト", () => {
   const mockCallback = jest.fn();
@@ -20,6 +20,5 @@ describe("プロフィール(小)のテスト", () => {
     expect(screen.getByText(dummyProps.user.followCount)).toBeInTheDocument();
     expect(screen.getByText(dummyProps.user.followerCount)).toBeInTheDocument();
     expect(screen.getByText(dummyProps.user.tags[0].skill)).toBeInTheDocument();
-    // screen.debug();
   });
 });
