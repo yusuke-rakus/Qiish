@@ -37,7 +37,7 @@ const Article: React.FC = () => {
   // 格納したタグデータからタグIDのみを取り出し、Arrayステートに管理
   const initialTags = new Array<number>();
   const [tagsNum, setTagsNum] = useSelectState(initialTags);
-  // プロフィールデータにあるtagのidをinitialTagsに格納
+  // tagのidをinitialTagsに格納
   const insertTags = () => {
     for (const tag of articleData.article.articleTags) {
       initialTags.push(tag.id);
@@ -208,6 +208,8 @@ const Article: React.FC = () => {
       if (res.data.status === "success") {
         toast.success("記事編集しました!", { icon: "👍" });
         setEditFlag();
+      } else {
+        toast.error("記事編集できませんでした...", { icon: "👎" });
       }
     } catch (error) {
       toast.error("記事編集できませんでした...", { icon: "👎" });
