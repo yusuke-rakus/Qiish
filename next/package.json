@@ -54,6 +54,9 @@
       "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
     },
     "verbose": true,
+    "transformIgnorePatterns": [
+      "/node_modules/(?!react-markdown)/"
+    ],
     "testMatch": [
       "**/__test__/**/*.test.tsx",
       "**/__test__/**/*.test.ts"
