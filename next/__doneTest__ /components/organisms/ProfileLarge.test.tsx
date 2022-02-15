@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { ProfileLargeType } from "../../../src/const/Types";
 import { ProfileLarge } from "../../../src/components/organisms";
-import { profileLargeData } from "../../.mock/data";
+import { profileLargeData } from "../../../__test__/.mock/data";
 
 describe("プロフィール(大)のテスト", () => {
   const mockCallback = jest.fn();
