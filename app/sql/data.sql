@@ -50,6 +50,8 @@ CREATE TABLE articles(
     FOREIGN KEY fk_articles_user_id(user_info_id) REFERENCES user_info(id) ON DELETE CASCADE
 );
 
+ALTER TABLE articles ADD FULLTEXT INDEX fk_title_content(title, content);
+
 CREATE TABLE likes(
     id int NOT NULL AUTO_INCREMENT,
     user_info_id int NOT NULL,

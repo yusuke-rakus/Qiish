@@ -66,9 +66,9 @@
 		WHERE id = #{guestId};
 	</select>
 
-	<!-- タイトルからキーワード検索 -->
+	<!-- タイトル/コンテントからキーワード検索 -->
 	<select id="searchKeywordFromTitle" resultMap="articleList">
-		SELECT DISTINCT
+		SELECT
 			a.id AS article_id,
 			a.title,
 			a.content,
@@ -88,7 +88,7 @@
 		ON a.user_info_id = u.id 
 		WHERE article_status = TRUE
 		<foreach collection="wordList" item="word">
-			AND title LIKE CONCAT('%' ,#{word}, '%')
+			AND MATCH(title,content) AGAINST(CONCAT('*' ,#{word}, '*') IN BOOLEAN MODE)
 		</foreach>
 		ORDER BY visited_count DESC, posted_date DESC, at.tag_order;
 	</select>
