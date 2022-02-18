@@ -11,13 +11,11 @@
 //   });
 // });
 
-describe("初めてのテスト", () => {
-  it("trueが成功するか", () => {
+describe("トップページのテスト", () => {
+  it("トップページが表示されているか", () => {
     // 指定のURLに訪れる
-    cy.visit("https://www.cypress.io/");
-    // 引数の文字列をクリックする(buttonタグ)
-    cy.contains("Learn more").click();
-    // 引数の文字列が存在するか確かめる
-    cy.contains("A test runner built for humans");
+    cy.visit("http://localhost:3000/");
+    // トップページのArticleが表示されているかどうか
+    cy.contains("Articles");
   });
 });
