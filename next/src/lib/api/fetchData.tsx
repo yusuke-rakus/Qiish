@@ -36,6 +36,12 @@ export const fetchSearchedTag = async (tagId: string, guestId: string) => {
   return res.data.articleList;
 };
 
+// タグランキングを取得するAPI
+export const fetchTagRanking = async () => {
+  const res = await axios.get(`${BASEURL}/getTag/tagCount`);
+  return res.data;
+};
+
 /**
  * プロフィール情報の取得.
  *
