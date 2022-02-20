@@ -6,6 +6,8 @@ import getCookie from "../lib/cookie/handleCookie";
 import { fetchArticleList } from "../lib/api/fetchData";
 import { fetchSearchedTag } from "../lib/api/fetchData";
 import { fetchSearchedArticle } from "../lib/api/fetchData";
+import TagRanking from "../components/organisms/TagRanking";
+import SearchArticles from "../components/organisms/SearchArticles";
 
 const ArticleList: React.FC = () => {
   const guestId = getCookie();
@@ -50,20 +52,23 @@ const ArticleList: React.FC = () => {
         showDrawer={showDrawer}
         onClose={onClose}
       ></HeaderComp>
-      <div className="mx-80 my-1 text-4xl font-semibold text-orange-500">
-        Articles
-      </div>
-      <div className="mx-72 grid grid-cols-2 gap-2 bg-orange-100">
-        {articleList &&
-          articleList.map((articleData: any) => {
-            return (
-              <ArticleComp
-                key={articleData.id}
-                articleData={articleData}
-                onClickTag={onClickTag}
-              />
-            );
-          })}
+      <div className="flex">
+        <div className="flex-col w-96 max-w-5xl border">
+          <SearchArticles />
+          <TagRanking />
+        </div>
+        <div className="w-full grid grid-cols-2 gap-2 border">
+          {articleList &&
+            articleList.map((articleData: any) => {
+              return (
+                <ArticleComp
+                  key={articleData.id}
+                  articleData={articleData}
+                  onClickTag={onClickTag}
+                />
+              );
+            })}
+        </div>
       </div>
     </div>
   );

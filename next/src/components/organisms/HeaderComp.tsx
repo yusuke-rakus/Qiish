@@ -36,83 +36,69 @@ const HeaderComp: React.FC<search> = ({
     </Menu>
   );
 
-  // const [visible, setVisible] = useState(false);
-  // const [keyword, setKeyword] = useState("");
-
-  // const onChangeKeyword = (e: ChangeEvent<HTMLInputElement>) =>
-  //   setKeyword(e.target.value);
-
-  // const showDrawer = () => {
-  //   setVisible(true);
-  // };
-
-  // const onClose = () => {
-  //   setVisible(false);
-  // };
-
-  // const search = async () => {
-  //   fetchSearchedArticle(keyword);
-  //   setVisible(false);
-  // };
-
   return (
     <React.Fragment>
-      <div className="flex gap-1 justify-end">
-        <button className="m-4 text-3xl hover:text-orange-500">
-          <SearchOutlined type="primary" onClick={showDrawer} />
-        </button>
+      <div className="flex gap-1 justify-between border">
+        <div className="m-4 ml-12 text-4xl text-sky-400 font-semibold">
+          Qiish
+        </div>
+        <div>
+          <button className="p-4 text-3xl hover:text-blue-400">
+            <SearchOutlined type="primary" onClick={showDrawer} />
+          </button>
 
-        <Drawer
-          title={
-            <input
-              type="text"
-              onChange={onChangeKeyword}
-              placeholder="キーワードを入力"
-              className="p-3 text-xl w-11/12 "
-            />
-          }
-          placement="top"
-          onClose={onClose}
-          visible={visible}
-          extra={
-            <Space>
-              <button
-                onClick={search}
-                className="px-5 py-2 text-white bg-orange-400 hover:bg-orange-500 rounded"
-              >
-                検索
-              </button>
+          <Drawer
+            title={
+              <input
+                type="text"
+                onChange={onChangeKeyword}
+                placeholder="キーワードを入力"
+                className="p-3 text-xl w-11/12 "
+              />
+            }
+            placement="top"
+            onClose={onClose}
+            visible={visible}
+            extra={
+              <Space>
+                <button
+                  onClick={search}
+                  className="px-5 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded"
+                >
+                  検索
+                </button>
 
-              <button
-                onClick={onClose}
-                className="px-5 py-2 text-white bg-orange-400 hover:bg-orange-500 rounded"
-              >
-                Cancel
-              </button>
-            </Space>
-          }
-        ></Drawer>
+                <button
+                  onClick={onClose}
+                  className="px-5 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded"
+                >
+                  Cancel
+                </button>
+              </Space>
+            }
+          ></Drawer>
 
-        <Dropdown overlay={menu}>
-          <a
-            className="m-4 text-3xl text-gray-600 hover:text-orange-500 rounded-full ant-dropdown-link"
-            onClick={(e) => e.preventDefault()}
-          >
-            <UserOutlined /> <DownOutlined />
-          </a>
-        </Dropdown>
+          <Dropdown overlay={menu}>
+            <a
+              className="m-4 text-3xl text-gray-600 hover:text-blue-400 rounded-full ant-dropdown-link"
+              onClick={(e) => e.preventDefault()}
+            >
+              <UserOutlined /> <DownOutlined />
+            </a>
+          </Dropdown>
 
-        {/* 画面遷移のためLink */}
-        <Link href={"/articleAdd"}>
-          <a className="px-4 py-2 m-4 text-white hover:text-white font-semibold bg-orange-400 hover:bg-orange-500 active:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 rounded-md shadow-xl">
-            Add News
-          </a>
-        </Link>
-        <Link href={"/qiitaList"}>
-          <a className="px-4 py-2 mr-5 my-4 text-white hover:text-white font-semibold bg-orange-400 hover:bg-orange-500 active:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 rounded-md shadow-xl">
-            Qiita
-          </a>
-        </Link>
+          {/* 画面遷移のためLink */}
+          <Link href={"/articleAdd"}>
+            <a className="px-4 py-3 m-4 text-white hover:text-white font-semibold bg-sky-400 hover:bg-sky-500 active:bg-sky-500 focus:outline-none focus:ring focus:ring-sky-300 rounded-md shadow-xl">
+              Add News
+            </a>
+          </Link>
+          <Link href={"/qiitaList"}>
+            <a className="px-4 py-3 mr-5 my-4 text-white hover:text-white font-semibold bg-sky-400 hover:bg-sky-500 active:bg-sky-500 focus:outline-none focus:ring focus:ring-sky-300 rounded-md shadow-xl">
+              Qiita
+            </a>
+          </Link>
+        </div>
       </div>
     </React.Fragment>
   );
