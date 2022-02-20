@@ -43,6 +43,11 @@ const ArticleList: React.FC = () => {
     setVisible(false);
   };
 
+  const reloadArticles = async () => {
+    const data = await fetchArticleList();
+    setArticleList(data.articleList);
+  };
+
   return (
     <div>
       <HeaderComp
@@ -51,6 +56,7 @@ const ArticleList: React.FC = () => {
         search={search}
         showDrawer={showDrawer}
         onClose={onClose}
+        reloadArticles={reloadArticles}
       ></HeaderComp>
       <div className="flex">
         <div className="flex-col w-96 max-w-5xl border">

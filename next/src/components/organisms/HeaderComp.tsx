@@ -1,8 +1,8 @@
 import Link from "next/link";
+import Router from "next/router";
 import React, { useState, ChangeEvent } from "react";
 import { SearchOutlined, UserOutlined, DownOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Drawer, Space } from "antd";
-import { fetchSearchedArticle } from "../../lib/api/fetchData";
 
 // 記事検索の型
 export type search = {
@@ -12,6 +12,7 @@ export type search = {
   search: () => Promise<void>;
   onClose: () => void;
   showDrawer: () => void;
+  reloadArticles: () => void;
 };
 
 const HeaderComp: React.FC<search> = ({
@@ -21,6 +22,7 @@ const HeaderComp: React.FC<search> = ({
   search,
   onClose,
   showDrawer,
+  reloadArticles,
 }) => {
   const menu = (
     <Menu>
@@ -31,6 +33,12 @@ const HeaderComp: React.FC<search> = ({
         <a href={"/articleSaved"}>下書き記事</a>
       </Menu.Item>
       <Menu.Item key="2">
+        <a href={"/registerUser"}>会員登録</a>
+      </Menu.Item>
+      <Menu.Item key="3">
+        <a href={"/loginUser"}>ログイン</a>
+      </Menu.Item>
+      <Menu.Item key="4">
         <a href={"/loginuser"}>ログアウト</a>
       </Menu.Item>
     </Menu>
@@ -39,9 +47,12 @@ const HeaderComp: React.FC<search> = ({
   return (
     <React.Fragment>
       <div className="flex gap-1 justify-between border">
-        <div className="m-4 ml-12 text-4xl text-sky-400 font-semibold">
-          Qiish
-        </div>
+        <button
+          onClick={reloadArticles}
+          className="m-4 ml-12 text-5xl text-sky-400 font-semibold"
+        >
+          Quish
+        </button>
         <div>
           <button className="p-4 text-3xl hover:text-blue-400">
             <SearchOutlined type="primary" onClick={showDrawer} />
