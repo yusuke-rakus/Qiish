@@ -64,7 +64,7 @@ const RegisterUser: React.FC = () => {
       confirmPassword
     );
 
-    Router.push("/loginUser");
+    Router.push("/");
   };
 
   return (

@@ -7,7 +7,7 @@ const SkillTagQiita: React.FC<Props> = ({ name }) => {
     <span
       key={name}
       className={
-        "m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded"
+        "m-1 py-1 px-1 bg-blue-500 text-white text-center font-sans text-xs shadow-md rounded"
       }
     >
       {name}
