@@ -1,18 +1,10 @@
 package com.example.controller.test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -52,9 +44,11 @@ class MyPageControllerTest {
 
 	@Test
 	public void myPageのレスポンスがあるかを確認() throws Exception {
+		//formに値をセット
 		UserPageForm form = new UserPageForm();
 		form.setGuestId(1);
 		form.setUserInfoId(3);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(form);
 		
