@@ -16,6 +16,36 @@ const ArticleAddFrom: React.FC<ArticleAddFormType> = ({
   return (
     <div>
       <Form onSubmitCapture={Fnc.addOrSave}>
+        <div className="flex justify-end gap-2">
+          <Button
+            className=""
+            shape="default"
+            size="large"
+            htmlType="button"
+            onClick={Fnc.setPreviewFlag}
+          >
+            <span className="text-sky-400 hover:border-gray-300">
+              プレビューモード
+            </span>
+          </Button>
+          <Button className="" size="large" shape="default" htmlType="submit">
+            <span className="text-sky-400 hover:border-gray-300">
+              {saveStatus ? "投稿" : "下書き保存"}
+            </span>
+          </Button>
+          <Button
+            className=""
+            size="large"
+            shape="default"
+            htmlType="button"
+            onClick={Fnc.setSaveStatus}
+          >
+            <span className="text-sky-400 hover:border-gray-300">
+              <SwapOutlined />
+            </span>
+          </Button>
+        </div>
+
         <Form.Item
           name="title"
           rules={[
@@ -26,12 +56,10 @@ const ArticleAddFrom: React.FC<ArticleAddFormType> = ({
             },
           ]}
         >
-          <span className="p-2">
-            <Input
-              className="placeholder-2xl focus:placeholder-gray-400"
-              placeholder="タイトル"
-              bordered={false}
-              size={"large"}
+          <span>
+            <input
+              className="mt-8 px-4 py-8 w-full h-10 text-4xl font-semibold focus:outline-none"
+              placeholder="記事タイトル"
               onChange={Fnc.setTitle}
             />
           </span>
@@ -62,9 +90,9 @@ const ArticleAddFrom: React.FC<ArticleAddFormType> = ({
             })}
           </Select>
         </Form.Item>
-        <div className="w-full p-4 m-2 bg-white rounded-lg border shadow-md">
+        <div className="w-full p-4 m-2 bg-white border shadow">
           {prevFlag ? (
-            <div className="w-full p-2 rounded-xl hover:bg-gray-100">
+            <div className="w-full p-2 hover:bg-gray-100">
               <Form.Item
                 name="content"
                 rules={[{ required: true, message: "記事が空欄です" }]}
@@ -78,46 +106,12 @@ const ArticleAddFrom: React.FC<ArticleAddFormType> = ({
               </Form.Item>
             </div>
           ) : (
-            <div className="w-full p-2 rounded-xl">
+            <div className="w-full p-2">
               <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>
                 {previewContent}
               </ReactMarkdown>
             </div>
           )}
-        </div>
-        <div className="flex justify-end">
-          <Button
-            className="drop-shadow-2xl mr-3"
-            shape="round"
-            size="large"
-            htmlType="button"
-            onClick={Fnc.setPreviewFlag}
-          >
-            <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
-              プレビューモード
-            </span>
-          </Button>
-          <Button
-            className="drop-shadow-2xl"
-            size="large"
-            shape="round"
-            htmlType="submit"
-          >
-            <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
-              {saveStatus ? "投稿" : "下書き投稿"}
-            </span>
-          </Button>
-          <Button
-            className="drop-shadow-2xl"
-            size="large"
-            shape="round"
-            htmlType="button"
-            onClick={Fnc.setSaveStatus}
-          >
-            <span className="text-[rgb(255,195,98)] hover:border-[rgb(255,215,150)] hover:text-[rgb(255,207,131)]">
-              <SwapOutlined />
-            </span>
-          </Button>
         </div>
       </Form>
     </div>

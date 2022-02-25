@@ -253,7 +253,7 @@ const Article: React.FC = () => {
       ) : (
         <div className="grid grid-flow-row">
           <Link href={"/"}>
-            <a className="text-gray-400 hover:text-slate-600">
+            <a className="text-gray-400 hover:text-sky-500">
               <LeftCircleOutlined className="w-1/3 ml-4 mt-6 text-4xl" />
             </a>
           </Link>

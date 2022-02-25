@@ -134,7 +134,7 @@ const ArticleAdd: React.FC = () => {
       <div className="flex justify-center">
         <div className="m-10 lg:w-4/5 md:w-3/5 sm:w-2/5 h-auto">
           <Link href={"/"}>
-            <a className="text-gray-400 hover:text-slate-600">
+            <a className="text-gray-400 hover:text-sky-500">
               <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
             </a>
           </Link>
