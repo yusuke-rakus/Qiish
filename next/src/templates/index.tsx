@@ -12,6 +12,5 @@ export { default as FollowerList } from "./FollowerList";
 export { default as LikeUserListModal } from "./LikeUserListModal";
 export { default as LikeUser } from "./LikeUser";
 export { default as Profile } from "./Profile";
-export { default as Header } from "./Header";
 export { default as Qiita } from "./Qiita";
 export { default as QiitaList } from "./QiitaList";
