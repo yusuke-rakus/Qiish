@@ -9,7 +9,7 @@ export type search = {
   visible: boolean;
   keyword?: string;
   onChangeKeyword: (e: ChangeEvent<HTMLInputElement>) => void;
-  search: () => Promise<void>;
+  searchArticles: () => Promise<void>;
   onClose: () => void;
   showDrawer: () => void;
   reloadArticles: () => void;
@@ -17,9 +17,8 @@ export type search = {
 
 const HeaderComp: React.FC<search> = ({
   visible,
-  keyword,
   onChangeKeyword,
-  search,
+  searchArticles,
   onClose,
   showDrawer,
   reloadArticles,
@@ -39,7 +38,7 @@ const HeaderComp: React.FC<search> = ({
         <a href={"/loginUser"}>ログイン</a>
       </Menu.Item>
       <Menu.Item key="4">
-        <a href={"/loginuser"}>ログアウト</a>
+        <a href={"/loginUser"}>ログアウト</a>
       </Menu.Item>
     </Menu>
   );
@@ -54,7 +53,7 @@ const HeaderComp: React.FC<search> = ({
           Quish
         </button>
         <div>
-          <button className="p-4 text-3xl hover:text-blue-400">
+          <button className="p-4 text-3xl hover:text-sky-400">
             <SearchOutlined type="primary" onClick={showDrawer} />
           </button>
 
@@ -73,15 +72,15 @@ const HeaderComp: React.FC<search> = ({
             extra={
               <Space>
                 <button
-                  onClick={search}
-                  className="px-5 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded"
+                  onClick={searchArticles}
+                  className="px-5 py-2 text-white bg-sky-400 hover:bg-sky-500 rounded"
                 >
                   検索
                 </button>
 
                 <button
                   onClick={onClose}
-                  className="px-5 py-2 text-white bg-blue-400 hover:bg-blue-500 rounded"
+                  className="px-5 py-2 text-white bg-sky-400 hover:bg-sky-500 rounded"
                 >
                   Cancel
                 </button>
@@ -94,7 +93,8 @@ const HeaderComp: React.FC<search> = ({
               className="m-4 text-3xl text-gray-600 hover:text-blue-400 rounded-full ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
-              <UserOutlined /> <DownOutlined />
+              <UserOutlined />
+              <DownOutlined />
             </a>
           </Dropdown>
 

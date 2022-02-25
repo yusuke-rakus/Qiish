@@ -37,7 +37,7 @@ const ArticleList: React.FC = () => {
     setVisible(false);
   };
 
-  const search = async () => {
+  const searchArticles = async () => {
     const articleData = await fetchSearchedArticle(keyword, guestId);
     setArticleList(articleData);
     setVisible(false);
@@ -53,17 +53,21 @@ const ArticleList: React.FC = () => {
       <HeaderComp
         visible={visible}
         onChangeKeyword={onChangeKeyword}
-        search={search}
+        searchArticles={searchArticles}
         showDrawer={showDrawer}
         onClose={onClose}
         reloadArticles={reloadArticles}
       ></HeaderComp>
+
       <div className="flex">
         <div className="flex-col w-96 max-w-5xl border">
-          <SearchArticles />
+          <SearchArticles
+            searchArticles={searchArticles}
+            onChangeKeyword={onChangeKeyword}
+          />
           <TagRanking />
         </div>
-        <div className="w-full grid grid-cols-2 gap-2 border">
+        <div className="w-full h-40 grid grid-cols-2 gap-2">
           {articleList &&
             articleList.map((articleData: any) => {
               return (

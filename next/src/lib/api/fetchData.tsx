@@ -15,7 +15,6 @@ export const loginUser = async (mailAddress: string, password: string) => {
 };
 
 // 検索された記事を取得するAPI
-// キーワード二つ目以降は+区切りで付け足していく仕様とする。半角スペースを+に変換する。
 export const fetchSearchedArticle = async (
   keyword: string,
   guestId: string
@@ -24,6 +23,7 @@ export const fetchSearchedArticle = async (
     keyword: [keyword],
     guestId: guestId,
   });
+  console.log(res.data.articleList);
   return res.data.articleList;
 };
 

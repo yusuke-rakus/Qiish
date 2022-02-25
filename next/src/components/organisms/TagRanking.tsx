@@ -60,13 +60,13 @@ const TagRanking: React.FC = () => {
         tagData.map((tagData: any, index: number) => {
           return (
             <div key={tagData.id} className="mt-4 mx-2 flex justify-between">
-              <div className="p-2 w-1/3 text-center font-bold text-2xl">
+              <div className="p-2 w-1/4 text-center font-bold text-2xl">
                 {index + 1}
               </div>
-              <button className="h-8 px-4 my-2 text-center text-white bg-sky-400 rounded-sm">
+              <button className="border h-8 px-4 my-2 w-auto text-center text-white bg-sky-400 rounded-sm">
                 {tagData.skill}
               </button>
-              <div className="flex-col w-1/3">
+              <div className="flex-col w-1/4">
                 <div className="text-center font-semibold text-xl">
                   {tagData.tagCount}
                 </div>
