@@ -179,19 +179,19 @@ VALUES
     (5, 'no5@qiita.com', 'test1');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('HTML');
+    ('HTML', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/html5.png');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('CSS');
+    ('CSS', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/css3.png');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('JavaScript');
+    ('JavaScript', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/javascript.png');
 
 INSERT INTO
     tags(skill)
@@ -199,24 +199,24 @@ VALUES
     ('jQuery');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('React');
+    ('React', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/react.png');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Angular');
+    ('Angular', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/angularjs.png');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Vue');
+    ('Vue', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/vue.png');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('TypeScript');
+    ('TypeScript', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/typescript.png');
 
 INSERT INTO
     tags(skill)
@@ -239,19 +239,19 @@ VALUES
     ('C#');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Java');
+    ('Java', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/java.png');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Ruby');
+    ('Ruby', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/ruby.png');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Phyton');
+    ('Phyton', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/python.png');
 
 INSERT INTO
     tags(skill)
@@ -264,9 +264,9 @@ VALUES
     ('Perl');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Node.js');
+    ('Node.js', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/node-js.png');
 
 INSERT INTO
     tags(skill)
@@ -276,7 +276,7 @@ VALUES
 INSERT INTO
     tags(skill)
 VALUES
-    ('kotolin');
+    ('kotlin');
 
 INSERT INTO
     tags(skill)
@@ -309,9 +309,9 @@ VALUES
     ('PostgreSQL');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Flutter');
+    ('Flutter', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/flutter.png');
 
 INSERT INTO
     tags(skill)
@@ -334,9 +334,9 @@ VALUES
     ('Laravel');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('PHP');
+    ('PHP', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/php.png');
 
 INSERT INTO
     tags(skill)
@@ -379,9 +379,9 @@ VALUES
     ('CentOS');
 
 INSERT INTO
-    tags(skill)
+    tags(skill, image)
 VALUES
-    ('Docker');
+    ('Docker', 'https://qiish.s3.ap-northeast-1.amazonaws.com/lang_logos/docker.png');
 
 INSERT INTO
     tags(skill)
@@ -452,31 +452,6 @@ INSERT INTO
     tags(skill)
 VALUES
     ('VScode');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('Firebase');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('Tailwind CSS');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('S3');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('AngularJS');
-
-INSERT INTO
-    tags(skill)
-VALUES
-    ('API');
 
 INSERT INTO
     user_info_tags(user_info_id, tag_id, tag_order)
