@@ -11,11 +11,11 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
   changeUsrFollow,
 }) => {
   const tagStyle =
-    "mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg";
+    "mx-1 mb-1 px-4 py-2 bg-sky-500 text-white text-center font-sans text-xs shadow rounded";
   return (
-    <div className="w-full p-2 bg-white rounded-lg border shadow-md">
+    <div className="w-full p-2 bg-white rounded border shadow">
       <div className="m-2">
-        <div className="flex justify-center items-center">
+        <div className="mt-8 flex justify-center items-center">
           <Link href={"/profile"}>
             <a>
               {user.image ? (
@@ -37,11 +37,17 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
               )}
             </a>
           </Link>
-          <div className="pl-3 text-center">
-            <div>@{user.userName}</div>
+          <div className="text-center ml-12">
+            <div className="text-xl">@{user.userName}</div>
+            <div className="text-ms mt-2 flex justify-center items-center">
+              職種:
+              <span className="text-ms ml-4 px-4 py-1 rounded text-white bg-sky-500 ">
+                {user.engineerType}
+              </span>
+            </div>
           </div>
         </div>
-        <div className="flex divide-x divide-black w-full">
+        <div className="mt-4 w-full flex divide-x divide-black">
           <div className="flex-grow text-xs lg:text-base text-center">
             投稿数
             <div>{user.articleCount}</div>
@@ -61,13 +67,8 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
             </Link>
           </div>
         </div>
-        <div className="text-xl mt-2 flex justify-center items-center">
-          職種:
-          <span className="ml-4 px-3 rounded-md text-white bg-orange-500 ">
-            {user.engineerType}
-          </span>
-        </div>
-        <div className="mt-2">
+
+        <div className="mt-4">
           <div className="flex justify-center flex-wrap">
             {user.tags.map((tags) => {
               return (
@@ -85,13 +86,13 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
           <span>
             {followStatus ? (
               <button onClick={changeUsrFollow}>
-                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-orange-500 hover:bg-orange-300">
+                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-sky-500 hover:bg-sky-300">
                   フォロー解除
                 </div>
               </button>
             ) : (
               <button onClick={changeUsrFollow}>
-                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-orange-500 hover:bg-orange-300">
+                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-sky-500 hover:bg-sky-300">
                   フォロー
                 </div>
               </button>

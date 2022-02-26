@@ -36,7 +36,7 @@ const ArticleDetail: React.FC<ArticleType> = ({
   );
   return (
     <div className="flex justify-center">
-      <div className="m-10 bg-white w-1/2 h-auto rounded-lg border shadow-md">
+      <div className="m-10 bg-white w-1/2 h-auto rounded border shadow-md">
         <div className="text-center pb-10 pt-20 text-2xl font-bold">
           {article.title}
         </div>
@@ -44,7 +44,7 @@ const ArticleDetail: React.FC<ArticleType> = ({
           <div className="flex justify-center items-center">
             <button onClick={changeArticleLike}>
               {likeStatus ? (
-                <span className="text-orange-500">
+                <span className="text-sky-500">
                   <HeartOutlined className="text-2xl" />
                 </span>
               ) : (
@@ -60,7 +60,7 @@ const ArticleDetail: React.FC<ArticleType> = ({
             {/* warning出る */}
             {checkLoginUserFlag && (
               <Dropdown overlay={menu}>
-                <MenuOutlined className="ml-1 text-2xl text-black hover:text-orange-500" />
+                <MenuOutlined className="ml-1 text-2xl text-black hover:text-sky-500" />
               </Dropdown>
             )}
           </div>
@@ -70,7 +70,7 @@ const ArticleDetail: React.FC<ArticleType> = ({
             {articleTags.map((tag: any) => {
               return (
                 <span
-                  className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
+                  className="m-1 py-1 px-1 bg-sky-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
                   key={tag.id}
                 >
                   {tag.skill}

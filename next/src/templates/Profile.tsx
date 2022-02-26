@@ -191,10 +191,10 @@ const Profile: React.FC = () => {
   return (
     <div>
       {editFlag ? (
-        <div className="flex justify-center">
-          <div className="m-10 lg:w-2/5 h-auto">
+        <div className="flex">
+          <div className="p-8 w-5/12">
             <Link href={"/"}>
-              <a className="text-gray-400 hover:text-slate-600">
+              <a className="text-gray-400 hover:text-sky-500">
                 <LeftCircleOutlined className="ml-4 mb-2 text-4xl" />
               </a>
             </Link>
@@ -208,13 +208,43 @@ const Profile: React.FC = () => {
             />
             {checkLoginUserFlag && (
               <div className="flex justify-end">
-                <span className="mt-2 mr-2 p-2 text-2xl text-white rounded-lg bg-orange-500 hover:bg-orange-300 hover:text-white drop-shadow-2xl">
+                <span className="mt-2 mr-2 p-2 px-4 text-xl text-white rounded bg-sky-400 hover:bg-sky-600 hover:text-white">
                   <button type="button" onClick={setEditFlag}>
                     編集
                   </button>
                 </span>
               </div>
             )}
+          </div>
+          <div className="m-10 w-7/12">
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="投稿した記事" key="1">
+                {postedArticles &&
+                  postedArticles.articleList.map((articleData: any) => {
+                    return (
+                      <div key={articleData.id}>
+                        <ArticleComp
+                          articleData={articleData}
+                          onClickTag={onClickTag}
+                        />
+                      </div>
+                    );
+                  })}
+              </TabPane>
+              <TabPane tab="いいねした記事" key="2">
+                {likedArticles &&
+                  likedArticles.articleList.map((articleData: any) => {
+                    return (
+                      <div key={articleData.id}>
+                        <ArticleComp
+                          articleData={articleData}
+                          onClickTag={onClickTag}
+                        />
+                      </div>
+                    );
+                  })}
+              </TabPane>
+            </Tabs>
           </div>
         </div>
       ) : (
@@ -224,38 +254,7 @@ const Profile: React.FC = () => {
           changeEditFlag={setEditFlag}
         />
       )}
-      <div className="flex justify-center bg-orange-100">
-        <div className="w-2/5">
-          <Tabs className="text-orange-500" defaultActiveKey="1">
-            <TabPane tab="投稿した記事" key="1">
-              {postedArticles &&
-                postedArticles.articleList.map((articleData: any) => {
-                  return (
-                    <div key={articleData.id}>
-                      <ArticleComp
-                        articleData={articleData}
-                        onClickTag={onClickTag}
-                      />
-                    </div>
-                  );
-                })}
-            </TabPane>
-            <TabPane tab="いいねした記事" key="2">
-              {likedArticles &&
-                likedArticles.articleList.map((articleData: any) => {
-                  return (
-                    <div key={articleData.id}>
-                      <ArticleComp
-                        articleData={articleData}
-                        onClickTag={onClickTag}
-                      />
-                    </div>
-                  );
-                })}
-            </TabPane>
-          </Tabs>
-        </div>
-      </div>
+
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
