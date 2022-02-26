@@ -24,8 +24,8 @@ const CommentForm: React.FC<CommentFormType> = ({
           </Form.Item>
         </div>
         <div className="flex justify-end px-4 py-2">
-          <button className="p-1 text-white rounded-lg bg-orange-500 hover:bg-orange-500 drop-shadow-2xl">
-            コメント
+          <button className="px-4 py-1 text-white bg-sky-500 hover:bg-sky-500 rounded shadow">
+            この記事にコメントする
           </button>
         </div>
       </Form>

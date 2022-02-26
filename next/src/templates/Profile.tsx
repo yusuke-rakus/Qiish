@@ -208,7 +208,7 @@ const Profile: React.FC = () => {
             />
             {checkLoginUserFlag && (
               <div className="flex justify-end">
-                <span className="mt-2 mr-2 p-2 px-4 text-xl text-white rounded bg-sky-400 hover:bg-sky-600 hover:text-white">
+                <span className="mt-2 mr-2 p-2 px-4 text-xl text-white rounded bg-sky-400 hover:bg-sky-500 hover:text-white">
                   <button type="button" onClick={setEditFlag}>
                     編集
                   </button>

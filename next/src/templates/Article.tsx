@@ -251,10 +251,10 @@ const Article: React.FC = () => {
           setEditFlag={setEditFlag}
         />
       ) : (
-        <div className="grid grid-flow-row">
+        <div className="border">
           <Link href={"/"}>
-            <a className="text-gray-400 hover:text-sky-500">
-              <LeftCircleOutlined className="w-1/3 ml-4 mt-6 text-4xl" />
+            <a className="text-gray-400 hover:text-sky-500 text-left">
+              <LeftCircleOutlined className="ml-4 mt-6 text-4xl" />
             </a>
           </Link>
           <ArticleDetail
@@ -273,7 +273,6 @@ const Article: React.FC = () => {
             onDeleteArticle={onDeleteArticle}
             setLikeUserModalStatus={setLikeUserModalStatus}
           />
-          <CommentList articleId={articleData.article.id} />
         </div>
       )}
       <Toaster position="top-center" reverseOrder={false} />

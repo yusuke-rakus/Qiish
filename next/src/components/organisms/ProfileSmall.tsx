@@ -38,12 +38,30 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
             </a>
           </Link>
           <div className="text-center ml-12">
-            <div className="text-xl">@{user.userName}</div>
-            <div className="text-ms mt-2 flex justify-center items-center">
-              職種:
+            <div className="flex">
+              <div className="text-xl">@{user.userName}</div>
               <span className="text-ms ml-4 px-4 py-1 rounded text-white bg-sky-500 ">
                 {user.engineerType}
               </span>
+            </div>
+            <div className="text-center m-2">
+              {!checkLoginUserFlag && (
+                <span>
+                  {followStatus ? (
+                    <button onClick={changeUsrFollow}>
+                      <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-sky-500 hover:bg-sky-300">
+                        フォロー解除
+                      </div>
+                    </button>
+                  ) : (
+                    <button onClick={changeUsrFollow}>
+                      <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-sky-500 hover:bg-sky-300">
+                        フォロー
+                      </div>
+                    </button>
+                  )}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -81,25 +99,6 @@ const ProfileSmall: React.FC<ProfileSmallType> = ({
         </div>
       </div>
       <div className="block mx-2 p-2">{user.description}</div>
-      <div className="text-center">
-        {!checkLoginUserFlag && (
-          <span>
-            {followStatus ? (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-sky-500 hover:bg-sky-300">
-                  フォロー解除
-                </div>
-              </button>
-            ) : (
-              <button onClick={changeUsrFollow}>
-                <div className="mt-2 px-5 py-2 rounded-full text-xs text-white bg-sky-500 hover:bg-sky-300">
-                  フォロー
-                </div>
-              </button>
-            )}
-          </span>
-        )}
-      </div>
     </div>
   );
 };

@@ -67,7 +67,7 @@ const ArticleList: React.FC = () => {
           />
           <TagRanking />
         </div>
-        <div className="w-full h-40 grid grid-cols-2 gap-2">
+        <div className="w-full h-48 grid grid-cols-2 gap-2">
           {articleList &&
             articleList.map((articleData: any) => {
               return (
