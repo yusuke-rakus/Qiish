@@ -67,7 +67,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   return (
     <div className="mt-4">
       <div className="h-auto w-full bg-white rounded shadow">
-        <div className="px-4 text-ms font-normal text-left">
+        <div className="px-4 py-4 text-ms font-normal text-left">
           この記事に対するコメント一覧
         </div>
         <hr />

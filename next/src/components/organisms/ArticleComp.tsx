@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import moment from "moment";
 import SkillTagsOnArticle from "../molecules/SkillTagsOnArticle";
+import { HeartOutlined } from "@ant-design/icons";
 
 // FCの型定義
 type Props = {
@@ -20,6 +21,7 @@ type Props = {
       id: number;
       userName: string;
     };
+    visitedCount: number;
   };
   onClickTag: (id: number) => void;
 };
@@ -29,8 +31,13 @@ const ArticleComp: React.FC<Props> = ({ articleData, onClickTag }) => {
 
   return (
     <div className="p-4 m-2 h-auto flex flex-col gap-1 hover:bg-gray-100 shadow">
-      <div className="text-ms text-gray font-normal">
-        @{articleData.userInfo.userName}が{formatDate}に投稿しました
+      <div className="flex justify-between">
+        <div className="text-ms text-gray-500 font-normal">
+          @{articleData.userInfo.userName}が{formatDate}に投稿しました
+        </div>
+        <div className="text-ms text-gray-400 font-normal">
+          {articleData.visitedCount} views
+        </div>
       </div>
 
       <Link href={`/articles/${articleData.id}`}>
@@ -39,10 +46,19 @@ const ArticleComp: React.FC<Props> = ({ articleData, onClickTag }) => {
         </a>
       </Link>
 
-      <SkillTagsOnArticle
-        tags={articleData.articleTags}
-        onClickTag={onClickTag}
-      />
+      <div className="flex justify-between">
+        <SkillTagsOnArticle
+          tags={articleData.articleTags}
+          onClickTag={onClickTag}
+        />
+
+        <button className="mr-2 mt-2 flex gap-2 text-xl text-gray-500">
+          <HeartOutlined className="pt-1" />
+          <span className="text-xl text-gray-500">
+            {articleData.likesCount}
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

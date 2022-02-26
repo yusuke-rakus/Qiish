@@ -46,6 +46,7 @@ const ArticleList: React.FC = () => {
   const reloadArticles = async () => {
     const data = await fetchArticleList();
     setArticleList(data.articleList);
+    console.log(data.articleList);
   };
 
   return (
