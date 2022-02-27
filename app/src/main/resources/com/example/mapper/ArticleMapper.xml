@@ -297,6 +297,7 @@
 		<result column="title" property="title" />
 		<result column="content" property="content" />
 		<result column="posted_date" property="postedDate" />
+		<result column="visited_count" property="visitedCount"></result>
 		<result column="likes_count" property="likesCount" />
 		<result column="like_status" property="likeStatus" />
 		<association property="userInfo" resultMap="userInfo" />
@@ -310,12 +311,15 @@
 			a.title,
 			a.content,
 			a.posted_date,
+			a.visited_count,
 			t.id AS tag_id, 
 			t.skill, 
 			t.image AS tag_image,
 			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count,
 			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status, 
-			u.id AS user_info_id, u.user_name, u.image
+			u.id AS user_info_id,
+			u.user_name,
+			u.image
 		FROM articles AS a
 		LEFT JOIN article_tags AS at 
 		ON at.article_id = a.id
@@ -335,12 +339,15 @@
 			a.title,
 			a.content,
 			a.posted_date,
+			a.visited_count,
 			t.id AS tag_id, 
 			t.skill, 
 			t.image AS tag_image,
 			(SELECT count(id) FROM likes WHERE article_id = a.id) AS likes_count,
 			COALESCE((SELECT user_info_id = #{guestId} FROM likes WHERE article_id = a.id AND user_info_id = #{guestId}), 0) AS like_status, 
-			u.id AS user_info_id, u.user_name, u.image
+			u.id AS user_info_id,
+			u.user_name,
+			u.image
 		FROM articles AS a
 		LEFT JOIN article_tags AS at 
 		ON at.article_id = a.id
