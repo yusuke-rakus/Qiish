@@ -44,13 +44,13 @@ const ProfileLarge: React.FC<ProfileLargeType> = ({
               <span>
                 {followStatus ? (
                   <button onClick={changeUsrFollow}>
-                    <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                    <div className="mt-2 p-2 rounded-full text-white bg-sky-500 hover:bg-sky-300">
                       フォロー解除
                     </div>
                   </button>
                 ) : (
                   <button onClick={changeUsrFollow}>
-                    <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+                    <div className="mt-2 px-5 py-2 rounded-full text-white bg-sky-500 hover:bg-sky-300">
                       フォロー
                     </div>
                   </button>

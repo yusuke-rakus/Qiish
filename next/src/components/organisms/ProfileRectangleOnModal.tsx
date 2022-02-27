@@ -22,7 +22,7 @@ const ProfileRectangleOnModal: React.FC<ProfileRectangleType> = ({
           <div>@{user_data.userName}</div>
           <div className="mt-2 text-lg">
             職種<span className="mx-1">:</span>
-            <span className="px-3 rounded-md text-white bg-orange-500">
+            <span className="px-3 rounded-md text-white bg-sky-500">
               {user_data.engineerType}
             </span>
           </div>
@@ -32,13 +32,13 @@ const ProfileRectangleOnModal: React.FC<ProfileRectangleType> = ({
         <div className="mt-2 ml-4">
           {followStatus ? (
             <button onClick={changeUsrFollow}>
-              <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+              <div className="mt-2 p-2 rounded-full text-white bg-sky-500 hover:bg-sky-300">
                 フォロー解除
               </div>
             </button>
           ) : (
             <button onClick={changeUsrFollow}>
-              <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+              <div className="mt-2 px-5 py-2 rounded-full text-white bg-sky-500 hover:bg-sky-300">
                 フォロー
               </div>
             </button>

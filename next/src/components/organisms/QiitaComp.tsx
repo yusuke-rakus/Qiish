@@ -27,7 +27,7 @@ const QiitaComp: React.FC<QiitaCompType> = ({ qiita, isExistProfile }) => {
             {qiita.tags.map((tag) => {
               return (
                 <span
-                  className="m-1 py-1 px-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
+                  className="m-1 py-1 px-1 bg-sky-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
                   key={tag.name}
                 >
                   {tag.name}

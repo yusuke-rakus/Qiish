@@ -6,6 +6,7 @@ import {
   TagOutlined,
   PlusCircleOutlined,
   RestOutlined,
+  LeftCircleOutlined,
 } from "@ant-design/icons";
 import { useToggle } from "../hooks";
 import { ArticleData, tags } from "../const/Types";
@@ -17,6 +18,7 @@ import { removeArticleById } from "../lib/api/removeData";
 import { addArticleFromSave } from "../lib/api/addData";
 import { fetchSavedArticleList } from "../lib/api/fetchData";
 import getCookie from "../lib/cookie/handleCookie";
+import Link from "next/link";
 
 const ArticleSavedList: React.FC = () => {
   // 下書き記事一覧情報取得
@@ -183,7 +185,7 @@ const ArticleSavedList: React.FC = () => {
     const res = await removeArticleById(articleId);
     if (res.data.status === "success") {
       toast.success("記事削除しました!", { icon: "👍" });
-      router.push("/articleSaved");
+      mutate("articleSavedList");
     } else {
       eventDeleteError();
     }
@@ -229,9 +231,12 @@ const ArticleSavedList: React.FC = () => {
         </div>
       ) : (
         <div>
-          <div className="ml-20 py-3 text-4xl font-semibold text-sky-400">
-            下書き一覧
-          </div>
+          <Link href={"/"}>
+            <a className="text-gray-400 hover:text-sky-500">
+              <LeftCircleOutlined className="ml-96  mt-2 text-4xl" />
+            </a>
+          </Link>
+
           <div className="flex mt-1 mr-2 bg-white shadow">
             <div className="w-1/4 bg-sky-100">
               {articleSavedList &&
@@ -283,13 +288,13 @@ const ArticleSavedList: React.FC = () => {
             </div>
             <button
               onClick={setEditFlag}
-              className="text-6xl fixed right-10 bottom-24 shadow-lg rounded-full text-orange-400 hover:text-orange-200"
+              className="text-6xl fixed right-10 bottom-24 shadow-lg rounded-full text-gray-400 hover:text-sky-500"
             >
               <PlusCircleOutlined />
             </button>
             <button
               onClick={onDeleteArticle}
-              className="text-5xl fixed right-10 bottom-10 shadow-lg rounded-full text-orange-400 hover:text-orange-200"
+              className="text-5xl fixed right-10 bottom-10 shadow-lg rounded-full text-gray-400 hover:text-sky-500"
             >
               <RestOutlined />
             </button>

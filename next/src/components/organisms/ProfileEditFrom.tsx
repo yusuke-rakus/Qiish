@@ -132,7 +132,7 @@ const ProfileEditFrom: React.FC<ProfileEditFromType> = ({
           shape="round"
           htmlType="submit"
         >
-          <span className="text-orange-500 hover:text-orange-300">保存</span>
+          <span className="text-sky-500 hover:text-sky-300">保存</span>
         </Button>
       </Form.Item>
     </Form>
