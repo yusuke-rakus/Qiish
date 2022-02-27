@@ -3,7 +3,6 @@ import { parseCookies, setCookie, destroyCookie } from "nookies";
 // cookieからデータを取得
 const getCookie = (ctx?: any) => {
   const cookie = parseCookies(ctx);
-
   return cookie.guestId;
 };
 export default getCookie;
@@ -18,9 +17,6 @@ export const settingUserId = (userId: number) => {
     maxAge: 24 * 60 * 60,
     path: "/",
   });
-
-  // クッキーに設定したUserIdを削除する処理
-  // destroyCookie(null, "userId");
 };
 
 // 記事投稿者のIdをCookieから取得する処理
@@ -35,6 +31,12 @@ export const setArticleUserId = (userId: number) => {
     // 60秒 * 60 秒 * 24 で一日間保存
     maxAge: 24 * 60 * 60,
   });
+};
+
+// クッキーに設定したUserIdを削除する処理
+export const removeUserId = () => {
+  destroyCookie(null, "guestId");
+  console.log("Cookieの値を削除します");
 };
 
 export const removeArticleUserId = () => {

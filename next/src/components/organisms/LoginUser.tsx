@@ -1,14 +1,19 @@
 import Router from "next/router";
 import { ChangeEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import getCookie, { settingUserId } from "../lib/cookie/handleCookie";
-import { loginUser } from "../lib/api/fetchData";
+import getCookie, { settingUserId } from "../../lib/cookie/handleCookie";
+import { loginUser } from "../../lib/api/fetchData";
+
+export type register = {
+  isRegistered: boolean;
+  setIsRegistered: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 const goToReissue = () => {
   Router.push("/reissuePassword");
 };
 
-const LoginUser: React.FC = () => {
+const LoginUser: React.FC<register> = ({ isRegistered, setIsRegistered }) => {
   // メールアドレス
   const [mailAddress, setMailAddress] = useState<string>("");
   // テキストボックス入力時に入力内容をStateに設定
@@ -42,25 +47,34 @@ const LoginUser: React.FC = () => {
   return (
     <div className="pb-28 h-screen w-screen flex flex-col gap-2 justify-center items-center">
       <Toaster />
-      <div className="mr-56 text-4xl font-semibold text-sky-500">Login</div>
+      <div className="w-80 flex justify-between">
+        <div className="text-4xl font-semibold text-sky-500">Quish</div>
+      </div>
       <input
         type="text"
         onChange={onChangeMailAddress}
         placeholder="E-mail（rakusのメールアドレス）"
-        className="m-4 px-6 py-4 w-80 bg-white rounded-sm border-2"
+        className="m-4 px-6 py-4 w-80 bg-white rounded border-2 focus:outline-none focus:border-sky-500"
       />
       <input
         type="password"
         onChange={onChangePassword}
         placeholder="Password（英数字8文字以上）"
-        className="px-6 py-4 w-80 bg-white rounded-sm border-2"
+        className="px-6 py-4 w-80 bg-white rounded border-2 focus:outline-none focus:border-sky-500"
       />
-      <button
-        onClick={goToReissue}
-        className="ml-40 text-sm text-gray-500 no-underline hover:underline"
-      >
-        パスワードを忘れた場合
-      </button>
+
+      <div className="flex justify-between w-80">
+        <button className="hover:underline" onClick={goToReissue}>
+          パスワードを忘れた場合
+        </button>
+        <button
+          className="hover:underline"
+          onClick={() => setIsRegistered(!isRegistered)}
+        >
+          会員登録はこちら
+        </button>
+      </div>
+
       <button
         onClick={() => {
           Login();

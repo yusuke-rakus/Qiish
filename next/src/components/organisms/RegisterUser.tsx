@@ -1,9 +1,17 @@
 import Router from "next/router";
 import { ChangeEvent, useState } from "react";
-import { registerUser } from "../lib/api/addData";
-import { useRegisterChecker } from "../hooks/useRegisterChecker";
+import { registerUser } from "../../lib/api/addData";
+import { useRegisterChecker } from "../../hooks/useRegisterChecker";
 
-const RegisterUser: React.FC = () => {
+export type register = {
+  isRegistered: boolean;
+  setIsRegistered: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const RegisterUser: React.FC<register> = ({
+  isRegistered,
+  setIsRegistered,
+}) => {
   // ユーザーネーム
   const [userName, setUserName] = useState<string>("");
   // テキストボックス入力時に入力内容をStateに設定
@@ -63,13 +71,14 @@ const RegisterUser: React.FC = () => {
       password,
       confirmPassword
     );
-
-    Router.push("/loginUser");
+    setIsRegistered(!isRegistered);
   };
 
   return (
-    <div className="pb-16 h-screen w-screen flex flex-col gap-10 justify-center items-center">
-      <div className="mr-48 text-4xl font-semibold text-sky-500">Register</div>
+    <div className="pb-16 h-screen w-screen flex flex-col gap-6 justify-center items-center">
+      <div className="w-80 flex justify-between">
+        <div className="text-4xl font-semibold text-sky-500">Quish</div>
+      </div>
 
       <div className="flex flex-col">
         <span className="text-red-500">{errorOfUserName}</span>
@@ -79,13 +88,13 @@ const RegisterUser: React.FC = () => {
             type="text"
             onChange={onChangeUserName}
             placeholder="Username"
-            className="px-6 py-4 w-40 bg-white rounded-sm border-2"
+            className="px-6 py-4 w-40 bg-white rounded border-2 focus:outline-none focus:border-sky-400"
           />
 
           <select
             value={engineerType}
             onChange={onChangeSelectJob}
-            className="ml-4 px-4 py-4 w-36 bg-white rounded-sm border-2"
+            className="ml-4 px-4 py-4 w-36 bg-white rounded border-2 focus:outline-none focus:border-sky-400"
           >
             <option>Please select</option>
             <option value="FR">FR</option>
@@ -102,7 +111,7 @@ const RegisterUser: React.FC = () => {
           type="text"
           onChange={onChangeMailAddress}
           placeholder="E-mail（rakusのメールアドレス）"
-          className="px-6 py-4 w-80 bg-white rounded-sm border-2"
+          className="px-6 py-4 w-80 bg-white rounded border-2 focus:outline-none focus:border-sky-500"
         />
       </div>
 
@@ -112,7 +121,7 @@ const RegisterUser: React.FC = () => {
           type="password"
           onChange={onChangePassword}
           placeholder="Password（英数字8文字以上）"
-          className="px-6 py-4 w-80 bg-white rounded-sm border-2"
+          className="px-6 py-4 w-80 bg-white rounded border-2 focus:outline-none focus:border-sky-500"
         />
       </div>
 
@@ -122,16 +131,23 @@ const RegisterUser: React.FC = () => {
           type="password"
           onChange={onChangeConfirmPassword}
           placeholder="Confirm Password"
-          className="px-6 py-4 w-80 bg-white rounded-sm border-2"
+          className="px-6 py-4 w-80 bg-white rounded border-2 focus:outline-none focus:border-sky-500"
         />
       </div>
-
-      <button
-        onClick={() => Register()}
-        className="px-6 py-4 w-80 bg-sky-400 text-white text-xl text-center rounded-md hover:bg-sky-600"
-      >
-        会員登録
-      </button>
+      <div className="flex flex-col -mt-4">
+        <button
+          className="mb-2 self-end hover:underline"
+          onClick={() => setIsRegistered(!isRegistered)}
+        >
+          ログインはこちら
+        </button>
+        <button
+          onClick={() => Register()}
+          className="px-6 py-4 w-80 bg-sky-400 text-white text-xl text-center rounded hover:bg-sky-600"
+        >
+          会員登録
+        </button>
+      </div>
     </div>
   );
 };

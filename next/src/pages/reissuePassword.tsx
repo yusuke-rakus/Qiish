@@ -39,7 +39,7 @@ const ReissuePassword: React.FC = () => {
         type="text"
         onChange={onChangeMailAddress}
         placeholder="E-mail（rakusのメールアドレス)"
-        className="m-4 px-6 py-4 w-80 bg-white rounded-sm"
+        className="m-4 px-6 py-4 w-80 bg-white rounded border-2 focus:outline-none focus:border-sky-500"
       />
       <div>
         ※パスワードを忘れた方は、メールアドレスを入力し新しいパスワードを再設定して下さい。
@@ -49,7 +49,7 @@ const ReissuePassword: React.FC = () => {
         onClick={() => {
           reissue();
         }}
-        className="px-6 py-4 w-80 bg-orange-400 text-white text-xl text-center rounded-md hover:bg-amber-600"
+        className="px-6 py-4 w-80 bg-sky-400 text-white text-xl text-center rounded hover:bg-sky-600"
       >
         送信
       </button>
