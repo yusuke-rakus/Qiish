@@ -65,9 +65,11 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="m-10 h-auto bg-white w-1/2 rounded-lg border shadow-md">
-        <div className="my-2 text-3xl font-bold text-center">コメント</div>
+    <div className="mt-4">
+      <div className="h-auto w-full bg-white rounded shadow">
+        <div className="px-4 py-4 text-ms font-normal text-left">
+          この記事に対するコメント一覧
+        </div>
         <hr />
         {commentData ? (
           commentData.commentList.map((commentData: CommentType) => {
@@ -82,7 +84,7 @@ const CommentList: React.FC<{ articleId: number }> = ({ articleId }) => {
         ) : (
           <div>
             <div className="my-5 flex justify-center">
-              <div className="animate-spin h-8 w-8 bg-orange-400 rounded-xl"></div>
+              <div className="animate-spin h-8 w-8 bg-sky-400 rounded-xl"></div>
             </div>
             <hr />
           </div>

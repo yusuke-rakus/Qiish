@@ -12,7 +12,7 @@ const ProfileLarge: React.FC<ProfileLargeType> = ({
   changeUsrFollow,
 }) => {
   return (
-    <div className="w-full p-10 m-2 bg-white rounded-lg border shadow-md">
+    <div className="w-full p-10 m-2 bg-white rounded border shadow">
       <div className="m-4">
         <div className="flex justify-center items-center">
           {userInfo.userImage ? (
@@ -34,6 +34,12 @@ const ProfileLarge: React.FC<ProfileLargeType> = ({
           )}
           <div className="pl-10 text-center">
             <div className="text-xl">@{userInfo.userName}</div>
+            <div className="text-xl mt-2 flex justify-center items-center">
+              職種:
+              <span className="ml-4 px-4 py-1 rounded text-white bg-sky-400">
+                {userInfo.engineerType}
+              </span>
+            </div>
             {!checkLoginUserFlag && (
               <span>
                 {followStatus ? (
@@ -53,7 +59,7 @@ const ProfileLarge: React.FC<ProfileLargeType> = ({
             )}
           </div>
         </div>
-        <div className="m-4 flex jusify-around divide-x divide-black text-sm sm:text-base lg:text-lg">
+        <div className="mt-4 p-4 flex jusify-around divide-x divide-black text-sm sm:text-base lg:text-lg">
           <div className="flex-grow sm:px-1 md:p-2 text-center">
             投稿数
             <div>{userInfo.articleCount}</div>
@@ -73,18 +79,12 @@ const ProfileLarge: React.FC<ProfileLargeType> = ({
             </Link>
           </div>
         </div>
-        <div className="text-2xl mt-2 flex justify-center items-center">
-          職種:
-          <span className="ml-4 px-3 rounded-md text-white bg-orange-500">
-            {userInfo.engineerType}
-          </span>
-        </div>
         <div className="mt-2">
           <div className="flex justify-center flex-wrap">
             {tagsByNum.map((tag) => {
               return (
                 <span
-                  className="mx-1 mb-1 p-1 bg-orange-500 text-white text-center font-sans text-xs shadow-md rounded-lg"
+                  className="mx-2 mb-1 px-4 py-2 bg-sky-500 text-white text-center font-normal text-xs shadow rounded"
                   key={tag.skill}
                 >
                   {tag.skill}

@@ -9,7 +9,7 @@ const ProfileRectangle: React.FC<ProfileRectangleType> = ({
   checkLoginUserFlag,
 }) => {
   return (
-    <div className="flex justify-rounded items-center w-full m-2 pl-10 p-2 bg-white rounded-lg border shadow-md">
+    <div className="flex justify-between gap-4 items-center w-full m-2 pl-10 p-2 bg-white rounded-lg border shadow-md">
       <Image
         className="rounded-full"
         src={"/img/avatar.jpg"}
@@ -17,28 +17,25 @@ const ProfileRectangle: React.FC<ProfileRectangleType> = ({
         width={90}
         height={90}
       />
-      <div className="w-2/5 flex items-center">
-        <div className="text-center ml-10">
-          <div>@{user_data.userName}</div>
-          <div className="mt-2 text-lg">
-            職種<span className="mx-1">:</span>
-            <span className="px-3 rounded-md text-white bg-orange-500">
-              {user_data.engineerType}
-            </span>
-          </div>
-        </div>
+      <div className="text-center text-xl">
+        <div>@{user_data.userName}</div>
+      </div>
+      <div className="text-lg">
+        <span className="px-4 py-1 rounded text-white bg-sky-500">
+          {user_data.engineerType}
+        </span>
       </div>
       {!checkLoginUserFlag && (
-        <div className="mt-2 ml-4">
+        <div>
           {followStatus ? (
             <button onClick={changeUsrFollow}>
-              <div className="mt-2 p-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+              <div className="mr-8 px-8 py-2 rounded-full text-white bg-sky-500 hover:bg-sky-600">
                 フォロー解除
               </div>
             </button>
           ) : (
             <button data-testid="followTest" onClick={changeUsrFollow}>
-              <div className="mt-2 px-5 py-2 rounded-full text-white bg-orange-500 hover:bg-orange-300">
+              <div className="mr-8 px-8 py-2 rounded-full text-white bg-sky-500 hover:bg-sky-600">
                 フォロー
               </div>
             </button>

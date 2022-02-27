@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 .markdown h1 {
-  @apply text-4xl font-bold pb-2 border-b border-gray-400;
-}
-.markdown h2 {
   @apply text-3xl font-bold pb-2 border-b border-gray-400;
 }
+.markdown h2 {
+  @apply text-2xl font-bold pb-2 border-b border-gray-400;
+}
 .markdown h3 {
-  @apply text-2xl;
+  @apply text-xl;
 }
 .markdown h4 {
-  @apply text-xl;
+  @apply text-lg;
 }
 .markdown p {
   @apply text-base break-all;

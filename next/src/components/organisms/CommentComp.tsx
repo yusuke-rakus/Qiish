@@ -28,13 +28,13 @@ const CommentComp: React.FC<CommentCompType> = ({
             @{commentData.userInfo.userName}
           </div>
         </div>
-        <div className="pl-2 py-3 pr-6 text-lg text-center">
+        <div className="pl-2 py-3 pr-6 text-lg text-left">
           {commentData.comment}
         </div>
         <div className="flex items-center">
           <button onClick={changeCommentLike}>
             {likeStatus ? (
-              <span className="text-orange-500">
+              <span className="text-sky-500">
                 <HeartOutlined className="text-2xl" />
               </span>
             ) : (

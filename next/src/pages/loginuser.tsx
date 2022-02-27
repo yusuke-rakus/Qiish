@@ -42,18 +42,18 @@ const LoginUser: React.FC = () => {
   return (
     <div className="pb-28 h-screen w-screen flex flex-col gap-2 justify-center items-center">
       <Toaster />
-      <div className="mr-56 text-4xl font-semibold text-orange-500">Login</div>
+      <div className="mr-56 text-4xl font-semibold text-sky-500">Login</div>
       <input
         type="text"
         onChange={onChangeMailAddress}
         placeholder="E-mail（rakusのメールアドレス）"
-        className="m-4 px-6 py-4 w-80 bg-white rounded-sm"
+        className="m-4 px-6 py-4 w-80 bg-white rounded-sm border-2"
       />
       <input
         type="password"
         onChange={onChangePassword}
         placeholder="Password（英数字8文字以上）"
-        className="px-6 py-4 w-80 bg-white rounded-sm"
+        className="px-6 py-4 w-80 bg-white rounded-sm border-2"
       />
       <button
         onClick={goToReissue}
@@ -65,7 +65,7 @@ const LoginUser: React.FC = () => {
         onClick={() => {
           Login();
         }}
-        className="px-6 py-4 w-80 bg-orange-400 text-white text-xl text-center rounded-md hover:bg-amber-600"
+        className="px-6 py-4 w-80 bg-sky-400 text-white text-xl text-center rounded-md hover:bg-sky-600"
       >
         ログイン
       </button>

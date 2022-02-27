@@ -32,7 +32,7 @@ const LikeUserListModal: React.FC<LikeUserModalType> = ({
             </div>
             <span className="flex justify-center">
               <Button onClick={setLikeUserModalStatus}>
-                <span className="hover:text-orange-400">戻る</span>
+                <span className="hover:text-sky-400">戻る</span>
               </Button>
             </span>
           </div>

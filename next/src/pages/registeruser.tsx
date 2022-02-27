@@ -64,14 +64,12 @@ const RegisterUser: React.FC = () => {
       confirmPassword
     );
 
-    Router.push("/");
+    Router.push("/loginUser");
   };
 
   return (
     <div className="pb-16 h-screen w-screen flex flex-col gap-10 justify-center items-center">
-      <div className="mr-48 text-4xl font-semibold text-orange-500">
-        Register
-      </div>
+      <div className="mr-48 text-4xl font-semibold text-sky-500">Register</div>
 
       <div className="flex flex-col">
         <span className="text-red-500">{errorOfUserName}</span>
@@ -81,13 +79,13 @@ const RegisterUser: React.FC = () => {
             type="text"
             onChange={onChangeUserName}
             placeholder="Username"
-            className="px-6 py-4 w-40 bg-white rounded-sm"
+            className="px-6 py-4 w-40 bg-white rounded-sm border-2"
           />
 
           <select
             value={engineerType}
             onChange={onChangeSelectJob}
-            className="ml-4 px-4 py-4 w-36 bg-white rounded-sm"
+            className="ml-4 px-4 py-4 w-36 bg-white rounded-sm border-2"
           >
             <option>Please select</option>
             <option value="FR">FR</option>
@@ -104,7 +102,7 @@ const RegisterUser: React.FC = () => {
           type="text"
           onChange={onChangeMailAddress}
           placeholder="E-mail（rakusのメールアドレス）"
-          className="px-6 py-4 w-80 bg-white rounded-sm"
+          className="px-6 py-4 w-80 bg-white rounded-sm border-2"
         />
       </div>
 
@@ -114,7 +112,7 @@ const RegisterUser: React.FC = () => {
           type="password"
           onChange={onChangePassword}
           placeholder="Password（英数字8文字以上）"
-          className="px-6 py-4 w-80 bg-white rounded-sm"
+          className="px-6 py-4 w-80 bg-white rounded-sm border-2"
         />
       </div>
 
@@ -124,13 +122,13 @@ const RegisterUser: React.FC = () => {
           type="password"
           onChange={onChangeConfirmPassword}
           placeholder="Confirm Password"
-          className="px-6 py-4 w-80 bg-white rounded-sm"
+          className="px-6 py-4 w-80 bg-white rounded-sm border-2"
         />
       </div>
 
       <button
         onClick={() => Register()}
-        className="px-6 py-4 w-80 bg-orange-400 text-white text-xl text-center rounded-md hover:bg-amber-600"
+        className="px-6 py-4 w-80 bg-sky-400 text-white text-xl text-center rounded-md hover:bg-sky-600"
       >
         会員登録
       </button>
