@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Router from "next/router";
 import React, { useState, ChangeEvent } from "react";
-import { removeUserId } from "../../lib/cookie/handleCookie";
+import getCookie, { removeUserId } from "../../lib/cookie/handleCookie";
+import toast, { Toaster } from "react-hot-toast";
 import { SearchOutlined, UserOutlined, DownOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Drawer, Space } from "antd";
 
@@ -27,10 +28,34 @@ const HeaderComp: React.FC<search> = ({
   const menu = (
     <Menu>
       <Menu.Item key="0">
-        <a href={"/profile"}>プロフィール</a>
+        <button
+          onClick={() => {
+            const guestId = getCookie();
+            if (guestId == null) {
+              toast.error(`ログインして下さい`);
+              Router.push("/");
+            } else if (guestId != null) {
+              Router.push("/profile");
+            }
+          }}
+        >
+          プロフィール
+        </button>
       </Menu.Item>
       <Menu.Item key="1">
-        <a href={"/articleSaved"}>下書き記事</a>
+        <button
+          onClick={() => {
+            const guestId = getCookie();
+            if (guestId == null) {
+              toast.error(`ログインして下さい`);
+              Router.push("/");
+            } else if (guestId != null) {
+              Router.push("/articleSaved");
+            }
+          }}
+        >
+          下書き保存
+        </button>
       </Menu.Item>
       <Menu.Item key="2">
         <button
@@ -45,8 +70,29 @@ const HeaderComp: React.FC<search> = ({
     </Menu>
   );
 
+  const goToAddArticle = () => {
+    const guestId = getCookie();
+    if (guestId == null) {
+      toast.error(`ログインして下さい`);
+      Router.push("/");
+    } else if (guestId != null) {
+      Router.push("/articleAdd");
+    }
+  };
+
+  const goToQiitaList = () => {
+    const guestId = getCookie();
+    if (guestId == null) {
+      toast.error(`ログインして下さい`);
+      Router.push("/");
+    } else if (guestId != null) {
+      Router.push("/qiitaList");
+    }
+  };
+
   return (
     <React.Fragment>
+      <Toaster />
       <div className="flex gap-1 justify-between border">
         <button
           onClick={reloadArticles}
@@ -100,17 +146,18 @@ const HeaderComp: React.FC<search> = ({
             </a>
           </Dropdown>
 
-          {/* 画面遷移のためLink */}
-          <Link href={"/articleAdd"}>
-            <a className="px-4 py-3 m-4 text-white hover:text-white font-semibold bg-sky-400 hover:bg-sky-500 active:bg-sky-500 focus:outline-none focus:ring focus:ring-sky-300 rounded-md shadow-xl">
-              Add News
-            </a>
-          </Link>
-          <Link href={"/qiitaList"}>
-            <a className="px-4 py-3 mr-5 my-4 text-white hover:text-white font-semibold bg-sky-400 hover:bg-sky-500 active:bg-sky-500 focus:outline-none focus:ring focus:ring-sky-300 rounded-md shadow-xl">
-              Qiita
-            </a>
-          </Link>
+          <button
+            onClick={goToAddArticle}
+            className="px-4 py-3 m-4 text-white hover:text-white font-semibold bg-sky-400 hover:bg-sky-500 active:bg-sky-500 focus:outline-none focus:ring focus:ring-sky-300 rounded-md shadow-xl"
+          >
+            Add News
+          </button>
+          <button
+            onClick={goToQiitaList}
+            className="px-4 py-3 mr-5 my-4 text-white hover:text-white font-semibold bg-sky-400 hover:bg-sky-500 active:bg-sky-500 focus:outline-none focus:ring focus:ring-sky-300 rounded-md shadow-xl"
+          >
+            Qiita
+          </button>
         </div>
       </div>
     </React.Fragment>

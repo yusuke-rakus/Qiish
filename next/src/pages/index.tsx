@@ -8,7 +8,6 @@ const Home: React.FC = () => {
   // 記事詳細のみCookieにarticleUserIdを保持するため削除
   useEffect(() => {
     const guestId = getCookie();
-    console.log(guestId);
     if (guestId == null) {
       setIsLogin(false);
       console.log("ログアウトします");
@@ -16,7 +15,6 @@ const Home: React.FC = () => {
       setIsLogin(true);
       console.log("記事一覧を表示します");
     }
-    console.log(isLogin);
     removeArticleUserId();
   });
   return <>{isLogin ? <ArticleList /> : <Auth />}</>;
