@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Router from "next/router";
 import React, { useState, ChangeEvent } from "react";
+import { removeUserId } from "../../lib/cookie/handleCookie";
 import { SearchOutlined, UserOutlined, DownOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Drawer, Space } from "antd";
 
@@ -32,13 +33,14 @@ const HeaderComp: React.FC<search> = ({
         <a href={"/articleSaved"}>下書き記事</a>
       </Menu.Item>
       <Menu.Item key="2">
-        <a href={"/registerUser"}>会員登録</a>
-      </Menu.Item>
-      <Menu.Item key="3">
-        <a href={"/loginUser"}>ログイン</a>
-      </Menu.Item>
-      <Menu.Item key="4">
-        <a href={"/loginUser"}>ログアウト</a>
+        <button
+          onClick={() => {
+            removeUserId();
+            Router.push("/");
+          }}
+        >
+          ログアウト
+        </button>
       </Menu.Item>
     </Menu>
   );

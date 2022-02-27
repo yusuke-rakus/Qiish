@@ -28,14 +28,14 @@ const ResetPassword: React.FC = () => {
       toast.error(`新しいパスワードの設定に失敗しました。`);
     } else {
       toast.success(`新しいパスワードの設定が完了しました。`);
-      Router.push("/loginUser");
+      Router.push("/");
     }
   };
 
   return (
     <div className="h-screen w-screen flex flex-col gap-2 justify-center items-center">
       <Toaster />
-      <div className="m-4 mr-20 text-4xl font-semibold text-orange-500">
+      <div className="m-4 mr-20 text-4xl font-semibold text-sky-500">
         パスワード再設定
       </div>
       <div>登録中のメールアドレス：{router.query.email}</div>
@@ -44,14 +44,14 @@ const ResetPassword: React.FC = () => {
         onChange={onChangeNewPassword}
         placeholder="新しいパスワード(英数字8桁以上)
         "
-        className="px-6 py-4 w-80 bg-white rounded-sm"
+        className="px-6 py-4 w-80 bg-white rounded border-2 focus:outline-none focus:border-sky-500"
       />
 
       <button
         onClick={() => {
           reset();
         }}
-        className="px-6 py-4 w-80 bg-orange-400 text-white text-xl text-center rounded-md hover:bg-amber-600"
+        className="px-6 py-4 w-80 bg-sky-400 text-white text-xl text-center rounded-md hover:bg-sky-600"
       >
         送信
       </button>
