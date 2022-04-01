@@ -34,7 +34,7 @@
 				WHERE a.posted_date > date_sub(CURDATE(), INTERVAL 365 day)
 			</when> 
 		</choose>
-		GROUP BY t.skill 
+		GROUP BY t.id, t.skill, t.image
 		ORDER BY COUNT(at.tag_id) DESC LIMIT 20;
 	</select>
 
